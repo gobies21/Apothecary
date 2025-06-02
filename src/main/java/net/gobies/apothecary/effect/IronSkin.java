@@ -1,5 +1,6 @@
 package net.gobies.apothecary.effect;
 
+import net.gobies.apothecary.Config;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,7 +22,7 @@ public class IronSkin extends MobEffect {
         super.addAttributeModifiers(entity, attribute, amplifier);
         var Armor = entity.getAttribute(Attributes.ARMOR);
         if (Armor != null && Armor.getModifier(ARMOR_UUID) == null) {
-            double armor = 4.0 * (amplifier + 1);
+            double armor = Config.IRON_SKIN_ARMOR_INCREASE.get() * (amplifier + 1);
             Armor.addTransientModifier(
                     new AttributeModifier(ARMOR_UUID, "Iron Skin", armor, AttributeModifier.Operation.ADDITION));
         }

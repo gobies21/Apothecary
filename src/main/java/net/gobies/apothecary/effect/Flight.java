@@ -8,12 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Flight extends MobEffect {
-    private static final Set<Player> flyingPlayers = new HashSet<>();
-
     public Flight(MobEffectCategory category, int color) {
         super(category, color);
     }

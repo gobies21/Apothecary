@@ -1,5 +1,6 @@
 package net.gobies.apothecary.effect;
 
+import net.gobies.apothecary.Config;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -25,7 +26,7 @@ public class Wrath extends MobEffect {
         if (event.getSource().getEntity() instanceof LivingEntity attacker) {
             if (attacker.hasEffect(AEffects.Wrath.get())) {
                 int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Wrath.get())).getAmplifier();
-                float increasedDamage = event.getAmount() * (1.0f + (0.10f * (amplifier + 1)));
+                float increasedDamage = (float) (event.getAmount() * (1.0f + (Config.ARCHERY_DAMAGE_INCREASE.get() * (amplifier + 1))));
                 event.setAmount(increasedDamage);
             }
         }

@@ -1,5 +1,7 @@
 package net.gobies.apothecary.recipe;
 
+import io.redspace.ironsspellbooks.registries.ItemRegistry;
+import io.redspace.ironsspellbooks.registries.PotionRegistry;
 import net.gobies.apothecary.Config;
 import net.gobies.apothecary.init.APotions;
 import net.minecraft.resources.ResourceLocation;
@@ -9,6 +11,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Objects;
 
@@ -190,6 +193,36 @@ public class ABrewing {
                     Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Reach.get())),
                     Ingredient.of(Items.GLOWSTONE_DUST),
                     PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongReach.get()))
+            );
+        }
+
+        if (ModList.get().isLoaded("irons_spellbooks")) {
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionRegistry.INSTANT_MANA_TWO.get())),
+                    Ingredient.of(ItemRegistry.ARCANE_ESSENCE.get()),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.ManaRegeneration.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.ManaRegeneration.get())),
+                    Ingredient.of(Items.REDSTONE),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongManaRegeneration.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.ManaRegeneration.get())),
+                    Ingredient.of(Items.GLOWSTONE_DUST),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongManaRegeneration.get()))
+            );
+
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionRegistry.INSTANT_MANA_THREE.get())),
+                    Ingredient.of(ItemRegistry.ARCANE_ESSENCE.get()),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.MagicPower.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.MagicPower.get())),
+                    Ingredient.of(Items.REDSTONE),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongMagicPower.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.MagicPower.get())),
+                    Ingredient.of(Items.GLOWSTONE_DUST),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongMagicPower.get()))
             );
         }
 

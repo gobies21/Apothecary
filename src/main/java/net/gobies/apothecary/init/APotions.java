@@ -45,6 +45,12 @@ public class APotions {
     public static final RegistryObject<Potion> Reach;
     public static final RegistryObject<Potion> LongReach;
     public static final RegistryObject<Potion> StrongReach;
+    public static final RegistryObject<Potion> MagicPower;
+    public static final RegistryObject<Potion> LongMagicPower;
+    public static final RegistryObject<Potion> StrongMagicPower;
+    public static final RegistryObject<Potion> ManaRegeneration;
+    public static final RegistryObject<Potion> LongManaRegeneration;
+    public static final RegistryObject<Potion> StrongManaRegeneration;
 
     //Vanilla potions
     public static final RegistryObject<Potion> HealthBoost;
@@ -108,6 +114,14 @@ public class APotions {
         Reach = POTIONS.register("reach", () -> new Potion(new MobEffectInstance(AEffects.Reach.get(),3600,0)));
         LongReach = POTIONS.register("long_reach", () -> new Potion(new MobEffectInstance(AEffects.Reach.get(),9600,0)));
         StrongReach = POTIONS.register("strong_reach", () -> new Potion(new MobEffectInstance(AEffects.Reach.get(),1800,1)));
+
+        MagicPower = POTIONS.register("magic_power", () -> new Potion(new MobEffectInstance(AEffects.MagicPower.get(),3600,0)));
+        LongMagicPower = POTIONS.register("long_magic_power", () -> new Potion(new MobEffectInstance(AEffects.MagicPower.get(),9600,0)));
+        StrongMagicPower = POTIONS.register("strong_magic_power", () -> new Potion(new MobEffectInstance(AEffects.MagicPower.get(),1800,1)));
+
+        ManaRegeneration = POTIONS.register("mana_regeneration", () -> new Potion(new MobEffectInstance(AEffects.ManaRegeneration.get(),3600,0)));
+        LongManaRegeneration = POTIONS.register("long_mana_regeneration", () -> new Potion(new MobEffectInstance(AEffects.ManaRegeneration.get(),9600,0)));
+        StrongManaRegeneration = POTIONS.register("strong_mana_regeneration", () -> new Potion(new MobEffectInstance(AEffects.ManaRegeneration.get(),1800,1)));
 
         //Vanilla potions
         HealthBoost = POTIONS.register("health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,3600,0)));

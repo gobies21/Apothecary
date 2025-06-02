@@ -21,6 +21,8 @@ public class AEffects {
     public static final RegistryObject<MobEffect> Indolence;
     public static final RegistryObject<MobEffect> Flight;
     public static final RegistryObject<MobEffect> Reach;
+    public static final RegistryObject<MobEffect> MagicPower;
+    public static final RegistryObject<MobEffect> ManaRegeneration;
 
     public AEffects() {
     }
@@ -36,7 +38,9 @@ public class AEffects {
         Wrath = REGISTRY.register("wrath", () -> new Wrath(MobEffectCategory.BENEFICIAL, 0x8B0000));
         Feeble = REGISTRY.register("feeble", () -> new Feeble(MobEffectCategory.HARMFUL, 0x370000));
         Indolence = REGISTRY.register("indolence", () -> new Indolence(MobEffectCategory.HARMFUL, 0x333333));
-        Flight = REGISTRY.register("flight", () -> new Flight(MobEffectCategory.NEUTRAL, 0x63C5DA));
-        Reach = REGISTRY.register("reach", () -> new Reach(MobEffectCategory.NEUTRAL, 0xCA5CDD));
+        Flight = REGISTRY.register("flight", () -> new Flight(MobEffectCategory.BENEFICIAL, 0x63C5DA));
+        Reach = REGISTRY.register("reach", () -> new Reach(MobEffectCategory.BENEFICIAL, 0xCA5CDD));
+        MagicPower = REGISTRY.register("magic_power", () -> new MagicPower(MobEffectCategory.BENEFICIAL, 0x7600BC));
+        ManaRegeneration = REGISTRY.register("mana_regeneration", () -> new ManaRegeneration(MobEffectCategory.BENEFICIAL, 0xFF00FF));
     }
 }

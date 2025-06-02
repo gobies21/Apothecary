@@ -1,5 +1,6 @@
 package net.gobies.apothecary.effect;
 
+import net.gobies.apothecary.Config;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,7 +23,7 @@ public class DiamondSkin extends MobEffect {
         super.addAttributeModifiers(entity, attribute, amplifier);
         var Armor = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
         if (Armor != null && Armor.getModifier(ARMOR_TOUGHNESS_UUID) == null) {
-            double armorToughness = 2.0 * (amplifier + 1);
+            double armorToughness = Config.DIAMOND_SKIN_ARMOR_INCREASE.get() * (amplifier + 1);
             Armor.addTransientModifier(
                     new AttributeModifier(ARMOR_TOUGHNESS_UUID, "Diamond Skin", armorToughness, AttributeModifier.Operation.ADDITION));
         }
