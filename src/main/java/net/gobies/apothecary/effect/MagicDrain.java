@@ -11,10 +11,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public class ManaRegeneration extends MobEffect {
-    private static final UUID MANA_REGENERATION_UUID = UUID.randomUUID();
+public class MagicDrain extends MobEffect {
+    private static final UUID SPELL_POWER_UUID = UUID.randomUUID();
 
-    public ManaRegeneration(MobEffectCategory category, int color) {
+    public MagicDrain(MobEffectCategory category, int color) {
         super(category, color);
     }
 
@@ -22,11 +22,11 @@ public class ManaRegeneration extends MobEffect {
     public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.addAttributeModifiers(entity, attribute, amplifier);
         if (ModList.get().isLoaded("irons_spellbooks")) {
-            var manaRegen = entity.getAttribute(AttributeRegistry.MANA_REGEN.get());
-            if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) == null) {
-                double power = 0.15 * (amplifier + 1);
-                manaRegen.addTransientModifier(
-                        new AttributeModifier(MANA_REGENERATION_UUID, "Mana Regen", power, AttributeModifier.Operation.ADDITION));
+            var spellPower = entity.getAttribute(AttributeRegistry.SPELL_POWER.get());
+            if (spellPower != null && spellPower.getModifier(SPELL_POWER_UUID) == null) {
+                double power = 0.1 * (amplifier + 1);
+                spellPower.addTransientModifier(
+                        new AttributeModifier(SPELL_POWER_UUID, "Magic Drain", -power, AttributeModifier.Operation.ADDITION));
             }
         }
     }
@@ -35,9 +35,9 @@ public class ManaRegeneration extends MobEffect {
     public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.removeAttributeModifiers(entity, attribute, amplifier);
         if (ModList.get().isLoaded("irons_spellbooks")) {
-            var manaRegen = entity.getAttribute(AttributeRegistry.MANA_REGEN.get());
-            if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) != null) {
-                manaRegen.removeModifier(MANA_REGENERATION_UUID);
+            var spellPower = entity.getAttribute(AttributeRegistry.SPELL_POWER.get());
+            if (spellPower != null && spellPower.getModifier(SPELL_POWER_UUID) != null) {
+                spellPower.removeModifier(SPELL_POWER_UUID);
             }
         }
     }

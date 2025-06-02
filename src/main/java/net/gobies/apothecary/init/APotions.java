@@ -45,12 +45,24 @@ public class APotions {
     public static final RegistryObject<Potion> Reach;
     public static final RegistryObject<Potion> LongReach;
     public static final RegistryObject<Potion> StrongReach;
+    public static final RegistryObject<Potion> Repairing;
+    public static final RegistryObject<Potion> LongRepairing;
+    public static final RegistryObject<Potion> StrongRepairing;
+    public static final RegistryObject<Potion> Corrosion;
+    public static final RegistryObject<Potion> LongCorrosion;
+    public static final RegistryObject<Potion> StrongCorrosion;
     public static final RegistryObject<Potion> MagicPower;
     public static final RegistryObject<Potion> LongMagicPower;
     public static final RegistryObject<Potion> StrongMagicPower;
+    public static final RegistryObject<Potion> MagicDrain;
+    public static final RegistryObject<Potion> LongMagicDrain;
+    public static final RegistryObject<Potion> StrongMagicDrain;
     public static final RegistryObject<Potion> ManaRegeneration;
     public static final RegistryObject<Potion> LongManaRegeneration;
     public static final RegistryObject<Potion> StrongManaRegeneration;
+    public static final RegistryObject<Potion> ManaExhaustion;
+    public static final RegistryObject<Potion> LongManaExhaustion;
+    public static final RegistryObject<Potion> StrongManaExhaustion;
 
     //Vanilla potions
     public static final RegistryObject<Potion> HealthBoost;
@@ -115,13 +127,29 @@ public class APotions {
         LongReach = POTIONS.register("long_reach", () -> new Potion(new MobEffectInstance(AEffects.Reach.get(),9600,0)));
         StrongReach = POTIONS.register("strong_reach", () -> new Potion(new MobEffectInstance(AEffects.Reach.get(),1800,1)));
 
+        Repairing = POTIONS.register("repairing", () -> new Potion(new MobEffectInstance(AEffects.Repairing.get(),3600,0)));
+        LongRepairing = POTIONS.register("long_repairing", () -> new Potion(new MobEffectInstance(AEffects.Repairing.get(),9600,0)));
+        StrongRepairing = POTIONS.register("strong_repairing", () -> new Potion(new MobEffectInstance(AEffects.Repairing.get(),1800,1)));
+
+        Corrosion = POTIONS.register("corrosion", () -> new Potion(new MobEffectInstance(AEffects.Corrosion.get(),3600,0)));
+        LongCorrosion = POTIONS.register("long_corrosion", () -> new Potion(new MobEffectInstance(AEffects.Corrosion.get(),9600,0)));
+        StrongCorrosion = POTIONS.register("strong_corrosion", () -> new Potion(new MobEffectInstance(AEffects.Corrosion.get(),1800,1)));
+
         MagicPower = POTIONS.register("magic_power", () -> new Potion(new MobEffectInstance(AEffects.MagicPower.get(),3600,0)));
         LongMagicPower = POTIONS.register("long_magic_power", () -> new Potion(new MobEffectInstance(AEffects.MagicPower.get(),9600,0)));
         StrongMagicPower = POTIONS.register("strong_magic_power", () -> new Potion(new MobEffectInstance(AEffects.MagicPower.get(),1800,1)));
 
+        MagicDrain = POTIONS.register("magic_drain", () -> new Potion(new MobEffectInstance(AEffects.MagicDrain.get(),3600,0)));
+        LongMagicDrain = POTIONS.register("long_magic_drain", () -> new Potion(new MobEffectInstance(AEffects.MagicDrain.get(),9600,0)));
+        StrongMagicDrain = POTIONS.register("strong_magic_drain", () -> new Potion(new MobEffectInstance(AEffects.MagicDrain.get(),1800,1)));
+
         ManaRegeneration = POTIONS.register("mana_regeneration", () -> new Potion(new MobEffectInstance(AEffects.ManaRegeneration.get(),3600,0)));
         LongManaRegeneration = POTIONS.register("long_mana_regeneration", () -> new Potion(new MobEffectInstance(AEffects.ManaRegeneration.get(),9600,0)));
         StrongManaRegeneration = POTIONS.register("strong_mana_regeneration", () -> new Potion(new MobEffectInstance(AEffects.ManaRegeneration.get(),1800,1)));
+
+        ManaExhaustion = POTIONS.register("mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),3600,0)));
+        LongManaExhaustion = POTIONS.register("long_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),9600,0)));
+        StrongManaExhaustion = POTIONS.register("strong_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),1800,1)));
 
         //Vanilla potions
         HealthBoost = POTIONS.register("health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,3600,0)));

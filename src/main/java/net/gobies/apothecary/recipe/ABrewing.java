@@ -36,7 +36,7 @@ public class ABrewing {
 
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.IronSkin.get())),
-                Ingredient.of(Items.FERMENTED_SPIDER_EYE),
+                Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.BROKEN_ARMOR_INGREDIENT.get())))),
                 PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.BrokenArmor.get())));
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.BrokenArmor.get())),
@@ -66,7 +66,7 @@ public class ABrewing {
 
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.DiamondSkin.get())),
-                Ingredient.of(Items.FERMENTED_SPIDER_EYE),
+                Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.RUPTURED_ARMOR_INGREDIENT.get())))),
                 PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.RupturedArmor.get())));
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.RupturedArmor.get())),
@@ -96,7 +96,7 @@ public class ABrewing {
 
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Archery.get())),
-                Ingredient.of(Items.FERMENTED_SPIDER_EYE),
+                Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.MISFIRE_INGREDIENT.get())))),
                 PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Misfire.get())));
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Misfire.get())),
@@ -126,7 +126,7 @@ public class ABrewing {
 
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Wrath.get())),
-                Ingredient.of(Items.FERMENTED_SPIDER_EYE),
+                Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.FEEBLE_INGREDIENT.get())))),
                 PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Feeble.get())));
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Feeble.get())),
@@ -156,7 +156,7 @@ public class ABrewing {
 
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Resistance.get())),
-                Ingredient.of(Items.FERMENTED_SPIDER_EYE),
+                Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.INDOLENCE_INGREDIENT.get())))),
                 PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Indolence.get())));
         BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Indolence.get())),
@@ -196,6 +196,34 @@ public class ABrewing {
             );
         }
 
+        BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+                Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.REPAIRING_INGREDIENT.get())))),
+                PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Repairing.get())));
+        BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Repairing.get())),
+                Ingredient.of(Items.REDSTONE),
+                PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongRepairing.get())));
+        BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Repairing.get())),
+                Ingredient.of(Items.GLOWSTONE_DUST),
+                PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongRepairing.get()))
+        );
+
+        BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Repairing.get())),
+                Ingredient.of(Items.FERMENTED_SPIDER_EYE),
+                PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Corrosion.get())));
+        BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Corrosion.get())),
+                Ingredient.of(Items.REDSTONE),
+                PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongCorrosion.get())));
+        BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Corrosion.get())),
+                Ingredient.of(Items.GLOWSTONE_DUST),
+                PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongCorrosion.get()))
+        );
+
         if (ModList.get().isLoaded("irons_spellbooks")) {
             BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                     Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionRegistry.INSTANT_MANA_TWO.get())),
@@ -212,6 +240,20 @@ public class ABrewing {
             );
 
             BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.ManaRegeneration.get())),
+                    Ingredient.of(Items.FERMENTED_SPIDER_EYE),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.ManaExhaustion.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.ManaExhaustion.get())),
+                    Ingredient.of(Items.REDSTONE),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongManaExhaustion.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.ManaExhaustion.get())),
+                    Ingredient.of(Items.GLOWSTONE_DUST),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongManaExhaustion.get()))
+            );
+
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                     Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), PotionRegistry.INSTANT_MANA_THREE.get())),
                     Ingredient.of(ItemRegistry.ARCANE_ESSENCE.get()),
                     PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.MagicPower.get())));
@@ -224,6 +266,21 @@ public class ABrewing {
                     Ingredient.of(Items.GLOWSTONE_DUST),
                     PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongMagicPower.get()))
             );
+
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.MagicPower.get())),
+                    Ingredient.of(Items.FERMENTED_SPIDER_EYE),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.MagicDrain.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.MagicDrain.get())),
+                    Ingredient.of(Items.REDSTONE),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongMagicDrain.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.MagicDrain.get())),
+                    Ingredient.of(Items.GLOWSTONE_DUST),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongMagicDrain.get()))
+            );
+
         }
 
         if (Config.ENABLE_HEALTH_BOOST_RECIPE.get()) {

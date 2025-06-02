@@ -13,7 +13,6 @@ import java.util.UUID;
 public class BrokenArmor extends MobEffect {
     private static final UUID ARMOR_UUID = UUID.randomUUID();
 
-
     public BrokenArmor(MobEffectCategory category, int color) {
         super(category, color);
     }

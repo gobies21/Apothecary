@@ -20,10 +20,10 @@ public class RupturedArmor extends MobEffect {
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.addAttributeModifiers(entity, attribute, amplifier);
-        var Armor = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        if (Armor != null && Armor.getModifier(ARMOR_TOUGHNESS_UUID) == null) {
+        var ArmorToughness = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+        if (ArmorToughness != null && ArmorToughness.getModifier(ARMOR_TOUGHNESS_UUID) == null) {
             double armorToughness = 2 * (amplifier + 1);
-            Armor.addTransientModifier(
+            ArmorToughness.addTransientModifier(
                     new AttributeModifier(ARMOR_TOUGHNESS_UUID, "Ruptured Armor", -armorToughness, AttributeModifier.Operation.ADDITION));
         }
     }
@@ -31,9 +31,9 @@ public class RupturedArmor extends MobEffect {
     @Override
     public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.removeAttributeModifiers(entity, attribute, amplifier);
-        var Armor = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        if (Armor != null && Armor.getModifier(ARMOR_TOUGHNESS_UUID) != null) {
-            Armor.removeModifier(ARMOR_TOUGHNESS_UUID);
+        var ArmorToughness = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+        if (ArmorToughness != null && ArmorToughness.getModifier(ARMOR_TOUGHNESS_UUID) != null) {
+            ArmorToughness.removeModifier(ARMOR_TOUGHNESS_UUID);
         }
     }
 }

@@ -21,8 +21,12 @@ public class AEffects {
     public static final RegistryObject<MobEffect> Indolence;
     public static final RegistryObject<MobEffect> Flight;
     public static final RegistryObject<MobEffect> Reach;
+    public static final RegistryObject<MobEffect> Repairing;
+    public static final RegistryObject<MobEffect> Corrosion;
     public static final RegistryObject<MobEffect> MagicPower;
+    public static final RegistryObject<MobEffect> MagicDrain;
     public static final RegistryObject<MobEffect> ManaRegeneration;
+    public static final RegistryObject<MobEffect> ManaExhaustion;
 
     public AEffects() {
     }
@@ -40,7 +44,11 @@ public class AEffects {
         Indolence = REGISTRY.register("indolence", () -> new Indolence(MobEffectCategory.HARMFUL, 0x333333));
         Flight = REGISTRY.register("flight", () -> new Flight(MobEffectCategory.BENEFICIAL, 0x63C5DA));
         Reach = REGISTRY.register("reach", () -> new Reach(MobEffectCategory.BENEFICIAL, 0xCA5CDD));
+        Repairing = REGISTRY.register("repairing", () -> new Repairing(MobEffectCategory.BENEFICIAL, 0x008000));
+        Corrosion = REGISTRY.register("corrosion", () -> new Corrosion(MobEffectCategory.HARMFUL, 0x52712D));
         MagicPower = REGISTRY.register("magic_power", () -> new MagicPower(MobEffectCategory.BENEFICIAL, 0x7600BC));
+        MagicDrain = REGISTRY.register("magic_drain", () -> new MagicDrain(MobEffectCategory.HARMFUL, 0x520083));
         ManaRegeneration = REGISTRY.register("mana_regeneration", () -> new ManaRegeneration(MobEffectCategory.BENEFICIAL, 0xFF00FF));
+        ManaExhaustion = REGISTRY.register("mana_exhaustion", () -> new ManaExhaustion(MobEffectCategory.HARMFUL, 0x990099));
     }
 }

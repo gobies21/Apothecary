@@ -11,10 +11,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public class ManaRegeneration extends MobEffect {
+public class ManaExhaustion extends MobEffect {
     private static final UUID MANA_REGENERATION_UUID = UUID.randomUUID();
 
-    public ManaRegeneration(MobEffectCategory category, int color) {
+    public ManaExhaustion(MobEffectCategory category, int color) {
         super(category, color);
     }
 
@@ -24,9 +24,9 @@ public class ManaRegeneration extends MobEffect {
         if (ModList.get().isLoaded("irons_spellbooks")) {
             var manaRegen = entity.getAttribute(AttributeRegistry.MANA_REGEN.get());
             if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) == null) {
-                double power = 0.15 * (amplifier + 1);
+                double regen = 0.15 * (amplifier + 1);
                 manaRegen.addTransientModifier(
-                        new AttributeModifier(MANA_REGENERATION_UUID, "Mana Regen", power, AttributeModifier.Operation.ADDITION));
+                        new AttributeModifier(MANA_REGENERATION_UUID, "Mana Exhaustion", -regen, AttributeModifier.Operation.ADDITION));
             }
         }
     }
