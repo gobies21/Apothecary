@@ -1,5 +1,6 @@
 package net.gobies.apothecary.effect;
 
+import net.gobies.apothecary.Config;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,7 +24,7 @@ public class Corrosion extends MobEffect {
                 ItemStack stack = player.getInventory().getItem(i);
                 if (!stack.isEmpty() && stack.isDamageableItem()) {
                     if (RANDOM.nextInt(20) == 0) {
-                        int damage = 1 + amplifier;
+                        int damage = Config.CORROSION_RATE.get() + amplifier;
                         stack.hurtAndBreak(damage, player, (p) -> p.broadcastBreakEvent(p.getUsedItemHand()));
                     }
                 }

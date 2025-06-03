@@ -3,6 +3,7 @@ package net.gobies.apothecary.compat.ironsspellbooks;
 import io.redspace.ironsspellbooks.entity.mobs.dead_king_boss.DeadKingBoss;
 import io.redspace.ironsspellbooks.entity.mobs.necromancer.NecromancerEntity;
 import net.gobies.apothecary.Apothecary;
+import net.gobies.apothecary.Config;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -16,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 public class IronsSpellbookEvents {
 
     public static void loadCompat() {
-        MinecraftForge.EVENT_BUS.register(new IronsSpellbookEvents());
+            MinecraftForge.EVENT_BUS.register(new IronsSpellbookEvents());
     }
 
     @SubscribeEvent

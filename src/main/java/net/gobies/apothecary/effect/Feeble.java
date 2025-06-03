@@ -13,6 +13,7 @@ import java.util.Objects;
 public class Feeble extends MobEffect {
     public Feeble(MobEffectCategory category, int color) {
         super(category, color);
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     static {

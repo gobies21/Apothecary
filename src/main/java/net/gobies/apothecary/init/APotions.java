@@ -63,6 +63,15 @@ public class APotions {
     public static final RegistryObject<Potion> ManaExhaustion;
     public static final RegistryObject<Potion> LongManaExhaustion;
     public static final RegistryObject<Potion> StrongManaExhaustion;
+    public static final RegistryObject<Potion> Confusion;
+    public static final RegistryObject<Potion> LongConfusion;
+    public static final RegistryObject<Potion> Thorns;
+    public static final RegistryObject<Potion> LongThorns;
+    public static final RegistryObject<Potion> StrongThorns;
+    public static final RegistryObject<Potion> Cleansed;
+    public static final RegistryObject<Potion> LongCleansed;
+    public static final RegistryObject<Potion> Corrupted;
+    public static final RegistryObject<Potion> LongCorrupted;
 
     //Vanilla potions
     public static final RegistryObject<Potion> HealthBoost;
@@ -150,6 +159,19 @@ public class APotions {
         ManaExhaustion = POTIONS.register("mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),3600,0)));
         LongManaExhaustion = POTIONS.register("long_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),9600,0)));
         StrongManaExhaustion = POTIONS.register("strong_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),1800,1)));
+
+        Confusion = POTIONS.register("confusion", () -> new Potion(new MobEffectInstance(AEffects.Confusion.get(),3600,0)));
+        LongConfusion = POTIONS.register("long_confusion", () -> new Potion(new MobEffectInstance(AEffects.Confusion.get(),9600,0)));
+
+        Thorns = POTIONS.register("thorns", () -> new Potion(new MobEffectInstance(AEffects.Thorns.get(),3600,0)));
+        LongThorns = POTIONS.register("long_thorns", () -> new Potion(new MobEffectInstance(AEffects.Thorns.get(),9600,0)));
+        StrongThorns = POTIONS.register("strong_thorns", () -> new Potion(new MobEffectInstance(AEffects.Thorns.get(),1800,1)));
+
+        Cleansed = POTIONS.register("cleansed", () -> new Potion(new MobEffectInstance(AEffects.Cleansed.get(),200,0)));
+        LongCleansed = POTIONS.register("long_cleansed", () -> new Potion(new MobEffectInstance(AEffects.Cleansed.get(),500,0)));
+
+        Corrupted = POTIONS.register("corrupted", () -> new Potion(new MobEffectInstance(AEffects.Corrupted.get(),200,0)));
+        LongCorrupted = POTIONS.register("long_corrupted", () -> new Potion(new MobEffectInstance(AEffects.Corrupted.get(),500,0)));
 
         //Vanilla potions
         HealthBoost = POTIONS.register("health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,3600,0)));

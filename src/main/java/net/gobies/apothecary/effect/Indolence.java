@@ -1,5 +1,6 @@
 package net.gobies.apothecary.effect;
 
+import net.gobies.apothecary.Config;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -26,7 +27,7 @@ public class Indolence extends MobEffect {
         if (entity instanceof LivingEntity defender) {
             if (defender.hasEffect(AEffects.Indolence.get())) {
                 int amplifier = Objects.requireNonNull(defender.getEffect(AEffects.Indolence.get())).getAmplifier();
-                float reducedDamage = event.getAmount() * (1.0f + (0.20f * (amplifier + 1)));
+                float reducedDamage = (float) (event.getAmount() * (1.0f + (Config.INDOLENCE_DAMAGE_TAKEN.get() * (amplifier + 1))));
                 event.setAmount(reducedDamage);
             }
         }

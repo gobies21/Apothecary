@@ -1,5 +1,6 @@
 package net.gobies.apothecary.effect;
 
+import net.gobies.apothecary.Config;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
@@ -26,7 +27,7 @@ public class Misfire extends MobEffect {
             if (event.getSource().is(DamageTypes.ARROW)) {
                 if (attacker.hasEffect(AEffects.Misfire.get())) {
                     int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Misfire.get())).getAmplifier();
-                    float reducedDamage = event.getAmount() * (1.0f - (0.20f * (amplifier + 1)));
+                    float reducedDamage = (float) (event.getAmount() * (1.0f - (Config.MISFIRE_DAMAGE_DECREASE.get() * (amplifier + 1))));
                     event.setAmount(reducedDamage);
                 }
             }

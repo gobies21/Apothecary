@@ -6,7 +6,7 @@ import net.minecraftforge.common.brewing.BrewingRecipe;
 
 import javax.annotation.Nonnull;
 
-class TrueBrewingRecipe extends BrewingRecipe {
+public class TrueBrewingRecipe extends BrewingRecipe {
 
     private final Ingredient input;
 

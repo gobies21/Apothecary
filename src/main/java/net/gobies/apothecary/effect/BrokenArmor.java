@@ -1,5 +1,6 @@
 package net.gobies.apothecary.effect;
 
+import net.gobies.apothecary.Config;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,7 +23,7 @@ public class BrokenArmor extends MobEffect {
         super.addAttributeModifiers(entity, attribute, amplifier);
         var Armor = entity.getAttribute(Attributes.ARMOR);
         if (Armor != null && Armor.getModifier(ARMOR_UUID) == null) {
-            double armorReduction = 4 * (amplifier + 1);
+            double armorReduction = Config.BROKEN_ARMOR_ARMOR_DECREASE.get() * (amplifier + 1);
             Armor.addTransientModifier(
                     new AttributeModifier(ARMOR_UUID, "Broken Armor", -armorReduction, AttributeModifier.Operation.ADDITION));
         }
