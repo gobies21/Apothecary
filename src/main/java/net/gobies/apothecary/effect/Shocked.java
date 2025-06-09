@@ -11,30 +11,30 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public class DiamondSkin extends MobEffect {
-    private static final UUID ARMOR_TOUGHNESS_UUID = UUID.randomUUID();
+public class Shocked extends MobEffect {
+    private static final UUID MOVEMENT_SPEED_UUID = UUID.randomUUID();
 
-    public DiamondSkin(MobEffectCategory category, int color) {
+    public Shocked(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.addAttributeModifiers(entity, attribute, amplifier);
-        var Armor = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        if (Armor != null && Armor.getModifier(ARMOR_TOUGHNESS_UUID) == null) {
-            double armorToughness = Config.DIAMOND_SKIN_ARMOR_INCREASE.get() * (amplifier + 1);
-            Armor.addPermanentModifier(
-                    new AttributeModifier(ARMOR_TOUGHNESS_UUID, "Diamond Skin", armorToughness, AttributeModifier.Operation.ADDITION));
+        var MovementSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (MovementSpeed != null && MovementSpeed.getModifier(MOVEMENT_SPEED_UUID) == null) {
+            double attackSpeed = Config.SHOCKED_SPEED_DECREASE.get() * (amplifier + 1);
+            MovementSpeed.addPermanentModifier(
+                    new AttributeModifier(MOVEMENT_SPEED_UUID, "Shocked Reduced Speed", -attackSpeed, AttributeModifier.Operation.MULTIPLY_BASE));
         }
     }
 
     @Override
     public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.removeAttributeModifiers(entity, attribute, amplifier);
-        var Armor = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        if (Armor != null && Armor.getModifier(ARMOR_TOUGHNESS_UUID) != null) {
-            Armor.removeModifier(ARMOR_TOUGHNESS_UUID);
+        var MovementSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (MovementSpeed != null && MovementSpeed.getModifier(MOVEMENT_SPEED_UUID) != null) {
+            MovementSpeed.removeModifier(MOVEMENT_SPEED_UUID);
         }
     }
 }

@@ -13,6 +13,8 @@ public class Flight extends MobEffect {
         super(category, color);
     }
 
+    private boolean allowFlying = false;
+
     static {
         MinecraftForge.EVENT_BUS.register(Flight.class);
     }
@@ -20,9 +22,10 @@ public class Flight extends MobEffect {
     @Override
     public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
-            if (!player.isCreative() && !player.isSpectator()) {
+            if (!player.getAbilities().mayfly) {
                 player.getAbilities().mayfly = true;
                 player.onUpdateAbilities();
+                allowFlying = true;
             }
         }
     }
@@ -31,10 +34,11 @@ public class Flight extends MobEffect {
     public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attributes, int amplifier) {
         super.removeAttributeModifiers(entity, attributes, amplifier);
         if (entity instanceof Player player) {
-            if (!player.isCreative() && !player.isSpectator()) {
+            if (!player.isCreative() && !player.isSpectator() && allowFlying) {
                 player.getAbilities().flying = false;
                 player.getAbilities().mayfly = false;
                 player.onUpdateAbilities();
+                allowFlying = false;
             }
         }
     }

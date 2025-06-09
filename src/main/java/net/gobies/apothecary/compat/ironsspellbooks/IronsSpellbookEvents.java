@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 public class IronsSpellbookEvents {
 
     public static void loadCompat() {
-            MinecraftForge.EVENT_BUS.register(new IronsSpellbookEvents());
+        MinecraftForge.EVENT_BUS.register(new IronsSpellbookEvents());
     }
 
     @SubscribeEvent

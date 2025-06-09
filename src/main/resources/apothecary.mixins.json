@@ -2,8 +2,9 @@
   "required": true,
   "package": "net.gobies.apothecary.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "moreartifacts.mixins.refmap.json",
+  "refmap": "apothecary.mixins.refmap.json",
   "mixins": [
+    "ItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

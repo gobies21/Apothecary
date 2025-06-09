@@ -270,11 +270,7 @@ public class ABrewing {
             BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                     Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
                     Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.CLEANSED_INGREDIENT.get())))),
-                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Cleansed.get())));
-            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
-                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Cleansed.get())),
-                    Ingredient.of(Items.REDSTONE),
-                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongCleansed.get()))
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Cleansed.get()))
             );
         }
 
@@ -282,11 +278,55 @@ public class ABrewing {
             BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
                     Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
                     Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.CORRUPTED_INGREDIENT.get())))),
-                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Corrupted.get())));
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Corrupted.get()))
+            );
+        }
+
+        if (Config.ENABLE_BURNING_RECIPE.get()) {
             BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
-                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Corrupted.get())),
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+                    Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.BURNING_INGREDIENT.get())))),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Burning.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Burning.get())),
                     Ingredient.of(Items.REDSTONE),
-                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongCorrupted.get()))
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongBurning.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Burning.get())),
+                    Ingredient.of(Items.GLOWSTONE_DUST),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongBurning.get()))
+            );
+        }
+
+        if (Config.ENABLE_CHILLED_RECIPE.get()) {
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+                    Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.CHILLED_INGREDIENT.get())))),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Chilled.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Chilled.get())),
+                    Ingredient.of(Items.REDSTONE),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongChilled.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Chilled.get())),
+                    Ingredient.of(Items.GLOWSTONE_DUST),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongChilled.get()))
+            );
+        }
+
+        if (Config.ENABLE_SHOCKED_RECIPE.get()) {
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+                    Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.SHOCKED_INGREDIENT.get())))),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Shocked.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Shocked.get())),
+                    Ingredient.of(Items.REDSTONE),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongShocked.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Shocked.get())),
+                    Ingredient.of(Items.GLOWSTONE_DUST),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongShocked.get()))
             );
         }
 
@@ -373,6 +413,22 @@ public class ABrewing {
                     Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
                     Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.LUCK_INGREDIENT.get())))),
                     PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LUCK))
+            );
+        }
+
+        if (Config.ENABLE_WITHER_RECIPE.get()) {
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+                    Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.WITHER_INGREDIENT.get())))),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Wither.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Wither.get())),
+                    Ingredient.of(Items.REDSTONE),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.LongWither.get())));
+            BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Wither.get())),
+                    Ingredient.of(Items.GLOWSTONE_DUST),
+                    PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.StrongWither.get()))
             );
         }
     }

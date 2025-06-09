@@ -25,14 +25,14 @@ public class Reach extends MobEffect {
         var EntityReach = entity.getAttribute(ForgeMod.ENTITY_REACH.get());
         if (EntityReach != null && EntityReach.getModifier(ENTITY_REACH_UUID) == null) {
             double entityReach = Config.REACH_INCREASE.get() * (amplifier + 1);
-            EntityReach.addTransientModifier(
+            EntityReach.addPermanentModifier(
                     new AttributeModifier(ENTITY_REACH_UUID, "Entity Reach", entityReach, AttributeModifier.Operation.ADDITION));
         }
 
         var BlockReach = entity.getAttribute(ForgeMod.BLOCK_REACH.get());
         if (BlockReach != null && BlockReach.getModifier(BLOCK_REACH_UUID) == null) {
             double blockReach = Config.REACH_INCREASE.get() * (amplifier + 1);
-            BlockReach.addTransientModifier(
+            BlockReach.addPermanentModifier(
                     new AttributeModifier(BLOCK_REACH_UUID, "Block Reach", blockReach, AttributeModifier.Operation.ADDITION));
         }
     }

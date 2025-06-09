@@ -69,9 +69,16 @@ public class APotions {
     public static final RegistryObject<Potion> LongThorns;
     public static final RegistryObject<Potion> StrongThorns;
     public static final RegistryObject<Potion> Cleansed;
-    public static final RegistryObject<Potion> LongCleansed;
     public static final RegistryObject<Potion> Corrupted;
-    public static final RegistryObject<Potion> LongCorrupted;
+    public static final RegistryObject<Potion> Burning;
+    public static final RegistryObject<Potion> LongBurning;
+    public static final RegistryObject<Potion> StrongBurning;
+    public static final RegistryObject<Potion> Chilled;
+    public static final RegistryObject<Potion> LongChilled;
+    public static final RegistryObject<Potion> StrongChilled;
+    public static final RegistryObject<Potion> Shocked;
+    public static final RegistryObject<Potion> LongShocked;
+    public static final RegistryObject<Potion> StrongShocked;
 
     //Vanilla potions
     public static final RegistryObject<Potion> HealthBoost;
@@ -81,6 +88,10 @@ public class APotions {
     public static final RegistryObject<Potion> Resistance;
     public static final RegistryObject<Potion> LongResistance;
     public static final RegistryObject<Potion> StrongResistance;
+
+    public static final RegistryObject<Potion> Wither;
+    public static final RegistryObject<Potion> LongWither;
+    public static final RegistryObject<Potion> StrongWither;
 
     public APotions () {
     }
@@ -167,11 +178,21 @@ public class APotions {
         LongThorns = POTIONS.register("long_thorns", () -> new Potion(new MobEffectInstance(AEffects.Thorns.get(),9600,0)));
         StrongThorns = POTIONS.register("strong_thorns", () -> new Potion(new MobEffectInstance(AEffects.Thorns.get(),1800,1)));
 
-        Cleansed = POTIONS.register("cleansed", () -> new Potion(new MobEffectInstance(AEffects.Cleansed.get(),200,0)));
-        LongCleansed = POTIONS.register("long_cleansed", () -> new Potion(new MobEffectInstance(AEffects.Cleansed.get(),500,0)));
+        Cleansed = POTIONS.register("cleansed", () -> new Potion(new MobEffectInstance(AEffects.Cleansed.get(),1,0)));
 
-        Corrupted = POTIONS.register("corrupted", () -> new Potion(new MobEffectInstance(AEffects.Corrupted.get(),200,0)));
-        LongCorrupted = POTIONS.register("long_corrupted", () -> new Potion(new MobEffectInstance(AEffects.Corrupted.get(),500,0)));
+        Corrupted = POTIONS.register("corrupted", () -> new Potion(new MobEffectInstance(AEffects.Corrupted.get(),1,0)));
+
+        Burning = POTIONS.register("burning", () -> new Potion(new MobEffectInstance(AEffects.Burning.get(),3600,0)));
+        LongBurning = POTIONS.register("long_burning", () -> new Potion(new MobEffectInstance(AEffects.Burning.get(),9600,0)));
+        StrongBurning = POTIONS.register("strong_burning", () -> new Potion(new MobEffectInstance(AEffects.Burning.get(),1800,1)));
+
+        Chilled = POTIONS.register("chilled", () -> new Potion(new MobEffectInstance(AEffects.Chilled.get(),3600,0)));
+        LongChilled = POTIONS.register("long_chilled", () -> new Potion(new MobEffectInstance(AEffects.Chilled.get(),9600,0)));
+        StrongChilled = POTIONS.register("strong_chilled", () -> new Potion(new MobEffectInstance(AEffects.Chilled.get(),1800,1)));
+
+        Shocked = POTIONS.register("shocked", () -> new Potion(new MobEffectInstance(AEffects.Shocked.get(),1800,0)));
+        LongShocked = POTIONS.register("long_shocked", () -> new Potion(new MobEffectInstance(AEffects.Shocked.get(),4800,0)));
+        StrongShocked = POTIONS.register("strong_shocked", () -> new Potion(new MobEffectInstance(AEffects.Shocked.get(),900,1)));
 
         //Vanilla potions
         HealthBoost = POTIONS.register("health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,3600,0)));
@@ -181,5 +202,9 @@ public class APotions {
         Resistance = POTIONS.register("resistance", () -> new Potion(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,3600,0)));
         LongResistance = POTIONS.register("long_resistance", () -> new Potion(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,9600,0)));
         StrongResistance = POTIONS.register("strong_resistance", () -> new Potion(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,1800,1)));
+
+        Wither = POTIONS.register("wither", () -> new Potion(new MobEffectInstance(MobEffects.WITHER,3600,0)));
+        LongWither = POTIONS.register("long_wither", () -> new Potion(new MobEffectInstance(MobEffects.WITHER,9600,0)));
+        StrongWither = POTIONS.register("strong_wither", () -> new Potion(new MobEffectInstance(MobEffects.WITHER,1800,1)));
     }
 }

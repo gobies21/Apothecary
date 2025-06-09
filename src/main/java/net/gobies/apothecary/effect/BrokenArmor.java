@@ -18,13 +18,14 @@ public class BrokenArmor extends MobEffect {
         super(category, color);
     }
 
+
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.addAttributeModifiers(entity, attribute, amplifier);
         var Armor = entity.getAttribute(Attributes.ARMOR);
         if (Armor != null && Armor.getModifier(ARMOR_UUID) == null) {
             double armorReduction = Config.BROKEN_ARMOR_ARMOR_DECREASE.get() * (amplifier + 1);
-            Armor.addTransientModifier(
+            Armor.addPermanentModifier(
                     new AttributeModifier(ARMOR_UUID, "Broken Armor", -armorReduction, AttributeModifier.Operation.ADDITION));
         }
     }

@@ -8,7 +8,7 @@ modId="apothecary"
 version="1.0.0"
 displayName="Apothecary"
 authors="gobies"
-description='''more potions!'''
+description='''A potion expansion to liven up the alchemy experience in Minecraft!'''
 
 [[dependencies.apothecary]]
 modId= "forge"

@@ -18,6 +18,7 @@ public class BlacklistedEffects {
     private static Set<ResourceLocation> CLEANSED_BLACKLISTED_EFFECTS = null;
     private static Set<ResourceLocation> CORRUPTED_BLACKLISTED_EFFECTS = null;
 
+    //Cleansed
     public static void initCleansedBlacklist() {
         if (CLEANSED_BLACKLISTED_EFFECTS == null) {
             CLEANSED_BLACKLISTED_EFFECTS = new HashSet<>();
@@ -40,6 +41,7 @@ public class BlacklistedEffects {
         return effect.getCategory() == MobEffectCategory.HARMFUL && isHarmfulEffectBlacklisted(effect);
     }
 
+    //Corrupted
     public static void initCorruptedBlacklist() {
         if (CORRUPTED_BLACKLISTED_EFFECTS == null) {
             CORRUPTED_BLACKLISTED_EFFECTS = new HashSet<>();

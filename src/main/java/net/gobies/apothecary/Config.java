@@ -14,6 +14,8 @@ public class Config {
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WORLD_EVENTS;
     public static boolean enable_world_events;
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ENCHANTED_GLOW;
+    public static boolean enable_enchanted_glow;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_IRON_SKIN_RECIPE;
     public static boolean enable_iron_skin_recipe;
@@ -138,6 +140,24 @@ public class Config {
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> CORRUPTED_BLACKLIST_EFFECTS;
     public static List<? extends String> corrupted_blacklist_effects;
 
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BURNING_RECIPE;
+    public static boolean enable_burning_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> BURNING_INGREDIENT;
+    public static String burning_ingredient;
+
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CHILLED_RECIPE;
+    public static boolean enable_chilled_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> CHILLED_INGREDIENT;
+    public static String chilled_ingredient;
+    public static ForgeConfigSpec.ConfigValue<Double> CHILLED_SPEED_DECREASE;
+    public static float chilled_speed_decrease;
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SHOCKED_RECIPE;
+    public static boolean enable_shocked_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> SHOCKED_INGREDIENT;
+    public static String shocked_ingredient;
+    public static ForgeConfigSpec.ConfigValue<Double> SHOCKED_SPEED_DECREASE;
+    public static float shocked_speed_decrease;
+
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_HEALTH_BOOST_RECIPE;
     public static boolean enable_health_boost_recipe;
     public static ForgeConfigSpec.ConfigValue<String> HEALTH_BOOST_INGREDIENT;
@@ -160,12 +180,18 @@ public class Config {
     public static ForgeConfigSpec.ConfigValue<Double> INDOLENCE_DAMAGE_TAKEN;
     public static float indolence_damage_taken;
 
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WITHER_RECIPE;
+    public static boolean enable_wither_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> WITHER_INGREDIENT;
+    public static String wither_ingredient;
+
     public Config() {
     }
 
     @SubscribeEvent
     static void onLoad(ModConfigEvent.Loading configEvent) {
         enable_world_events = ENABLE_WORLD_EVENTS.get();
+        enable_enchanted_glow = ENABLE_ENCHANTED_GLOW.get();
         enable_iron_skin_recipe = ENABLE_IRON_SKIN_RECIPE.get();
         iron_skin_ingredient = IRON_SKIN_INGREDIENT.get();
         iron_skin_armor_increase = IRON_SKIN_ARMOR_INCREASE.get();
@@ -218,6 +244,14 @@ public class Config {
         enable_corrupted_recipe = ENABLE_CORRUPTED_RECIPE.get();
         corrupted_ingredient = CORRUPTED_INGREDIENT.get();
         corrupted_blacklist_effects = CORRUPTED_BLACKLIST_EFFECTS.get();
+        enable_chilled_recipe = ENABLE_CHILLED_RECIPE.get();
+        enable_burning_recipe = ENABLE_BURNING_RECIPE.get();
+        burning_ingredient = BURNING_INGREDIENT.get();
+        chilled_ingredient = CHILLED_INGREDIENT.get();
+        chilled_speed_decrease = (float) (CHILLED_SPEED_DECREASE.get() * (double) 1.0F);
+        enable_shocked_recipe = ENABLE_SHOCKED_RECIPE.get();
+        shocked_ingredient = SHOCKED_INGREDIENT.get();
+        shocked_speed_decrease = (float) (SHOCKED_SPEED_DECREASE.get() * (double) 1.0F);
         enable_health_boost_recipe = ENABLE_HEALTH_BOOST_RECIPE.get();
         health_boost_ingredient = HEALTH_BOOST_INGREDIENT.get();
         enable_luck_recipe = ENABLE_LUCK_RECIPE.get();
@@ -227,12 +261,15 @@ public class Config {
         enable_indolence_recipe = ENABLE_INDOLENCE_RECIPE.get();
         indolence_ingredient = INDOLENCE_INGREDIENT.get();
         indolence_damage_taken = (float) (INDOLENCE_DAMAGE_TAKEN.get() * (double) 1.0F);
+        enable_wither_recipe = ENABLE_WITHER_RECIPE.get();
+        wither_ingredient = WITHER_INGREDIENT.get();
     }
 
     static {
 
         BUILDER.push("General");
-        ENABLE_WORLD_EVENTS = BUILDER.comment("Enable world events (effects being able to occur in the world outside of potions)").define("Enable", true);
+        ENABLE_WORLD_EVENTS = BUILDER.comment("Enable world events (effects being able to occur in the world outside of potions)").define("World_Events", true);
+        ENABLE_ENCHANTED_GLOW = BUILDER.comment("Enable potions having enchanted glow").define("Glow", false);
         BUILDER.pop();
 
         BUILDER.push("Iron_Skin");
@@ -250,7 +287,7 @@ public class Config {
         BUILDER.push("Diamond_Skin");
         ENABLE_DIAMOND_SKIN_RECIPE = BUILDER.comment("Enable the diamond skin potion recipe").define("Enable", true);
         DIAMOND_SKIN_INGREDIENT = BUILDER.comment("Main ingredient used to brew diamond skin potions").define("Ingredient", "minecraft:diamond_block");
-        DIAMOND_SKIN_ARMOR_INCREASE = BUILDER.comment("Armor toughness points provided by diamond skin potions").define("Armor_Toughness_Increase", 2);
+        DIAMOND_SKIN_ARMOR_INCREASE = BUILDER.comment("Armor toughness points provided by diamond skin potions").define("Armor_Toughness_Increase", 4);
         BUILDER.pop();
 
         BUILDER.push("Ruptured_Armor");
@@ -347,6 +384,23 @@ public class Config {
         CORRUPTED_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the corrupted effect (e.g., minecraft:strength, minecraft:speed etc)").defineList("corrupted_blacklist_effects", List.of(), s -> s instanceof String);
         BUILDER.pop();
 
+        BUILDER.push("Burning");
+        ENABLE_BURNING_RECIPE = BUILDER.comment("Enable the burning potion recipe").define("Enable", true);
+        BURNING_INGREDIENT = BUILDER.comment("Main ingredient used to brew burning potions").define("Ingredient", "minecraft:magma_block");
+        BUILDER.pop();
+
+        BUILDER.push("Chilled");
+        ENABLE_CHILLED_RECIPE = BUILDER.comment("Enable the chilled potion recipe").define("Enable", true);
+        CHILLED_INGREDIENT = BUILDER.comment("Main ingredient used to brew chilled potions").define("Ingredient", "minecraft:blue_ice");
+        CHILLED_SPEED_DECREASE = BUILDER.comment("Total speed reduction for the chilled effect").define("Chilled_Attack_Speed_Decrease", 0.25);
+        BUILDER.pop();
+
+        BUILDER.push("Shocked");
+        ENABLE_SHOCKED_RECIPE = BUILDER.comment("Enable the shocked potion recipe").define("Enable", true);
+        SHOCKED_INGREDIENT = BUILDER.comment("Main ingredient used to brew shocked potions").define("Ingredient", "minecraft:lightning_rod");
+        SHOCKED_SPEED_DECREASE = BUILDER.comment("Amount of movement speed reduction for the shocked effect").define("Shocked_Speed_Decrease", 0.5);
+        BUILDER.pop();
+
         BUILDER.push("Health_Boost");
         ENABLE_HEALTH_BOOST_RECIPE = BUILDER.comment("Enable the health boost potion recipe").define("Enable", true);
         HEALTH_BOOST_INGREDIENT = BUILDER.comment("Main ingredient used to brew health boost potions").define("Ingredient", "minecraft:golden_apple");
@@ -360,6 +414,11 @@ public class Config {
         BUILDER.push("Resistance");
         ENABLE_RESISTANCE_RECIPE = BUILDER.comment("Enable the resistance potion recipe").define("Enable", true);
         RESISTANCE_INGREDIENT = BUILDER.comment("Main ingredient used to brew resistance potions").define("Ingredient", "minecraft:crimson_fungus");
+        BUILDER.pop();
+
+        BUILDER.push("Wither");
+        ENABLE_WITHER_RECIPE = BUILDER.comment("Enable the wither potion recipe").define("Enable", true);
+        WITHER_INGREDIENT = BUILDER.comment("Main ingredient used to brew wither potions").define("Ingredient", "minecraft:wither_rose");
         BUILDER.pop();
 
         SPEC = BUILDER.build();

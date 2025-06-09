@@ -32,6 +32,9 @@ public class AEffects {
     public static final RegistryObject<MobEffect> Confusion;
     public static final RegistryObject<MobEffect> Cleansed;
     public static final RegistryObject<MobEffect> Corrupted;
+    public static final RegistryObject<MobEffect> Burning;
+    public static final RegistryObject<MobEffect> Chilled;
+    public static final RegistryObject<MobEffect> Shocked;
 
     public AEffects() {
     }
@@ -63,6 +66,9 @@ public class AEffects {
         Confusion = EFFECTS.register("confusion", () -> new Confusion(MobEffectCategory.HARMFUL, 0xFFFF00));
         Cleansed = EFFECTS.register("cleansed", () -> new Cleansed(MobEffectCategory.BENEFICIAL, 0xFFB6C1));
         Corrupted = EFFECTS.register("corrupted", () -> new Corrupted(MobEffectCategory.HARMFUL, 0x2B0F3D));
+        Burning = EFFECTS.register("burning", () -> new Burning(MobEffectCategory.HARMFUL, 0xC25811));
+        Chilled = EFFECTS.register("chilled", () -> new Chilled(MobEffectCategory.HARMFUL, 0x6BA7CC));
+        Shocked = EFFECTS.register("shocked", () -> new Shocked(MobEffectCategory.HARMFUL, 0x8F00FF));
 
     }
 }

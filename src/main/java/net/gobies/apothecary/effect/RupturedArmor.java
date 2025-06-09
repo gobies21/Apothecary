@@ -24,7 +24,7 @@ public class RupturedArmor extends MobEffect {
         var ArmorToughness = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
         if (ArmorToughness != null && ArmorToughness.getModifier(ARMOR_TOUGHNESS_UUID) == null) {
             double armorToughness = Config.RUPTURED_ARMOR_ARMOR_DECREASE.get() * (amplifier + 1);
-            ArmorToughness.addTransientModifier(
+            ArmorToughness.addPermanentModifier(
                     new AttributeModifier(ARMOR_TOUGHNESS_UUID, "Ruptured Armor", -armorToughness, AttributeModifier.Operation.ADDITION));
         }
     }

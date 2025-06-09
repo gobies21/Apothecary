@@ -25,7 +25,7 @@ public class ManaExhaustion extends MobEffect {
             var manaRegen = entity.getAttribute(AttributeRegistry.MANA_REGEN.get());
             if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) == null) {
                 double regen = 0.15 * (amplifier + 1);
-                manaRegen.addTransientModifier(
+                manaRegen.addPermanentModifier(
                         new AttributeModifier(MANA_REGENERATION_UUID, "Mana Exhaustion", -regen, AttributeModifier.Operation.ADDITION));
             }
         }

@@ -49,7 +49,7 @@ public class MagicPower extends MobEffect {
             var spellPower = entity.getAttribute(AttributeRegistry.SPELL_POWER.get());
             if (spellPower != null && spellPower.getModifier(SPELL_POWER_UUID) == null) {
                 double power = Config.MAGIC_POWER_INCREASE.get() * (amplifier + 1);
-                spellPower.addTransientModifier(
+                spellPower.addPermanentModifier(
                         new AttributeModifier(SPELL_POWER_UUID, "Magic Power", power, AttributeModifier.Operation.ADDITION));
             }
         }

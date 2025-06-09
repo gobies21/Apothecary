@@ -5,10 +5,16 @@ import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Corrupted extends MobEffect {
     public Corrupted(MobEffectCategory category, int color) {
@@ -30,6 +36,27 @@ public class Corrupted extends MobEffect {
         if (event.getEntity().hasEffect(AEffects.Corrupted.get()) &&
                 BlacklistedEffects.isBeneficialEffectApplicable(event.getEntity(), effectInstance)) {
             event.setResult(MobEffectEvent.Result.DENY);
+        }
+    }
+
+    @Override
+    public boolean isInstantenous() {
+        return true;
+    }
+
+
+    @Override
+    public void applyInstantenousEffect(@Nullable Entity pSource, @Nullable Entity pIndirectSource, @NotNull LivingEntity entity, int pAmplifier, double pHealth) {
+        List<MobEffect> effectsToRemove = new ArrayList<>();
+
+        for (MobEffectInstance effectInstance : entity.getActiveEffects()) {
+            MobEffect effect = effectInstance.getEffect();
+            if (effect.getCategory() == MobEffectCategory.BENEFICIAL && BlacklistedEffects.isBeneficialEffectBlacklisted(effect)) {
+                effectsToRemove.add(effect);
+            }
+        }
+        for (MobEffect effect : effectsToRemove) {
+            entity.removeEffect(effect);
         }
     }
 

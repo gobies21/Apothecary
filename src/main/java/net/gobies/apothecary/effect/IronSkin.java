@@ -23,7 +23,7 @@ public class IronSkin extends MobEffect {
         var Armor = entity.getAttribute(Attributes.ARMOR);
         if (Armor != null && Armor.getModifier(ARMOR_UUID) == null) {
             double armor = Config.IRON_SKIN_ARMOR_INCREASE.get() * (amplifier + 1);
-            Armor.addTransientModifier(
+            Armor.addPermanentModifier(
                     new AttributeModifier(ARMOR_UUID, "Iron Skin", armor, AttributeModifier.Operation.ADDITION));
         }
     }
