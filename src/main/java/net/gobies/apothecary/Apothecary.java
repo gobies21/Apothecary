@@ -5,7 +5,6 @@ import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbookEvents;
 import net.gobies.apothecary.compat.spartanweaponry.CrossbowArchery;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.init.APotions;
-import net.gobies.apothecary.mixin.PotionItemMixin;
 import net.gobies.apothecary.recipe.ABrewing;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,8 +15,6 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-
-import static net.gobies.apothecary.init.AEffects.Cleansed;
 
 @Mod(Apothecary.MOD_ID)
 public class Apothecary {
