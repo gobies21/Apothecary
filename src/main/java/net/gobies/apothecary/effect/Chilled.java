@@ -29,6 +29,15 @@ public class Chilled extends MobEffect {
         MinecraftForge.EVENT_BUS.register(Chilled.class);
     }
 
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        if (entity.hasEffect(AEffects.Chilled.get())) {
+            if (entity.isOnFire() || entity.isInLava()) {
+                entity.removeEffect(AEffects.Chilled.get());
+
+            }
+        }
+    }
+
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.addAttributeModifiers(entity, attribute, amplifier);
@@ -75,5 +84,10 @@ public class Chilled extends MobEffect {
 
             event.setNewSpeed((float) newBreakSpeed);
         }
+    }
+
+    @Override
+    public boolean isDurationEffectTick(int duration, int amplifier) {
+        return true;
     }
 }

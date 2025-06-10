@@ -276,7 +276,7 @@ public class ABrewing {
 
         if (Config.ENABLE_CORRUPTED_RECIPE.get()) {
             BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
-                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+                    Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Cleansed.get())),
                     Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.CORRUPTED_INGREDIENT.get())))),
                     PotionUtils.setPotion(new ItemStack(Items.POTION), APotions.Corrupted.get()))
             );

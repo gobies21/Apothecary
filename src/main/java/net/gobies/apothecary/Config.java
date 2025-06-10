@@ -272,6 +272,8 @@ public class Config {
         ENABLE_ENCHANTED_GLOW = BUILDER.comment("Enable potions having enchanted glow").define("Glow", false);
         BUILDER.pop();
 
+        BUILDER.push("Potions");
+
         BUILDER.push("Iron_Skin");
         ENABLE_IRON_SKIN_RECIPE = BUILDER.comment("Enable the iron skin potion recipe").define("Enable", true);
         IRON_SKIN_INGREDIENT = BUILDER.comment("Main ingredient used to brew iron skin potions").define("Ingredient", "minecraft:iron_block");
@@ -419,6 +421,8 @@ public class Config {
         BUILDER.push("Wither");
         ENABLE_WITHER_RECIPE = BUILDER.comment("Enable the wither potion recipe").define("Enable", true);
         WITHER_INGREDIENT = BUILDER.comment("Main ingredient used to brew wither potions").define("Ingredient", "minecraft:wither_rose");
+        BUILDER.pop();
+
         BUILDER.pop();
 
         SPEC = BUILDER.build();
