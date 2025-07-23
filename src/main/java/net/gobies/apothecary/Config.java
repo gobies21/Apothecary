@@ -206,21 +206,21 @@ public class Config {
         ruptured_armor_armor_decrease = RUPTURED_ARMOR_ARMOR_DECREASE.get();
         enable_archery_recipe = ENABLE_ARCHERY_RECIPE.get();
         archery_ingredient = ARCHERY_INGREDIENT.get();
-        archery_damage_increase = (float) (ARCHERY_DAMAGE_INCREASE.get() * (double) 1.0F);
+        archery_damage_increase = ARCHERY_DAMAGE_INCREASE.get().floatValue();
         enable_misfire_recipe = ENABLE_MISFIRE_RECIPE.get();
         misfire_ingredient = MISFIRE_INGREDIENT.get();
-        misfire_damage_decrease = (float) (MISFIRE_DAMAGE_DECREASE.get() * (double) 1.0F);
+        misfire_damage_decrease = MISFIRE_DAMAGE_DECREASE.get().floatValue();
         enable_wrath_recipe = ENABLE_WRATH_RECIPE.get();
         wrath_ingredient = WRATH_INGREDIENT.get();
-        wrath_damage_increase = (float) (WRATH_DAMAGE_INCREASE.get() * (double) 1.0F);
+        wrath_damage_increase = WRATH_DAMAGE_INCREASE.get().floatValue();
         enable_feeble_recipe = ENABLE_FEEBLE_RECIPE.get();
         feeble_ingredient = FEEBLE_INGREDIENT.get();
-        feeble_damage_decrease = (float) (FEEBLE_DAMAGE_DECREASE.get() * (double) 1.0F);
+        feeble_damage_decrease = FEEBLE_DAMAGE_DECREASE.get().floatValue();
         enable_flight_recipe = ENABLE_FLIGHT_RECIPE.get();
         flight_ingredient = FLIGHT_INGREDIENT.get();
         enable_reach_recipe = ENABLE_REACH_RECIPE.get();
         reach_ingredient = REACH_INGREDIENT.get();
-        reach_increase = (float) (REACH_INCREASE.get() * (double) 1.0F);
+        reach_increase = REACH_INCREASE.get().floatValue();
         enable_repairing_recipe = ENABLE_REPAIRING_RECIPE.get();
         repairing_ingredient = REPAIRING_INGREDIENT.get();
         repairing_rate = REPAIRING_RATE.get();
@@ -228,14 +228,14 @@ public class Config {
         corrosion_ingredient = CORROSION_INGREDIENT.get();
         enable_magic_power_recipe = ENABLE_MAGIC_POWER_RECIPE.get();
         magic_power_ingredient = MAGIC_POWER_INGREDIENT.get();
-        magic_power_increase = (float) (MAGIC_POWER_INCREASE.get() * (double) 1.0F);
+        magic_power_increase = MAGIC_POWER_INCREASE.get().floatValue();
         enable_magic_drain_recipe = ENABLE_MAGIC_DRAIN_RECIPE.get();
         magic_drain_ingredient = MAGIC_DRAIN_INGREDIENT.get();
-        magic_drain_decrease = (float) (MAGIC_DRAIN_DECREASE.get() * (double) 1.0F);
+        magic_drain_decrease = MAGIC_DRAIN_DECREASE.get().floatValue();
         corrosion_rate = CORROSION_RATE.get();
         enable_thorns_recipe = ENABLE_THORNS_RECIPE.get();
         thorns_ingredient = THORNS_INGREDIENT.get();
-        thorns_damage_reflect = (float) (THORNS_DAMAGE_REFLECT.get() * (double) 1.0F);
+        thorns_damage_reflect = THORNS_DAMAGE_REFLECT.get().floatValue();
         enable_confusion_recipe = ENABLE_CONFUSION_RECIPE.get();
         confusion_ingredient = CONFUSION_INGREDIENT.get();
         enable_cleansed_recipe = ENABLE_CLEANSED_RECIPE.get();
@@ -248,10 +248,10 @@ public class Config {
         enable_burning_recipe = ENABLE_BURNING_RECIPE.get();
         burning_ingredient = BURNING_INGREDIENT.get();
         chilled_ingredient = CHILLED_INGREDIENT.get();
-        chilled_speed_decrease = (float) (CHILLED_SPEED_DECREASE.get() * (double) 1.0F);
+        chilled_speed_decrease = CHILLED_SPEED_DECREASE.get().floatValue();
         enable_shocked_recipe = ENABLE_SHOCKED_RECIPE.get();
         shocked_ingredient = SHOCKED_INGREDIENT.get();
-        shocked_speed_decrease = (float) (SHOCKED_SPEED_DECREASE.get() * (double) 1.0F);
+        shocked_speed_decrease = SHOCKED_SPEED_DECREASE.get().floatValue();
         enable_health_boost_recipe = ENABLE_HEALTH_BOOST_RECIPE.get();
         health_boost_ingredient = HEALTH_BOOST_INGREDIENT.get();
         enable_luck_recipe = ENABLE_LUCK_RECIPE.get();
@@ -260,7 +260,7 @@ public class Config {
         resistance_ingredient = RESISTANCE_INGREDIENT.get();
         enable_indolence_recipe = ENABLE_INDOLENCE_RECIPE.get();
         indolence_ingredient = INDOLENCE_INGREDIENT.get();
-        indolence_damage_taken = (float) (INDOLENCE_DAMAGE_TAKEN.get() * (double) 1.0F);
+        indolence_damage_taken = INDOLENCE_DAMAGE_TAKEN.get().floatValue();
         enable_wither_recipe = ENABLE_WITHER_RECIPE.get();
         wither_ingredient = WITHER_INGREDIENT.get();
     }
@@ -272,7 +272,9 @@ public class Config {
         ENABLE_ENCHANTED_GLOW = BUILDER.comment("Enable potions having enchanted glow").define("Glow", false);
         BUILDER.pop();
 
+        //
         BUILDER.push("Potions");
+        //
 
         BUILDER.push("Iron_Skin");
         ENABLE_IRON_SKIN_RECIPE = BUILDER.comment("Enable the iron skin potion recipe").define("Enable", true);
@@ -377,13 +379,13 @@ public class Config {
         BUILDER.push("Cleansed");
         ENABLE_CLEANSED_RECIPE = BUILDER.comment("Enable the cleansed potion recipe").define("Enable", true);
         CLEANSED_INGREDIENT = BUILDER.comment("Main ingredient used to brew cleansed potions").define("Ingredient", "minecraft:heart_of_the_sea");
-        CLEANSED_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the cleansed effect (e.g., minecraft:poison, minecraft:slowness etc)").defineList("cleansed_blacklist_effects", List.of(), s -> s instanceof String);
+        CLEANSED_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the cleansed effect (e.g., minecraft:poison, minecraft:slowness etc)").defineList("Cleansed_Blacklist_Effects", List.of(), s -> s instanceof String);
         BUILDER.pop();
 
         BUILDER.push("Corrupted");
         ENABLE_CORRUPTED_RECIPE = BUILDER.comment("Enable the corrupted potion recipe").define("Enable", true);
         CORRUPTED_INGREDIENT = BUILDER.comment("Main ingredient used to brew corrupted potions").define("Ingredient", "minecraft:fermented_spider_eye");
-        CORRUPTED_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the corrupted effect (e.g., minecraft:strength, minecraft:speed etc)").defineList("corrupted_blacklist_effects", List.of(), s -> s instanceof String);
+        CORRUPTED_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the corrupted effect (e.g., minecraft:strength, minecraft:speed etc)").defineList("Corrupted_Blacklist_Effects", List.of(), s -> s instanceof String);
         BUILDER.pop();
 
         BUILDER.push("Burning");
@@ -423,7 +425,9 @@ public class Config {
         WITHER_INGREDIENT = BUILDER.comment("Main ingredient used to brew wither potions").define("Ingredient", "minecraft:wither_rose");
         BUILDER.pop();
 
+        //
         BUILDER.pop();
+        //
 
         SPEC = BUILDER.build();
     }

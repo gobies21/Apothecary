@@ -69,6 +69,5 @@ public class AEffects {
         Burning = EFFECTS.register("burning", () -> new Burning(MobEffectCategory.HARMFUL, 0xC25811));
         Chilled = EFFECTS.register("chilled", () -> new Chilled(MobEffectCategory.HARMFUL, 0x6BA7CC));
         Shocked = EFFECTS.register("shocked", () -> new Shocked(MobEffectCategory.HARMFUL, 0x8F00FF));
-
     }
 }

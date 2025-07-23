@@ -3,8 +3,8 @@ package net.gobies.apothecary.compat.ironsspellbooks;
 import io.redspace.ironsspellbooks.entity.mobs.dead_king_boss.DeadKingBoss;
 import io.redspace.ironsspellbooks.entity.mobs.necromancer.NecromancerEntity;
 import net.gobies.apothecary.Apothecary;
-import net.gobies.apothecary.Config;
 import net.gobies.apothecary.init.AEffects;
+import net.gobies.apothecary.util.DurationUtils;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,8 +25,8 @@ public class IronsSpellbookEvents {
         LivingEntity entity = event.getEntity();
         Entity mob = event.getSource().getEntity();
         if (entity != null) {
-            int randomLongDuration = entity.getRandom().nextInt(1200 - 200 + 1) + 200;
-            int randomShortDuration = entity.getRandom().nextInt(600 - 100 + 1) + 100;
+            int randomShortDuration = DurationUtils.getRandomShortDuration();
+            int randomLongDuration = DurationUtils.getRandomLongDuration();
             MobEffectInstance currentEffect = entity.getEffect(AEffects.MagicDrain.get());
             int newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
             if (mob instanceof NecromancerEntity || (mob instanceof DeadKingBoss)) {

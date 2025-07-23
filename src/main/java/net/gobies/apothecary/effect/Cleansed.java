@@ -1,6 +1,6 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.handler.BlacklistedEffects;
+import net.gobies.apothecary.util.BlacklistedEffects;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

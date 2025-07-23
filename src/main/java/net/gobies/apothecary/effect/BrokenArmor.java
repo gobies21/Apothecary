@@ -18,7 +18,6 @@ public class BrokenArmor extends MobEffect {
         super(category, color);
     }
 
-
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.addAttributeModifiers(entity, attribute, amplifier);

@@ -3,6 +3,7 @@ package net.gobies.apothecary.effect;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import net.gobies.apothecary.Config;
 import net.gobies.apothecary.init.AEffects;
+import net.gobies.apothecary.util.ModLoadedUtil;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -12,7 +13,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -31,7 +31,7 @@ public class MagicPower extends MobEffect {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        if (event.getSource().getEntity() instanceof LivingEntity attacker && (!ModList.get().isLoaded("irons_spellbooks"))) {
+        if (event.getSource().getEntity() instanceof LivingEntity attacker) {
             if ((event.getSource().is(DamageTypes.MAGIC) || event.getSource().is(DamageTypes.INDIRECT_MAGIC))) {
                 if (attacker.hasEffect(AEffects.MagicPower.get())) {
                     int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.MagicPower.get())).getAmplifier();
@@ -45,7 +45,7 @@ public class MagicPower extends MobEffect {
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.addAttributeModifiers(entity, attribute, amplifier);
-        if (ModList.get().isLoaded("irons_spellbooks")) {
+        if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
             var spellPower = entity.getAttribute(AttributeRegistry.SPELL_POWER.get());
             if (spellPower != null && spellPower.getModifier(SPELL_POWER_UUID) == null) {
                 double power = Config.MAGIC_POWER_INCREASE.get() * (amplifier + 1);
@@ -58,7 +58,7 @@ public class MagicPower extends MobEffect {
     @Override
     public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
         super.removeAttributeModifiers(entity, attribute, amplifier);
-        if (ModList.get().isLoaded("irons_spellbooks")) {
+        if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
             var spellPower = entity.getAttribute(AttributeRegistry.SPELL_POWER.get());
             if (spellPower != null && spellPower.getModifier(SPELL_POWER_UUID) != null) {
                 spellPower.removeModifier(SPELL_POWER_UUID);

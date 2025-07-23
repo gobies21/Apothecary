@@ -1,4 +1,4 @@
-package net.gobies.apothecary.handler;
+package net.gobies.apothecary.util;
 
 import net.gobies.apothecary.Config;
 import net.minecraft.resources.ResourceLocation;
@@ -6,13 +6,11 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlacklistedEffects {
 
     private static Set<ResourceLocation> CLEANSED_BLACKLISTED_EFFECTS = null;

@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "apothecary.mixins.refmap.json",
   "mixins": [
-    "ItemMixin"
+    "ItemMixin",
+    "WitchMixin"
   ],
   "injectors": {
     "defaultRequire": 1
