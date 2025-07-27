@@ -9,6 +9,8 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Apothecary.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config {
+    private static final String FILENAME = "apothecary-common.toml";
+
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
@@ -140,6 +142,11 @@ public class Config {
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> CORRUPTED_BLACKLIST_EFFECTS;
     public static List<? extends String> corrupted_blacklist_effects;
 
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SHUFFLING_RECIPE;
+    public static boolean enable_shuffling_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> SHUFFLING_INGREDIENT;
+    public static String shuffling_ingredient;
+
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BURNING_RECIPE;
     public static boolean enable_burning_recipe;
     public static ForgeConfigSpec.ConfigValue<String> BURNING_INGREDIENT;
@@ -151,12 +158,18 @@ public class Config {
     public static String chilled_ingredient;
     public static ForgeConfigSpec.ConfigValue<Double> CHILLED_SPEED_DECREASE;
     public static float chilled_speed_decrease;
+
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SHOCKED_RECIPE;
     public static boolean enable_shocked_recipe;
     public static ForgeConfigSpec.ConfigValue<String> SHOCKED_INGREDIENT;
     public static String shocked_ingredient;
     public static ForgeConfigSpec.ConfigValue<Double> SHOCKED_SPEED_DECREASE;
     public static float shocked_speed_decrease;
+
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_LIGHTNING_RECIPE;
+    public static boolean enable_lightning_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> LIGHTNING_INGREDIENT;
+    public static String lightning_ingredient;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_HEALTH_BOOST_RECIPE;
     public static boolean enable_health_boost_recipe;
@@ -185,84 +198,98 @@ public class Config {
     public static ForgeConfigSpec.ConfigValue<String> WITHER_INGREDIENT;
     public static String wither_ingredient;
 
+    // World Events
+    public static ForgeConfigSpec.ConfigValue<Integer> WITCH_POTION_COUNT;
+    public static int witch_potion_count;
+    public static ForgeConfigSpec.ConfigValue<Integer> WITCH_POTION_COOLDOWN;
+    public static int witch_potion_cooldown;
+
     public Config() {
     }
 
     @SubscribeEvent
     static void onLoad(ModConfigEvent.Loading configEvent) {
-        enable_world_events = ENABLE_WORLD_EVENTS.get();
-        enable_enchanted_glow = ENABLE_ENCHANTED_GLOW.get();
-        enable_iron_skin_recipe = ENABLE_IRON_SKIN_RECIPE.get();
-        iron_skin_ingredient = IRON_SKIN_INGREDIENT.get();
-        iron_skin_armor_increase = IRON_SKIN_ARMOR_INCREASE.get();
-        enable_broken_armor_recipe = ENABLE_BROKEN_ARMOR_RECIPE.get();
-        broken_armor_ingredient = BROKEN_ARMOR_INGREDIENT.get();
-        broken_armor_armor_decrease = BROKEN_ARMOR_ARMOR_DECREASE.get();
-        enable_diamond_skin_recipe = ENABLE_DIAMOND_SKIN_RECIPE.get();
-        diamond_skin_ingredient = DIAMOND_SKIN_INGREDIENT.get();
-        diamond_skin_armor_increase = DIAMOND_SKIN_ARMOR_INCREASE.get();
-        enable_ruptured_armor_recipe = ENABLE_RUPTURED_ARMOR_RECIPE.get();
-        ruptured_armor_ingredient = RUPTURED_ARMOR_INGREDIENT.get();
-        ruptured_armor_armor_decrease = RUPTURED_ARMOR_ARMOR_DECREASE.get();
-        enable_archery_recipe = ENABLE_ARCHERY_RECIPE.get();
-        archery_ingredient = ARCHERY_INGREDIENT.get();
-        archery_damage_increase = ARCHERY_DAMAGE_INCREASE.get().floatValue();
-        enable_misfire_recipe = ENABLE_MISFIRE_RECIPE.get();
-        misfire_ingredient = MISFIRE_INGREDIENT.get();
-        misfire_damage_decrease = MISFIRE_DAMAGE_DECREASE.get().floatValue();
-        enable_wrath_recipe = ENABLE_WRATH_RECIPE.get();
-        wrath_ingredient = WRATH_INGREDIENT.get();
-        wrath_damage_increase = WRATH_DAMAGE_INCREASE.get().floatValue();
-        enable_feeble_recipe = ENABLE_FEEBLE_RECIPE.get();
-        feeble_ingredient = FEEBLE_INGREDIENT.get();
-        feeble_damage_decrease = FEEBLE_DAMAGE_DECREASE.get().floatValue();
-        enable_flight_recipe = ENABLE_FLIGHT_RECIPE.get();
-        flight_ingredient = FLIGHT_INGREDIENT.get();
-        enable_reach_recipe = ENABLE_REACH_RECIPE.get();
-        reach_ingredient = REACH_INGREDIENT.get();
-        reach_increase = REACH_INCREASE.get().floatValue();
-        enable_repairing_recipe = ENABLE_REPAIRING_RECIPE.get();
-        repairing_ingredient = REPAIRING_INGREDIENT.get();
-        repairing_rate = REPAIRING_RATE.get();
-        enable_corrosion_recipe = ENABLE_CORROSION_RECIPE.get();
-        corrosion_ingredient = CORROSION_INGREDIENT.get();
-        enable_magic_power_recipe = ENABLE_MAGIC_POWER_RECIPE.get();
-        magic_power_ingredient = MAGIC_POWER_INGREDIENT.get();
-        magic_power_increase = MAGIC_POWER_INCREASE.get().floatValue();
-        enable_magic_drain_recipe = ENABLE_MAGIC_DRAIN_RECIPE.get();
-        magic_drain_ingredient = MAGIC_DRAIN_INGREDIENT.get();
-        magic_drain_decrease = MAGIC_DRAIN_DECREASE.get().floatValue();
-        corrosion_rate = CORROSION_RATE.get();
-        enable_thorns_recipe = ENABLE_THORNS_RECIPE.get();
-        thorns_ingredient = THORNS_INGREDIENT.get();
-        thorns_damage_reflect = THORNS_DAMAGE_REFLECT.get().floatValue();
-        enable_confusion_recipe = ENABLE_CONFUSION_RECIPE.get();
-        confusion_ingredient = CONFUSION_INGREDIENT.get();
-        enable_cleansed_recipe = ENABLE_CLEANSED_RECIPE.get();
-        cleansed_ingredient = CLEANSED_INGREDIENT.get();
-        cleansed_blacklist_effects = CLEANSED_BLACKLIST_EFFECTS.get();
-        enable_corrupted_recipe = ENABLE_CORRUPTED_RECIPE.get();
-        corrupted_ingredient = CORRUPTED_INGREDIENT.get();
-        corrupted_blacklist_effects = CORRUPTED_BLACKLIST_EFFECTS.get();
-        enable_chilled_recipe = ENABLE_CHILLED_RECIPE.get();
-        enable_burning_recipe = ENABLE_BURNING_RECIPE.get();
-        burning_ingredient = BURNING_INGREDIENT.get();
-        chilled_ingredient = CHILLED_INGREDIENT.get();
-        chilled_speed_decrease = CHILLED_SPEED_DECREASE.get().floatValue();
-        enable_shocked_recipe = ENABLE_SHOCKED_RECIPE.get();
-        shocked_ingredient = SHOCKED_INGREDIENT.get();
-        shocked_speed_decrease = SHOCKED_SPEED_DECREASE.get().floatValue();
-        enable_health_boost_recipe = ENABLE_HEALTH_BOOST_RECIPE.get();
-        health_boost_ingredient = HEALTH_BOOST_INGREDIENT.get();
-        enable_luck_recipe = ENABLE_LUCK_RECIPE.get();
-        luck_ingredient = LUCK_INGREDIENT.get();
-        enable_resistance_recipe = ENABLE_RESISTANCE_RECIPE.get();
-        resistance_ingredient = RESISTANCE_INGREDIENT.get();
-        enable_indolence_recipe = ENABLE_INDOLENCE_RECIPE.get();
-        indolence_ingredient = INDOLENCE_INGREDIENT.get();
-        indolence_damage_taken = INDOLENCE_DAMAGE_TAKEN.get().floatValue();
-        enable_wither_recipe = ENABLE_WITHER_RECIPE.get();
-        wither_ingredient = WITHER_INGREDIENT.get();
+        if (configEvent.getConfig().getFileName().equals(FILENAME)) {
+            enable_world_events = ENABLE_WORLD_EVENTS.get();
+            enable_enchanted_glow = ENABLE_ENCHANTED_GLOW.get();
+            enable_iron_skin_recipe = ENABLE_IRON_SKIN_RECIPE.get();
+            iron_skin_ingredient = IRON_SKIN_INGREDIENT.get();
+            iron_skin_armor_increase = IRON_SKIN_ARMOR_INCREASE.get();
+            enable_broken_armor_recipe = ENABLE_BROKEN_ARMOR_RECIPE.get();
+            broken_armor_ingredient = BROKEN_ARMOR_INGREDIENT.get();
+            broken_armor_armor_decrease = BROKEN_ARMOR_ARMOR_DECREASE.get();
+            enable_diamond_skin_recipe = ENABLE_DIAMOND_SKIN_RECIPE.get();
+            diamond_skin_ingredient = DIAMOND_SKIN_INGREDIENT.get();
+            diamond_skin_armor_increase = DIAMOND_SKIN_ARMOR_INCREASE.get();
+            enable_ruptured_armor_recipe = ENABLE_RUPTURED_ARMOR_RECIPE.get();
+            ruptured_armor_ingredient = RUPTURED_ARMOR_INGREDIENT.get();
+            ruptured_armor_armor_decrease = RUPTURED_ARMOR_ARMOR_DECREASE.get();
+            enable_archery_recipe = ENABLE_ARCHERY_RECIPE.get();
+            archery_ingredient = ARCHERY_INGREDIENT.get();
+            archery_damage_increase = ARCHERY_DAMAGE_INCREASE.get().floatValue();
+            enable_misfire_recipe = ENABLE_MISFIRE_RECIPE.get();
+            misfire_ingredient = MISFIRE_INGREDIENT.get();
+            misfire_damage_decrease = MISFIRE_DAMAGE_DECREASE.get().floatValue();
+            enable_wrath_recipe = ENABLE_WRATH_RECIPE.get();
+            wrath_ingredient = WRATH_INGREDIENT.get();
+            wrath_damage_increase = WRATH_DAMAGE_INCREASE.get().floatValue();
+            enable_feeble_recipe = ENABLE_FEEBLE_RECIPE.get();
+            feeble_ingredient = FEEBLE_INGREDIENT.get();
+            feeble_damage_decrease = FEEBLE_DAMAGE_DECREASE.get().floatValue();
+            enable_flight_recipe = ENABLE_FLIGHT_RECIPE.get();
+            flight_ingredient = FLIGHT_INGREDIENT.get();
+            enable_reach_recipe = ENABLE_REACH_RECIPE.get();
+            reach_ingredient = REACH_INGREDIENT.get();
+            reach_increase = REACH_INCREASE.get().floatValue();
+            enable_repairing_recipe = ENABLE_REPAIRING_RECIPE.get();
+            repairing_ingredient = REPAIRING_INGREDIENT.get();
+            repairing_rate = REPAIRING_RATE.get();
+            enable_corrosion_recipe = ENABLE_CORROSION_RECIPE.get();
+            corrosion_ingredient = CORROSION_INGREDIENT.get();
+            enable_magic_power_recipe = ENABLE_MAGIC_POWER_RECIPE.get();
+            magic_power_ingredient = MAGIC_POWER_INGREDIENT.get();
+            magic_power_increase = MAGIC_POWER_INCREASE.get().floatValue();
+            enable_magic_drain_recipe = ENABLE_MAGIC_DRAIN_RECIPE.get();
+            magic_drain_ingredient = MAGIC_DRAIN_INGREDIENT.get();
+            magic_drain_decrease = MAGIC_DRAIN_DECREASE.get().floatValue();
+            corrosion_rate = CORROSION_RATE.get();
+            enable_thorns_recipe = ENABLE_THORNS_RECIPE.get();
+            thorns_ingredient = THORNS_INGREDIENT.get();
+            thorns_damage_reflect = THORNS_DAMAGE_REFLECT.get().floatValue();
+            enable_confusion_recipe = ENABLE_CONFUSION_RECIPE.get();
+            confusion_ingredient = CONFUSION_INGREDIENT.get();
+            enable_cleansed_recipe = ENABLE_CLEANSED_RECIPE.get();
+            cleansed_ingredient = CLEANSED_INGREDIENT.get();
+            cleansed_blacklist_effects = CLEANSED_BLACKLIST_EFFECTS.get();
+            enable_corrupted_recipe = ENABLE_CORRUPTED_RECIPE.get();
+            corrupted_ingredient = CORRUPTED_INGREDIENT.get();
+            corrupted_blacklist_effects = CORRUPTED_BLACKLIST_EFFECTS.get();
+            enable_shuffling_recipe = ENABLE_SHUFFLING_RECIPE.get();
+            shuffling_ingredient = SHUFFLING_INGREDIENT.get();
+            enable_chilled_recipe = ENABLE_CHILLED_RECIPE.get();
+            enable_burning_recipe = ENABLE_BURNING_RECIPE.get();
+            burning_ingredient = BURNING_INGREDIENT.get();
+            chilled_ingredient = CHILLED_INGREDIENT.get();
+            chilled_speed_decrease = CHILLED_SPEED_DECREASE.get().floatValue();
+            enable_shocked_recipe = ENABLE_SHOCKED_RECIPE.get();
+            shocked_ingredient = SHOCKED_INGREDIENT.get();
+            shocked_speed_decrease = SHOCKED_SPEED_DECREASE.get().floatValue();
+            enable_lightning_recipe = ENABLE_LIGHTNING_RECIPE.get();
+            lightning_ingredient = LIGHTNING_INGREDIENT.get();
+            enable_health_boost_recipe = ENABLE_HEALTH_BOOST_RECIPE.get();
+            health_boost_ingredient = HEALTH_BOOST_INGREDIENT.get();
+            enable_luck_recipe = ENABLE_LUCK_RECIPE.get();
+            luck_ingredient = LUCK_INGREDIENT.get();
+            enable_resistance_recipe = ENABLE_RESISTANCE_RECIPE.get();
+            resistance_ingredient = RESISTANCE_INGREDIENT.get();
+            enable_indolence_recipe = ENABLE_INDOLENCE_RECIPE.get();
+            indolence_ingredient = INDOLENCE_INGREDIENT.get();
+            indolence_damage_taken = INDOLENCE_DAMAGE_TAKEN.get().floatValue();
+            enable_wither_recipe = ENABLE_WITHER_RECIPE.get();
+            wither_ingredient = WITHER_INGREDIENT.get();
+            witch_potion_count = WITCH_POTION_COUNT.get();
+            witch_potion_cooldown = WITCH_POTION_COOLDOWN.get();
+        }
     }
 
     static {
@@ -388,6 +415,11 @@ public class Config {
         CORRUPTED_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the corrupted effect (e.g., minecraft:strength, minecraft:speed etc)").defineList("Corrupted_Blacklist_Effects", List.of(), s -> s instanceof String);
         BUILDER.pop();
 
+        BUILDER.push("Shuffling");
+        ENABLE_SHUFFLING_RECIPE = BUILDER.comment("Enable the shuffling potion recipe").define("Enable", true);
+        SHUFFLING_INGREDIENT = BUILDER.comment("Main ingredient used to brew shuffling potions").define("Ingredient", "minecraft:trapped_chest");
+        BUILDER.pop();
+
         BUILDER.push("Burning");
         ENABLE_BURNING_RECIPE = BUILDER.comment("Enable the burning potion recipe").define("Enable", true);
         BURNING_INGREDIENT = BUILDER.comment("Main ingredient used to brew burning potions").define("Ingredient", "minecraft:magma_block");
@@ -403,6 +435,11 @@ public class Config {
         ENABLE_SHOCKED_RECIPE = BUILDER.comment("Enable the shocked potion recipe").define("Enable", true);
         SHOCKED_INGREDIENT = BUILDER.comment("Main ingredient used to brew shocked potions").define("Ingredient", "minecraft:lightning_rod");
         SHOCKED_SPEED_DECREASE = BUILDER.comment("Amount of movement speed reduction for the shocked effect").define("Shocked_Speed_Decrease", 0.5);
+        BUILDER.pop();
+
+        BUILDER.push("Lightning");
+        ENABLE_LIGHTNING_RECIPE = BUILDER.comment("Enable the lightning potion recipe").define("Enable", true);
+        LIGHTNING_INGREDIENT = BUILDER.comment("Main ingredient used to brew lightning potions").define("Ingredient", "minecraft:oxidized_copper");
         BUILDER.pop();
 
         BUILDER.push("Health_Boost");
@@ -428,6 +465,11 @@ public class Config {
         //
         BUILDER.pop();
         //
+
+        BUILDER.push("World_Events");
+        WITCH_POTION_COUNT = BUILDER.comment("Amount of apothecary potions witches can throw before they default back to vanilla potions.").define("Witch_Potion_Count", 1);
+        WITCH_POTION_COOLDOWN = BUILDER.comment("Cooldown for witches to be able to throw apothecary potions again after the potion count has been reached in seconds").define("Witch_Potion_Cooldown", 5);
+        BUILDER.pop();
 
         SPEC = BUILDER.build();
     }

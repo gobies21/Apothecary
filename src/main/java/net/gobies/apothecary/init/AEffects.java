@@ -35,6 +35,8 @@ public class AEffects {
     public static final RegistryObject<MobEffect> Burning;
     public static final RegistryObject<MobEffect> Chilled;
     public static final RegistryObject<MobEffect> Shocked;
+    public static final RegistryObject<MobEffect> Shuffling;
+    public static final RegistryObject<MobEffect> Lightning;
 
     public AEffects() {
     }
@@ -69,5 +71,7 @@ public class AEffects {
         Burning = EFFECTS.register("burning", () -> new Burning(MobEffectCategory.HARMFUL, 0xC25811));
         Chilled = EFFECTS.register("chilled", () -> new Chilled(MobEffectCategory.HARMFUL, 0x6BA7CC));
         Shocked = EFFECTS.register("shocked", () -> new Shocked(MobEffectCategory.HARMFUL, 0x8F00FF));
+        Shuffling = EFFECTS.register("shuffling", () -> new Shuffling(MobEffectCategory.HARMFUL, 0x00008B));
+        Lightning = EFFECTS.register("lightning", () -> new Lightning(MobEffectCategory.HARMFUL, 0x93B9DF));
     }
 }

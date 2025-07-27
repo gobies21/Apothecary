@@ -283,6 +283,18 @@
   "item.minecraft.tipped_arrow.effect.corrupted": "Arrow of Corrupted",
   "effect.apothecary.corrupted": "Corrupted",
 
+  "item.minecraft.potion.effect.shuffling": "Potion of Shuffling",
+  "item.minecraft.splash_potion.effect.shuffling": "Splash Potion of Shuffling",
+  "item.minecraft.lingering_potion.effect.shuffling": "Lingering Potion of Shuffling",
+  "item.minecraft.tipped_arrow.effect.shuffling": "Arrow of Shuffling",
+  "effect.apothecary.shuffling": "Shuffling",
+
+  "item.minecraft.potion.effect.lightning": "Potion of Lightning",
+  "item.minecraft.splash_potion.effect.lightning": "Splash Potion of Lightning",
+  "item.minecraft.lingering_potion.effect.lightning": "Lingering Potion of Lightning",
+  "item.minecraft.tipped_arrow.effect.lightning": "Arrow of Lightning",
+  "effect.apothecary.lightning": "Lightning",
+
   "item.minecraft.potion.effect.burning": "Potion of Burning",
   "item.minecraft.potion.effect.long_burning": "Potion of Burning",
   "item.minecraft.potion.effect.strong_burning": "Potion of Burning",

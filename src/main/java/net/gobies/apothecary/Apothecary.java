@@ -2,9 +2,10 @@ package net.gobies.apothecary;
 
 import com.mojang.logging.LogUtils;
 import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbookEvents;
-import net.gobies.apothecary.compat.spartanweaponry.CrossbowArchery;
+import net.gobies.apothecary.compat.spartanweaponry.SpartanWeaponryCompat;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.init.APotions;
+import net.gobies.apothecary.network.NetworkHandler;
 import net.gobies.apothecary.recipe.ABrewing;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -38,13 +39,14 @@ public class Apothecary {
 
     public void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(ABrewing::register);
+        NetworkHandler.registerPackets();
 
-        if (ModList.get().isLoaded("irons_spellbooks") && (Config.ENABLE_WORLD_EVENTS.get())) {
+        if (ModList.get().isLoaded("irons_spellbooks")) {
             IronsSpellbookEvents.loadCompat();
             LOGGER.info("[Apothecary] Iron's Spellbooks Compat Loaded");
         }
         if (ModList.get().isLoaded("spartanweaponry")) {
-            CrossbowArchery.loadCompat();
+            SpartanWeaponryCompat.loadCompat();
             LOGGER.info("[Apothecary] Spartan Weaponry Compat Loaded");
         }
     }

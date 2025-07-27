@@ -3,6 +3,7 @@ package net.gobies.apothecary.compat.ironsspellbooks;
 import io.redspace.ironsspellbooks.entity.mobs.dead_king_boss.DeadKingBoss;
 import io.redspace.ironsspellbooks.entity.mobs.necromancer.NecromancerEntity;
 import net.gobies.apothecary.Apothecary;
+import net.gobies.apothecary.Config;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.util.DurationUtils;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,23 +23,26 @@ public class IronsSpellbookEvents {
 
     @SubscribeEvent
     public void onLivingHurt(LivingHurtEvent event) {
-        LivingEntity entity = event.getEntity();
-        Entity mob = event.getSource().getEntity();
-        if (entity != null) {
-            int randomShortDuration = DurationUtils.getRandomShortDuration();
-            int randomLongDuration = DurationUtils.getRandomLongDuration();
-            MobEffectInstance currentEffect = entity.getEffect(AEffects.MagicDrain.get());
-            int newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
-            if (mob instanceof NecromancerEntity || (mob instanceof DeadKingBoss)) {
-                if (entity.getRandom().nextFloat() < 0.05) {
-                    entity.addEffect(new MobEffectInstance(AEffects.MagicDrain.get(), randomShortDuration, newAmplifier));
-                }
-                currentEffect = entity.getEffect(AEffects.ManaExhaustion.get());
-                newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
-                if (entity.getRandom().nextFloat() < 0.05) {
-                    entity.addEffect(new MobEffectInstance(AEffects.ManaExhaustion.get(), randomLongDuration, newAmplifier));
+        if (Config.ENABLE_WORLD_EVENTS.get()) {
+            LivingEntity entity = event.getEntity();
+            Entity mob = event.getSource().getEntity();
+            if (entity != null) {
+                int randomShortDuration = DurationUtils.getRandomShortDuration();
+                int randomLongDuration = DurationUtils.getRandomLongDuration();
+                MobEffectInstance currentEffect = entity.getEffect(AEffects.MagicDrain.get());
+                int newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
+                if (mob instanceof NecromancerEntity || (mob instanceof DeadKingBoss)) {
+                    if (entity.getRandom().nextFloat() < 0.05) {
+                        entity.addEffect(new MobEffectInstance(AEffects.MagicDrain.get(), randomShortDuration, newAmplifier));
+                    }
+                    currentEffect = entity.getEffect(AEffects.ManaExhaustion.get());
+                    newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
+                    if (entity.getRandom().nextFloat() < 0.05) {
+                        entity.addEffect(new MobEffectInstance(AEffects.ManaExhaustion.get(), randomLongDuration, newAmplifier));
+                    }
                 }
             }
         }
     }
 }
+

@@ -79,6 +79,8 @@ public class APotions {
     public static final RegistryObject<Potion> Shocked;
     public static final RegistryObject<Potion> LongShocked;
     public static final RegistryObject<Potion> StrongShocked;
+    public static final RegistryObject<Potion> Shuffling;
+    public static final RegistryObject<Potion> Lightning;
 
     //Vanilla potions
     public static final RegistryObject<Potion> HealthBoost;
@@ -194,6 +196,10 @@ public class APotions {
         LongShocked = POTIONS.register("long_shocked", () -> new Potion(new MobEffectInstance(AEffects.Shocked.get(),4800,0)));
         StrongShocked = POTIONS.register("strong_shocked", () -> new Potion(new MobEffectInstance(AEffects.Shocked.get(),900,1)));
 
+        Shuffling = POTIONS.register("shuffling", () -> new Potion(new MobEffectInstance(AEffects.Shuffling.get(),1,0)));
+
+        Lightning = POTIONS.register("lightning", () -> new Potion(new MobEffectInstance(AEffects.Lightning.get(),1,0)));
+
         //Vanilla potions
         HealthBoost = POTIONS.register("health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,3600,0)));
         LongHealthBoost = POTIONS.register("long_health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,9600,0)));
@@ -205,6 +211,5 @@ public class APotions {
 
         Wither = POTIONS.register("wither", () -> new Potion(new MobEffectInstance(MobEffects.WITHER,1800,0)));
         LongWither = POTIONS.register("long_wither", () -> new Potion(new MobEffectInstance(MobEffects.WITHER,4800,0)));
-        StrongWither = POTIONS.register("strong_wither", () -> new Potion(new MobEffectInstance(MobEffects.WITHER,900,1)));
-    }
+        StrongWither = POTIONS.register("strong_wither", () -> new Potion(new MobEffectInstance(MobEffects.WITHER,900,1)));}
 }

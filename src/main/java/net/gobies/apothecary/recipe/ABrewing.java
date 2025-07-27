@@ -136,6 +136,10 @@ public class ABrewing {
             BrewingHandler.addBrewingRecipe(APotions.Shocked.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongShocked.get());
         }
 
+        if (Config.ENABLE_LIGHTNING_RECIPE.get()) {
+            BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.LIGHTNING_INGREDIENT.get())))), APotions.Lightning.get());
+        }
+
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
             BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_TWO.get(), Ingredient.of(ItemRegistry.ARCANE_ESSENCE.get()), APotions.ManaRegeneration.get());
             BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.REDSTONE), APotions.LongManaRegeneration.get());
@@ -156,6 +160,10 @@ public class ABrewing {
                 BrewingHandler.addBrewingRecipe(APotions.MagicDrain.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicDrain.get());
                 BrewingHandler.addBrewingRecipe(APotions.MagicDrain.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicDrain.get());
             }
+        }
+
+        if (Config.ENABLE_SHUFFLING_RECIPE.get()) {
+            BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(Config.SHUFFLING_INGREDIENT.get())))), APotions.Shuffling.get());
         }
 
         if (Config.ENABLE_HEALTH_BOOST_RECIPE.get()) {

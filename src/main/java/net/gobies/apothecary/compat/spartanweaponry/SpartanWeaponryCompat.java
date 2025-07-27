@@ -10,10 +10,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Objects;
 
-public class CrossbowArchery {
+public class SpartanWeaponryCompat {
 
     public static void loadCompat() {
-        MinecraftForge.EVENT_BUS.register(new CrossbowArchery());
+        MinecraftForge.EVENT_BUS.register(new SpartanWeaponryCompat());
     }
 
     @SubscribeEvent
