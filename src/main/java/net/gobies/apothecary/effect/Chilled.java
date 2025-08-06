@@ -1,6 +1,6 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -44,14 +44,14 @@ public class Chilled extends MobEffect {
 
         var AttackSpeed = entity.getAttribute(Attributes.ATTACK_SPEED);
         if (AttackSpeed != null && AttackSpeed.getModifier(ATTACK_SPEED_UUID) == null) {
-            double attackSpeed = Config.CHILLED_SPEED_DECREASE.get() * (amplifier + 1);
+            double attackSpeed = CommonConfig.CHILLED_SPEED_DECREASE.get() * (amplifier + 1);
             AttackSpeed.addPermanentModifier(
                     new AttributeModifier(ATTACK_SPEED_UUID, "Chilled Reduced Attack Speed", -attackSpeed, AttributeModifier.Operation.MULTIPLY_BASE));
         }
 
         var MovementSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
         if (MovementSpeed != null && MovementSpeed.getModifier(MOVEMENT_SPEED_UUID) == null) {
-            double movementSpeed = Config.CHILLED_SPEED_DECREASE.get() * (amplifier + 1);
+            double movementSpeed = CommonConfig.CHILLED_SPEED_DECREASE.get() * (amplifier + 1);
             MovementSpeed.addPermanentModifier(
                     new AttributeModifier(MOVEMENT_SPEED_UUID, "Chilled Reduced Movement Speed", -movementSpeed, AttributeModifier.Operation.MULTIPLY_BASE));
         }
@@ -78,7 +78,7 @@ public class Chilled extends MobEffect {
             int amplifier = Objects.requireNonNull(player.getEffect(AEffects.Chilled.get())).getAmplifier();
             double miningSpeedDecrease = 0;
             if (amplifier >= 0) {
-                miningSpeedDecrease = Config.CHILLED_SPEED_DECREASE.get() * (amplifier + 1);
+                miningSpeedDecrease = CommonConfig.CHILLED_SPEED_DECREASE.get() * (amplifier + 1);
             }
             double newBreakSpeed = event.getNewSpeed() * (1.0 - miningSpeedDecrease);
 

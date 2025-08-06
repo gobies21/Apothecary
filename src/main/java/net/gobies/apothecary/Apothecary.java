@@ -1,8 +1,10 @@
 package net.gobies.apothecary;
 
 import com.mojang.logging.LogUtils;
+import net.gobies.apothecary.compat.FluidEffectEvents;
 import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbookEvents;
 import net.gobies.apothecary.compat.spartanweaponry.SpartanWeaponryCompat;
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.init.APotions;
 import net.gobies.apothecary.network.NetworkHandler;
@@ -34,7 +36,7 @@ public class Apothecary {
 
         modBus.addListener(this::commonSetup);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {
@@ -48,6 +50,10 @@ public class Apothecary {
         if (ModList.get().isLoaded("spartanweaponry")) {
             SpartanWeaponryCompat.loadCompat();
             LOGGER.info("[Apothecary] Spartan Weaponry Compat Loaded");
+        }
+        if (ModList.get().isLoaded("alexscaves") || ModList.get().isLoaded("biomesoplenty")) {
+            FluidEffectEvents.loadCompat();
+            LOGGER.info("[Apothecary] Modded Fluid Effects Compat Loaded");
         }
     }
 }

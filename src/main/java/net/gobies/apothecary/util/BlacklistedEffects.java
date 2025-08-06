@@ -1,6 +1,6 @@
 package net.gobies.apothecary.util;
 
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -20,7 +20,7 @@ public class BlacklistedEffects {
     public static void initCleansedBlacklist() {
         if (CLEANSED_BLACKLISTED_EFFECTS == null) {
             CLEANSED_BLACKLISTED_EFFECTS = new HashSet<>();
-            for (String effects : Config.CLEANSED_BLACKLIST_EFFECTS.get()) {
+            for (String effects : CommonConfig.CLEANSED_BLACKLIST_EFFECTS.get()) {
                 CLEANSED_BLACKLISTED_EFFECTS.add(new ResourceLocation(effects));
             }
         }
@@ -43,7 +43,7 @@ public class BlacklistedEffects {
     public static void initCorruptedBlacklist() {
         if (CORRUPTED_BLACKLISTED_EFFECTS == null) {
             CORRUPTED_BLACKLISTED_EFFECTS = new HashSet<>();
-            for (String effects : Config.CORRUPTED_BLACKLIST_EFFECTS.get()) {
+            for (String effects : CommonConfig.CORRUPTED_BLACKLIST_EFFECTS.get()) {
                 CORRUPTED_BLACKLISTED_EFFECTS.add(new ResourceLocation(effects));
             }
         }

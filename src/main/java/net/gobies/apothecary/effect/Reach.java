@@ -1,6 +1,6 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,14 +24,14 @@ public class Reach extends MobEffect {
         super.addAttributeModifiers(entity, attribute, amplifier);
         var EntityReach = entity.getAttribute(ForgeMod.ENTITY_REACH.get());
         if (EntityReach != null && EntityReach.getModifier(ENTITY_REACH_UUID) == null) {
-            double entityReach = Config.REACH_INCREASE.get() * (amplifier + 1);
+            double entityReach = CommonConfig.REACH_INCREASE.get() * (amplifier + 1);
             EntityReach.addPermanentModifier(
                     new AttributeModifier(ENTITY_REACH_UUID, "Entity Reach", entityReach, AttributeModifier.Operation.ADDITION));
         }
 
         var BlockReach = entity.getAttribute(ForgeMod.BLOCK_REACH.get());
         if (BlockReach != null && BlockReach.getModifier(BLOCK_REACH_UUID) == null) {
-            double blockReach = Config.REACH_INCREASE.get() * (amplifier + 1);
+            double blockReach = CommonConfig.REACH_INCREASE.get() * (amplifier + 1);
             BlockReach.addPermanentModifier(
                     new AttributeModifier(BLOCK_REACH_UUID, "Block Reach", blockReach, AttributeModifier.Operation.ADDITION));
         }

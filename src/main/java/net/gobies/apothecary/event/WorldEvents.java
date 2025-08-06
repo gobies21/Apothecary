@@ -1,7 +1,7 @@
 package net.gobies.apothecary.event;
 
 import net.gobies.apothecary.Apothecary;
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.util.DurationUtils;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -29,22 +29,23 @@ public class WorldEvents {
     public static void onLivingHurt(LivingHurtEvent event) {
         LivingEntity entity = event.getEntity();
         Entity mob = event.getSource().getEntity();
-        if (entity != null && (Config.ENABLE_WORLD_EVENTS.get())) {
+        if (entity != null && (CommonConfig.ENABLE_WORLD_EVENTS.get())) {
             float damageAmount = event.getAmount();
             int randomMediumDuration = DurationUtils.getRandomMediumDuration();
             int randomShortDuration = DurationUtils.getRandomShortDuration();
             int randomVeryShortDuration = DurationUtils.getRandomVeryShortDuration();
             int randomLongDuration = DurationUtils.getRandomLongDuration();
             int baseAmplifier = 0;
+            int rangedAmplifier = entity.getRandom().nextFloat() < 0.75 ? 0 : 1;
             MobEffectInstance currentEffect = entity.getEffect(AEffects.BrokenArmor.get());
             int newAmplifier = (currentEffect != null) ? currentEffect.getAmplifier() + 1 : 0;
             if (event.getSource().is(DamageTypes.EXPLOSION) || event.getSource().is(DamageTypes.PLAYER_EXPLOSION)) {
                 if (entity.getArmorValue() > 0) {
-                    if (entity.getRandom().nextFloat() < 0.5) {
+                    if (entity.getRandom().nextFloat() < 0.4) {
                         entity.addEffect(new MobEffectInstance(AEffects.BrokenArmor.get(), randomLongDuration, newAmplifier));
 
                     }
-                    if (damageAmount > 3.0) {
+                    if (damageAmount > 5.0) {
                         currentEffect = entity.getEffect(AEffects.RupturedArmor.get());
                         newAmplifier = (currentEffect != null) ? currentEffect.getAmplifier() + 1 : 0;
                         if (entity.getRandom().nextFloat() < 0.1) {
@@ -55,7 +56,7 @@ public class WorldEvents {
             }
 
             if (event.getSource().is(DamageTypes.LIGHTNING_BOLT)) {
-                entity.addEffect(new MobEffectInstance(AEffects.Shocked.get(), randomVeryShortDuration, baseAmplifier));
+                entity.addEffect(new MobEffectInstance(AEffects.Shocked.get(), randomVeryShortDuration, rangedAmplifier));
             }
 
             if (mob instanceof Mob && ((Mob) mob).isAggressive()) {

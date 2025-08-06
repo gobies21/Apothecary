@@ -1,5 +1,6 @@
-package net.gobies.apothecary;
+package net.gobies.apothecary.config;
 
+import net.gobies.apothecary.Apothecary;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -8,7 +9,7 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Apothecary.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class Config {
+public class CommonConfig {
     private static final String FILENAME = "apothecary-common.toml";
 
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -204,7 +205,7 @@ public class Config {
     public static ForgeConfigSpec.ConfigValue<Integer> WITCH_POTION_COOLDOWN;
     public static int witch_potion_cooldown;
 
-    public Config() {
+    public CommonConfig() {
     }
 
     @SubscribeEvent

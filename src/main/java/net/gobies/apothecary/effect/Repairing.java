@@ -1,6 +1,6 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,7 +24,7 @@ public class Repairing extends MobEffect {
                 ItemStack stack = player.getInventory().getItem(i);
                 if (!stack.isEmpty() && stack.isDamageableItem() && stack.getDamageValue() > 0) {
                     if (RANDOM.nextInt(20) == 0) {
-                        int repairAmount = Config.REPAIRING_RATE.get() + amplifier;
+                        int repairAmount = CommonConfig.REPAIRING_RATE.get() + amplifier;
                         stack.setDamageValue(stack.getDamageValue() - repairAmount);
                     }
                 }

@@ -1,14 +1,5 @@
 package net.gobies.apothecary.mixin;
 
-import net.gobies.apothecary.Config;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.PotionItem;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-
 
 //@Mixin(PotionItem.class)
 public class PotionItemMixin {

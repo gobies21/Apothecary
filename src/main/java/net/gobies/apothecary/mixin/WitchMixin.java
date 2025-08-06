@@ -1,6 +1,6 @@
 package net.gobies.apothecary.mixin;
 
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.util.AUtils;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -35,17 +35,17 @@ public abstract class WitchMixin {
             cancellable = true
     )
     private void apothecaryPotions(LivingEntity pTarget, float pDistanceFactor, CallbackInfo ci) {
-        if (Config.ENABLE_WORLD_EVENTS.get()) {
+        if (CommonConfig.ENABLE_WORLD_EVENTS.get()) {
             Witch witch = (Witch) (Object) this;
             long currentTime = witch.level().getGameTime();
 
             if (!witch.isDrinkingPotion() && pTarget instanceof Player player) {
-                if (currentTime - apothecary$lastCooldownTime < 20L * Config.WITCH_POTION_COOLDOWN.get()) {
+                if (currentTime - apothecary$lastCooldownTime < 20L * CommonConfig.WITCH_POTION_COOLDOWN.get()) {
                     ci.cancel();
                     return;
                 }
 
-                if (apothecary$potionsThrown < Config.WITCH_POTION_COUNT.get()) {
+                if (apothecary$potionsThrown < CommonConfig.WITCH_POTION_COUNT.get()) {
                     RandomSource random = witch.getRandom();
                     Potion selectedPotion = AUtils.determinePotionByRarity(random);
 
@@ -66,7 +66,7 @@ public abstract class WitchMixin {
                         witch.setTarget(null);
                         apothecary$potionsThrown++;
 
-                        if (apothecary$potionsThrown >= Config.WITCH_POTION_COUNT.get()) {
+                        if (apothecary$potionsThrown >= CommonConfig.WITCH_POTION_COUNT.get()) {
                             apothecary$lastCooldownTime = currentTime;
                             apothecary$potionsThrown = 0;
                         }

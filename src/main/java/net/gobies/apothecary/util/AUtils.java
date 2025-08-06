@@ -35,7 +35,7 @@ public class AUtils {
             return APotions.Confusion.get();
 
         } else if (chance < 0.95) { // 15 % Chance
-            return APotions.Wither.get();
+            return APotions.Feeble.get();
 
         } else { // 5% chance
             return APotions.Corrupted.get();

@@ -3,7 +3,7 @@ package net.gobies.apothecary.compat.ironsspellbooks;
 import io.redspace.ironsspellbooks.entity.mobs.dead_king_boss.DeadKingBoss;
 import io.redspace.ironsspellbooks.entity.mobs.necromancer.NecromancerEntity;
 import net.gobies.apothecary.Apothecary;
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.util.DurationUtils;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -23,7 +23,7 @@ public class IronsSpellbookEvents {
 
     @SubscribeEvent
     public void onLivingHurt(LivingHurtEvent event) {
-        if (Config.ENABLE_WORLD_EVENTS.get()) {
+        if (CommonConfig.ENABLE_WORLD_EVENTS.get()) {
             LivingEntity entity = event.getEntity();
             Entity mob = event.getSource().getEntity();
             if (entity != null) {

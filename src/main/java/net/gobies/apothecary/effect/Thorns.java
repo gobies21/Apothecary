@@ -1,9 +1,8 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,7 +29,7 @@ public class Thorns extends MobEffect {
 
         if (entity.hasEffect(AEffects.Thorns.get()) && source.getEntity() != null && source.getEntity() instanceof LivingEntity attacker) {
             int amplifier = Objects.requireNonNull(entity.getEffect(AEffects.Thorns.get())).getAmplifier();
-            float damageReflect = (float) (damageDealt * Config.THORNS_DAMAGE_REFLECT.get() * (amplifier + 1));
+            float damageReflect = (float) (damageDealt * CommonConfig.THORNS_DAMAGE_REFLECT.get() * (amplifier + 1));
 
             DamageSource thornsDamage = source.getEntity().damageSources().thorns(entity);
 

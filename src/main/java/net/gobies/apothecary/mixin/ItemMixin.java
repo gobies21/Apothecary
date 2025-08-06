@@ -1,6 +1,6 @@
 package net.gobies.apothecary.mixin;
 
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,7 +25,7 @@ public class ItemMixin {
         if (pStack.getItem() instanceof PotionItem) {
             List<MobEffectInstance> effects = PotionUtils.getMobEffects(pStack);
             if (!effects.isEmpty()) {
-                cir.setReturnValue(Config.ENABLE_ENCHANTED_GLOW.get());
+                cir.setReturnValue(CommonConfig.ENABLE_ENCHANTED_GLOW.get());
             }
         }
     }

@@ -1,6 +1,6 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,7 +23,7 @@ public class Shocked extends MobEffect {
         super.addAttributeModifiers(entity, attribute, amplifier);
         var MovementSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
         if (MovementSpeed != null && MovementSpeed.getModifier(MOVEMENT_SPEED_UUID) == null) {
-            double attackSpeed = Config.SHOCKED_SPEED_DECREASE.get() * (amplifier + 1);
+            double attackSpeed = CommonConfig.SHOCKED_SPEED_DECREASE.get() * (amplifier + 1);
             MovementSpeed.addPermanentModifier(
                     new AttributeModifier(MOVEMENT_SPEED_UUID, "Shocked Reduced Speed", -attackSpeed, AttributeModifier.Operation.MULTIPLY_BASE));
         }

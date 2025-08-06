@@ -1,6 +1,6 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,7 +23,7 @@ public class RupturedArmor extends MobEffect {
         super.addAttributeModifiers(entity, attribute, amplifier);
         var ArmorToughness = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
         if (ArmorToughness != null && ArmorToughness.getModifier(ARMOR_TOUGHNESS_UUID) == null) {
-            double armorToughness = Config.RUPTURED_ARMOR_ARMOR_DECREASE.get() * (amplifier + 1);
+            double armorToughness = CommonConfig.RUPTURED_ARMOR_ARMOR_DECREASE.get() * (amplifier + 1);
             ArmorToughness.addPermanentModifier(
                     new AttributeModifier(ARMOR_TOUGHNESS_UUID, "Ruptured Armor", -armorToughness, AttributeModifier.Operation.ADDITION));
         }

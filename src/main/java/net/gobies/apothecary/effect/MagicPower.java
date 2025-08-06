@@ -1,7 +1,7 @@
 package net.gobies.apothecary.effect;
 
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.util.ModLoadedUtil;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -35,7 +35,7 @@ public class MagicPower extends MobEffect {
             if ((event.getSource().is(DamageTypes.MAGIC) || event.getSource().is(DamageTypes.INDIRECT_MAGIC))) {
                 if (attacker.hasEffect(AEffects.MagicPower.get())) {
                     int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.MagicPower.get())).getAmplifier();
-                    float reducedDamage = (float) (event.getAmount() * (1.0f + (Config.MAGIC_POWER_INCREASE.get() * (amplifier + 1))));
+                    float reducedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.MAGIC_POWER_INCREASE.get() * (amplifier + 1))));
                     event.setAmount(reducedDamage);
                 }
             }
@@ -48,7 +48,7 @@ public class MagicPower extends MobEffect {
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
             var spellPower = entity.getAttribute(AttributeRegistry.SPELL_POWER.get());
             if (spellPower != null && spellPower.getModifier(SPELL_POWER_UUID) == null) {
-                double power = Config.MAGIC_POWER_INCREASE.get() * (amplifier + 1);
+                double power = CommonConfig.MAGIC_POWER_INCREASE.get() * (amplifier + 1);
                 spellPower.addPermanentModifier(
                         new AttributeModifier(SPELL_POWER_UUID, "Magic Power", power, AttributeModifier.Operation.ADDITION));
             }

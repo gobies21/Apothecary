@@ -27,12 +27,12 @@ public class Lightning extends MobEffect {
     }
 
     private void summonLightning(LivingEntity entity) {
-        if (!entity.level().isClientSide) { // Check if the world is server-side
+        if (!entity.level().isClientSide) {
             Level level = entity.level();
-            BlockPos blockPos = entity.blockPosition(); // Get the position of the entity
+            BlockPos blockPos = entity.blockPosition();
             LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
             lightningBolt.setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-            level.addFreshEntity(lightningBolt); // Add the lightning bolt to the world
+            level.addFreshEntity(lightningBolt);
         }
     }
 }

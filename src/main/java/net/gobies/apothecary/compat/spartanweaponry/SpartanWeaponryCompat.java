@@ -1,7 +1,7 @@
 package net.gobies.apothecary.compat.spartanweaponry;
 
 import com.oblivioussp.spartanweaponry.init.ModDamageTypes;
-import net.gobies.apothecary.Config;
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,7 +22,7 @@ public class SpartanWeaponryCompat {
             if (event.getSource().is(ModDamageTypes.KEY_ARMOR_PIERCING_BOLT)) {
                 if (attacker.hasEffect(AEffects.Archery.get())) {
                     int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Archery.get())).getAmplifier();
-                    float increasedDamage = (float) (event.getAmount() * (1.0f + (Config.ARCHERY_DAMAGE_INCREASE.get() * (amplifier + 1))));
+                    float increasedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.ARCHERY_DAMAGE_INCREASE.get() * (amplifier + 1))));
                     event.setAmount(increasedDamage);
                 }
             }
