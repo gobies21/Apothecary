@@ -17,8 +17,6 @@ public class CommonConfig {
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WORLD_EVENTS;
     public static boolean enable_world_events;
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ENCHANTED_GLOW;
-    public static boolean enable_enchanted_glow;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_IRON_SKIN_RECIPE;
     public static boolean enable_iron_skin_recipe;
@@ -212,7 +210,6 @@ public class CommonConfig {
     static void onLoad(ModConfigEvent.Loading configEvent) {
         if (configEvent.getConfig().getFileName().equals(FILENAME)) {
             enable_world_events = ENABLE_WORLD_EVENTS.get();
-            enable_enchanted_glow = ENABLE_ENCHANTED_GLOW.get();
             enable_iron_skin_recipe = ENABLE_IRON_SKIN_RECIPE.get();
             iron_skin_ingredient = IRON_SKIN_INGREDIENT.get();
             iron_skin_armor_increase = IRON_SKIN_ARMOR_INCREASE.get();
@@ -297,7 +294,6 @@ public class CommonConfig {
 
         BUILDER.push("General");
         ENABLE_WORLD_EVENTS = BUILDER.comment("Enable world events (effects being able to occur in the world outside of potions)").define("World_Events", true);
-        ENABLE_ENCHANTED_GLOW = BUILDER.comment("Enable potions having enchanted glow").define("Glow", false);
         BUILDER.pop();
 
         //
@@ -342,7 +338,7 @@ public class CommonConfig {
 
         BUILDER.push("Wrath");
         ENABLE_WRATH_RECIPE = BUILDER.comment("Enable the wrath potion recipe").define("Enable", true);
-        WRATH_INGREDIENT = BUILDER.comment("Main ingredient used to brew wrath potions").define("Ingredient", "minecraft:warped_fungus");
+        WRATH_INGREDIENT = BUILDER.comment("Main ingredient used to brew wrath potions").define("Ingredient", "minecraft:crimson_fungus");
         WRATH_DAMAGE_INCREASE = BUILDER.comment("Damage increase provided by wrath potions in percentage").define("Damage_Increase", 0.10);
         BUILDER.pop();
 
@@ -455,7 +451,7 @@ public class CommonConfig {
 
         BUILDER.push("Resistance");
         ENABLE_RESISTANCE_RECIPE = BUILDER.comment("Enable the resistance potion recipe").define("Enable", true);
-        RESISTANCE_INGREDIENT = BUILDER.comment("Main ingredient used to brew resistance potions").define("Ingredient", "minecraft:crimson_fungus");
+        RESISTANCE_INGREDIENT = BUILDER.comment("Main ingredient used to brew resistance potions").define("Ingredient", "minecraft:warped_fungus");
         BUILDER.pop();
 
         BUILDER.push("Wither");

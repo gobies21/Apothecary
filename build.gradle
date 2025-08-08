@@ -97,12 +97,12 @@ dependencies {
 
     implementation fg.deobf("curse.maven:spartan-weaponry-278141:5597663")
 
-    runtimeOnly(fg.deobf("curse.maven:alexs-caves-924854:5848216"))
-    runtimeOnly(fg.deobf("curse.maven:citadel-331936:6702068"))
+    //runtimeOnly(fg.deobf("curse.maven:alexs-caves-924854:5848216"))
+    //runtimeOnly(fg.deobf("curse.maven:citadel-331936:6702068"))
 
-    runtimeOnly(fg.deobf("curse.maven:biomes-o-plenty-220318:6364065"))
-    runtimeOnly(fg.deobf("curse.maven:glitchcore-955399:5787839"))
-    runtimeOnly(fg.deobf("curse.maven:terrablender-563928:6290448"))
+    //runtimeOnly(fg.deobf("curse.maven:biomes-o-plenty-220318:6364065"))
+    //runtimeOnly(fg.deobf("curse.maven:glitchcore-955399:5787839"))
+    //runtimeOnly(fg.deobf("curse.maven:terrablender-563928:6290448"))
 }
 
 mixin {

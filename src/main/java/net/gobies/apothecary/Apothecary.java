@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.gobies.apothecary.compat.FluidEffectEvents;
 import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbookEvents;
 import net.gobies.apothecary.compat.spartanweaponry.SpartanWeaponryCompat;
+import net.gobies.apothecary.config.ClientConfig;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.init.APotions;
@@ -37,6 +38,8 @@ public class Apothecary {
         modBus.addListener(this::commonSetup);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
     }
 
     public void commonSetup(final FMLCommonSetupEvent event) {

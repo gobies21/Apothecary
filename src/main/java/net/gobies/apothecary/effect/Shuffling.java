@@ -50,7 +50,7 @@ public class Shuffling extends MobEffect {
             List<ItemStack> inventory = new ArrayList<>();
             for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                 if (i < 36 || i > 39) { // Skip armor slots (36 to 39)
-                    inventory.add(player.getInventory().getItem(i)); // Get item from slot i
+                    inventory.add(player.getInventory().getItem(i));
                 }
             }
             Collections.shuffle(inventory);

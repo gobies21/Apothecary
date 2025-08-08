@@ -39,6 +39,8 @@ public class BlacklistedEffects {
         return effect.getCategory() == MobEffectCategory.HARMFUL && isHarmfulEffectBlacklisted(effect);
     }
 
+
+
     //Corrupted
     public static void initCorruptedBlacklist() {
         if (CORRUPTED_BLACKLISTED_EFFECTS == null) {
