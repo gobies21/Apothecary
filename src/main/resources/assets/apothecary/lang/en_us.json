@@ -290,9 +290,13 @@
   "effect.apothecary.shuffling": "Shuffling",
 
   "item.minecraft.potion.effect.lightning": "Potion of Lightning",
+  "item.minecraft.potion.effect.strong_lightning": "Potion of Lightning",
   "item.minecraft.splash_potion.effect.lightning": "Splash Potion of Lightning",
+  "item.minecraft.splash_potion.effect.strong_lightning": "Splash Potion of Lightning",
   "item.minecraft.lingering_potion.effect.lightning": "Lingering Potion of Lightning",
+  "item.minecraft.lingering_potion.effect.strong_lightning": "Lingering Potion of Lightning",
   "item.minecraft.tipped_arrow.effect.lightning": "Arrow of Lightning",
+  "item.minecraft.tipped_arrow.effect.strong_lightning": "Arrow of Lightning",
   "effect.apothecary.lightning": "Lightning",
 
   "item.minecraft.potion.effect.burning": "Potion of Burning",
@@ -336,6 +340,20 @@
   "item.minecraft.tipped_arrow.effect.long_shocked": "Arrow of Shocked",
   "item.minecraft.tipped_arrow.effect.strong_shocked": "Arrow of Shocked",
   "effect.apothecary.shocked": "Shocked",
+
+  "item.minecraft.potion.effect.spelunker": "Potion of Spelunker",
+  "item.minecraft.potion.effect.long_spelunker": "Potion of Spelunker",
+  "item.minecraft.potion.effect.strong_spelunker": "Potion of Spelunker",
+  "item.minecraft.splash_potion.effect.spelunker": "Splash Potion of Spelunker",
+  "item.minecraft.splash_potion.effect.long_spelunker": "Splash Potion of Spelunker",
+  "item.minecraft.splash_potion.effect.strong_spelunker": "Splash Potion of Spelunker",
+  "item.minecraft.lingering_potion.effect.spelunker": "Lingering Potion of Spelunker",
+  "item.minecraft.lingering_potion.effect.long_spelunker": "Lingering Potion of Spelunker",
+  "item.minecraft.lingering_potion.effect.strong_spelunker": "Lingering Potion of Spelunker",
+  "item.minecraft.tipped_arrow.effect.spelunker": "Arrow of Spelunker",
+  "item.minecraft.tipped_arrow.effect.long_spelunker": "Arrow of Spelunker",
+  "item.minecraft.tipped_arrow.effect.strong_spelunker": "Arrow of Spelunker",
+  "effect.apothecary.spelunker": "Spelunker",
 
   "item.minecraft.potion.effect.health_boost": "Potion of Health Boost",
   "item.minecraft.potion.effect.long_health_boost": "Potion of Health Boost",
@@ -391,5 +409,6 @@
   "effect.apothecary.chilled.description": "Decreases attack speed, movement speed, and mining speed",
   "effect.apothecary.shocked.description": "Decreases movement speed by a large amount",
   "effect.apothecary.shuffling.description": "Randomly shuffles items in your inventory",
-  "effect.apothecary.lightning.description": "Summons a lightning bolt"
+  "effect.apothecary.lightning.description": "Summons a lightning bolt",
+  "effect.apothecary.spelunker.description": "Shows the location of nearby ores"
 }

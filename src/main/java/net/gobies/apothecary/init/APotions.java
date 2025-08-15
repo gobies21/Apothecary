@@ -81,6 +81,10 @@ public class APotions {
     public static final RegistryObject<Potion> StrongShocked;
     public static final RegistryObject<Potion> Shuffling;
     public static final RegistryObject<Potion> Lightning;
+    public static final RegistryObject<Potion> StrongLightning;
+    public static final RegistryObject<Potion> Spelunker;
+    public static final RegistryObject<Potion> LongSpelunker;
+    public static final RegistryObject<Potion> StrongSpelunker;
 
     //Vanilla potions
     public static final RegistryObject<Potion> HealthBoost;
@@ -199,6 +203,12 @@ public class APotions {
         Shuffling = POTIONS.register("shuffling", () -> new Potion(new MobEffectInstance(AEffects.Shuffling.get(),1,0)));
 
         Lightning = POTIONS.register("lightning", () -> new Potion(new MobEffectInstance(AEffects.Lightning.get(),1,0)));
+        StrongLightning = POTIONS.register("strong_lightning", () -> new Potion(new MobEffectInstance(AEffects.Lightning.get(),1,1)));
+
+
+        Spelunker = POTIONS.register("spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),3600,0)));
+        LongSpelunker = POTIONS.register("long_spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),9600,0)));
+        StrongSpelunker = POTIONS.register("strong_spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),1800,1)));
 
         //Vanilla potions
         HealthBoost = POTIONS.register("health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,3600,0)));

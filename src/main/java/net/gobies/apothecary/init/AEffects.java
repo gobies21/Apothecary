@@ -37,9 +37,7 @@ public class AEffects {
     public static final RegistryObject<MobEffect> Shocked;
     public static final RegistryObject<MobEffect> Shuffling;
     public static final RegistryObject<MobEffect> Lightning;
-
-    public AEffects() {
-    }
+    public static final RegistryObject<MobEffect> Spelunker;
 
     public static void register (IEventBus eventBus) {
         EFFECTS.register(eventBus);
@@ -73,5 +71,6 @@ public class AEffects {
         Shocked = EFFECTS.register("shocked", () -> new Shocked(MobEffectCategory.HARMFUL, 0x8F00FF));
         Shuffling = EFFECTS.register("shuffling", () -> new Shuffling(MobEffectCategory.HARMFUL, 0x00008B));
         Lightning = EFFECTS.register("lightning", () -> new Lightning(MobEffectCategory.HARMFUL, 0x93B9DF));
+        Spelunker = EFFECTS.register("spelunker", () -> new Spelunker(MobEffectCategory.BENEFICIAL, 0xC9C92C));
     }
 }

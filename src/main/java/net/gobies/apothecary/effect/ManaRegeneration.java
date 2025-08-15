@@ -19,10 +19,10 @@ public class ManaRegeneration extends MobEffect {
     }
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.addAttributeModifiers(entity, attribute, amplifier);
+    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.addAttributeModifiers(livingEntity, attribute, amplifier);
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            var manaRegen = entity.getAttribute(AttributeRegistry.MANA_REGEN.get());
+            var manaRegen = livingEntity.getAttribute(AttributeRegistry.MANA_REGEN.get());
             if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) == null) {
                 double regen= 0.25 * (amplifier + 1);
                 manaRegen.addPermanentModifier(
@@ -32,10 +32,10 @@ public class ManaRegeneration extends MobEffect {
     }
 
     @Override
-    public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.removeAttributeModifiers(entity, attribute, amplifier);
+    public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.removeAttributeModifiers(livingEntity, attribute, amplifier);
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            var manaRegen = entity.getAttribute(AttributeRegistry.MANA_REGEN.get());
+            var manaRegen = livingEntity.getAttribute(AttributeRegistry.MANA_REGEN.get());
             if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) != null) {
                 manaRegen.removeModifier(MANA_REGENERATION_UUID);
             }

@@ -29,27 +29,27 @@ public class Chilled extends MobEffect {
         MinecraftForge.EVENT_BUS.register(Chilled.class);
     }
 
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity.hasEffect(AEffects.Chilled.get())) {
-            if (entity.isOnFire() || entity.isInLava()) {
-                entity.removeEffect(AEffects.Chilled.get());
+    public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
+        if (livingEntity.hasEffect(AEffects.Chilled.get())) {
+            if (livingEntity.isOnFire() || livingEntity.isInLava()) {
+                livingEntity.removeEffect(AEffects.Chilled.get());
 
             }
         }
     }
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.addAttributeModifiers(entity, attribute, amplifier);
+    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.addAttributeModifiers(livingEntity, attribute, amplifier);
 
-        var AttackSpeed = entity.getAttribute(Attributes.ATTACK_SPEED);
+        var AttackSpeed = livingEntity.getAttribute(Attributes.ATTACK_SPEED);
         if (AttackSpeed != null && AttackSpeed.getModifier(ATTACK_SPEED_UUID) == null) {
             double attackSpeed = CommonConfig.CHILLED_SPEED_DECREASE.get() * (amplifier + 1);
             AttackSpeed.addPermanentModifier(
                     new AttributeModifier(ATTACK_SPEED_UUID, "Chilled Reduced Attack Speed", -attackSpeed, AttributeModifier.Operation.MULTIPLY_BASE));
         }
 
-        var MovementSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+        var MovementSpeed = livingEntity.getAttribute(Attributes.MOVEMENT_SPEED);
         if (MovementSpeed != null && MovementSpeed.getModifier(MOVEMENT_SPEED_UUID) == null) {
             double movementSpeed = CommonConfig.CHILLED_SPEED_DECREASE.get() * (amplifier + 1);
             MovementSpeed.addPermanentModifier(

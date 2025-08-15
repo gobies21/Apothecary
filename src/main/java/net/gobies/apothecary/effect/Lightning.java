@@ -23,14 +23,15 @@ public class Lightning extends MobEffect {
 
     @Override
     public void applyInstantenousEffect(@Nullable Entity pSource, @Nullable Entity pIndirectSource, @NotNull LivingEntity entity, int pAmplifier, double pHealth) {
-        summonLightning(entity);
+        summonLightning(entity, pAmplifier);
     }
 
-    private void summonLightning(LivingEntity entity) {
-        if (!entity.level().isClientSide) {
-            Level level = entity.level();
-            BlockPos blockPos = entity.blockPosition();
+    private void summonLightning(LivingEntity livingEntity, int amplifier) {
+        if (!livingEntity.level().isClientSide) {
+            Level level = livingEntity.level();
+            BlockPos blockPos = livingEntity.blockPosition();
             LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
+            lightningBolt.setDamage(lightningBolt.getDamage() * (amplifier + 1));
             lightningBolt.setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
             level.addFreshEntity(lightningBolt);
         }

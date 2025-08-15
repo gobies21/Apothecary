@@ -19,9 +19,9 @@ public class Shocked extends MobEffect {
     }
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.addAttributeModifiers(entity, attribute, amplifier);
-        var MovementSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.addAttributeModifiers(livingEntity, attribute, amplifier);
+        var MovementSpeed = livingEntity.getAttribute(Attributes.MOVEMENT_SPEED);
         if (MovementSpeed != null && MovementSpeed.getModifier(MOVEMENT_SPEED_UUID) == null) {
             double attackSpeed = CommonConfig.SHOCKED_SPEED_DECREASE.get() * (amplifier + 1);
             MovementSpeed.addPermanentModifier(
@@ -30,11 +30,12 @@ public class Shocked extends MobEffect {
     }
 
     @Override
-    public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.removeAttributeModifiers(entity, attribute, amplifier);
-        var MovementSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+    public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.removeAttributeModifiers(livingEntity, attribute, amplifier);
+        var MovementSpeed = livingEntity.getAttribute(Attributes.MOVEMENT_SPEED);
         if (MovementSpeed != null && MovementSpeed.getModifier(MOVEMENT_SPEED_UUID) != null) {
             MovementSpeed.removeModifier(MOVEMENT_SPEED_UUID);
         }
     }
+
 }

@@ -18,8 +18,8 @@ public class Repairing extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
-        if (entity instanceof Player player && !entity.level().isClientSide) {
+    public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
+        if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
             for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                 ItemStack stack = player.getInventory().getItem(i);
                 if (!stack.isEmpty() && stack.isDamageableItem() && stack.getDamageValue() > 0) {

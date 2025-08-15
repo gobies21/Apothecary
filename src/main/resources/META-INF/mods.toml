@@ -5,7 +5,7 @@ license = "All Rights Reserved"
 
 [[mods]]
 modId="apothecary"
-version="1.0.6"
+version="1.1.0"
 displayName="Apothecary"
 authors="gobies"
 description='''A potion expansion to liven up the alchemy experience in Minecraft!'''

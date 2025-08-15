@@ -22,9 +22,9 @@ public class Feeble extends MobEffect {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        if (event.getSource().getEntity() instanceof LivingEntity entity) {
-            if (entity.hasEffect(AEffects.Feeble.get())) {
-                int amplifier = Objects.requireNonNull(entity.getEffect(AEffects.Feeble.get())).getAmplifier();
+        if (event.getSource().getEntity() instanceof LivingEntity livingEntity) {
+            if (livingEntity.hasEffect(AEffects.Feeble.get())) {
+                int amplifier = Objects.requireNonNull(livingEntity.getEffect(AEffects.Feeble.get())).getAmplifier();
                 float reducedDamage = event.getAmount() * (1.0f - (0.10f * (amplifier + 1)));
                 event.setAmount(reducedDamage);
             }

@@ -170,6 +170,13 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<String> LIGHTNING_INGREDIENT;
     public static String lightning_ingredient;
 
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SPELUNKER_RECIPE;
+    public static boolean enable_spelunker_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> SPELUNKER_INGREDIENT;
+    public static String spelunker_ingredient;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> SPELUNKER_ORE_LIST;
+    public static List<? extends String> spelunker_ore_list;
+
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_HEALTH_BOOST_RECIPE;
     public static boolean enable_health_boost_recipe;
     public static ForgeConfigSpec.ConfigValue<String> HEALTH_BOOST_INGREDIENT;
@@ -274,6 +281,9 @@ public class CommonConfig {
             shocked_speed_decrease = SHOCKED_SPEED_DECREASE.get().floatValue();
             enable_lightning_recipe = ENABLE_LIGHTNING_RECIPE.get();
             lightning_ingredient = LIGHTNING_INGREDIENT.get();
+            enable_spelunker_recipe = ENABLE_SPELUNKER_RECIPE.get();
+            spelunker_ingredient = SPELUNKER_INGREDIENT.get();
+            spelunker_ore_list = SPELUNKER_ORE_LIST.get();
             enable_health_boost_recipe = ENABLE_HEALTH_BOOST_RECIPE.get();
             health_boost_ingredient = HEALTH_BOOST_INGREDIENT.get();
             enable_luck_recipe = ENABLE_LUCK_RECIPE.get();
@@ -430,14 +440,22 @@ public class CommonConfig {
 
         BUILDER.push("Shocked");
         ENABLE_SHOCKED_RECIPE = BUILDER.comment("Enable the shocked potion recipe").define("Enable", true);
-        SHOCKED_INGREDIENT = BUILDER.comment("Main ingredient used to brew shocked potions").define("Ingredient", "minecraft:lightning_rod");
+        SHOCKED_INGREDIENT = BUILDER.comment("Main ingredient used to brew shocked potions").define("Ingredient", "minecraft:copper_block");
         SHOCKED_SPEED_DECREASE = BUILDER.comment("Amount of movement speed reduction for the shocked effect").define("Shocked_Speed_Decrease", 0.5);
         BUILDER.pop();
 
         BUILDER.push("Lightning");
         ENABLE_LIGHTNING_RECIPE = BUILDER.comment("Enable the lightning potion recipe").define("Enable", true);
-        LIGHTNING_INGREDIENT = BUILDER.comment("Main ingredient used to brew lightning potions").define("Ingredient", "minecraft:oxidized_copper");
+        LIGHTNING_INGREDIENT = BUILDER.comment("Main ingredient used to brew lightning potions").define("Ingredient", "minecraft:lightning_rod");
         BUILDER.pop();
+
+        BUILDER.push("Spelunker");
+        ENABLE_SPELUNKER_RECIPE = BUILDER.comment("Enable the spelunker potion recipe").define("Enable", true);
+        SPELUNKER_INGREDIENT = BUILDER.comment("Main ingredient used to brew spelunker potions").define("Ingredient", "minecraft:raw_gold_block");
+        SPELUNKER_ORE_LIST = BUILDER.comment("List of ores that the spelunker effect can detect (e.g., minecraft:iron_ore, minecraft:gold_ore etc)").defineList("Spelunker_Ore_List", List.of(), s -> s instanceof String);
+        BUILDER.pop();
+
+
 
         BUILDER.push("Health_Boost");
         ENABLE_HEALTH_BOOST_RECIPE = BUILDER.comment("Enable the health boost potion recipe").define("Enable", true);

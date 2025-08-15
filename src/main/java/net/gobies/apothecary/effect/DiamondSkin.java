@@ -19,9 +19,9 @@ public class DiamondSkin extends MobEffect {
     }
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.addAttributeModifiers(entity, attribute, amplifier);
-        var Armor = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.addAttributeModifiers(livingEntity, attribute, amplifier);
+        var Armor = livingEntity.getAttribute(Attributes.ARMOR_TOUGHNESS);
         if (Armor != null && Armor.getModifier(ARMOR_TOUGHNESS_UUID) == null) {
             double armorToughness = CommonConfig.DIAMOND_SKIN_ARMOR_INCREASE.get() * (amplifier + 1);
             Armor.addPermanentModifier(
@@ -30,9 +30,9 @@ public class DiamondSkin extends MobEffect {
     }
 
     @Override
-    public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.removeAttributeModifiers(entity, attribute, amplifier);
-        var Armor = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+    public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.removeAttributeModifiers(livingEntity, attribute, amplifier);
+        var Armor = livingEntity.getAttribute(Attributes.ARMOR_TOUGHNESS);
         if (Armor != null && Armor.getModifier(ARMOR_TOUGHNESS_UUID) != null) {
             Armor.removeModifier(ARMOR_TOUGHNESS_UUID);
         }

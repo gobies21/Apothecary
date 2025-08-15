@@ -138,6 +138,13 @@ public class ABrewing {
 
         if (CommonConfig.ENABLE_LIGHTNING_RECIPE.get()) {
             BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.LIGHTNING_INGREDIENT.get())))), APotions.Lightning.get());
+            BrewingHandler.addBrewingRecipe(APotions.Lightning.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongLightning.get());
+        }
+
+        if (CommonConfig.ENABLE_SPELUNKER_RECIPE.get()) {
+            BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.SPELUNKER_INGREDIENT.get())))), APotions.Spelunker.get());
+            BrewingHandler.addBrewingRecipe(APotions.Spelunker.get(), Ingredient.of(Items.REDSTONE), APotions.LongSpelunker.get());
+            BrewingHandler.addBrewingRecipe(APotions.Spelunker.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongSpelunker.get());
         }
 
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {

@@ -20,8 +20,8 @@ public class Flight extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
-        if (entity instanceof Player player) {
+    public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
+        if (livingEntity instanceof Player player) {
             if (!player.getAbilities().mayfly) {
                 player.getAbilities().mayfly = true;
                 player.onUpdateAbilities();
@@ -31,9 +31,9 @@ public class Flight extends MobEffect {
     }
 
     @Override
-    public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attributes, int amplifier) {
-        super.removeAttributeModifiers(entity, attributes, amplifier);
-        if (entity instanceof Player player) {
+    public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributes, int amplifier) {
+        super.removeAttributeModifiers(livingEntity, attributes, amplifier);
+        if (livingEntity instanceof Player player) {
             if (!player.isCreative() && !player.isSpectator() && allowFlying) {
                 player.getAbilities().flying = false;
                 player.getAbilities().mayfly = false;

@@ -23,15 +23,15 @@ public class Thorns extends MobEffect {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        LivingEntity entity = event.getEntity();
+        LivingEntity livingEntity = event.getEntity();
         DamageSource source = event.getSource();
         float damageDealt = event.getAmount();
 
-        if (entity.hasEffect(AEffects.Thorns.get()) && source.getEntity() != null && source.getEntity() instanceof LivingEntity attacker) {
-            int amplifier = Objects.requireNonNull(entity.getEffect(AEffects.Thorns.get())).getAmplifier();
+        if (livingEntity.hasEffect(AEffects.Thorns.get()) && source.getEntity() != null && source.getEntity() instanceof LivingEntity attacker) {
+            int amplifier = Objects.requireNonNull(livingEntity.getEffect(AEffects.Thorns.get())).getAmplifier();
             float damageReflect = (float) (damageDealt * CommonConfig.THORNS_DAMAGE_REFLECT.get() * (amplifier + 1));
 
-            DamageSource thornsDamage = source.getEntity().damageSources().thorns(entity);
+            DamageSource thornsDamage = source.getEntity().damageSources().thorns(livingEntity);
 
             attacker.hurt(thornsDamage, damageReflect);
         }

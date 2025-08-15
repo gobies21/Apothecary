@@ -23,11 +23,11 @@ public class Corrupted extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
-        entity.getActiveEffects().stream()
+    public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
+        livingEntity.getActiveEffects().stream()
                 .filter(effectInstance -> effectInstance.getEffect().getCategory() == MobEffectCategory.BENEFICIAL)
                 .filter(effectInstance -> BlacklistedEffects.isBeneficialEffectBlacklisted(effectInstance.getEffect()))
-                .forEach(effectInstance -> entity.removeEffect(effectInstance.getEffect()));
+                .forEach(effectInstance -> livingEntity.removeEffect(effectInstance.getEffect()));
     }
 
     @SubscribeEvent

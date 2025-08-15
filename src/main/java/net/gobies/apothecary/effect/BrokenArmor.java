@@ -19,9 +19,9 @@ public class BrokenArmor extends MobEffect {
     }
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.addAttributeModifiers(entity, attribute, amplifier);
-        var Armor = entity.getAttribute(Attributes.ARMOR);
+    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.addAttributeModifiers(livingEntity, attribute, amplifier);
+        var Armor = livingEntity.getAttribute(Attributes.ARMOR);
         if (Armor != null && Armor.getModifier(ARMOR_UUID) == null) {
             double armorReduction = CommonConfig.BROKEN_ARMOR_ARMOR_DECREASE.get() * (amplifier + 1);
             Armor.addPermanentModifier(
@@ -30,9 +30,9 @@ public class BrokenArmor extends MobEffect {
     }
 
     @Override
-    public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.removeAttributeModifiers(entity, attribute, amplifier);
-        var Armor = entity.getAttribute(Attributes.ARMOR);
+    public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.removeAttributeModifiers(livingEntity, attribute, amplifier);
+        var Armor = livingEntity.getAttribute(Attributes.ARMOR);
         if (Armor != null && Armor.getModifier(ARMOR_UUID) != null) {
             Armor.removeModifier(ARMOR_UUID);
         }

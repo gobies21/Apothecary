@@ -43,10 +43,10 @@ public class MagicPower extends MobEffect {
     }
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.addAttributeModifiers(entity, attribute, amplifier);
+    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.addAttributeModifiers(livingEntity, attribute, amplifier);
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            var spellPower = entity.getAttribute(AttributeRegistry.SPELL_POWER.get());
+            var spellPower = livingEntity.getAttribute(AttributeRegistry.SPELL_POWER.get());
             if (spellPower != null && spellPower.getModifier(SPELL_POWER_UUID) == null) {
                 double power = CommonConfig.MAGIC_POWER_INCREASE.get() * (amplifier + 1);
                 spellPower.addPermanentModifier(
@@ -56,10 +56,10 @@ public class MagicPower extends MobEffect {
     }
 
     @Override
-    public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.removeAttributeModifiers(entity, attribute, amplifier);
+    public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.removeAttributeModifiers(livingEntity, attribute, amplifier);
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            var spellPower = entity.getAttribute(AttributeRegistry.SPELL_POWER.get());
+            var spellPower = livingEntity.getAttribute(AttributeRegistry.SPELL_POWER.get());
             if (spellPower != null && spellPower.getModifier(SPELL_POWER_UUID) != null) {
                 spellPower.removeModifier(SPELL_POWER_UUID);
             }

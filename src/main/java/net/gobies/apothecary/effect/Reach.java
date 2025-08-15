@@ -20,16 +20,16 @@ public class Reach extends MobEffect {
     }
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attribute, int amplifier) {
-        super.addAttributeModifiers(entity, attribute, amplifier);
-        var EntityReach = entity.getAttribute(ForgeMod.ENTITY_REACH.get());
+    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
+        super.addAttributeModifiers(livingEntity, attribute, amplifier);
+        var EntityReach = livingEntity.getAttribute(ForgeMod.ENTITY_REACH.get());
         if (EntityReach != null && EntityReach.getModifier(ENTITY_REACH_UUID) == null) {
             double entityReach = CommonConfig.REACH_INCREASE.get() * (amplifier + 1);
             EntityReach.addPermanentModifier(
                     new AttributeModifier(ENTITY_REACH_UUID, "Entity Reach", entityReach, AttributeModifier.Operation.ADDITION));
         }
 
-        var BlockReach = entity.getAttribute(ForgeMod.BLOCK_REACH.get());
+        var BlockReach = livingEntity.getAttribute(ForgeMod.BLOCK_REACH.get());
         if (BlockReach != null && BlockReach.getModifier(BLOCK_REACH_UUID) == null) {
             double blockReach = CommonConfig.REACH_INCREASE.get() * (amplifier + 1);
             BlockReach.addPermanentModifier(
@@ -38,14 +38,14 @@ public class Reach extends MobEffect {
     }
 
     @Override
-    public void removeAttributeModifiers(@NotNull LivingEntity entity, @NotNull AttributeMap attributeMap, int amplifier) {
-        super.removeAttributeModifiers(entity, attributeMap, amplifier);
-        var EntityReach = entity.getAttribute(ForgeMod.ENTITY_REACH.get());
+    public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
+        super.removeAttributeModifiers(livingEntity, attributeMap, amplifier);
+        var EntityReach = livingEntity.getAttribute(ForgeMod.ENTITY_REACH.get());
         if (EntityReach != null && EntityReach.getModifier(ENTITY_REACH_UUID) != null) {
             EntityReach.removeModifier(ENTITY_REACH_UUID);
         }
 
-        var BlockReach = entity.getAttribute(ForgeMod.BLOCK_REACH.get());
+        var BlockReach = livingEntity.getAttribute(ForgeMod.BLOCK_REACH.get());
         if (BlockReach != null && BlockReach.getModifier(BLOCK_REACH_UUID) != null) {
             BlockReach.removeModifier(BLOCK_REACH_UUID);
         }
