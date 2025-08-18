@@ -401,7 +401,7 @@ public class CommonConfig {
 
         BUILDER.push("Thorns");
         ENABLE_THORNS_RECIPE = BUILDER.comment("Enable the thorns potion recipe").define("Enable", true);
-        THORNS_INGREDIENT = BUILDER.comment("Main ingredient used to brew thorns potions").define("Ingredient", "minecraft:sweet_berries");
+        THORNS_INGREDIENT = BUILDER.comment("Main ingredient used to brew thorns potions").define("Ingredient", "minecraft:cactus");
         THORNS_DAMAGE_REFLECT = BUILDER.comment("Damage reflected by thorns potions in percentage").define("Damage_Reflected", 0.20);
         BUILDER.pop();
 
