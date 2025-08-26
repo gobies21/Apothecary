@@ -5,6 +5,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.MovementInputUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,6 +20,7 @@ public class Confusion extends MobEffect {
         MinecraftForge.EVENT_BUS.register(Confusion.class);
     }
 
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void MovementEvent(MovementInputUpdateEvent event) {
         Minecraft player = Minecraft.getInstance();

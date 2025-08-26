@@ -205,7 +205,6 @@ public class APotions {
         Lightning = POTIONS.register("lightning", () -> new Potion(new MobEffectInstance(AEffects.Lightning.get(),1,0)));
         StrongLightning = POTIONS.register("strong_lightning", () -> new Potion(new MobEffectInstance(AEffects.Lightning.get(),1,1)));
 
-
         Spelunker = POTIONS.register("spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),3600,0)));
         LongSpelunker = POTIONS.register("long_spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),9600,0)));
         StrongSpelunker = POTIONS.register("strong_spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),1800,1)));

@@ -210,9 +210,6 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<Integer> WITCH_POTION_COOLDOWN;
     public static int witch_potion_cooldown;
 
-    public CommonConfig() {
-    }
-
     @SubscribeEvent
     static void onLoad(ModConfigEvent.Loading configEvent) {
         if (configEvent.getConfig().getFileName().equals(FILENAME)) {

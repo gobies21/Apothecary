@@ -97,6 +97,9 @@ dependencies {
 
     implementation fg.deobf("curse.maven:spartan-weaponry-278141:5597663")
 
+    runtimeOnly(fg.deobf("curse.maven:configured-457570:5180900"))
+            runtimeOnly(fg.deobf("curse.maven:catalogue-459701:4766090"))
+
     //runtimeOnly(fg.deobf("curse.maven:alexs-caves-924854:5848216"))
     //runtimeOnly(fg.deobf("curse.maven:citadel-331936:6702068"))
 
