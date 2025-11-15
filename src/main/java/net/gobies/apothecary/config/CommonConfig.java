@@ -51,15 +51,15 @@ public class CommonConfig {
     public static boolean enable_archery_recipe;
     public static ForgeConfigSpec.ConfigValue<String> ARCHERY_INGREDIENT;
     public static String archery_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> ARCHERY_DAMAGE_INCREASE;
-    public static float archery_damage_increase;
+    public static ForgeConfigSpec.ConfigValue<Integer> ARCHERY_DAMAGE_INCREASE;
+    public static int archery_damage_increase;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MISFIRE_RECIPE;
     public static boolean enable_misfire_recipe;
     public static ForgeConfigSpec.ConfigValue<String> MISFIRE_INGREDIENT;
     public static String misfire_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> MISFIRE_DAMAGE_DECREASE;
-    public static float misfire_damage_decrease;
+    public static ForgeConfigSpec.ConfigValue<Integer> MISFIRE_DAMAGE_DECREASE;
+    public static int misfire_damage_decrease;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WRATH_RECIPE;
     public static boolean enable_wrath_recipe;
@@ -84,22 +84,22 @@ public class CommonConfig {
     public static boolean enable_reach_recipe;
     public static ForgeConfigSpec.ConfigValue<String> REACH_INGREDIENT;
     public static String reach_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> REACH_INCREASE;
-    public static float reach_increase;
+    public static ForgeConfigSpec.ConfigValue<Integer> REACH_INCREASE;
+    public static int reach_increase;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REPAIRING_RECIPE;
     public static boolean enable_repairing_recipe;
     public static ForgeConfigSpec.ConfigValue<String> REPAIRING_INGREDIENT;
     public static String repairing_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> REPAIRING_RATE;
-    public static int repairing_rate;
+    public static ForgeConfigSpec.ConfigValue<Integer> REPAIRING_AMOUNT;
+    public static int repairing_amount;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CORROSION_RECIPE;
     public static boolean enable_corrosion_recipe;
     public static ForgeConfigSpec.ConfigValue<String> CORROSION_INGREDIENT;
     public static String corrosion_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> CORROSION_RATE;
-    public static int corrosion_rate;
+    public static ForgeConfigSpec.ConfigValue<Integer> CORROSION_AMOUNT;
+    public static int corrosion_amount;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MAGIC_POWER_RECIPE;
     public static boolean enable_magic_power_recipe;
@@ -127,19 +127,19 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<String> CONFUSION_INGREDIENT;
     public static String confusion_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CLEANSED_RECIPE;
-    public static boolean enable_cleansed_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> CLEANSED_INGREDIENT;
-    public static String cleansed_ingredient;
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> CLEANSED_BLACKLIST_EFFECTS;
-    public static List<? extends String> cleansed_blacklist_effects;
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_PURIFICATION_RECIPE;
+    public static boolean enable_purification_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> PURIFICATION_INGREDIENT;
+    public static String purification_ingredient;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> PURIFICATION_BLACKLIST_EFFECTS;
+    public static List<? extends String> purification_blacklist_effects;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CORRUPTED_RECIPE;
-    public static boolean enable_corrupted_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> CORRUPTED_INGREDIENT;
-    public static String corrupted_ingredient;
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> CORRUPTED_BLACKLIST_EFFECTS;
-    public static List<? extends String> corrupted_blacklist_effects;
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CORRUPTION_RECIPE;
+    public static boolean enable_corruption_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> CORRUPTION_INGREDIENT;
+    public static String corruption_ingredient;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> CORRUPTION_BLACKLIST_EFFECTS;
+    public static List<? extends String> corruption_blacklist_effects;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SHUFFLING_RECIPE;
     public static boolean enable_shuffling_recipe;
@@ -150,13 +150,6 @@ public class CommonConfig {
     public static boolean enable_burning_recipe;
     public static ForgeConfigSpec.ConfigValue<String> BURNING_INGREDIENT;
     public static String burning_ingredient;
-
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CHILLED_RECIPE;
-    public static boolean enable_chilled_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> CHILLED_INGREDIENT;
-    public static String chilled_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> CHILLED_SPEED_DECREASE;
-    public static float chilled_speed_decrease;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SHOCKED_RECIPE;
     public static boolean enable_shocked_recipe;
@@ -177,6 +170,20 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> SPELUNKER_ORE_LIST;
     public static List<? extends String> spelunker_ore_list;
 
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_EXTENSION_RECIPE;
+    public static boolean enable_extension_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> EXTENSION_INGREDIENT;
+    public static String extension_ingredient;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> EXTENSION_BLACKLIST_EFFECTS;
+    public static List<? extends String> extended_blacklist_effects;
+    public static ForgeConfigSpec.ConfigValue<Integer> EXTENSION_CAP;
+    public static int extension_cap;
+
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REVERSION_RECIPE;
+    public static boolean enable_reversion_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> REVERSION_INGREDIENT;
+    public static String reversion_ingredient;
+
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_HEALTH_BOOST_RECIPE;
     public static boolean enable_health_boost_recipe;
     public static ForgeConfigSpec.ConfigValue<String> HEALTH_BOOST_INGREDIENT;
@@ -192,12 +199,12 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<String> RESISTANCE_INGREDIENT;
     public static String resistance_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_INDOLENCE_RECIPE;
-    public static boolean enable_indolence_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> INDOLENCE_INGREDIENT;
-    public static String indolence_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> INDOLENCE_DAMAGE_TAKEN;
-    public static float indolence_damage_taken;
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_VULNERABLE_RECIPE;
+    public static boolean enable_vulnerable_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> VULNERABLE_INGREDIENT;
+    public static String vulnerable_ingredient;
+    public static ForgeConfigSpec.ConfigValue<Double> VULNERABLE_DAMAGE_TAKEN;
+    public static float vulnerable_damage_taken;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WITHER_RECIPE;
     public static boolean enable_wither_recipe;
@@ -228,10 +235,10 @@ public class CommonConfig {
             ruptured_armor_armor_decrease = RUPTURED_ARMOR_ARMOR_DECREASE.get();
             enable_archery_recipe = ENABLE_ARCHERY_RECIPE.get();
             archery_ingredient = ARCHERY_INGREDIENT.get();
-            archery_damage_increase = ARCHERY_DAMAGE_INCREASE.get().floatValue();
+            archery_damage_increase = ARCHERY_DAMAGE_INCREASE.get();
             enable_misfire_recipe = ENABLE_MISFIRE_RECIPE.get();
             misfire_ingredient = MISFIRE_INGREDIENT.get();
-            misfire_damage_decrease = MISFIRE_DAMAGE_DECREASE.get().floatValue();
+            misfire_damage_decrease = MISFIRE_DAMAGE_DECREASE.get();
             enable_wrath_recipe = ENABLE_WRATH_RECIPE.get();
             wrath_ingredient = WRATH_INGREDIENT.get();
             wrath_damage_increase = WRATH_DAMAGE_INCREASE.get().floatValue();
@@ -242,10 +249,10 @@ public class CommonConfig {
             flight_ingredient = FLIGHT_INGREDIENT.get();
             enable_reach_recipe = ENABLE_REACH_RECIPE.get();
             reach_ingredient = REACH_INGREDIENT.get();
-            reach_increase = REACH_INCREASE.get().floatValue();
+            reach_increase = REACH_INCREASE.get();
             enable_repairing_recipe = ENABLE_REPAIRING_RECIPE.get();
             repairing_ingredient = REPAIRING_INGREDIENT.get();
-            repairing_rate = REPAIRING_RATE.get();
+            repairing_amount = REPAIRING_AMOUNT.get();
             enable_corrosion_recipe = ENABLE_CORROSION_RECIPE.get();
             corrosion_ingredient = CORROSION_INGREDIENT.get();
             enable_magic_power_recipe = ENABLE_MAGIC_POWER_RECIPE.get();
@@ -254,25 +261,22 @@ public class CommonConfig {
             enable_magic_drain_recipe = ENABLE_MAGIC_DRAIN_RECIPE.get();
             magic_drain_ingredient = MAGIC_DRAIN_INGREDIENT.get();
             magic_drain_decrease = MAGIC_DRAIN_DECREASE.get().floatValue();
-            corrosion_rate = CORROSION_RATE.get();
+            corrosion_amount = CORROSION_AMOUNT.get();
             enable_thorns_recipe = ENABLE_THORNS_RECIPE.get();
             thorns_ingredient = THORNS_INGREDIENT.get();
             thorns_damage_reflect = THORNS_DAMAGE_REFLECT.get().floatValue();
             enable_confusion_recipe = ENABLE_CONFUSION_RECIPE.get();
             confusion_ingredient = CONFUSION_INGREDIENT.get();
-            enable_cleansed_recipe = ENABLE_CLEANSED_RECIPE.get();
-            cleansed_ingredient = CLEANSED_INGREDIENT.get();
-            cleansed_blacklist_effects = CLEANSED_BLACKLIST_EFFECTS.get();
-            enable_corrupted_recipe = ENABLE_CORRUPTED_RECIPE.get();
-            corrupted_ingredient = CORRUPTED_INGREDIENT.get();
-            corrupted_blacklist_effects = CORRUPTED_BLACKLIST_EFFECTS.get();
+            enable_purification_recipe = ENABLE_PURIFICATION_RECIPE.get();
+            purification_ingredient = PURIFICATION_INGREDIENT.get();
+            purification_blacklist_effects = PURIFICATION_BLACKLIST_EFFECTS.get();
+            enable_corruption_recipe = ENABLE_CORRUPTION_RECIPE.get();
+            corruption_ingredient = CORRUPTION_INGREDIENT.get();
+            corruption_blacklist_effects = CORRUPTION_BLACKLIST_EFFECTS.get();
             enable_shuffling_recipe = ENABLE_SHUFFLING_RECIPE.get();
             shuffling_ingredient = SHUFFLING_INGREDIENT.get();
-            enable_chilled_recipe = ENABLE_CHILLED_RECIPE.get();
             enable_burning_recipe = ENABLE_BURNING_RECIPE.get();
             burning_ingredient = BURNING_INGREDIENT.get();
-            chilled_ingredient = CHILLED_INGREDIENT.get();
-            chilled_speed_decrease = CHILLED_SPEED_DECREASE.get().floatValue();
             enable_shocked_recipe = ENABLE_SHOCKED_RECIPE.get();
             shocked_ingredient = SHOCKED_INGREDIENT.get();
             shocked_speed_decrease = SHOCKED_SPEED_DECREASE.get().floatValue();
@@ -281,15 +285,21 @@ public class CommonConfig {
             enable_spelunker_recipe = ENABLE_SPELUNKER_RECIPE.get();
             spelunker_ingredient = SPELUNKER_INGREDIENT.get();
             spelunker_ore_list = SPELUNKER_ORE_LIST.get();
+            enable_extension_recipe = ENABLE_EXTENSION_RECIPE.get();
+            extension_ingredient = EXTENSION_INGREDIENT.get();
+            extension_cap = EXTENSION_CAP.get();
+            enable_reversion_recipe = ENABLE_REVERSION_RECIPE.get();
+            extended_blacklist_effects = EXTENSION_BLACKLIST_EFFECTS.get();
+            reversion_ingredient = REVERSION_INGREDIENT.get();
             enable_health_boost_recipe = ENABLE_HEALTH_BOOST_RECIPE.get();
             health_boost_ingredient = HEALTH_BOOST_INGREDIENT.get();
             enable_luck_recipe = ENABLE_LUCK_RECIPE.get();
             luck_ingredient = LUCK_INGREDIENT.get();
             enable_resistance_recipe = ENABLE_RESISTANCE_RECIPE.get();
             resistance_ingredient = RESISTANCE_INGREDIENT.get();
-            enable_indolence_recipe = ENABLE_INDOLENCE_RECIPE.get();
-            indolence_ingredient = INDOLENCE_INGREDIENT.get();
-            indolence_damage_taken = INDOLENCE_DAMAGE_TAKEN.get().floatValue();
+            enable_vulnerable_recipe = ENABLE_VULNERABLE_RECIPE.get();
+            vulnerable_ingredient = VULNERABLE_INGREDIENT.get();
+            vulnerable_damage_taken = VULNERABLE_DAMAGE_TAKEN.get().floatValue();
             enable_wither_recipe = ENABLE_WITHER_RECIPE.get();
             wither_ingredient = WITHER_INGREDIENT.get();
             witch_potion_count = WITCH_POTION_COUNT.get();
@@ -334,13 +344,13 @@ public class CommonConfig {
         BUILDER.push("Archery");
         ENABLE_ARCHERY_RECIPE = BUILDER.comment("Enable the archery potion recipe").define("Enable", true);
         ARCHERY_INGREDIENT = BUILDER.comment("Main ingredient used to brew archery potions").define("Ingredient", "minecraft:skeleton_skull");
-        ARCHERY_DAMAGE_INCREASE = BUILDER.comment("Damage increase provided by archery potions in percentage").define("Damage_Increase", 0.20);
+        ARCHERY_DAMAGE_INCREASE = BUILDER.comment("Damage increase provided by archery potions").define("Damage_Increase", 3);
         BUILDER.pop();
 
         BUILDER.push("Misfire");
         ENABLE_MISFIRE_RECIPE = BUILDER.comment("Enable the misfire potion recipe").define("Enable", true);
         MISFIRE_INGREDIENT = BUILDER.comment("Main ingredient used to brew misfire potions").define("Ingredient", "minecraft:fermented_spider_eye");
-        MISFIRE_DAMAGE_DECREASE = BUILDER.comment("Damage decrease provided by misfire potions in percentage").define("Damage_Decrease", 0.20);
+        MISFIRE_DAMAGE_DECREASE = BUILDER.comment("Damage decrease provided by misfire potions").define("Damage_Decrease", 4);
         BUILDER.pop();
 
         BUILDER.push("Wrath");
@@ -355,10 +365,10 @@ public class CommonConfig {
         FEEBLE_DAMAGE_DECREASE = BUILDER.comment("Damage decrease provided by feeble potions in percentage").define("Damage_Decrease", 0.10);
         BUILDER.pop();
 
-        BUILDER.push("Indolence");
-        ENABLE_INDOLENCE_RECIPE = BUILDER.comment("Enable the indolence potion recipe").define("Enable", true);
-        INDOLENCE_INGREDIENT = BUILDER.comment("Main ingredient used to brew indolence potions").define("Ingredient", "minecraft:fermented_spider_eye");
-        INDOLENCE_DAMAGE_TAKEN = BUILDER.comment("Increased damage taken provided by indolence potions in percentage").define("Damage_Taken", 0.20);
+        BUILDER.push("Vulnerable");
+        ENABLE_VULNERABLE_RECIPE = BUILDER.comment("Enable the vulnerable potion recipe").define("Enable", true);
+        VULNERABLE_INGREDIENT = BUILDER.comment("Main ingredient used to brew vulnerable potions").define("Ingredient", "minecraft:fermented_spider_eye");
+        VULNERABLE_DAMAGE_TAKEN = BUILDER.comment("Increased damage taken provided by vulnerable potions in percentage").define("Damage_Taken", 0.20);
         BUILDER.pop();
 
         BUILDER.push("Flight");
@@ -369,19 +379,19 @@ public class CommonConfig {
         BUILDER.push("Reach");
         ENABLE_REACH_RECIPE = BUILDER.comment("Enable the reach potion recipe").define("Enable", true);
         REACH_INGREDIENT = BUILDER.comment("Main ingredient used to brew reach potions").define("Ingredient", "minecraft:end_rod");
-        REACH_INCREASE = BUILDER.comment("Reach distance increased by reach potions").define("Reach_Increase", 1.0);
+        REACH_INCREASE = BUILDER.comment("Reach distance increased by reach potions").define("Reach_Increase", 1);
         BUILDER.pop();
 
         BUILDER.push("Repairing");
         ENABLE_REPAIRING_RECIPE = BUILDER.comment("Enable the repairing potion recipe").define("Enable", true);
         REPAIRING_INGREDIENT = BUILDER.comment("Main ingredient used to brew repairing potions").define("Ingredient", "minecraft:anvil");
-        REPAIRING_RATE = BUILDER.comment("Repair rate provided by repairing potions").define("Repair_Rate", 1);
+        REPAIRING_AMOUNT = BUILDER.comment("Repair amount provided by repairing potions").define("Repair_Amount", 1);
         BUILDER.pop();
 
         BUILDER.push("Corrosion");
         ENABLE_CORROSION_RECIPE = BUILDER.comment("Enable the corrosion potion recipe").define("Enable", true);
         CORROSION_INGREDIENT = BUILDER.comment("Main ingredient used to brew corrosion potions").define("Ingredient", "minecraft:fermented_spider_eye");
-        CORROSION_RATE = BUILDER.comment("Corrosion rate provided by corrosion potions").define("Corrosion_Rate", 1);
+        CORROSION_AMOUNT = BUILDER.comment("Corrosion amount provided by corrosion potions").define("Corrosion_Amount", 1);
         BUILDER.pop();
 
         BUILDER.push("Magic_Power");
@@ -407,16 +417,16 @@ public class CommonConfig {
         CONFUSION_INGREDIENT = BUILDER.comment("Main ingredient used to brew thorns potions").define("Ingredient", "minecraft:sniffer_egg");
         BUILDER.pop();
 
-        BUILDER.push("Cleansed");
-        ENABLE_CLEANSED_RECIPE = BUILDER.comment("Enable the cleansed potion recipe").define("Enable", true);
-        CLEANSED_INGREDIENT = BUILDER.comment("Main ingredient used to brew cleansed potions").define("Ingredient", "minecraft:heart_of_the_sea");
-        CLEANSED_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the cleansed effect (e.g., minecraft:poison, minecraft:slowness etc)").defineList("Cleansed_Blacklist_Effects", List.of(), s -> s instanceof String);
+        BUILDER.push("Purification");
+        ENABLE_PURIFICATION_RECIPE = BUILDER.comment("Enable the purification potion recipe").define("Enable", true);
+        PURIFICATION_INGREDIENT = BUILDER.comment("Main ingredient used to brew purification potions").define("Ingredient", "minecraft:heart_of_the_sea");
+        PURIFICATION_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the purification effect (e.g., minecraft:poison, minecraft:slowness etc)").defineList("Purification_Blacklist_Effects", List.of(), s -> s instanceof String);
         BUILDER.pop();
 
-        BUILDER.push("Corrupted");
-        ENABLE_CORRUPTED_RECIPE = BUILDER.comment("Enable the corrupted potion recipe").define("Enable", true);
-        CORRUPTED_INGREDIENT = BUILDER.comment("Main ingredient used to brew corrupted potions").define("Ingredient", "minecraft:fermented_spider_eye");
-        CORRUPTED_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the corrupted effect (e.g., minecraft:strength, minecraft:speed etc)").defineList("Corrupted_Blacklist_Effects", List.of(), s -> s instanceof String);
+        BUILDER.push("Corruption");
+        ENABLE_CORRUPTION_RECIPE = BUILDER.comment("Enable the corruption potion recipe").define("Enable", true);
+        CORRUPTION_INGREDIENT = BUILDER.comment("Main ingredient used to brew corruption potions").define("Ingredient", "minecraft:fermented_spider_eye");
+        CORRUPTION_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being immune to from the corruption effect (e.g., minecraft:strength, minecraft:speed etc)").defineList("Corruption_Blacklist_Effects", List.of(), s -> s instanceof String);
         BUILDER.pop();
 
         BUILDER.push("Shuffling");
@@ -427,12 +437,6 @@ public class CommonConfig {
         BUILDER.push("Burning");
         ENABLE_BURNING_RECIPE = BUILDER.comment("Enable the burning potion recipe").define("Enable", true);
         BURNING_INGREDIENT = BUILDER.comment("Main ingredient used to brew burning potions").define("Ingredient", "minecraft:magma_block");
-        BUILDER.pop();
-
-        BUILDER.push("Chilled");
-        ENABLE_CHILLED_RECIPE = BUILDER.comment("Enable the chilled potion recipe").define("Enable", true);
-        CHILLED_INGREDIENT = BUILDER.comment("Main ingredient used to brew chilled potions").define("Ingredient", "minecraft:blue_ice");
-        CHILLED_SPEED_DECREASE = BUILDER.comment("Total speed reduction for the chilled effect").define("Chilled_Attack_Speed_Decrease", 0.25);
         BUILDER.pop();
 
         BUILDER.push("Shocked");
@@ -452,7 +456,17 @@ public class CommonConfig {
         SPELUNKER_ORE_LIST = BUILDER.comment("List of ores that the spelunker effect can detect (e.g., minecraft:iron_ore, minecraft:gold_ore etc)").defineList("Spelunker_Ore_List", List.of(), s -> s instanceof String);
         BUILDER.pop();
 
+        BUILDER.push("Extension");
+        ENABLE_EXTENSION_RECIPE = BUILDER.comment("Enable the extension potion recipe").define("Enable", true);
+        EXTENSION_INGREDIENT = BUILDER.comment("Main ingredient used to brew extension potions").define("Ingredient", "minecraft:amethyst_cluster");
+        EXTENSION_BLACKLIST_EFFECTS = BUILDER.comment("List of effects to blacklist being extended from the extension effect (e.g., minecraft:jump_boost, minecraft:water_breathing etc)").defineList("Extension_Blacklist_Effects", List.of(), s -> s instanceof String);
+        EXTENSION_CAP = BUILDER.comment("Max duration cap for the extension effect to increase in seconds").define("Extension_Cap", 600);
+        BUILDER.pop();
 
+        BUILDER.push("Reversion");
+        ENABLE_REVERSION_RECIPE = BUILDER.comment("Enable the reversion potion recipe").define("Enable", true);
+        REVERSION_INGREDIENT = BUILDER.comment("Main ingredient used to brew reversion potions").define("Ingredient", "minecraft:fermented_spider_eye");
+        BUILDER.pop();
 
         BUILDER.push("Health_Boost");
         ENABLE_HEALTH_BOOST_RECIPE = BUILDER.comment("Enable the health boost potion recipe").define("Enable", true);

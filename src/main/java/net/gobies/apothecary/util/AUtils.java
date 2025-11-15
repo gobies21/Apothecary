@@ -11,7 +11,7 @@ public class AUtils {
         float chance = random.nextFloat();
 
         if (chance < 0.10f) { // 10% chance
-            return APotions.Indolence.get();
+            return APotions.Vulnerable.get();
 
         } else if (chance < 0.20f) { // 10% chance
             return APotions.Burning.get();
@@ -26,7 +26,7 @@ public class AUtils {
             return APotions.Wither.get();
 
         } else if (chance < 0.60) { // 10 % Chance
-            return APotions.Shuffling.get();
+            return APotions.Corruption.get();
 
         } else if (chance < 0.70) { // 10 % Chance
             return APotions.Corrosion.get();
@@ -38,7 +38,7 @@ public class AUtils {
             return APotions.Feeble.get();
 
         } else { // 5% chance
-            return APotions.Corrupted.get();
+            return APotions.Shuffling.get();
         }
     }
 }

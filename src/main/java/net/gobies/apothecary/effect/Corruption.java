@@ -16,9 +16,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cleansed extends MobEffect {
-
-    public Cleansed(MobEffectCategory category, int color) {
+public class Corruption extends MobEffect {
+    public Corruption(MobEffectCategory category, int color) {
         super(category, color);
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -26,16 +25,16 @@ public class Cleansed extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
         livingEntity.getActiveEffects().stream()
-                .filter(effectInstance -> effectInstance.getEffect().getCategory() == MobEffectCategory.HARMFUL)
-                .filter(effectInstance -> BlacklistedEffects.isHarmfulEffectBlacklisted(effectInstance.getEffect()))
+                .filter(effectInstance -> effectInstance.getEffect().getCategory() == MobEffectCategory.BENEFICIAL)
+                .filter(effectInstance -> BlacklistedEffects.isBeneficialEffectBlacklisted(effectInstance.getEffect()))
                 .forEach(effectInstance -> livingEntity.removeEffect(effectInstance.getEffect()));
     }
 
     @SubscribeEvent
     public void onMobEffectApplicable(MobEffectEvent.Applicable event) {
         MobEffectInstance effectInstance = event.getEffectInstance();
-        if (event.getEntity().hasEffect(AEffects.Cleansed.get()) &&
-                BlacklistedEffects.isHarmfulEffectApplicable(event.getEntity(), effectInstance)) {
+        if (event.getEntity().hasEffect(AEffects.Corruption.get()) &&
+                BlacklistedEffects.isBeneficialEffectApplicable(event.getEntity(), effectInstance)) {
             event.setResult(MobEffectEvent.Result.DENY);
         }
     }
@@ -45,13 +44,14 @@ public class Cleansed extends MobEffect {
         return true;
     }
 
+
     @Override
     public void applyInstantenousEffect(@Nullable Entity pSource, @Nullable Entity pIndirectSource, @NotNull LivingEntity entity, int pAmplifier, double pHealth) {
         List<MobEffect> effectsToRemove = new ArrayList<>();
 
         for (MobEffectInstance effectInstance : entity.getActiveEffects()) {
             MobEffect effect = effectInstance.getEffect();
-            if (effect.getCategory() == MobEffectCategory.HARMFUL && BlacklistedEffects.isHarmfulEffectBlacklisted(effect)) {
+            if (effect.getCategory() == MobEffectCategory.BENEFICIAL && BlacklistedEffects.isBeneficialEffectBlacklisted(effect)) {
                 effectsToRemove.add(effect);
             }
         }

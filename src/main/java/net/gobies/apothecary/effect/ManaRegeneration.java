@@ -24,7 +24,7 @@ public class ManaRegeneration extends MobEffect {
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
             var manaRegen = livingEntity.getAttribute(AttributeRegistry.MANA_REGEN.get());
             if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) == null) {
-                double regen= 0.25 * (amplifier + 1);
+                double regen = 0.25 * (amplifier + 1);
                 manaRegen.addPermanentModifier(
                         new AttributeModifier(MANA_REGENERATION_UUID, "Mana Regen", regen, AttributeModifier.Operation.ADDITION));
             }

@@ -35,8 +35,8 @@ public class MagicPower extends MobEffect {
             if ((event.getSource().is(DamageTypes.MAGIC) || event.getSource().is(DamageTypes.INDIRECT_MAGIC))) {
                 if (attacker.hasEffect(AEffects.MagicPower.get())) {
                     int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.MagicPower.get())).getAmplifier();
-                    float reducedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.MAGIC_POWER_INCREASE.get() * (amplifier + 1))));
-                    event.setAmount(reducedDamage);
+                    float increasedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.MAGIC_POWER_INCREASE.get() * (amplifier + 1))));
+                    event.setAmount(increasedDamage);
                 }
             }
         }

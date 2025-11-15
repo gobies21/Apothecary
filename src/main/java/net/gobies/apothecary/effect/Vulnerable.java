@@ -12,22 +12,22 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Objects;
 
-public class Indolence extends MobEffect {
-    public Indolence(MobEffectCategory category, int color) {
+public class Vulnerable extends MobEffect {
+    public Vulnerable(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     static {
-        MinecraftForge.EVENT_BUS.register(Indolence.class);
+        MinecraftForge.EVENT_BUS.register(Vulnerable.class);
     }
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof LivingEntity defender) {
-            if (defender.hasEffect(AEffects.Indolence.get())) {
-                int amplifier = Objects.requireNonNull(defender.getEffect(AEffects.Indolence.get())).getAmplifier();
-                float reducedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.INDOLENCE_DAMAGE_TAKEN.get() * (amplifier + 1))));
+            if (defender.hasEffect(AEffects.Vulnerable.get())) {
+                int amplifier = Objects.requireNonNull(defender.getEffect(AEffects.Vulnerable.get())).getAmplifier();
+                float reducedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.VULNERABLE_DAMAGE_TAKEN.get() * (amplifier + 1))));
                 event.setAmount(reducedDamage);
             }
         }

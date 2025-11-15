@@ -13,25 +13,25 @@ import java.util.Set;
 
 public class BlacklistedEffects {
 
-    private static Set<ResourceLocation> CLEANSED_BLACKLISTED_EFFECTS = null;
-    private static Set<ResourceLocation> CORRUPTED_BLACKLISTED_EFFECTS = null;
+    private static Set<ResourceLocation> PURIFICATION_BLACKLISTED_EFFECTS = null;
+    private static Set<ResourceLocation> CORRUPTION_BLACKLISTED_EFFECTS = null;
 
     //Cleansed
     public static void initCleansedBlacklist() {
-        if (CLEANSED_BLACKLISTED_EFFECTS == null) {
-            CLEANSED_BLACKLISTED_EFFECTS = new HashSet<>();
-            for (String effects : CommonConfig.CLEANSED_BLACKLIST_EFFECTS.get()) {
-                CLEANSED_BLACKLISTED_EFFECTS.add(new ResourceLocation(effects));
+        if (PURIFICATION_BLACKLISTED_EFFECTS == null) {
+            PURIFICATION_BLACKLISTED_EFFECTS = new HashSet<>();
+            for (String effects : CommonConfig.PURIFICATION_BLACKLIST_EFFECTS.get()) {
+                PURIFICATION_BLACKLISTED_EFFECTS.add(new ResourceLocation(effects));
             }
         }
     }
 
     public static boolean isHarmfulEffectBlacklisted(MobEffect effect) {
-        if (CLEANSED_BLACKLISTED_EFFECTS == null) {
+        if (PURIFICATION_BLACKLISTED_EFFECTS == null) {
             initCleansedBlacklist();
         }
         ResourceLocation effectRegistryName = ForgeRegistries.MOB_EFFECTS.getKey(effect);
-        return effectRegistryName == null || !CLEANSED_BLACKLISTED_EFFECTS.contains(effectRegistryName);
+        return effectRegistryName == null || !PURIFICATION_BLACKLISTED_EFFECTS.contains(effectRegistryName);
     }
 
     public static boolean isHarmfulEffectApplicable(LivingEntity ignoredEntity, MobEffectInstance effectInstance) {
@@ -43,20 +43,20 @@ public class BlacklistedEffects {
 
     //Corrupted
     public static void initCorruptedBlacklist() {
-        if (CORRUPTED_BLACKLISTED_EFFECTS == null) {
-            CORRUPTED_BLACKLISTED_EFFECTS = new HashSet<>();
-            for (String effects : CommonConfig.CORRUPTED_BLACKLIST_EFFECTS.get()) {
-                CORRUPTED_BLACKLISTED_EFFECTS.add(new ResourceLocation(effects));
+        if (CORRUPTION_BLACKLISTED_EFFECTS == null) {
+            CORRUPTION_BLACKLISTED_EFFECTS = new HashSet<>();
+            for (String effects : CommonConfig.CORRUPTION_BLACKLIST_EFFECTS.get()) {
+                CORRUPTION_BLACKLISTED_EFFECTS.add(new ResourceLocation(effects));
             }
         }
     }
 
     public static boolean isBeneficialEffectBlacklisted(MobEffect effect) {
-        if (CORRUPTED_BLACKLISTED_EFFECTS == null) {
+        if (CORRUPTION_BLACKLISTED_EFFECTS == null) {
             initCorruptedBlacklist();
         }
         ResourceLocation effectRegistryName = ForgeRegistries.MOB_EFFECTS.getKey(effect);
-        return effectRegistryName == null || !CORRUPTED_BLACKLISTED_EFFECTS.contains(effectRegistryName);
+        return effectRegistryName == null || !CORRUPTION_BLACKLISTED_EFFECTS.contains(effectRegistryName);
     }
 
     public static boolean isBeneficialEffectApplicable(LivingEntity ignoredEntity, MobEffectInstance effectInstance) {

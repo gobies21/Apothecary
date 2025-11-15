@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class OreCompat {
+public class  OreCompat {
 
     public static boolean isModdedOre(Block block) {
         Set<ResourceLocation> oreBlockLocations = getOreString()

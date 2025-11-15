@@ -22,8 +22,16 @@ public class SpartanWeaponryCompat {
             if (event.getSource().is(ModDamageTypes.KEY_ARMOR_PIERCING_BOLT)) {
                 if (attacker.hasEffect(AEffects.Archery.get())) {
                     int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Archery.get())).getAmplifier();
-                    float increasedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.ARCHERY_DAMAGE_INCREASE.get() * (amplifier + 1))));
+                    int increasedDamage = (int) (event.getAmount() + CommonConfig.ARCHERY_DAMAGE_INCREASE.get() * (amplifier + 1));
                     event.setAmount(increasedDamage);
+                }
+                if (attacker.hasEffect(AEffects.Misfire.get())) {
+                    int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Misfire.get())).getAmplifier();
+                    int reducedDamage = (int) (event.getAmount() - CommonConfig.MISFIRE_DAMAGE_DECREASE.get() * (amplifier + 1));
+                    if (reducedDamage < 1) {
+                        reducedDamage = 1;
+                    }
+                    event.setAmount(reducedDamage);
                 }
             }
         }

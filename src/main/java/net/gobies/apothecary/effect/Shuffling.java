@@ -29,7 +29,6 @@ public class Shuffling extends MobEffect {
         }
     }
 
-
     @Override
     public boolean isInstantenous() {
         return true;

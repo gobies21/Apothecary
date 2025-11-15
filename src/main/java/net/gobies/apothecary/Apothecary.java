@@ -2,10 +2,12 @@ package net.gobies.apothecary;
 
 import com.mojang.logging.LogUtils;
 import net.gobies.apothecary.compat.FluidEffectEvents;
+import net.gobies.apothecary.compat.iceandfire.IceandFireCompat;
 import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbookEvents;
 import net.gobies.apothecary.compat.spartanweaponry.SpartanWeaponryCompat;
 import net.gobies.apothecary.config.ClientConfig;
 import net.gobies.apothecary.config.CommonConfig;
+import net.gobies.apothecary.event.EffectEvents;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.init.APotions;
 import net.gobies.apothecary.network.NetworkHandler;
@@ -33,6 +35,10 @@ public class Apothecary {
 
         APotions.register(modBus);
 
+        EffectEvents.register();
+
+        MinecraftForge.EVENT_BUS.register(EffectEvents.class);
+
         AEffects.register(modBus);
 
         modBus.addListener(this::commonSetup);
@@ -57,6 +63,10 @@ public class Apothecary {
         if (ModList.get().isLoaded("alexscaves") || ModList.get().isLoaded("biomesoplenty")) {
             FluidEffectEvents.loadCompat();
             LOGGER.info("[Apothecary] Modded Fluid Effects Compat Loaded");
+        }
+        if (ModList.get().isLoaded("iceandfire")) {
+            IceandFireCompat.loadCompat();
+            LOGGER.info("[Apothecary] Ice and Fire Compat Loaded");
         }
     }
 }

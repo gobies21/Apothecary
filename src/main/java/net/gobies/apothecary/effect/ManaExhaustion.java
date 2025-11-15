@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.UUID;
 
 public class ManaExhaustion extends MobEffect {
-    private static final UUID MANA_REGENERATION_UUID = UUID.randomUUID();
+    private static final UUID MANA_EXHAUSTION_UUID = UUID.randomUUID();
 
     public ManaExhaustion(MobEffectCategory category, int color) {
         super(category, color);
@@ -23,10 +23,10 @@ public class ManaExhaustion extends MobEffect {
         super.addAttributeModifiers(livingEntity, attribute, amplifier);
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
             var manaRegen = livingEntity.getAttribute(AttributeRegistry.MANA_REGEN.get());
-            if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) == null) {
-                double regen = 0.25 * (amplifier + 1);
+            if (manaRegen != null && manaRegen.getModifier(MANA_EXHAUSTION_UUID) == null) {
+                double exhaust = 0.25 * (amplifier + 1);
                 manaRegen.addPermanentModifier(
-                        new AttributeModifier(MANA_REGENERATION_UUID, "Mana Exhaustion", -regen, AttributeModifier.Operation.ADDITION));
+                        new AttributeModifier(MANA_EXHAUSTION_UUID, "Mana Exhaustion", -exhaust, AttributeModifier.Operation.ADDITION));
             }
         }
     }
@@ -36,8 +36,8 @@ public class ManaExhaustion extends MobEffect {
         super.removeAttributeModifiers(livingEntity, attribute, amplifier);
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
             var manaRegen = livingEntity.getAttribute(AttributeRegistry.MANA_REGEN.get());
-            if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) != null) {
-                manaRegen.removeModifier(MANA_REGENERATION_UUID);
+            if (manaRegen != null && manaRegen.getModifier(MANA_EXHAUSTION_UUID) != null) {
+                manaRegen.removeModifier(MANA_EXHAUSTION_UUID);
             }
         }
     }

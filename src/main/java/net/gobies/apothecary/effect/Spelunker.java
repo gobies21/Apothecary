@@ -45,7 +45,10 @@ public class Spelunker extends MobEffect {
     private void detectAndSpawnOreParticles(Player player, ClientLevel clientLevel, BlockPos entityPos, int amplifier) {
         int radius = 7 * (amplifier + 1);
         int maxOres = 1;
+        double beamRange = 3.0;
+        double beamHeight = 0.5;
         Vec3 entityVec = player.position();
+        if (player.isCrouching()) return;
         PriorityQueue<BlockPos> orePositions = new PriorityQueue<>(Comparator.comparingDouble(pos -> pos.distSqr(entityPos)));
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
@@ -72,9 +75,9 @@ public class Spelunker extends MobEffect {
                 continue;
             }
 
-            for (double d = 0.1; d < 2.5; d += 0.1) {
+            for (double d = 0.2; d < beamRange; d += 0.2) {
                 double particleX = entityVec.x + direction.x * d;
-                double particleY = entityVec.y + direction.y * d + 0.5f;
+                double particleY = entityVec.y + direction.y * d + beamHeight;
                 double particleZ = entityVec.z + direction.z * d;
 
                 particleX = Math.min(Math.max(particleX, entityVec.x - 5), entityVec.x + 5);

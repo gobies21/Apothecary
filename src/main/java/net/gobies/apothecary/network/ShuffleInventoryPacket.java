@@ -48,7 +48,7 @@ public class ShuffleInventoryPacket {
 
         int inventoryIndex = 0;
         for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
-            if (i < 36 || i > 39) { // Skip armor slots (36 to 39)
+            if (i < 36 || i > 39) {
                 player.getInventory().setItem(i, shuffledInventory.get(inventoryIndex));
                 inventoryIndex++;
             }

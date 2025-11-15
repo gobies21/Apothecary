@@ -19,7 +19,7 @@ public class AEffects {
     public static final RegistryObject<MobEffect> Misfire;
     public static final RegistryObject<MobEffect> Wrath;
     public static final RegistryObject<MobEffect> Feeble;
-    public static final RegistryObject<MobEffect> Indolence;
+    public static final RegistryObject<MobEffect> Vulnerable;
     public static final RegistryObject<MobEffect> Flight;
     public static final RegistryObject<MobEffect> Reach;
     public static final RegistryObject<MobEffect> Repairing;
@@ -30,14 +30,15 @@ public class AEffects {
     public static final RegistryObject<MobEffect> ManaExhaustion;
     public static final RegistryObject<MobEffect> Thorns;
     public static final RegistryObject<MobEffect> Confusion;
-    public static final RegistryObject<MobEffect> Cleansed;
-    public static final RegistryObject<MobEffect> Corrupted;
+    public static final RegistryObject<MobEffect> Purification;
+    public static final RegistryObject<MobEffect> Corruption;
     public static final RegistryObject<MobEffect> Burning;
-    public static final RegistryObject<MobEffect> Chilled;
     public static final RegistryObject<MobEffect> Shocked;
     public static final RegistryObject<MobEffect> Shuffling;
     public static final RegistryObject<MobEffect> Lightning;
     public static final RegistryObject<MobEffect> Spelunker;
+    public static final RegistryObject<MobEffect> Extension;
+    public static final RegistryObject<MobEffect> Reversion;
 
     public static void register (IEventBus eventBus) {
         EFFECTS.register(eventBus);
@@ -52,8 +53,8 @@ public class AEffects {
         Archery = EFFECTS.register("archery", () -> new Archery(MobEffectCategory.BENEFICIAL, 0xFFC067));
         Misfire = EFFECTS.register("misfire", () -> new Misfire(MobEffectCategory.HARMFUL, 0x00008B));
         Wrath = EFFECTS.register("wrath", () -> new Wrath(MobEffectCategory.BENEFICIAL, 0x8B0000));
-        Feeble = EFFECTS.register("feeble", () -> new Feeble(MobEffectCategory.HARMFUL, 0x370000));
-        Indolence = EFFECTS.register("indolence", () -> new Indolence(MobEffectCategory.HARMFUL, 0x333333));
+        Feeble = EFFECTS.register("feeble", () -> new Feeble(MobEffectCategory.HARMFUL, 0x4D3A8F));
+        Vulnerable = EFFECTS.register("vulnerable", () -> new Vulnerable(MobEffectCategory.HARMFUL, 0x333333));
         Flight = EFFECTS.register("flight", () -> new Flight(MobEffectCategory.BENEFICIAL, 0x63C5DA));
         Reach = EFFECTS.register("reach", () -> new Reach(MobEffectCategory.BENEFICIAL, 0xCA5CDD));
         Repairing = EFFECTS.register("repairing", () -> new Repairing(MobEffectCategory.BENEFICIAL, 0x008000));
@@ -64,13 +65,14 @@ public class AEffects {
         ManaExhaustion = EFFECTS.register("mana_exhaustion", () -> new ManaExhaustion(MobEffectCategory.HARMFUL, 0x990099));
         Thorns = EFFECTS.register("thorns", () -> new Thorns(MobEffectCategory.BENEFICIAL, 0x65FE08));
         Confusion = EFFECTS.register("confusion", () -> new Confusion(MobEffectCategory.HARMFUL, 0xFFFF00));
-        Cleansed = EFFECTS.register("cleansed", () -> new Cleansed(MobEffectCategory.BENEFICIAL, 0xFFB6C1));
-        Corrupted = EFFECTS.register("corrupted", () -> new Corrupted(MobEffectCategory.HARMFUL, 0x2B0F3D));
+        Purification = EFFECTS.register("purification", () -> new Purification(MobEffectCategory.BENEFICIAL, 0xFFB6C1));
+        Corruption = EFFECTS.register("corruption", () -> new Corruption(MobEffectCategory.HARMFUL, 0x2B0F3D));
         Burning = EFFECTS.register("burning", () -> new Burning(MobEffectCategory.HARMFUL, 0xC25811));
-        Chilled = EFFECTS.register("chilled", () -> new Chilled(MobEffectCategory.HARMFUL, 0x6BA7CC));
         Shocked = EFFECTS.register("shocked", () -> new Shocked(MobEffectCategory.HARMFUL, 0x8F00FF));
         Shuffling = EFFECTS.register("shuffling", () -> new Shuffling(MobEffectCategory.HARMFUL, 0x00008B));
         Lightning = EFFECTS.register("lightning", () -> new Lightning(MobEffectCategory.HARMFUL, 0x93B9DF));
         Spelunker = EFFECTS.register("spelunker", () -> new Spelunker(MobEffectCategory.BENEFICIAL, 0xC9C92C));
+        Extension = EFFECTS.register("extension", () -> new Extension(MobEffectCategory.BENEFICIAL, 0x66356E));
+        Reversion = EFFECTS.register("reversion", () -> new Reversion(MobEffectCategory.BENEFICIAL, 0x301934));
     }
 }

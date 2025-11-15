@@ -81,7 +81,7 @@ public class FluidEffectEvents {
             boolean isBlood = fluidLocation.equals(new ResourceLocation("biomesoplenty", "blood"));
             boolean isBloodFlowing = fluidLocation.equals(new ResourceLocation("biomesoplenty", "flowing_blood"));
             if (isBlood || isBloodFlowing) {
-                entity.addEffect(new MobEffectInstance(AEffects.Indolence.get(), DurationUtils.getRandomLongDuration(), 0));
+                entity.addEffect(new MobEffectInstance(AEffects.Vulnerable.get(), DurationUtils.getRandomLongDuration(), 0));
             }
         }
     }

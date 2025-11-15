@@ -37,5 +37,4 @@ public class Shocked extends MobEffect {
             MovementSpeed.removeModifier(MOVEMENT_SPEED_UUID);
         }
     }
-
 }
