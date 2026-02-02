@@ -8,6 +8,7 @@ import net.gobies.apothecary.util.ModLoadedUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PotionItem;
@@ -40,8 +41,9 @@ public class ClientEvents {
                 }
             }
             if (ClientConfig.ADDITIONAL_POTION_TOOLTIPS.get()) {
-                int amplifier = effects.get(0).getAmplifier();
-                var getEffect = potion.getEffects().get(0).getEffect();
+                MobEffectInstance effectInstance = effects.get(0);
+                int amplifier = effectInstance.getAmplifier();
+                MobEffect getEffect = effectInstance.getEffect();
 
                 // Positive effects
                 if (getEffect == AEffects.IronSkin.get()) {
@@ -132,7 +134,7 @@ public class ClientEvents {
     }
 
     private static void applyTooltips(ItemTooltipEvent event) {
-        event.getToolTip().add(2,(Component.literal("")));
-        event.getToolTip().add(3,(Component.literal("When Applied:").withStyle(ChatFormatting.DARK_PURPLE)));
+        event.getToolTip().add(2, (Component.literal("")));
+        event.getToolTip().add(3, (Component.literal("When Applied:").withStyle(ChatFormatting.DARK_PURPLE)));
     }
 }
