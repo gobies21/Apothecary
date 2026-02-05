@@ -73,6 +73,6 @@ public class AEffects {
         Lightning = EFFECTS.register("lightning", () -> new Lightning(MobEffectCategory.HARMFUL, 0x93B9DF));
         Spelunker = EFFECTS.register("spelunker", () -> new Spelunker(MobEffectCategory.BENEFICIAL, 0xC9C92C));
         Extension = EFFECTS.register("extension", () -> new Extension(MobEffectCategory.BENEFICIAL, 0x66356E));
-        Reversion = EFFECTS.register("reversion", () -> new Reversion(MobEffectCategory.HARMFUL, 0x301934));
+        Reversion = EFFECTS.register("reversion", () -> new Reversion(MobEffectCategory.HARMFUL, 0x4048A0));
     }
 }

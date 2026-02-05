@@ -50,7 +50,6 @@ public class Apothecary {
 
     public void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(ABrewing::register);
-        NetworkHandler.registerPackets();
 
         if (ModList.get().isLoaded("irons_spellbooks")) {
             IronsSpellbookEvents.loadCompat();

@@ -21,15 +21,7 @@ public class NetworkHandler {
 
     private static int packetId = 0;
 
-    public static void registerPackets() {
-        INSTANCE.registerMessage(packetId++, ShuffleInventoryPacket.class,
-                ShuffleInventoryPacket::encode,
-                ShuffleInventoryPacket::new,
-                ShuffleInventoryPacket::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-    }
-
-    public static void sendShuffleInventoryPacket(ServerPlayer player, List<ItemStack> shuffledInventory) {
-        INSTANCE.sendTo(new ShuffleInventoryPacket(shuffledInventory), player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
+    public static void register() {
+        int id = 0;
     }
 }
