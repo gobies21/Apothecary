@@ -48,7 +48,6 @@ public class Shuffling extends MobEffect {
 
         Map<Integer, ItemStack> snapshot = new HashMap<>();
         for (int slot = 0; slot < size; slot++) {
-
             if (slot < 36) {
                 snapshot.put(slot, inventory.getItem(slot).copy());
             } else {
@@ -70,6 +69,11 @@ public class Shuffling extends MobEffect {
             relocationMap.put(toSlot, snapshot.get(fromSlot));
         }
 
+        for (int slot = 0; slot < 36; slot++) {
+            inventory.setItem(slot, ItemStack.EMPTY);
+        }
+        player.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
+
         for (Map.Entry<Integer, ItemStack> entry : relocationMap.entrySet()) {
 
             int slot = entry.getKey();
@@ -82,9 +86,13 @@ public class Shuffling extends MobEffect {
             }
         }
         inventory.setChanged();
-
         player.containerMenu.broadcastChanges();
         player.inventoryMenu.broadcastChanges();
+
+        snapshot.clear();
+        relocationMap.clear();
+        originalSlots.clear();
+        shuffledSlots.clear();
     }
 
     @Override

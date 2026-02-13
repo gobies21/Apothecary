@@ -5,7 +5,8 @@
   "refmap": "apothecary.mixins.refmap.json",
   "mixins": [
     "ItemMixin",
-    "WitchMixin"
+    "WitchMixin",
+    "accessor.ItemAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

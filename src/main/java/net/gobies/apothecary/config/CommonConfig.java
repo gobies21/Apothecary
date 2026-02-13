@@ -217,6 +217,11 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<Integer> WITCH_POTION_COOLDOWN;
     public static int witch_potion_cooldown;
 
+    public static ForgeConfigSpec.ConfigValue<Integer> POTION_STACK_SIZE;
+    public static int potion_stack_size;
+    public static ForgeConfigSpec.ConfigValue<Boolean> DISABLE_ICEANDFIRE_COMPAT;
+    public static boolean disable_iceandfire_compat;
+
     @SubscribeEvent
     static void onLoad(ModConfigEvent.Loading configEvent) {
         if (configEvent.getConfig().getFileName().equals(FILENAME)) {
@@ -304,6 +309,15 @@ public class CommonConfig {
             wither_ingredient = WITHER_INGREDIENT.get();
             witch_potion_count = WITCH_POTION_COUNT.get();
             witch_potion_cooldown = WITCH_POTION_COOLDOWN.get();
+
+            disable_iceandfire_compat = DISABLE_ICEANDFIRE_COMPAT.get();
+        }
+    }
+
+    @SubscribeEvent
+    static void afterLoad(final ModConfigEvent.Loading configEvent) {
+        if (configEvent.getConfig().getFileName().equals(FILENAME)) {
+            potion_stack_size = POTION_STACK_SIZE.get();
         }
     }
 
@@ -311,6 +325,8 @@ public class CommonConfig {
 
         BUILDER.push("General");
         ENABLE_WORLD_EVENTS = BUILDER.comment("Enable world events (effects being able to occur in the world outside of potions)").define("World_Events", true);
+        POTION_STACK_SIZE = BUILDER.comment("Max stack size of potions").defineInRange("Stack_Size", 1, 1, 64);
+        DISABLE_ICEANDFIRE_COMPAT = BUILDER.comment("Disable ice and fire compat").define("Disable", false);
         BUILDER.pop();
 
         //

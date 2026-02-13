@@ -1,6 +1,7 @@
 package net.gobies.apothecary.compat.iceandfire;
 
 import com.github.alexthe666.iceandfire.entity.EntityLightningDragon;
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
@@ -15,8 +16,11 @@ public class IceandFireCompat {
     }
 
     public boolean isLightningDragon(Entity entity) {
-        if (ModList.get().isLoaded("iceandfire")) {
-            return entity instanceof EntityLightningDragon;
+        if (!CommonConfig.DISABLE_ICEANDFIRE_COMPAT.get()) {
+            if (ModList.get().isLoaded("iceandfire")) {
+                return entity instanceof EntityLightningDragon;
+            }
+            return false;
         }
         return false;
     }

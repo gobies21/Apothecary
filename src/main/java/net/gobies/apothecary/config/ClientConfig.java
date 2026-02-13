@@ -31,17 +31,9 @@ public class ClientConfig {
 
     static {
         BUILDER.push("General");
-        ENABLE_ENCHANTED_GLOW = BUILDER
-                .comment("Enable potions having enchanted glow")
-                .define("Glow", false);
-
-        ENABLE_POTION_DESCRIPTIONS = BUILDER
-                .comment("Enable potion descriptions as tooltips")
-                .define("Descriptions", false);
-
-        ADDITIONAL_POTION_TOOLTIPS = BUILDER
-                .comment("Shows information about what the potions do in their tooltips")
-                .define("Additional_Tooltips", true);
+        ENABLE_ENCHANTED_GLOW = BUILDER.comment("Enable potions having enchanted glow").define("Glow", false);
+        ENABLE_POTION_DESCRIPTIONS = BUILDER.comment("Enable potion descriptions as tooltips").define("Descriptions", false);
+        ADDITIONAL_POTION_TOOLTIPS = BUILDER.comment("Shows information about what the potions do in their tooltips").define("Additional_Tooltips", true);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

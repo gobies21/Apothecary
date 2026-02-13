@@ -10,8 +10,8 @@ import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.event.EffectEvents;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.init.APotions;
-import net.gobies.apothecary.network.NetworkHandler;
 import net.gobies.apothecary.recipe.ABrewing;
+import net.gobies.apothecary.util.StackSizeSetter;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
@@ -50,6 +50,7 @@ public class Apothecary {
 
     public void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(ABrewing::register);
+        event.enqueueWork(StackSizeSetter::setStackSize);
 
         if (ModList.get().isLoaded("irons_spellbooks")) {
             IronsSpellbookEvents.loadCompat();
