@@ -8,6 +8,7 @@ import net.gobies.apothecary.compat.spartanweaponry.SpartanWeaponryCompat;
 import net.gobies.apothecary.config.ClientConfig;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.event.EffectEvents;
+import net.gobies.apothecary.init.AAttributes;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.init.APotions;
 import net.gobies.apothecary.recipe.ABrewing;
@@ -34,6 +35,8 @@ public class Apothecary {
         MinecraftForge.EVENT_BUS.register(this);
 
         APotions.register(modBus);
+
+        AAttributes.register(modBus);
 
         EffectEvents.register();
 

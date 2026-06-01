@@ -6,13 +6,14 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -42,6 +43,8 @@ public class Spelunker extends MobEffect {
         return pDuration % 10 == 0;
     }
 
+    TagKey<Block> forgeOresTag = BlockTags.create(new ResourceLocation("forge", "ores"));
+
     private void detectAndSpawnOreParticles(Player player, ClientLevel clientLevel, BlockPos entityPos, int amplifier) {
         int radius = 7 * (amplifier + 1);
         int maxOres = 1;
@@ -56,7 +59,7 @@ public class Spelunker extends MobEffect {
                     BlockPos pos = entityPos.offset(x, y, z);
                     BlockState state = clientLevel.getBlockState(pos);
 
-                    if (isOre(state.getBlock()) || isConfigOre(state.getBlock()) || OreCompat.isModdedOre(state.getBlock())) {
+                    if (state.getTags().anyMatch(tag -> tag.equals(forgeOresTag)) || isConfigOre(state.getBlock()) || OreCompat.isModdedOre(state.getBlock())) {
                         orePositions.offer(pos);
                     }
                 }
@@ -88,33 +91,6 @@ public class Spelunker extends MobEffect {
             oreCount++;
         }
     }
-
-
-    private boolean isOre(Block block) {
-        List<Block> ORE_BLOCKS = Arrays.asList(
-                Blocks.COAL_ORE,
-                Blocks.DEEPSLATE_COAL_ORE,
-                Blocks.COPPER_ORE,
-                Blocks.DEEPSLATE_COPPER_ORE,
-                Blocks.IRON_ORE,
-                Blocks.DEEPSLATE_IRON_ORE,
-                Blocks.GOLD_ORE,
-                Blocks.DEEPSLATE_GOLD_ORE,
-                Blocks.DIAMOND_ORE,
-                Blocks.DEEPSLATE_DIAMOND_ORE,
-                Blocks.REDSTONE_ORE,
-                Blocks.DEEPSLATE_REDSTONE_ORE,
-                Blocks.EMERALD_ORE,
-                Blocks.DEEPSLATE_EMERALD_ORE,
-                Blocks.LAPIS_ORE,
-                Blocks.DEEPSLATE_LAPIS_ORE,
-                Blocks.NETHER_GOLD_ORE,
-                Blocks.NETHER_QUARTZ_ORE,
-                Blocks.ANCIENT_DEBRIS
-        );
-        return ORE_BLOCKS.contains(block);
-    }
-
 
     private boolean isConfigOre(Block block) {
         Set<ResourceLocation> oreBlockLocations = CommonConfig.SPELUNKER_ORE_LIST.get().stream()

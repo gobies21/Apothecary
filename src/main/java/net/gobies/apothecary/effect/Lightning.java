@@ -17,6 +17,7 @@ public class Lightning extends MobEffect {
         super(category, color);
     }
 
+    @Override
     public boolean isInstantenous() {
         return true;
     }

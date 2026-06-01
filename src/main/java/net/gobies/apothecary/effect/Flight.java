@@ -5,7 +5,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.MinecraftForge;
 import org.jetbrains.annotations.NotNull;
 
 public class Flight extends MobEffect {
@@ -14,10 +13,6 @@ public class Flight extends MobEffect {
     }
 
     private boolean allowFlying = false;
-
-    static {
-        MinecraftForge.EVENT_BUS.register(Flight.class);
-    }
 
     @Override
     public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {

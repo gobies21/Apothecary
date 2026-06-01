@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class APotions {
     public static final DeferredRegister<Potion> POTIONS;
 
-    //Apothecary potions
+    // Apothecary potions
     public static final RegistryObject<Potion> IronSkin;
     public static final RegistryObject<Potion> LongIronSkin;
     public static final RegistryObject<Potion> StrongIronSkin;
@@ -40,7 +40,6 @@ public class APotions {
     public static final RegistryObject<Potion> LongVulnerable;
     public static final RegistryObject<Potion> StrongVulnerable;
     public static final RegistryObject<Potion> Flight;
-    public static final RegistryObject<Potion> LongFlight;
     public static final RegistryObject<Potion> Reach;
     public static final RegistryObject<Potion> LongReach;
     public static final RegistryObject<Potion> StrongReach;
@@ -86,7 +85,7 @@ public class APotions {
     public static final RegistryObject<Potion> Reversion;
     public static final RegistryObject<Potion> StrongReversion;
 
-    //Vanilla potions
+    // Vanilla potions
     public static final RegistryObject<Potion> HealthBoost;
     public static final RegistryObject<Potion> LongHealthBoost;
     public static final RegistryObject<Potion> StrongHealthBoost;
@@ -106,7 +105,7 @@ public class APotions {
     static {
         POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, Apothecary.MOD_ID);
 
-        //Apothecary potions
+        // Apothecary potions
         IronSkin = POTIONS.register("iron_skin", () -> new Potion(new MobEffectInstance(AEffects.IronSkin.get(),3600,0)));
         LongIronSkin = POTIONS.register("long_iron_skin", () -> new Potion(new MobEffectInstance(AEffects.IronSkin.get(),9600,0)));
         StrongIronSkin = POTIONS.register("strong_iron_skin", () -> new Potion(new MobEffectInstance(AEffects.IronSkin.get(),1800,1)));
@@ -143,7 +142,6 @@ public class APotions {
         StrongVulnerable = POTIONS.register("strong_vulnerable", () -> new Potion(new MobEffectInstance(AEffects.Vulnerable.get(),450,1)));
 
         Flight = POTIONS.register("flight", () -> new Potion(new MobEffectInstance(AEffects.Flight.get(),3600,0)));
-        LongFlight = POTIONS.register("long_flight", () -> new Potion(new MobEffectInstance(AEffects.Flight.get(),9600,0)));
 
         Reach = POTIONS.register("reach", () -> new Potion(new MobEffectInstance(AEffects.Reach.get(),3600,0)));
         LongReach = POTIONS.register("long_reach", () -> new Potion(new MobEffectInstance(AEffects.Reach.get(),9600,0)));
@@ -207,7 +205,7 @@ public class APotions {
         Reversion = POTIONS.register("reversion", () -> new Potion(new MobEffectInstance(AEffects.Reversion.get(),1,0)));
         StrongReversion = POTIONS.register("strong_reversion", () -> new Potion(new MobEffectInstance(AEffects.Reversion.get(),1,1)));
 
-        //Vanilla potions
+        // Vanilla potions
         HealthBoost = POTIONS.register("health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,3600,0)));
         LongHealthBoost = POTIONS.register("long_health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,9600,0)));
         StrongHealthBoost = POTIONS.register("strong_health_boost", () -> new Potion(new MobEffectInstance(MobEffects.HEALTH_BOOST,1800,1)));

@@ -115,6 +115,20 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<Double> MAGIC_DRAIN_DECREASE;
     public static float magic_drain_decrease;
 
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MANA_REGENERATION_RECIPE;
+    public static boolean enable_mana_regeneration_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> MANA_REGENERATION_INGREDIENT;
+    public static String mana_regeneration_ingredient;
+    public static ForgeConfigSpec.ConfigValue<Double> MANA_REGENERATION_INCREASE;
+    public static float mana_regeneration_increase;
+
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MANA_EXHAUSTION_RECIPE;
+    public static boolean enable_mana_exhaustion_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> MANA_EXHAUSTION_INGREDIENT;
+    public static String mana_exhaustion_ingredient;
+    public static ForgeConfigSpec.ConfigValue<Double> MANA_EXHAUSTION_DECREASE;
+    public static float mana_exhaustion_decrease;
+
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_THORNS_RECIPE;
     public static boolean enable_thorns_recipe;
     public static ForgeConfigSpec.ConfigValue<String> THORNS_INGREDIENT;
@@ -216,6 +230,8 @@ public class CommonConfig {
     public static int witch_potion_count;
     public static ForgeConfigSpec.ConfigValue<Integer> WITCH_POTION_COOLDOWN;
     public static int witch_potion_cooldown;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> POTION_SELECTOR;
+    public static List<? extends String> potion_selector;
 
     public static ForgeConfigSpec.ConfigValue<Integer> POTION_STACK_SIZE;
     public static int potion_stack_size;
@@ -266,6 +282,12 @@ public class CommonConfig {
             enable_magic_drain_recipe = ENABLE_MAGIC_DRAIN_RECIPE.get();
             magic_drain_ingredient = MAGIC_DRAIN_INGREDIENT.get();
             magic_drain_decrease = MAGIC_DRAIN_DECREASE.get().floatValue();
+            enable_mana_regeneration_recipe = ENABLE_MANA_REGENERATION_RECIPE.get();
+            mana_regeneration_ingredient = MANA_REGENERATION_INGREDIENT.get();
+            mana_regeneration_increase = MANA_REGENERATION_INCREASE.get().floatValue();
+            enable_mana_exhaustion_recipe = ENABLE_MANA_EXHAUSTION_RECIPE.get();
+            mana_exhaustion_ingredient = MANA_EXHAUSTION_INGREDIENT.get();
+            mana_exhaustion_decrease = MANA_EXHAUSTION_DECREASE.get().floatValue();
             corrosion_amount = CORROSION_AMOUNT.get();
             enable_thorns_recipe = ENABLE_THORNS_RECIPE.get();
             thorns_ingredient = THORNS_INGREDIENT.get();
@@ -309,6 +331,7 @@ public class CommonConfig {
             wither_ingredient = WITHER_INGREDIENT.get();
             witch_potion_count = WITCH_POTION_COUNT.get();
             witch_potion_cooldown = WITCH_POTION_COOLDOWN.get();
+            potion_selector = POTION_SELECTOR.get();
 
             disable_iceandfire_compat = DISABLE_ICEANDFIRE_COMPAT.get();
         }
@@ -322,7 +345,6 @@ public class CommonConfig {
     }
 
     static {
-
         BUILDER.push("General");
         ENABLE_WORLD_EVENTS = BUILDER.comment("Enable world events (effects being able to occur in the world outside of potions)").define("World_Events", true);
         POTION_STACK_SIZE = BUILDER.comment("Max stack size of potions").defineInRange("Stack_Size", 1, 1, 64);
@@ -422,6 +444,18 @@ public class CommonConfig {
         MAGIC_DRAIN_DECREASE = BUILDER.comment("Damage decrease provided by magic drain potions in percentage").define("Magic_Drain_Increase", 0.1);
         BUILDER.pop();
 
+        BUILDER.push("Mana_Regeneration");
+        ENABLE_MANA_REGENERATION_RECIPE = BUILDER.comment("Enable the mana regeneration potion recipe").define("Enable", true);
+        MANA_REGENERATION_INGREDIENT = BUILDER.comment("Main ingredient used to brew mana regeneration potions").define("Ingredient", "irons_spellbooks:arcane_essence");
+        MANA_REGENERATION_INCREASE = BUILDER.comment("Mana regeneration increase provided by mana regeneration potions in percentage").define("Mana_Regeneration_Increase", 0.20);
+        BUILDER.pop();
+
+        BUILDER.push("Mana_Exhaustion");
+        ENABLE_MANA_EXHAUSTION_RECIPE = BUILDER.comment("Enable the mana exhaustion potion recipe").define("Enable", true);
+        MANA_EXHAUSTION_INGREDIENT = BUILDER.comment("Main ingredient used to brew mana exhaustion potions").define("Ingredient", "irons_spellbooks:arcane_essence");
+        MANA_EXHAUSTION_DECREASE = BUILDER.comment("Mana regeneration decrease provided by mana exhaustion potions in percentage").define("Mana_Regeneration_Decrease", 0.20);
+        BUILDER.pop();
+
         BUILDER.push("Thorns");
         ENABLE_THORNS_RECIPE = BUILDER.comment("Enable the thorns potion recipe").define("Enable", true);
         THORNS_INGREDIENT = BUILDER.comment("Main ingredient used to brew thorns potions").define("Ingredient", "minecraft:cactus");
@@ -511,6 +545,17 @@ public class CommonConfig {
         BUILDER.push("World_Events");
         WITCH_POTION_COUNT = BUILDER.comment("Amount of apothecary potions witches can throw before they default back to vanilla potions.").define("Witch_Potion_Count", 1);
         WITCH_POTION_COOLDOWN = BUILDER.comment("Cooldown for witches to be able to throw apothecary potions again after the potion count has been reached in seconds").define("Witch_Potion_Cooldown", 5);
+        POTION_SELECTOR = BUILDER.comment("A list of potions witches can throw with formatting as 'modid:potion_id,weight'.", "Lower weights means rarer potions while higher weights means more common potions, supports modded potions").defineListAllowEmpty("configurable_potions", List.of(
+                "apothecary:vulnerable, 10",
+                "apothecary:burning, 10",
+                "apothecary:lightning, 10",
+                "apothecary:wither, 10",
+                "apothecary:corruption, 10",
+                "apothecary:corrosion, 10",
+                "apothecary:confusion, 10",
+                "apothecary:feeble, 15",
+                "apothecary:shuffling, 5"
+        ), o -> o instanceof String && ((String) o).contains(","));
         BUILDER.pop();
 
         SPEC = BUILDER.build();

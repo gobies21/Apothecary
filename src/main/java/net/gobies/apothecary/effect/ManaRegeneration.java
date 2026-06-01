@@ -1,44 +1,39 @@
 package net.gobies.apothecary.effect;
 
-import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
-import net.gobies.apothecary.util.ModLoadedUtil;
+import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbooksAttributes;
+import net.gobies.apothecary.config.CommonConfig;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
 import java.util.UUID;
 
 public class ManaRegeneration extends MobEffect {
-    private static final UUID MANA_REGENERATION_UUID = UUID.randomUUID();
+    private static final UUID MANA_REGENERATION = UUID.randomUUID();
 
     public ManaRegeneration(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
-        super.addAttributeModifiers(livingEntity, attribute, amplifier);
-        if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            var manaRegen = livingEntity.getAttribute(AttributeRegistry.MANA_REGEN.get());
-            if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) == null) {
-                double regen = 0.25 * (amplifier + 1);
-                manaRegen.addPermanentModifier(
-                        new AttributeModifier(MANA_REGENERATION_UUID, "Mana Regen", regen, AttributeModifier.Operation.ADDITION));
-            }
-        }
+    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
+        this.getAttributeModifiers().put(IronsSpellbooksAttributes.manaRegenerationAttribute(), createModifier());
+        super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
     }
 
     @Override
-    public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attribute, int amplifier) {
-        super.removeAttributeModifiers(livingEntity, attribute, amplifier);
-        if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            var manaRegen = livingEntity.getAttribute(AttributeRegistry.MANA_REGEN.get());
-            if (manaRegen != null && manaRegen.getModifier(MANA_REGENERATION_UUID) != null) {
-                manaRegen.removeModifier(MANA_REGENERATION_UUID);
-            }
-        }
+    public @NotNull Map<Attribute, AttributeModifier> getAttributeModifiers() {
+        Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
+        modifiers.put(IronsSpellbooksAttributes.manaRegenerationAttribute(), createModifier());
+        return modifiers;
+    }
+
+    private AttributeModifier createModifier() {
+        return new AttributeModifier(MANA_REGENERATION, this::getDescriptionId, CommonConfig.MANA_REGENERATION_INCREASE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
     }
 }

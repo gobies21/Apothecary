@@ -399,7 +399,7 @@
   "effect.apothecary.reach.description": "Increases block and entity reach",
   "effect.apothecary.repairing.description": "Randomly repairs items in your inventory",
   "effect.apothecary.thorns.description": "Damages attackers when hit",
-  "effect.apothecary.purification.description": "Grants immunity to all negative effects",
+  "effect.apothecary.purification.description": "Clears all active negative effects",
 
   "effect.apothecary.broken_armor.description": "Decreases armor",
   "effect.apothecary.ruptured_armor.description": "Decreases armor toughness",
@@ -410,7 +410,7 @@
   "effect.apothecary.vulnerable.description": "Increases damage taken",
   "effect.apothecary.corrosion.description": "Randomly damages gear in your inventory",
   "effect.apothecary.confusion.description": "Inverts controls",
-  "effect.apothecary.corruption.description": "Grants immunity to all positive effects",
+  "effect.apothecary.corruption.description": "Clears all active positive effects",
   "effect.apothecary.burning.description": "Sets entities ablaze for its duration",
   "effect.apothecary.shocked.description": "Decreases movement speed by a large amount",
   "effect.apothecary.shuffling.description": "Randomly shuffles items in your inventory",

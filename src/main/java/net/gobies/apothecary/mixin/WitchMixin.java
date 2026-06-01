@@ -41,13 +41,12 @@ public abstract class WitchMixin {
 
             if (!witch.isDrinkingPotion() && pTarget instanceof Player player) {
                 if (currentTime - apothecary$lastCooldownTime < 20L * CommonConfig.WITCH_POTION_COOLDOWN.get()) {
-                    ci.cancel();
                     return;
                 }
 
                 if (apothecary$potionsThrown < CommonConfig.WITCH_POTION_COUNT.get()) {
                     RandomSource random = witch.getRandom();
-                    Potion selectedPotion = AUtils.determinePotionByRarity(random);
+                    Potion selectedPotion = Potion.byName(AUtils.determinePotionByRarity(random));
 
                     if (selectedPotion != null && !player.hasEffect(selectedPotion.getEffects().get(0).getEffect())) {
                         ThrownPotion thrownPotion = new ThrownPotion(witch.level(), witch);

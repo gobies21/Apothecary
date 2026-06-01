@@ -16,6 +16,7 @@ public class Reversion extends MobEffect {
         super(category, color);
     }
 
+    @Override
     public boolean isInstantenous() {
         return true;
     }

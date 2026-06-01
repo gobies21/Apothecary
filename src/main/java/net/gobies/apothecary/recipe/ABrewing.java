@@ -77,7 +77,6 @@ public class ABrewing {
 
         if (CommonConfig.ENABLE_FLIGHT_RECIPE.get()) {
             BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.FLIGHT_INGREDIENT.get()))), APotions.Flight.get());
-            BrewingHandler.addBrewingRecipe(APotions.Flight.get(), Ingredient.of(Items.REDSTONE), APotions.LongFlight.get());
         }
 
         if (CommonConfig.ENABLE_REACH_RECIPE.get()) {
@@ -151,13 +150,17 @@ public class ABrewing {
         }
 
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_TWO.get(), Ingredient.of(ItemRegistry.ARCANE_ESSENCE.get()), APotions.ManaRegeneration.get());
-            BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.REDSTONE), APotions.LongManaRegeneration.get());
-            BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongManaRegeneration.get());
+            if (CommonConfig.ENABLE_MANA_REGENERATION_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_TWO.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MANA_REGENERATION_INGREDIENT.get()))), APotions.ManaRegeneration.get());
+                BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.REDSTONE), APotions.LongManaRegeneration.get());
+                BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongManaRegeneration.get());
+            }
 
-            BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.FERMENTED_SPIDER_EYE), APotions.ManaExhaustion.get());
-            BrewingHandler.addBrewingRecipe(APotions.ManaExhaustion.get(), Ingredient.of(Items.REDSTONE), APotions.LongManaExhaustion.get());
-            BrewingHandler.addBrewingRecipe(APotions.ManaExhaustion.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongManaExhaustion.get());
+            if (CommonConfig.ENABLE_MANA_EXHAUSTION_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MANA_EXHAUSTION_INGREDIENT.get()))), APotions.ManaExhaustion.get());
+                BrewingHandler.addBrewingRecipe(APotions.ManaExhaustion.get(), Ingredient.of(Items.REDSTONE), APotions.LongManaExhaustion.get());
+                BrewingHandler.addBrewingRecipe(APotions.ManaExhaustion.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongManaExhaustion.get());
+            }
 
             if (CommonConfig.ENABLE_MAGIC_POWER_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_THREE.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MAGIC_POWER_INGREDIENT.get()))), APotions.MagicPower.get());
