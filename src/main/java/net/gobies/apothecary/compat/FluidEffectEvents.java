@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -18,10 +19,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class FluidEffectEvents {
 
-    private static final Map<LivingEntity, Integer> acidDurationMap = new HashMap<>();
+    private static final Map<UUID, Integer> acidDurationMap = new HashMap<>();
 
     public static void loadCompat() {
         MinecraftForge.EVENT_BUS.register(new FluidEffectEvents());
@@ -29,9 +31,9 @@ public class FluidEffectEvents {
 
     @SubscribeEvent
     public void fluidEffects(LivingEvent.LivingTickEvent event) {
-        LivingEntity entity = event.getEntity();
-        Level level = entity.level();
-        BlockPos blockPos = entity.blockPosition();
+        LivingEntity livingEntity = event.getEntity();
+        Level level = livingEntity.level();
+        BlockPos blockPos = livingEntity.blockPosition();
         FluidState fluidState = level.getFluidState(blockPos);
         ResourceLocation fluidLocation = ForgeRegistries.FLUIDS.getKey(fluidState.getType());
 
@@ -39,10 +41,10 @@ public class FluidEffectEvents {
             boolean isAcid = fluidLocation.equals(new ResourceLocation("alexscaves", "acid"));
             boolean isAcidFlowing = fluidLocation.equals(new ResourceLocation("alexscaves", "acid_flowing"));
 
-            if ((isAcid || isAcidFlowing) && !isWearingHazmatArmor(entity)) {
-                acidDurationMap.put(entity, acidDurationMap.getOrDefault(entity, 0) + 1);
+            if ((isAcid || isAcidFlowing) && !isWearingHazmatArmor(livingEntity)) {
+                acidDurationMap.put(livingEntity.getUUID(), acidDurationMap.getOrDefault(livingEntity.getUUID(), 0) + 1);
 
-                int duration = acidDurationMap.get(entity);
+                int duration = acidDurationMap.get(livingEntity.getUUID());
                 int amplifier = 0;
                 int effectDuration;
 
@@ -59,29 +61,29 @@ public class FluidEffectEvents {
                     amplifier = 2;
                 }
 
-                MobEffectInstance existingEffect = entity.getEffect(AEffects.Corrosion.get());
+                MobEffectInstance existingEffect = livingEntity.getEffect(AEffects.Corrosion.get());
                 if (existingEffect == null) {
-                    entity.addEffect(new MobEffectInstance(AEffects.Corrosion.get(), effectDuration, amplifier));
+                    livingEntity.addEffect(new MobEffectInstance(AEffects.Corrosion.get(), effectDuration, amplifier));
                 } else {
                     int existingAmplifier = existingEffect.getAmplifier();
                     int existingDuration = existingEffect.getDuration();
 
                     if (existingAmplifier < amplifier) {
-                        entity.addEffect(new MobEffectInstance(AEffects.Corrosion.get(), existingDuration, amplifier));
+                        livingEntity.addEffect(new MobEffectInstance(AEffects.Corrosion.get(), existingDuration, amplifier));
                     } else {
                         int newDuration = existingDuration + 20;
-                        entity.addEffect(new MobEffectInstance(AEffects.Corrosion.get(), Math.min(newDuration, effectDuration), existingAmplifier));
+                        livingEntity.addEffect(new MobEffectInstance(AEffects.Corrosion.get(), Math.min(newDuration, effectDuration), existingAmplifier));
                     }
                 }
             } else {
-                acidDurationMap.remove(entity);
+                acidDurationMap.remove(livingEntity.getUUID());
             }
         }
         if (ModList.get().isLoaded("biomesoplenty") && fluidLocation != null) {
             boolean isBlood = fluidLocation.equals(new ResourceLocation("biomesoplenty", "blood"));
             boolean isBloodFlowing = fluidLocation.equals(new ResourceLocation("biomesoplenty", "flowing_blood"));
             if (isBlood || isBloodFlowing) {
-                entity.addEffect(new MobEffectInstance(AEffects.Vulnerable.get(), DurationUtils.getRandomLongDuration(), 0));
+                livingEntity.addEffect(new MobEffectInstance(AEffects.Vulnerable.get(), DurationUtils.getRandomLongDuration(), 0));
             }
         }
     }
@@ -101,5 +103,16 @@ public class FluidEffectEvents {
                 chestLocation != null && chestLocation.equals(new ResourceLocation("alexscaves", "hazmat_chestplate")) &&
                 legsLocation != null && legsLocation.equals(new ResourceLocation("alexscaves", "hazmat_leggings")) &&
                 feetLocation != null && feetLocation.equals(new ResourceLocation("alexscaves", "hazmat_boots")));
+    }
+
+    public static void clearMaps(UUID uuid) {
+        acidDurationMap.remove(uuid);
+    }
+
+    @SubscribeEvent
+    public static void onEntityLeaveLevel(EntityLeaveLevelEvent event) {
+        if (event.getEntity() instanceof LivingEntity livingEntity) {
+            clearMaps(livingEntity.getUUID());
+        }
     }
 }
