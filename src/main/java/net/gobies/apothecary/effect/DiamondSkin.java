@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class DiamondSkin extends MobEffect {
-    private static final UUID ARMOR_TOUGHNESS = UUID.randomUUID();
+    private static final UUID ARMOR_TOUGHNESS = UUID.fromString("92a78aa3-c5b4-422e-82c1-270ccbc2e2d2");
 
     public DiamondSkin(MobEffectCategory category, int color) {
         super(category, color);

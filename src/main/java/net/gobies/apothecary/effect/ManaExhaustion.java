@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ManaExhaustion extends MobEffect {
-    private static final UUID MANA_EXHAUSTION = UUID.randomUUID();
+    private static final UUID MANA_EXHAUSTION = UUID.fromString("3791ad62-2942-41d8-b302-314aa672a5e4");
 
     public ManaExhaustion(MobEffectCategory category, int color) {
         super(category, color);

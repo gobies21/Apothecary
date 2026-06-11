@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class BrokenArmor extends MobEffect {
-    private static final UUID ARMOR = UUID.randomUUID();
+    private static final UUID ARMOR = UUID.fromString("929669ea-eaa5-4c3a-8166-c8da1f413869");
 
     public BrokenArmor(MobEffectCategory category, int color) {
         super(category, color);

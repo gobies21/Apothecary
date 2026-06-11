@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class MagicDrain extends MobEffect {
-    private static final UUID SPELL_POWER = UUID.randomUUID();
+    private static final UUID SPELL_POWER = UUID.fromString("6fe75e59-248e-4162-95db-1d2ac7b5ce4c");
 
     public MagicDrain(MobEffectCategory category, int color) {
         super(category, color);

@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class MagicPower extends MobEffect {
-    private static final UUID SPELL_POWER = UUID.randomUUID();
+    private static final UUID SPELL_POWER = UUID.fromString("b7a21d45-b2af-444b-973e-d53fc9fb3c55");
 
     public MagicPower(MobEffectCategory category, int color) {
         super(category, color);

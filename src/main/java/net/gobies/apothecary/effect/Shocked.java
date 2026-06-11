@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class Shocked extends MobEffect {
-    private static final UUID MOVEMENT_SPEED = UUID.randomUUID();
+    private static final UUID MOVEMENT_SPEED = UUID.fromString("60f6a31a-6a13-473f-b6c0-9376e641c9e0");
 
     public Shocked(MobEffectCategory category, int color) {
         super(category, color);
