@@ -38,7 +38,7 @@ public class WorldEvents {
             int baseAmplifier = 0;
             int rangedAmplifier = entity.getRandom().nextFloat() < 0.75 ? 0 : 1;
             MobEffectInstance currentEffect = entity.getEffect(AEffects.BrokenArmor.get());
-            int newAmplifier = (currentEffect != null) ? currentEffect.getAmplifier() + 1 : 0;
+            int newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 4) : 0;
             if (event.getSource().is(DamageTypes.EXPLOSION) || event.getSource().is(DamageTypes.PLAYER_EXPLOSION)) {
                 if (entity.getArmorValue() > 0) {
                     if (entity.getRandom().nextFloat() < 0.4) {
@@ -47,7 +47,7 @@ public class WorldEvents {
                     }
                     if (damageAmount > 5.0) {
                         currentEffect = entity.getEffect(AEffects.RupturedArmor.get());
-                        newAmplifier = (currentEffect != null) ? currentEffect.getAmplifier() + 1 : 0;
+                        newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
                         if (entity.getRandom().nextFloat() < 0.1) {
                             entity.addEffect(new MobEffectInstance(AEffects.RupturedArmor.get(), randomMediumDuration, newAmplifier));
                         }
@@ -61,7 +61,7 @@ public class WorldEvents {
 
             if (mob instanceof Mob && ((Mob) mob).isAggressive()) {
                 currentEffect = entity.getEffect(AEffects.Feeble.get());
-                newAmplifier = (currentEffect != null) ? currentEffect.getAmplifier() + 1 : 0;
+                newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
                 if (entity.getRandom().nextFloat() < 0.05) {
                     entity.addEffect(new MobEffectInstance(AEffects.Feeble.get(), randomMediumDuration, newAmplifier));
                 }
@@ -69,7 +69,7 @@ public class WorldEvents {
 
             if (mob instanceof PiglinBrute) {
                 currentEffect = entity.getEffect(AEffects.RupturedArmor.get());
-                newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 4) : 0;
+                newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
                 if (entity.getArmorValue() > 0) {
                     entity.addEffect(new MobEffectInstance(AEffects.RupturedArmor.get(), randomShortDuration, newAmplifier));
                 }
