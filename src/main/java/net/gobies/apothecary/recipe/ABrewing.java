@@ -1,6 +1,5 @@
 package net.gobies.apothecary.recipe;
 
-import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import io.redspace.ironsspellbooks.registries.PotionRegistry;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.APotions;

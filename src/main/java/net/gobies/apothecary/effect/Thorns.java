@@ -7,5 +7,4 @@ public class Thorns extends MobEffect {
     public Thorns(MobEffectCategory category, int color) {
         super(category, color);
     }
-
 }

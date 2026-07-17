@@ -24,4 +24,8 @@ public class DurationUtils {
     public static int getRandomVeryLongDuration() {
         return 1000 + RANDOM.nextInt(1000); // Duration between 50 and 100 seconds (1000-2020 ticks)
     }
+
+    public static int getRandomVaryingDuration() {
+        return 400 + RANDOM.nextInt(900); // Duration between 20 and 60 seconds (300-1200 ticks)
+    }
 }

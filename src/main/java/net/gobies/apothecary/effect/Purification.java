@@ -1,15 +1,12 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.util.BlacklistedEffects;
 import net.gobies.apothecary.init.AEffects;
+import net.gobies.apothecary.util.BlacklistedEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,24 +17,16 @@ public class Purification extends MobEffect {
 
     public Purification(MobEffectCategory category, int color) {
         super(category, color);
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
     public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
+        if (livingEntity.hasEffect(AEffects.PotionSickness.get())) return;
         livingEntity.getActiveEffects().stream()
                 .filter(effectInstance -> effectInstance.getEffect().getCategory() == MobEffectCategory.HARMFUL)
                 .filter(effectInstance -> BlacklistedEffects.isHarmfulEffectBlacklisted(effectInstance.getEffect()))
+                .filter(effectInstance -> effectInstance.getEffect() != AEffects.PotionSickness.get())
                 .forEach(effectInstance -> livingEntity.removeEffect(effectInstance.getEffect()));
-    }
-
-    @SubscribeEvent
-    public void onMobEffectApplicable(MobEffectEvent.Applicable event) {
-        MobEffectInstance effectInstance = event.getEffectInstance();
-        if (event.getEntity().hasEffect(AEffects.Purification.get()) &&
-                BlacklistedEffects.isHarmfulEffectApplicable(event.getEntity(), effectInstance)) {
-            event.setResult(MobEffectEvent.Result.DENY);
-        }
     }
 
     @Override
@@ -48,10 +37,11 @@ public class Purification extends MobEffect {
     @Override
     public void applyInstantenousEffect(@Nullable Entity pSource, @Nullable Entity pIndirectSource, @NotNull LivingEntity entity, int pAmplifier, double pHealth) {
         List<MobEffect> effectsToRemove = new ArrayList<>();
+        if (entity.hasEffect(AEffects.PotionSickness.get())) return;
 
         for (MobEffectInstance effectInstance : entity.getActiveEffects()) {
             MobEffect effect = effectInstance.getEffect();
-            if (effect.getCategory() == MobEffectCategory.HARMFUL && BlacklistedEffects.isHarmfulEffectBlacklisted(effect)) {
+            if (effect.getCategory() == MobEffectCategory.HARMFUL && BlacklistedEffects.isHarmfulEffectBlacklisted(effect) && effect != AEffects.PotionSickness.get()) {
                 effectsToRemove.add(effect);
             }
         }

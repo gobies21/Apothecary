@@ -238,6 +238,20 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<Boolean> DISABLE_ICEANDFIRE_COMPAT;
     public static boolean disable_iceandfire_compat;
 
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POTION_SICKNESS;
+    public static boolean enable_potion_sickness;
+    public static ForgeConfigSpec.ConfigValue<Integer> POTION_SICKNESS_MAX_EFFECTS;
+    public static int potion_sickness_max_effects;
+    public static ForgeConfigSpec.ConfigValue<Double> POTION_SICKNESS_CHANCE;
+    public static float potion_sickness_chance;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> POTION_SICKNESS_WHITELIST;
+    public static List<? extends String> potion_sickness_whitelist;
+    public static ForgeConfigSpec.ConfigValue<List<? extends String>> POTION_SICKNESS_BLACKLIST;
+    public static List<? extends String> potion_sickness_blacklist;
+    public static ForgeConfigSpec.ConfigValue<Boolean> POTION_SICKNESS_INSTANT_EFFECT;
+    public static boolean potion_sickness_instant_effect;
+
+
     @SubscribeEvent
     static void onLoad(ModConfigEvent.Loading configEvent) {
         if (configEvent.getConfig().getFileName().equals(FILENAME)) {
@@ -332,6 +346,12 @@ public class CommonConfig {
             witch_potion_count = WITCH_POTION_COUNT.get();
             witch_potion_cooldown = WITCH_POTION_COOLDOWN.get();
             potion_selector = POTION_SELECTOR.get();
+            enable_potion_sickness = ENABLE_POTION_SICKNESS.get();
+            potion_sickness_max_effects = POTION_SICKNESS_MAX_EFFECTS.get();
+            potion_sickness_chance = POTION_SICKNESS_CHANCE.get().floatValue();
+            potion_sickness_whitelist = POTION_SICKNESS_WHITELIST.get();
+            potion_sickness_blacklist = POTION_SICKNESS_BLACKLIST.get();
+            potion_sickness_instant_effect = POTION_SICKNESS_INSTANT_EFFECT.get();
 
             disable_iceandfire_compat = DISABLE_ICEANDFIRE_COMPAT.get();
         }
@@ -556,6 +576,16 @@ public class CommonConfig {
                 "apothecary:feeble, 15",
                 "apothecary:shuffling, 5"
         ), o -> o instanceof String && ((String) o).contains(","));
+
+        BUILDER.push("Potion_Sickness");
+        ENABLE_POTION_SICKNESS = BUILDER.comment("Enable the potion sickness effect, adding a max limit of how many positive effects players can have").define("Enable_Potion_Sickness", true);
+        POTION_SICKNESS_MAX_EFFECTS = BUILDER.comment("Max effects a player can have before they can get potion sickness, any number after this value will cause potion sickness").define("Max_Effects", 10);
+        POTION_SICKNESS_CHANCE = BUILDER.comment("Chance that potion sickness will cause chaos every second (in percentage)").define("Potion_Sickness_Chance", 0.02);
+        POTION_SICKNESS_WHITELIST = BUILDER.comment("A list of harmful effects potion sickness can apply, overwrites the random harmful effects, format as: 'modid:potion_id'.").defineListAllowEmpty("Effect_Whitelist", List.of(), o -> o instanceof String);
+        POTION_SICKNESS_BLACKLIST = BUILDER.comment("A list of harmful effects potion sickness cannot apply, format as: 'modid:potion_id'.").defineListAllowEmpty("Effect_Blacklist", List.of("minecraft:levitation", "apothecary:shuffling", "apothecary:reversion", "apothecary:corruption"), o -> o instanceof String);
+        POTION_SICKNESS_INSTANT_EFFECT = BUILDER.comment("Enable potion sickness instantly applying one random negative effect when first applied").define("Instant_Effect", false);
+        BUILDER.pop();
+
         BUILDER.pop();
 
         SPEC = BUILDER.build();

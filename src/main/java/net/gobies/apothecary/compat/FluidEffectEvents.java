@@ -33,6 +33,7 @@ public class FluidEffectEvents {
     public void fluidEffects(LivingEvent.LivingTickEvent event) {
         LivingEntity livingEntity = event.getEntity();
         Level level = livingEntity.level();
+        if (livingEntity.tickCount % 10 != 0) return;
         BlockPos blockPos = livingEntity.blockPosition();
         FluidState fluidState = level.getFluidState(blockPos);
         ResourceLocation fluidLocation = ForgeRegistries.FLUIDS.getKey(fluidState.getType());

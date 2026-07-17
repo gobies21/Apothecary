@@ -8,7 +8,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,7 +18,6 @@ public class Shuffling extends MobEffect {
 
     public Shuffling(MobEffectCategory category, int color) {
         super(category, color);
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {

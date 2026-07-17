@@ -1,6 +1,5 @@
 package net.gobies.apothecary.event;
 
-import net.gobies.apothecary.Apothecary;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.util.DurationUtils;
@@ -16,17 +15,15 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Apothecary.MOD_ID)
 public class WorldEvents {
 
-    static {
-        MinecraftForge.EVENT_BUS.register(WorldEvents.class);
+    public static void register() {
+        MinecraftForge.EVENT_BUS.register(new WorldEvents());
     }
 
     @SubscribeEvent
-    public static void onLivingHurt(LivingHurtEvent event) {
+    public void onLivingHurt(LivingHurtEvent event) {
         LivingEntity entity = event.getEntity();
         Entity mob = event.getSource().getEntity();
         if (entity != null && (CommonConfig.ENABLE_WORLD_EVENTS.get())) {
@@ -45,7 +42,7 @@ public class WorldEvents {
                         entity.addEffect(new MobEffectInstance(AEffects.BrokenArmor.get(), randomLongDuration, newAmplifier));
 
                     }
-                    if (damageAmount > 5.0) {
+                    if (damageAmount > 10.0) {
                         currentEffect = entity.getEffect(AEffects.RupturedArmor.get());
                         newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
                         if (entity.getRandom().nextFloat() < 0.1) {
@@ -90,7 +87,6 @@ public class WorldEvents {
     }
 
     @SubscribeEvent
-    public static void onEntityAttacked(LivingAttackEvent event) {
-
+    public void onEntityAttacked(LivingAttackEvent event) {
     }
 }

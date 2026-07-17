@@ -40,6 +40,8 @@ public class AEffects {
     public static final RegistryObject<MobEffect> Extension;
     public static final RegistryObject<MobEffect> Reversion;
 
+    public static final RegistryObject<MobEffect> PotionSickness;
+
     public static void register (IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }
@@ -74,5 +76,7 @@ public class AEffects {
         Spelunker = EFFECTS.register("spelunker", () -> new Spelunker(MobEffectCategory.BENEFICIAL, 0xC9C92C));
         Extension = EFFECTS.register("extension", () -> new Extension(MobEffectCategory.BENEFICIAL, 0x66356E));
         Reversion = EFFECTS.register("reversion", () -> new Reversion(MobEffectCategory.HARMFUL, 0x4048A0));
+
+        PotionSickness = EFFECTS.register("potion_sickness", () -> new PotionSickness(MobEffectCategory.HARMFUL, 0xB374C9));
     }
 }

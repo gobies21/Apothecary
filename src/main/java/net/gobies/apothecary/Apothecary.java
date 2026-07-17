@@ -8,6 +8,7 @@ import net.gobies.apothecary.compat.spartanweaponry.SpartanWeaponryCompat;
 import net.gobies.apothecary.config.ClientConfig;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.event.EffectEvents;
+import net.gobies.apothecary.event.WorldEvents;
 import net.gobies.apothecary.init.AAttributes;
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.init.APotions;
@@ -31,23 +32,15 @@ public class Apothecary {
 
     public Apothecary() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         MinecraftForge.EVENT_BUS.register(this);
-
         APotions.register(modBus);
-
         AAttributes.register(modBus);
-
         EffectEvents.register();
-
+        WorldEvents.register();
         MinecraftForge.EVENT_BUS.register(EffectEvents.class);
-
         AEffects.register(modBus);
-
         modBus.addListener(this::commonSetup);
-
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
-
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
     }
 

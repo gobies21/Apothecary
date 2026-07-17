@@ -4,7 +4,6 @@ import net.gobies.apothecary.Apothecary;
 import net.gobies.apothecary.config.ClientConfig;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
-import net.gobies.apothecary.util.ModLoadedUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -34,7 +33,12 @@ public class ClientEvents {
                 if (Screen.hasShiftDown()) {
                     potion.getEffects().forEach(effect -> {
                         String potionDescription = effect.getEffect().getDescriptionId();
-                        event.getToolTip().add(Component.translatable(potionDescription + ".description").withStyle(ChatFormatting.GRAY));
+                        if (effect.getEffect() == AEffects.Vulnerable.get()) {
+                            double configValue = CommonConfig.VULNERABLE_DAMAGE_TAKEN.get();
+                            addPercentageTooltip(event.getToolTip(), potionDescription, configValue);
+                        } else {
+                            event.getToolTip().add(Component.translatable(potionDescription + ".description").withStyle(ChatFormatting.GRAY));
+                        }
                     });
                 } else {
                     event.getToolTip().add(Component.translatable("tooltip.apothecary.potion_info").withStyle(ChatFormatting.GRAY));
@@ -85,5 +89,18 @@ public class ClientEvents {
     private static void applyTooltips(ItemTooltipEvent event) {
         event.getToolTip().add(2, (Component.literal("")));
         event.getToolTip().add(3, (Component.literal("When Applied:").withStyle(ChatFormatting.DARK_PURPLE)));
+    }
+
+    private static void addNumberTooltip(List<Component> tooltipList, String descriptionId, int value) {
+        tooltipList.add(Component.translatable(descriptionId + ".description")
+                .append(Component.translatable("tooltip.apothecary.number", value))
+                .withStyle(ChatFormatting.GRAY));
+    }
+
+    private static void addPercentageTooltip(List<Component> tooltipList, String descriptionId, double value) {
+        int percentage = (int) (value * 100);
+        tooltipList.add(Component.translatable(descriptionId + ".description")
+                .append(Component.translatable("tooltip.apothecary.percentage", percentage))
+                .withStyle(ChatFormatting.GRAY));
     }
 }
