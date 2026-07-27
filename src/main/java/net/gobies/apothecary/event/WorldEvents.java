@@ -24,6 +24,8 @@ public class WorldEvents {
 
     @SubscribeEvent
     public void onLivingHurt(LivingHurtEvent event) {
+        if (!CommonConfig.APOTHECARY_ENABLED.get()) return;
+        if (event.isCanceled()) return;
         LivingEntity entity = event.getEntity();
         Entity mob = event.getSource().getEntity();
         if (entity != null && (CommonConfig.ENABLE_WORLD_EVENTS.get())) {

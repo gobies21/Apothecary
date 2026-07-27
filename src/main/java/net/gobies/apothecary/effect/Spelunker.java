@@ -33,8 +33,9 @@ public class Spelunker extends MobEffect {
         BlockPos entityPos = livingEntity.blockPosition();
 
         if (level.isClientSide() && livingEntity instanceof Player player) {
-            ClientLevel clientWorld = (ClientLevel) level;
-            detectAndSpawnOreParticles(player, clientWorld, entityPos, amplifier);
+            if (level instanceof ClientLevel clientLevel) {
+                detectAndSpawnOreParticles(player, clientLevel, entityPos, amplifier);
+            }
         }
     }
 

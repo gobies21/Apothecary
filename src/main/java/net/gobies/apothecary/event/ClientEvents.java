@@ -33,12 +33,7 @@ public class ClientEvents {
                 if (Screen.hasShiftDown()) {
                     potion.getEffects().forEach(effect -> {
                         String potionDescription = effect.getEffect().getDescriptionId();
-                        if (effect.getEffect() == AEffects.Vulnerable.get()) {
-                            double configValue = CommonConfig.VULNERABLE_DAMAGE_TAKEN.get();
-                            addPercentageTooltip(event.getToolTip(), potionDescription, configValue);
-                        } else {
-                            event.getToolTip().add(Component.translatable(potionDescription + ".description").withStyle(ChatFormatting.GRAY));
-                        }
+                        event.getToolTip().add(Component.translatable(potionDescription + ".description").withStyle(ChatFormatting.GRAY));
                     });
                 } else {
                     event.getToolTip().add(Component.translatable("tooltip.apothecary.potion_info").withStyle(ChatFormatting.GRAY));
@@ -60,11 +55,6 @@ public class ClientEvents {
                     applyTooltips(event);
                     event.getToolTip().add(4, (Component.literal("+" + radius + " Detection Radius").withStyle(ChatFormatting.BLUE)));
                 }
-                if (getEffect == AEffects.Wrath.get()) {
-                    int damageIncrease = (int) (100 * CommonConfig.WRATH_DAMAGE_INCREASE.get() * (amplifier + 1));
-                    applyTooltips(event);
-                    event.getToolTip().add(4, (Component.literal("+" + damageIncrease + "% Damage Dealt").withStyle(ChatFormatting.BLUE)));
-                }
                 if (getEffect == AEffects.Thorns.get()) {
                     int damageReflect = (int) (100 * CommonConfig.THORNS_DAMAGE_REFLECT.get() * (amplifier + 1));
                     applyTooltips(event);
@@ -76,11 +66,6 @@ public class ClientEvents {
                     int arrowDamage = CommonConfig.MISFIRE_DAMAGE_DECREASE.get() * (amplifier + 1);
                     applyTooltips(event);
                     event.getToolTip().add(4, (Component.literal("-" + arrowDamage + " Arrow Damage").withStyle(ChatFormatting.RED)));
-                }
-                if (getEffect == AEffects.Feeble.get()) {
-                    int damageIncrease = (int) (100 * CommonConfig.FEEBLE_DAMAGE_DECREASE.get() * (amplifier + 1));
-                    applyTooltips(event);
-                    event.getToolTip().add(4, (Component.literal("-" + damageIncrease + "% Damage Increase").withStyle(ChatFormatting.RED)));
                 }
             }
         }

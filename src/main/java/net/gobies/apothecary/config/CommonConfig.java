@@ -15,8 +15,13 @@ public class CommonConfig {
     public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
+    public static ForgeConfigSpec.ConfigValue<Boolean> APOTHECARY_ENABLED;
+    public static boolean apothecary_enabled;
+
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WORLD_EVENTS;
     public static boolean enable_world_events;
+    public static ForgeConfigSpec.ConfigValue<Double> MAX_DAMAGE_RESISTANCE;
+    public static float max_damage_resistance;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_IRON_SKIN_RECIPE;
     public static boolean enable_iron_skin_recipe;
@@ -212,6 +217,8 @@ public class CommonConfig {
     public static boolean enable_resistance_recipe;
     public static ForgeConfigSpec.ConfigValue<String> RESISTANCE_INGREDIENT;
     public static String resistance_ingredient;
+    public static ForgeConfigSpec.ConfigValue<Double> RESISTANCE_DAMAGE_RESISTANCE;
+    public static float resistance_damage_resistance;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_VULNERABLE_RECIPE;
     public static boolean enable_vulnerable_recipe;
@@ -224,6 +231,12 @@ public class CommonConfig {
     public static boolean enable_wither_recipe;
     public static ForgeConfigSpec.ConfigValue<String> WITHER_INGREDIENT;
     public static String wither_ingredient;
+
+    public static ForgeConfigSpec.ConfigValue<Double> JUMP_BOOST_JUMP_HEIGHT;
+    public static float jump_boost_jump_height;
+
+    public static ForgeConfigSpec.ConfigValue<Double> HASTE_DIG_SPEED;
+    public static float haste_dig_speed;
 
     // World Events
     public static ForgeConfigSpec.ConfigValue<Integer> WITCH_POTION_COUNT;
@@ -251,10 +264,11 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<Boolean> POTION_SICKNESS_INSTANT_EFFECT;
     public static boolean potion_sickness_instant_effect;
 
-
     @SubscribeEvent
     static void onLoad(ModConfigEvent.Loading configEvent) {
         if (configEvent.getConfig().getFileName().equals(FILENAME)) {
+            apothecary_enabled = APOTHECARY_ENABLED.get();
+            max_damage_resistance = MAX_DAMAGE_RESISTANCE.get().floatValue();
             enable_world_events = ENABLE_WORLD_EVENTS.get();
             enable_iron_skin_recipe = ENABLE_IRON_SKIN_RECIPE.get();
             iron_skin_ingredient = IRON_SKIN_INGREDIENT.get();
@@ -338,11 +352,14 @@ public class CommonConfig {
             luck_ingredient = LUCK_INGREDIENT.get();
             enable_resistance_recipe = ENABLE_RESISTANCE_RECIPE.get();
             resistance_ingredient = RESISTANCE_INGREDIENT.get();
+            resistance_damage_resistance = RESISTANCE_DAMAGE_RESISTANCE.get().floatValue();
             enable_vulnerable_recipe = ENABLE_VULNERABLE_RECIPE.get();
             vulnerable_ingredient = VULNERABLE_INGREDIENT.get();
             vulnerable_damage_taken = VULNERABLE_DAMAGE_TAKEN.get().floatValue();
             enable_wither_recipe = ENABLE_WITHER_RECIPE.get();
             wither_ingredient = WITHER_INGREDIENT.get();
+            jump_boost_jump_height = JUMP_BOOST_JUMP_HEIGHT.get().floatValue();
+            haste_dig_speed = HASTE_DIG_SPEED.get().floatValue();
             witch_potion_count = WITCH_POTION_COUNT.get();
             witch_potion_cooldown = WITCH_POTION_COOLDOWN.get();
             potion_selector = POTION_SELECTOR.get();
@@ -366,8 +383,10 @@ public class CommonConfig {
 
     static {
         BUILDER.push("General");
+        APOTHECARY_ENABLED = BUILDER.comment("Global toggle to disable this entire mod, client config, stack size, and attributes will still work if this is disabled").define("Apothecary_Enabled", true);
         ENABLE_WORLD_EVENTS = BUILDER.comment("Enable world events (effects being able to occur in the world outside of potions)").define("World_Events", true);
         POTION_STACK_SIZE = BUILDER.comment("Max stack size of potions").defineInRange("Stack_Size", 1, 1, 64);
+        MAX_DAMAGE_RESISTANCE = BUILDER.comment("Max amount of damage resistance the player can get").defineInRange("Max_Damage_Resistance", 1, 0.0, 1);
         DISABLE_ICEANDFIRE_COMPAT = BUILDER.comment("Disable ice and fire compat").define("Disable", false);
         BUILDER.pop();
 
@@ -426,7 +445,7 @@ public class CommonConfig {
         BUILDER.push("Vulnerable");
         ENABLE_VULNERABLE_RECIPE = BUILDER.comment("Enable the vulnerable potion recipe").define("Enable", true);
         VULNERABLE_INGREDIENT = BUILDER.comment("Main ingredient used to brew vulnerable potions").define("Ingredient", "minecraft:fermented_spider_eye");
-        VULNERABLE_DAMAGE_TAKEN = BUILDER.comment("Increased damage taken provided by vulnerable potions in percentage").define("Damage_Taken", 0.20);
+        VULNERABLE_DAMAGE_TAKEN = BUILDER.comment("Decreased damage resistance provided by vulnerable potions in percentage").define("Damage_Resistance", 0.20);
         BUILDER.pop();
 
         BUILDER.push("Flight");
@@ -551,6 +570,15 @@ public class CommonConfig {
         BUILDER.push("Resistance");
         ENABLE_RESISTANCE_RECIPE = BUILDER.comment("Enable the resistance potion recipe").define("Enable", true);
         RESISTANCE_INGREDIENT = BUILDER.comment("Main ingredient used to brew resistance potions").define("Ingredient", "minecraft:warped_fungus");
+        RESISTANCE_DAMAGE_RESISTANCE = BUILDER.comment("Increased damage resistance provided by resistance potions in percentage").define("Damage_Resistance", 0.20);
+        BUILDER.pop();
+
+        BUILDER.push("Jump_Boost");
+        JUMP_BOOST_JUMP_HEIGHT = BUILDER.comment("Increased jump height in blocks").define("Jump_Height", 0.5);
+        BUILDER.pop();
+
+        BUILDER.push("Haste");
+        HASTE_DIG_SPEED = BUILDER.comment("Increased digging speed in percentage").define("Dig_Speed", 0.2);
         BUILDER.pop();
 
         BUILDER.push("Wither");

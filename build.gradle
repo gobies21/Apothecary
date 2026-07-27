@@ -28,7 +28,8 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
-
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             property 'forge.logging.console.level', 'debug'
 
             mods {
@@ -40,20 +41,28 @@ minecraft {
 
         client {
             property 'forge.enabledGameTestNamespaces', mod_id
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            property 'forge.logging.console.level', 'debug'
         }
 
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
             args '--nogui'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
         }
 
         gameTestServer {
             property 'forge.enabledGameTestNamespaces', mod_id
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
         }
 
         data {
             workingDirectory project.file('run-data')
-
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
@@ -96,6 +105,7 @@ dependencies {
     implementation fg.deobf("curse.maven:caelus-308989:5281700")
 
     implementation fg.deobf("curse.maven:spartan-weaponry-278141:5597663")
+    implementation fg.deobf("curse.maven:more-artifacts-1143299:7553653")
 
     runtimeOnly(fg.deobf("curse.maven:configured-457570:5180900"))
     runtimeOnly(fg.deobf("curse.maven:catalogue-459701:4766090"))
@@ -103,7 +113,14 @@ dependencies {
     runtimeOnly(fg.deobf("curse.maven:citadel-331936:6702068"))
     implementation fg.deobf("curse.maven:ice-and-fire-dragons-264231:5633453")
     implementation fg.deobf("curse.maven:spark-361579:4738952")
+    implementation fg.deobf("curse.maven:attributefix-280510:7612291")
     //implementation fg.deobf("curse.maven:armor-set-bonuses-549892:6843216")
+    implementation fg.deobf("curse.maven:reforging-station-1202199:6208571")
+    runtimeOnly(fg.deobf("curse.maven:crafttweaker-239197:6914010"))
+    compileOnly(fg.deobf("curse.maven:first-aid-276837:5531834"))
+
+    implementation fg.deobf("curse.maven:just-a-lot-more-enchantments-865111:8130194")
+    implementation fg.deobf("curse.maven:progressive-mechanics-library-1235043:7597380")
 }
 
 mixin {

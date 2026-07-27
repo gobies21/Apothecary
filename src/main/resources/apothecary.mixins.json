@@ -3,10 +3,16 @@
   "package": "net.gobies.apothecary.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "apothecary.mixins.refmap.json",
+  "plugin": "net.gobies.apothecary.AMixinPlugin",
   "mixins": [
     "ItemMixin",
+    "LivingEntityMixin",
+    "PlayerMixin",
     "WitchMixin",
-    "accessor.ItemAccessor"
+    "accessor.ItemAccessor",
+    "firstaid.ArmorUtilsMixin",
+    "firstaid.ClientEventHandlerMixin",
+    "jlme.DamageHandlerEventsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

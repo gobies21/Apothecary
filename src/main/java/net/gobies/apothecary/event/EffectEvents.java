@@ -10,7 +10,6 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
@@ -34,16 +33,11 @@ public class EffectEvents {
 
     @SubscribeEvent
     public void onLivingHurt(LivingHurtEvent event) {
+        if (!CommonConfig.APOTHECARY_ENABLED.get()) return;
         LivingEntity livingEntity = event.getEntity();
         DamageSource source = event.getSource();
-        Entity entity = event.getEntity();
         float damageDealt = event.getAmount();
         if (source.getEntity() instanceof LivingEntity attacker) {
-            if (attacker.hasEffect(AEffects.Wrath.get())) {
-                int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Wrath.get())).getAmplifier();
-                float increasedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.WRATH_DAMAGE_INCREASE.get() * (amplifier + 1))));
-                event.setAmount(increasedDamage);
-            }
             if (source.is(DamageTypes.ARROW)) {
                 if (attacker.hasEffect(AEffects.Archery.get())) {
                     int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Archery.get())).getAmplifier();
@@ -59,11 +53,6 @@ public class EffectEvents {
                     event.setAmount(reducedDamage);
                 }
             }
-            if (attacker.hasEffect(AEffects.Feeble.get())) {
-                int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Feeble.get())).getAmplifier();
-                float reducedDamage = event.getAmount() * (1.0f - (0.10f * (amplifier + 1)));
-                event.setAmount(reducedDamage);
-            }
             if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
                 if (attacker.hasEffect(AEffects.MagicPower.get())) {
                     int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.MagicPower.get())).getAmplifier();
@@ -77,13 +66,6 @@ public class EffectEvents {
                 }
             }
         }
-        if (entity instanceof LivingEntity defender) {
-            if (defender.hasEffect(AEffects.Vulnerable.get())) {
-                int amplifier = Objects.requireNonNull(defender.getEffect(AEffects.Vulnerable.get())).getAmplifier();
-                float reducedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.VULNERABLE_DAMAGE_TAKEN.get() * (amplifier + 1))));
-                event.setAmount(reducedDamage);
-            }
-        }
         if (livingEntity.hasEffect(AEffects.Thorns.get()) && source.getEntity() != null && source.getEntity() instanceof LivingEntity attacker) {
             int amplifier = Objects.requireNonNull(livingEntity.getEffect(AEffects.Thorns.get())).getAmplifier();
             float damageReflect = (float) (damageDealt * CommonConfig.THORNS_DAMAGE_REFLECT.get() * (amplifier + 1)) + 1;
@@ -93,6 +75,7 @@ public class EffectEvents {
             attacker.hurt(thornsDamage, damageReflect);
         }
     }
+
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onMobEffectApplicable(MobEffectEvent.Applicable event) {

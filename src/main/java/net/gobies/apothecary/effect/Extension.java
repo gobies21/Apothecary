@@ -54,10 +54,11 @@ public class Extension extends MobEffect {
                     int extensionCap = (20 * CommonConfig.EXTENSION_CAP.get()) + 10;
                     int durationToAdd = 20 * 15 * (pAmplifier + 1);
                     int newDuration = Math.min(currentDuration + durationToAdd, extensionCap);
-                    int amplifier = effectInstance.getAmplifier();
 
-                    entity.removeEffect(effect);
-                    entity.addEffect(new MobEffectInstance(effect, newDuration, amplifier));
+                    if (!(currentDuration == -1)) {
+                        entity.removeEffect(effect);
+                        entity.addEffect(new MobEffectInstance(effect, newDuration, effectInstance.getAmplifier(), effectInstance.isAmbient(), effectInstance.isVisible(), effectInstance.showIcon()));
+                    }
                 }
             }
         } else {

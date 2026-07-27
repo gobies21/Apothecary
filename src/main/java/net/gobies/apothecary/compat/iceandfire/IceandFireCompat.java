@@ -27,6 +27,7 @@ public class IceandFireCompat {
 
     @SubscribeEvent
     public void onMobEffectApplicable(MobEffectEvent.Applicable event) {
+        if (!CommonConfig.APOTHECARY_ENABLED.get()) return;
         Entity entity = event.getEntity();
         if (isLightningDragon(entity) && event.getEffectInstance().getEffect() == AEffects.Shocked.get()) {
             event.setResult(MobEffectEvent.Result.DENY);

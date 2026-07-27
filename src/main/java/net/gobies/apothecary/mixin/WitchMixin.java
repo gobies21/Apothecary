@@ -35,6 +35,7 @@ public abstract class WitchMixin {
             cancellable = true
     )
     private void apothecaryPotions(LivingEntity pTarget, float pDistanceFactor, CallbackInfo ci) {
+        if (!CommonConfig.APOTHECARY_ENABLED.get()) return;
         if (CommonConfig.ENABLE_WORLD_EVENTS.get()) {
             Witch witch = (Witch) (Object) this;
             long currentTime = witch.level().getGameTime();

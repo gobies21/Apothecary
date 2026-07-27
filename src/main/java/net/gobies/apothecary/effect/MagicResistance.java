@@ -1,6 +1,5 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AAttributes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -13,27 +12,27 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 import java.util.UUID;
 
-public class Feeble extends MobEffect {
-    public Feeble(MobEffectCategory category, int color) {
+public class MagicResistance extends MobEffect {
+    private static final UUID MAGIC_RESISTANCE = UUID.fromString("cc47d5b8-0525-403a-a631-a9f3e282ff39");
+
+    public MagicResistance(MobEffectCategory category, int color) {
         super(category, color);
     }
 
-    private static final UUID DAMAGE_MULTIPLIER = UUID.fromString("0ba1e095-c2e9-4cc2-9c8f-0c6872294861");
-
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
-        this.getAttributeModifiers().put(AAttributes.DAMAGE_MULTIPLIER.get(), createModifier());
+        this.getAttributeModifiers().put(AAttributes.MAGIC_RESISTANCE.get(), createModifier());
         super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
     }
 
     @Override
     public @NotNull Map<Attribute, AttributeModifier> getAttributeModifiers() {
         Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
-        modifiers.put(AAttributes.DAMAGE_MULTIPLIER.get(), createModifier());
+        modifiers.put(AAttributes.MAGIC_RESISTANCE.get(), createModifier());
         return modifiers;
     }
 
     private AttributeModifier createModifier() {
-        return new AttributeModifier(DAMAGE_MULTIPLIER, this::getDescriptionId, -CommonConfig.FEEBLE_DAMAGE_DECREASE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
+        return new AttributeModifier(MAGIC_RESISTANCE, this::getDescriptionId, 2, AttributeModifier.Operation.ADDITION);
     }
 }

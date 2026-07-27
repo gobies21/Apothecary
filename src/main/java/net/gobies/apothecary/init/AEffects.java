@@ -28,6 +28,7 @@ public class AEffects {
     public static final RegistryObject<MobEffect> MagicDrain;
     public static final RegistryObject<MobEffect> ManaRegeneration;
     public static final RegistryObject<MobEffect> ManaExhaustion;
+    public static final RegistryObject<MobEffect> MagicResistance;
     public static final RegistryObject<MobEffect> Thorns;
     public static final RegistryObject<MobEffect> Confusion;
     public static final RegistryObject<MobEffect> Purification;
@@ -42,7 +43,7 @@ public class AEffects {
 
     public static final RegistryObject<MobEffect> PotionSickness;
 
-    public static void register (IEventBus eventBus) {
+    public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }
 
@@ -65,6 +66,7 @@ public class AEffects {
         MagicDrain = EFFECTS.register("magic_drain", () -> new MagicDrain(MobEffectCategory.HARMFUL, 0x520083));
         ManaRegeneration = EFFECTS.register("mana_regeneration", () -> new ManaRegeneration(MobEffectCategory.BENEFICIAL, 0xFF00FF));
         ManaExhaustion = EFFECTS.register("mana_exhaustion", () -> new ManaExhaustion(MobEffectCategory.HARMFUL, 0x990099));
+        MagicResistance = EFFECTS.register("magic_resistance", () -> new MagicResistance(MobEffectCategory.BENEFICIAL, 0xEA79E4));
         Thorns = EFFECTS.register("thorns", () -> new Thorns(MobEffectCategory.BENEFICIAL, 0x65FE08));
         Confusion = EFFECTS.register("confusion", () -> new Confusion(MobEffectCategory.HARMFUL, 0xFFFF00));
         Purification = EFFECTS.register("purification", () -> new Purification(MobEffectCategory.BENEFICIAL, 0xFFB6C1));

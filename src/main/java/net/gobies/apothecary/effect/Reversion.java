@@ -44,7 +44,7 @@ public class Reversion extends MobEffect {
             List<MobEffectInstance> effectsToUpdate = new ArrayList<>(entity.getActiveEffects());
             for (MobEffectInstance effectInstance : effectsToUpdate) {
                 MobEffect effect = effectInstance.getEffect();
-                if (effect == this || effect == AEffects.PotionSickness.get() || effect.getCategory() != MobEffectCategory.HARMFUL) continue;
+                if (effect == this || effect == AEffects.PotionSickness.get() || effect.getCategory() != MobEffectCategory.BENEFICIAL) continue;
                 int currentDuration = effectInstance.getDuration();
                 if (currentDuration != -1) {
                     int durationToRemove = 20 * 15 * (pAmplifier + 1);
