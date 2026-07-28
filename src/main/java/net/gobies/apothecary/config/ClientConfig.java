@@ -37,7 +37,7 @@ public class ClientConfig {
         ENABLE_ENCHANTED_GLOW = BUILDER.comment("Enable potions having enchanted glow").define("Glow", false);
         ENABLE_POTION_DESCRIPTIONS = BUILDER.comment("Enable potion descriptions as tooltips").define("Descriptions", false);
         ADDITIONAL_POTION_TOOLTIPS = BUILDER.comment("Shows information about what the potions do in their tooltips").define("Additional_Tooltips", true);
-        ENABLE_ARMOR_OVERLAYS = BUILDER.comment("Enable armor overlays to show for things like toughness and over-capped armor on the armor bar").define("Armor_Overlays", true);
+        ENABLE_ARMOR_OVERLAYS = BUILDER.comment("Enable armor overlays to show over-capped armor, armor toughness and damage resistance on the armor bar").define("Armor_Overlays", true);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

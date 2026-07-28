@@ -32,7 +32,6 @@ public class Corruption extends MobEffect {
         return true;
     }
 
-
     @Override
     public void applyInstantenousEffect(@Nullable Entity pSource, @Nullable Entity pIndirectSource, @NotNull LivingEntity entity, int pAmplifier, double pHealth) {
         List<MobEffect> effectsToRemove = new ArrayList<>();

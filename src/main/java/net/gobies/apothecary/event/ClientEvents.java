@@ -45,11 +45,6 @@ public class ClientEvents {
                 MobEffect getEffect = effectInstance.getEffect();
 
                 // Positive effects
-                if (getEffect == AEffects.Archery.get()) {
-                    int arrowDamage = CommonConfig.ARCHERY_DAMAGE_INCREASE.get() * (amplifier + 1);
-                    applyTooltips(event);
-                    event.getToolTip().add(4, (Component.literal("+" + arrowDamage + " Arrow Damage").withStyle(ChatFormatting.BLUE)));
-                }
                 if (getEffect == AEffects.Spelunker.get()) {
                     int radius = 7 * (amplifier + 1);
                     applyTooltips(event);
@@ -59,13 +54,6 @@ public class ClientEvents {
                     int damageReflect = (int) (100 * CommonConfig.THORNS_DAMAGE_REFLECT.get() * (amplifier + 1));
                     applyTooltips(event);
                     event.getToolTip().add(4, (Component.literal("+" + damageReflect + "% Damage Reflect").withStyle(ChatFormatting.BLUE)));
-                }
-
-                // Negative effects
-                if (getEffect == AEffects.Misfire.get()) {
-                    int arrowDamage = CommonConfig.MISFIRE_DAMAGE_DECREASE.get() * (amplifier + 1);
-                    applyTooltips(event);
-                    event.getToolTip().add(4, (Component.literal("-" + arrowDamage + " Arrow Damage").withStyle(ChatFormatting.RED)));
                 }
             }
         }

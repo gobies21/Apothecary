@@ -15,11 +15,11 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ManaRegeneration extends MobEffect {
-    private static final UUID MANA_REGENERATION = UUID.fromString("d20189a2-e70a-405d-9960-3d5e3e54ec63");
-
     public ManaRegeneration(MobEffectCategory category, int color) {
         super(category, color);
     }
+
+    private static final UUID MANA_REGENERATION = UUID.fromString("d20189a2-e70a-405d-9960-3d5e3e54ec63");
 
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {

@@ -61,9 +61,9 @@ public class APotions {
     public static final RegistryObject<Potion> ManaExhaustion;
     public static final RegistryObject<Potion> LongManaExhaustion;
     public static final RegistryObject<Potion> StrongManaExhaustion;
-    public static final RegistryObject<Potion> MagicResistance;
-    public static final RegistryObject<Potion> LongMagicResistance;
-    public static final RegistryObject<Potion> StrongMagicResistance;
+    public static final RegistryObject<Potion> MagicShield;
+    public static final RegistryObject<Potion> LongMagicShield;
+    public static final RegistryObject<Potion> StrongMagicShield;
     public static final RegistryObject<Potion> Confusion;
     public static final RegistryObject<Potion> LongConfusion;
     public static final RegistryObject<Potion> Thorns;
@@ -174,9 +174,9 @@ public class APotions {
         LongManaExhaustion = POTIONS.register("long_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),1800,0)));
         StrongManaExhaustion = POTIONS.register("strong_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),450,1)));
 
-        MagicResistance = POTIONS.register("magic_resistance", () -> new Potion(new MobEffectInstance(AEffects.MagicResistance.get(),3600,0)));
-        LongMagicResistance = POTIONS.register("long_magic_resistance", () -> new Potion(new MobEffectInstance(AEffects.MagicResistance.get(),9600,0)));
-        StrongMagicResistance = POTIONS.register("strong_magic_resistance", () -> new Potion(new MobEffectInstance(AEffects.MagicResistance.get(),1800,1)));
+        MagicShield = POTIONS.register("magic_shield", () -> new Potion(new MobEffectInstance(AEffects.MagicShield.get(),3600,0)));
+        LongMagicShield = POTIONS.register("long_magic_shield", () -> new Potion(new MobEffectInstance(AEffects.MagicShield.get(),9600,0)));
+        StrongMagicShield = POTIONS.register("strong_magic_shield", () -> new Potion(new MobEffectInstance(AEffects.MagicShield.get(),1800,1)));
 
         Confusion = POTIONS.register("confusion", ( ) -> new Potion(new MobEffectInstance(AEffects.Confusion.get(),900,0)));
         LongConfusion = POTIONS.register("long_confusion", () -> new Potion(new MobEffectInstance(AEffects.Confusion.get(),1800,0)));

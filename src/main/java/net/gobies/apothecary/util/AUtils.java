@@ -20,6 +20,22 @@ public class AUtils {
     }
 
     /**
+     * The final magic damage multiplier value of the magic damage multiplier attribute
+     * Returns the damage multiplier as a percentage, e.g. 1.5 = 50%
+     */
+    public static float getMagicDamage(double magicDamage) {
+        return (float) magicDamage;
+    }
+
+    /**
+     * The final projectile damage multiplier value of the projectile damage multiplier attribute
+     * Returns the damage multiplier as a percentage, e.g. 1.5 = 50%
+     */
+    public static float getProjectileDamage(double projectileDamage) {
+        return (float) (projectileDamage - 1.0);
+    }
+
+    /**
      * The final damage resistance value of the damage resistance attribute
      * Example: a damage resistance value of 1.2 will be converted into 0.8
      * Damage * 0.8 = 20% damage resistance
@@ -42,8 +58,8 @@ public class AUtils {
      * Example: a magic resistance value of 5 will be converted to 0.75
      * Damage * 0.75 = 25% magic resistance
      */
-    public static float getMagicResistance(double magicResistance) {
-        double magicReduction = Math.min(magicResistance * 0.05, 1.0);
+    public static float getMagicShielding(double magicShielding) {
+        double magicReduction = Math.min(magicShielding * 0.05, 1.0);
         return (float) (1.0 - magicReduction);
     }
 
@@ -88,16 +104,16 @@ public class AUtils {
         for (String entry : entries) {
             if (entry == null || entry.isEmpty()) continue;
 
-            int commaIndex = entry.indexOf(',');
-            if (commaIndex <= 0 || commaIndex == entry.length() - 1) continue;
+            int index = entry.indexOf(',');
+            if (index <= 0 || index == entry.length() - 1) continue;
 
             try {
-                String potionId = entry.substring(0, commaIndex).trim();
+                String potionId = entry.substring(0, index).trim();
                 ResourceLocation rl = ResourceLocation.tryParse(potionId);
 
                 if (rl == null || !ForgeRegistries.POTIONS.containsKey(rl)) continue;
 
-                int weight = Integer.parseInt(entry.substring(commaIndex + 1).trim());
+                int weight = Integer.parseInt(entry.substring(index + 1).trim());
                 if (weight <= 0) continue;
 
                 validPotions.add(new ValidPotion(potionId, weight));
@@ -112,11 +128,11 @@ public class AUtils {
         }
 
         int roll = random.nextInt(totalWeight);
-        int currentSum = 0;
+        int sum = 0;
 
         for (ValidPotion potion : validPotions) {
-            currentSum += potion.weight;
-            if (roll < currentSum) {
+            sum += potion.weight;
+            if (roll < sum) {
                 return potion.id;
             }
         }

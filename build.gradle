@@ -115,7 +115,6 @@ dependencies {
     implementation fg.deobf("curse.maven:spark-361579:4738952")
     implementation fg.deobf("curse.maven:attributefix-280510:7612291")
     //implementation fg.deobf("curse.maven:armor-set-bonuses-549892:6843216")
-    implementation fg.deobf("curse.maven:reforging-station-1202199:6208571")
     runtimeOnly(fg.deobf("curse.maven:crafttweaker-239197:6914010"))
     compileOnly(fg.deobf("curse.maven:first-aid-276837:5531834"))
 

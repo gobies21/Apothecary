@@ -24,7 +24,6 @@ public class AttributeEvents {
     /*
      * Final values are located in -> net.gobies.apothecary.util.AUtils
      */
-
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onLivingHurt(LivingHurtEvent event) {
         if (event.isCanceled()) return;
@@ -38,6 +37,21 @@ public class AttributeEvents {
                 double damageMultiplier = AAttributes.getDamageMultiplier(attacker);
                 finalAmount *= AUtils.getDamageMultiplier(damageMultiplier);
             }
+
+            if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
+                if (attacker.getAttribute(AAttributes.MAGIC_DAMAGE.get()) != null) {
+                    double magicDamage = AAttributes.getMagicDamage(attacker);
+                    finalAmount *= AUtils.getMagicDamage(magicDamage);
+                }
+            }
+
+
+            if (source.is(DamageTypeTags.IS_PROJECTILE)) {
+                if (attacker.getAttribute(AAttributes.PROJECTILE_DAMAGE.get()) != null) {
+                    double projectileDamage = AAttributes.getProjectileDamage(attacker);
+                    finalAmount += AUtils.getProjectileDamage(projectileDamage);
+                }
+            }
         }
 
         if (!source.is(DamageTypeTags.BYPASSES_RESISTANCE)) {
@@ -48,9 +62,9 @@ public class AttributeEvents {
         }
 
         if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
-            if (livingEntity.getAttribute(AAttributes.MAGIC_RESISTANCE.get()) != null) {
+            if (livingEntity.getAttribute(AAttributes.MAGIC_SHIELDING.get()) != null) {
                 double magicResistance = AAttributes.getMagicResistance(livingEntity);
-                finalAmount *= AUtils.getMagicResistance(magicResistance);
+                finalAmount *= AUtils.getMagicShielding(magicResistance);
             }
         }
 

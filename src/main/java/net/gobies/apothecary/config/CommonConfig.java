@@ -17,6 +17,8 @@ public class CommonConfig {
 
     public static ForgeConfigSpec.ConfigValue<Boolean> APOTHECARY_ENABLED;
     public static boolean apothecary_enabled;
+    public static ForgeConfigSpec.ConfigValue<Boolean> POTIONS_ENABLED;
+    public static boolean potions_enabled;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WORLD_EVENTS;
     public static boolean enable_world_events;
@@ -268,6 +270,7 @@ public class CommonConfig {
     static void onLoad(ModConfigEvent.Loading configEvent) {
         if (configEvent.getConfig().getFileName().equals(FILENAME)) {
             apothecary_enabled = APOTHECARY_ENABLED.get();
+            potions_enabled = POTIONS_ENABLED.get();
             max_damage_resistance = MAX_DAMAGE_RESISTANCE.get().floatValue();
             enable_world_events = ENABLE_WORLD_EVENTS.get();
             enable_iron_skin_recipe = ENABLE_IRON_SKIN_RECIPE.get();
@@ -384,6 +387,7 @@ public class CommonConfig {
     static {
         BUILDER.push("General");
         APOTHECARY_ENABLED = BUILDER.comment("Global toggle to disable this entire mod, client config, stack size, and attributes will still work if this is disabled").define("Apothecary_Enabled", true);
+        POTIONS_ENABLED = BUILDER.comment("Global toggle to disable all potions from this mod").define("Potions_Enabled", true);
         ENABLE_WORLD_EVENTS = BUILDER.comment("Enable world events (effects being able to occur in the world outside of potions)").define("World_Events", true);
         POTION_STACK_SIZE = BUILDER.comment("Max stack size of potions").defineInRange("Stack_Size", 1, 1, 64);
         MAX_DAMAGE_RESISTANCE = BUILDER.comment("Max amount of damage resistance the player can get").defineInRange("Max_Damage_Resistance", 1, 0.0, 1);

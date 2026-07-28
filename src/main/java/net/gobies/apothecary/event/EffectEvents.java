@@ -6,7 +6,6 @@ import net.gobies.apothecary.util.BlacklistedEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -37,41 +36,11 @@ public class EffectEvents {
         LivingEntity livingEntity = event.getEntity();
         DamageSource source = event.getSource();
         float damageDealt = event.getAmount();
-        if (source.getEntity() instanceof LivingEntity attacker) {
-            if (source.is(DamageTypes.ARROW)) {
-                if (attacker.hasEffect(AEffects.Archery.get())) {
-                    int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Archery.get())).getAmplifier();
-                    int increasedDamage = (int) (event.getAmount() + CommonConfig.ARCHERY_DAMAGE_INCREASE.get() * (amplifier + 1));
-                    event.setAmount(increasedDamage);
-                }
-                if (attacker.hasEffect(AEffects.Misfire.get())) {
-                    int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.Misfire.get())).getAmplifier();
-                    int reducedDamage = (int) (event.getAmount() - CommonConfig.MISFIRE_DAMAGE_DECREASE.get() * (amplifier + 1));
-                    if (reducedDamage < 1) {
-                        reducedDamage = 1;
-                    }
-                    event.setAmount(reducedDamage);
-                }
-            }
-            if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
-                if (attacker.hasEffect(AEffects.MagicPower.get())) {
-                    int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.MagicPower.get())).getAmplifier();
-                    float increasedDamage = (float) (event.getAmount() * (1.0f + (CommonConfig.MAGIC_POWER_INCREASE.get() * (amplifier + 1))));
-                    event.setAmount(increasedDamage);
-                }
-                if (attacker.hasEffect(AEffects.MagicDrain.get())) {
-                    int amplifier = Objects.requireNonNull(attacker.getEffect(AEffects.MagicDrain.get())).getAmplifier();
-                    float reducedDamage = (float) (event.getAmount() * (1.0f - (CommonConfig.MAGIC_DRAIN_DECREASE.get() * (amplifier + 1))));
-                    event.setAmount(reducedDamage);
-                }
-            }
-        }
         if (livingEntity.hasEffect(AEffects.Thorns.get()) && source.getEntity() != null && source.getEntity() instanceof LivingEntity attacker) {
             int amplifier = Objects.requireNonNull(livingEntity.getEffect(AEffects.Thorns.get())).getAmplifier();
             float damageReflect = (float) (damageDealt * CommonConfig.THORNS_DAMAGE_REFLECT.get() * (amplifier + 1)) + 1;
 
             DamageSource thornsDamage = source.getEntity().damageSources().thorns(livingEntity);
-
             attacker.hurt(thornsDamage, damageReflect);
         }
     }

@@ -15,7 +15,7 @@ import java.util.Objects;
 public class ABrewing {
 
     public static void register() {
-        if (CommonConfig.APOTHECARY_ENABLED.get()) {
+        if (CommonConfig.APOTHECARY_ENABLED.get() && CommonConfig.POTIONS_ENABLED.get()) {
             if (CommonConfig.ENABLE_IRON_SKIN_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.IRON_SKIN_INGREDIENT.get()))), APotions.IronSkin.get());
                 BrewingHandler.addBrewingRecipe(APotions.IronSkin.get(), Ingredient.of(Items.REDSTONE), APotions.LongIronSkin.get());
@@ -161,23 +161,23 @@ public class ABrewing {
                     BrewingHandler.addBrewingRecipe(APotions.ManaExhaustion.get(), Ingredient.of(Items.REDSTONE), APotions.LongManaExhaustion.get());
                     BrewingHandler.addBrewingRecipe(APotions.ManaExhaustion.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongManaExhaustion.get());
                 }
-
-                if (CommonConfig.ENABLE_MAGIC_POWER_RECIPE.get()) {
-                    BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_THREE.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MAGIC_POWER_INGREDIENT.get()))), APotions.MagicPower.get());
-                    BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicPower.get());
-                    BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicPower.get());
-                }
-
-                if (CommonConfig.ENABLE_MAGIC_DRAIN_RECIPE.get()) {
-                    BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MAGIC_DRAIN_INGREDIENT.get())))), APotions.MagicDrain.get());
-                    BrewingHandler.addBrewingRecipe(APotions.MagicDrain.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicDrain.get());
-                    BrewingHandler.addBrewingRecipe(APotions.MagicDrain.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicDrain.get());
-                }
             }
 
-            BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft:lapis_block"))), APotions.MagicResistance.get());
-            BrewingHandler.addBrewingRecipe(APotions.MagicResistance.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicResistance.get());
-            BrewingHandler.addBrewingRecipe(APotions.MagicResistance.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicResistance.get());
+            if (CommonConfig.ENABLE_MAGIC_POWER_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_THREE.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MAGIC_POWER_INGREDIENT.get()))), APotions.MagicPower.get());
+                BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicPower.get());
+                BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicPower.get());
+            }
+
+            if (CommonConfig.ENABLE_MAGIC_DRAIN_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MAGIC_DRAIN_INGREDIENT.get())))), APotions.MagicDrain.get());
+                BrewingHandler.addBrewingRecipe(APotions.MagicDrain.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicDrain.get());
+                BrewingHandler.addBrewingRecipe(APotions.MagicDrain.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicDrain.get());
+            }
+
+            BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft:lapis_block"))), APotions.MagicShield.get());
+            BrewingHandler.addBrewingRecipe(APotions.MagicShield.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicShield.get());
+            BrewingHandler.addBrewingRecipe(APotions.MagicShield.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicShield.get());
 
             if (CommonConfig.ENABLE_SHUFFLING_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.SHUFFLING_INGREDIENT.get()))), APotions.Shuffling.get());

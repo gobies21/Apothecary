@@ -12,8 +12,10 @@ import net.minecraftforge.registries.RegistryObject;
 public class AAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTES;
     public static final RegistryObject<Attribute> DAMAGE_RESISTANCE;
-    public static final RegistryObject<Attribute> MAGIC_RESISTANCE;
     public static final RegistryObject<Attribute> DAMAGE_MULTIPLIER;
+    public static final RegistryObject<Attribute> MAGIC_SHIELDING;
+    public static final RegistryObject<Attribute> MAGIC_DAMAGE;
+    public static final RegistryObject<Attribute> PROJECTILE_DAMAGE;
     public static final RegistryObject<Attribute> JUMP_HEIGHT;
     public static final RegistryObject<Attribute> DIG_SPEED;
 
@@ -32,24 +34,42 @@ public class AAttributes {
         DAMAGE_RESISTANCE = ATTRIBUTES.register("damage_resistance", () -> new RangedAttribute("attribute.name.apothecary.damage_resistance", 1.0D, -1024.0D, 2.0D).setSyncable(true));
 
         /*
-        * Reduces or increases magic damage taken based on the value
-        * Every (1) value is equivalent to 5%
-        * Default = 0.0 (no magic resistance)
-        */
-        MAGIC_RESISTANCE = ATTRIBUTES.register("magic_resistance", () -> new RangedAttribute("attribute.name.apothecary.magic_resistance", 0.0D, -20.0D, 20.0D).setSyncable(true));
-
-        /*
-        * Increases damage dealt based on the value
+        * Increases ALL damage dealt based on the value
         * Every (0.1) value is equivalent to 10%
         * Default = 1.0 (no damage multiplier)
         */
         DAMAGE_MULTIPLIER = ATTRIBUTES.register("damage_multiplier", () -> new RangedAttribute("attribute.name.apothecary.damage_multiplier", 1.0D, 0.0D, 1024.0D).setSyncable(true));
 
         /*
-         * Increases or decreases jump height based on the value
-         * Every (0.5) value is half a block
-         * Default = 1.0 (no extra jumping height)
-         */
+        * Reduces or increases magic damage taken based on the value
+        * Every (1) value is equivalent to 5%
+        * Default = 0.0 (no magic resistance)
+        * If Irons Spellbooks is installed this attribute will also increase resistance against spell damage
+        * Has only half of the effectiveness against spell damage
+        */
+        MAGIC_SHIELDING = ATTRIBUTES.register("magic_shielding", () -> new RangedAttribute("attribute.name.apothecary.magic_shielding", 0.0D, -20.0D, 20.0D).setSyncable(true));
+
+        /*
+        * Increases magic damage dealt based on the value
+        * Every (0.1) value is equivalent to 10%
+        * Default = 1.0 (no damage multiplier)
+        * If Irons Spellbooks is installed this attribute will also increase spell damage
+        */
+        MAGIC_DAMAGE = ATTRIBUTES.register("magic_damage", () -> new RangedAttribute("attribute.name.apothecary.magic_damage", 1.0D, 0.0D, 1024.0D).setSyncable(true));
+
+        /*
+        * Increases projectile damage based on the value
+        * Every (1) value is equivalent to +1 projectile damage
+        * Default = 1.0 (no damage increase)
+        * This attribute is additive by default, using multiply base can multiply projectile damage
+        */
+        PROJECTILE_DAMAGE = ATTRIBUTES.register("projectile_damage", () -> new RangedAttribute("attribute.name.apothecary.projectile_damage", 1.0D, 0.0D, 1024.0D).setSyncable(true));
+
+        /*
+        * Increases or decreases jump height based on the value
+        * Every (0.5) value is half a block
+        * Default = 1.0 (no extra jumping height)
+        */
         JUMP_HEIGHT = ATTRIBUTES.register("jump_height", () -> new RangedAttribute("attribute.name.apothecary.jump_height", 1.0D, 0.0D, 1024.0D).setSyncable(true));
 
         /*
@@ -64,12 +84,20 @@ public class AAttributes {
         return getValue(livingEntity, DAMAGE_RESISTANCE.get());
     }
 
-    public static double getMagicResistance(LivingEntity livingEntity) {
-        return getValue(livingEntity, MAGIC_RESISTANCE.get());
-    }
-
     public static double getDamageMultiplier(LivingEntity livingEntity) {
         return getValue(livingEntity, DAMAGE_MULTIPLIER.get());
+    }
+
+    public static double getMagicResistance(LivingEntity livingEntity) {
+        return getValue(livingEntity, MAGIC_SHIELDING.get());
+    }
+
+    public static double getMagicDamage(LivingEntity livingEntity) {
+        return getValue(livingEntity, MAGIC_DAMAGE.get());
+    }
+
+    public static double getProjectileDamage(LivingEntity livingEntity) {
+        return getValue(livingEntity, PROJECTILE_DAMAGE.get());
     }
 
     public static double getJumpHeight(LivingEntity livingEntity) {

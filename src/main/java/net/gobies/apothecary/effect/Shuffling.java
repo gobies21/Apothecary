@@ -15,7 +15,6 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Shuffling extends MobEffect {
-
     public Shuffling(MobEffectCategory category, int color) {
         super(category, color);
     }

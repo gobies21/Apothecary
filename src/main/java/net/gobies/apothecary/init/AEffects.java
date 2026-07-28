@@ -28,7 +28,7 @@ public class AEffects {
     public static final RegistryObject<MobEffect> MagicDrain;
     public static final RegistryObject<MobEffect> ManaRegeneration;
     public static final RegistryObject<MobEffect> ManaExhaustion;
-    public static final RegistryObject<MobEffect> MagicResistance;
+    public static final RegistryObject<MobEffect> MagicShield;
     public static final RegistryObject<MobEffect> Thorns;
     public static final RegistryObject<MobEffect> Confusion;
     public static final RegistryObject<MobEffect> Purification;
@@ -49,34 +49,34 @@ public class AEffects {
 
     static {
         EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, "apothecary");
-        IronSkin = EFFECTS.register("iron_skin", () -> new IronSkin(MobEffectCategory.BENEFICIAL, 0xDDDFE1));
-        BrokenArmor = EFFECTS.register("broken_armor", () -> new BrokenArmor(MobEffectCategory.HARMFUL, 0x848587));
-        DiamondSkin = EFFECTS.register("diamond_skin", () -> new DiamondSkin(MobEffectCategory.BENEFICIAL, 0x7DF9FF));
-        RupturedArmor = EFFECTS.register("ruptured_armor", () -> new RupturedArmor(MobEffectCategory.HARMFUL, 0x3E7C7F));
+        IronSkin = EFFECTS.register("iron_skin", () -> new IronSkin(MobEffectCategory.BENEFICIAL, 0xD9D9D9));
+        BrokenArmor = EFFECTS.register("broken_armor", () -> new BrokenArmor(MobEffectCategory.HARMFUL, 0x727272));
+        DiamondSkin = EFFECTS.register("diamond_skin", () -> new DiamondSkin(MobEffectCategory.BENEFICIAL, 0x4AEDD9));
+        RupturedArmor = EFFECTS.register("ruptured_armor", () -> new RupturedArmor(MobEffectCategory.HARMFUL, 0x2A8478));
         Archery = EFFECTS.register("archery", () -> new Archery(MobEffectCategory.BENEFICIAL, 0xFFC067));
-        Misfire = EFFECTS.register("misfire", () -> new Misfire(MobEffectCategory.HARMFUL, 0x00008B));
+        Misfire = EFFECTS.register("misfire", () -> new Misfire(MobEffectCategory.HARMFUL, 0x99733E));
         Wrath = EFFECTS.register("wrath", () -> new Wrath(MobEffectCategory.BENEFICIAL, 0x8B0000));
-        Feeble = EFFECTS.register("feeble", () -> new Feeble(MobEffectCategory.HARMFUL, 0x4D3A8F));
-        Vulnerable = EFFECTS.register("vulnerable", () -> new Vulnerable(MobEffectCategory.HARMFUL, 0x333333));
+        Feeble = EFFECTS.register("feeble", () -> new Feeble(MobEffectCategory.HARMFUL, 0x873737));
+        Vulnerable = EFFECTS.register("vulnerable", () -> new Vulnerable(MobEffectCategory.HARMFUL, 0xFF0000));
         Flight = EFFECTS.register("flight", () -> new Flight(MobEffectCategory.BENEFICIAL, 0x63C5DA));
         Reach = EFFECTS.register("reach", () -> new Reach(MobEffectCategory.BENEFICIAL, 0xCA5CDD));
         Repairing = EFFECTS.register("repairing", () -> new Repairing(MobEffectCategory.BENEFICIAL, 0x008000));
         Corrosion = EFFECTS.register("corrosion", () -> new Corrosion(MobEffectCategory.HARMFUL, 0x52712D));
         MagicPower = EFFECTS.register("magic_power", () -> new MagicPower(MobEffectCategory.BENEFICIAL, 0x7600BC));
-        MagicDrain = EFFECTS.register("magic_drain", () -> new MagicDrain(MobEffectCategory.HARMFUL, 0x520083));
+        MagicDrain = EFFECTS.register("magic_drain", () -> new MagicDrain(MobEffectCategory.HARMFUL, 0x4A186B));
         ManaRegeneration = EFFECTS.register("mana_regeneration", () -> new ManaRegeneration(MobEffectCategory.BENEFICIAL, 0xFF00FF));
         ManaExhaustion = EFFECTS.register("mana_exhaustion", () -> new ManaExhaustion(MobEffectCategory.HARMFUL, 0x990099));
-        MagicResistance = EFFECTS.register("magic_resistance", () -> new MagicResistance(MobEffectCategory.BENEFICIAL, 0xEA79E4));
+        MagicShield = EFFECTS.register("magic_shield", () -> new MagicShield(MobEffectCategory.BENEFICIAL, 0xEA79E4));
         Thorns = EFFECTS.register("thorns", () -> new Thorns(MobEffectCategory.BENEFICIAL, 0x65FE08));
         Confusion = EFFECTS.register("confusion", () -> new Confusion(MobEffectCategory.HARMFUL, 0xFFFF00));
         Purification = EFFECTS.register("purification", () -> new Purification(MobEffectCategory.BENEFICIAL, 0xFFB6C1));
         Corruption = EFFECTS.register("corruption", () -> new Corruption(MobEffectCategory.HARMFUL, 0x2B0F3D));
-        Burning = EFFECTS.register("burning", () -> new Burning(MobEffectCategory.HARMFUL, 0xC25811));
-        Shocked = EFFECTS.register("shocked", () -> new Shocked(MobEffectCategory.HARMFUL, 0x8F00FF));
+        Burning = EFFECTS.register("burning", () -> new Burning(MobEffectCategory.HARMFUL, 0xFF7F00));
+        Shocked = EFFECTS.register("shocked", () -> new Shocked(MobEffectCategory.HARMFUL, 0x644CB2));
         Shuffling = EFFECTS.register("shuffling", () -> new Shuffling(MobEffectCategory.HARMFUL, 0x00008B));
         Lightning = EFFECTS.register("lightning", () -> new Lightning(MobEffectCategory.HARMFUL, 0x93B9DF));
-        Spelunker = EFFECTS.register("spelunker", () -> new Spelunker(MobEffectCategory.BENEFICIAL, 0xC9C92C));
-        Extension = EFFECTS.register("extension", () -> new Extension(MobEffectCategory.BENEFICIAL, 0x66356E));
+        Spelunker = EFFECTS.register("spelunker", () -> new Spelunker(MobEffectCategory.BENEFICIAL, 0xEFEF4C));
+        Extension = EFFECTS.register("extension", () -> new Extension(MobEffectCategory.BENEFICIAL, 0xFFFFFF));
         Reversion = EFFECTS.register("reversion", () -> new Reversion(MobEffectCategory.HARMFUL, 0x4048A0));
 
         PotionSickness = EFFECTS.register("potion_sickness", () -> new PotionSickness(MobEffectCategory.HARMFUL, 0xB374C9));

@@ -1,11 +1,14 @@
 package net.gobies.apothecary.compat.ironsspellbooks;
 
+import io.redspace.ironsspellbooks.api.events.SpellDamageEvent;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import io.redspace.ironsspellbooks.entity.mobs.dead_king_boss.DeadKingBoss;
 import io.redspace.ironsspellbooks.entity.mobs.necromancer.NecromancerEntity;
 import io.redspace.ironsspellbooks.registries.MobEffectRegistry;
 import net.gobies.apothecary.config.CommonConfig;
+import net.gobies.apothecary.init.AAttributes;
 import net.gobies.apothecary.init.AEffects;
+import net.gobies.apothecary.util.AUtils;
 import net.gobies.apothecary.util.DurationUtils;
 import net.gobies.apothecary.util.ModLoadedUtil;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -47,19 +50,35 @@ public class IronsSpellbooksCompat {
             }
         }
     }
-    public static Attribute spellPowerAttribute() {
-        return AttributeRegistry.SPELL_POWER.get();
+
+    @SubscribeEvent
+    public void onSpellDamage(SpellDamageEvent event) {
+        if (event.getEntity().level().isClientSide()) return;
+        LivingEntity victim = event.getEntity();
+        float finalAmount = event.getAmount();
+
+        if (event.getSpellDamageSource().getEntity() instanceof LivingEntity attacker) {
+            if (attacker.getAttribute(AAttributes.MAGIC_DAMAGE.get()) != null) {
+                double magicDamage = AAttributes.getMagicDamage(attacker);
+                finalAmount *= AUtils.getMagicDamage(magicDamage);
+            }
+        }
+
+        if (victim.getAttribute(AAttributes.MAGIC_SHIELDING.get()) != null) {
+            double magicResistance = AAttributes.getMagicResistance(victim);
+            double halvedResistance = magicResistance * 0.5D;
+            finalAmount *= AUtils.getMagicShielding(halvedResistance);
+        }
+
+        event.setAmount(Math.max(0, finalAmount));
     }
 
     public static Attribute manaRegenerationAttribute() {
         return AttributeRegistry.MANA_REGEN.get();
     }
 
-    public static Attribute spellResistanceAttribute() {
-        return AttributeRegistry.SPELL_RESIST.get();
-    }
-
     public static MobEffectInstance getOakSkinEffect(Player player) {
+        //OakskinEffect
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
             return player.getEffect(MobEffectRegistry.OAKSKIN.get());
         }

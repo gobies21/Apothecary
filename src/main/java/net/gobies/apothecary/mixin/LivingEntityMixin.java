@@ -19,7 +19,7 @@ public abstract class LivingEntityMixin {
             at = @At("RETURN")
     )
     private static void addAttributes(final CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
-        cir.getReturnValue().add(AAttributes.DAMAGE_RESISTANCE.get()).add(AAttributes.MAGIC_RESISTANCE.get()).add(AAttributes.DAMAGE_MULTIPLIER.get()).add(AAttributes.JUMP_HEIGHT.get());
+        cir.getReturnValue().add(AAttributes.DAMAGE_RESISTANCE.get()).add(AAttributes.MAGIC_SHIELDING.get()).add(AAttributes.DAMAGE_MULTIPLIER.get()).add(AAttributes.JUMP_HEIGHT.get()).add(AAttributes.MAGIC_DAMAGE.get()).add(AAttributes.PROJECTILE_DAMAGE.get());
     }
 
     @Redirect(

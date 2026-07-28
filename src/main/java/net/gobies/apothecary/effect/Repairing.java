@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.Random;
 
 public class Repairing extends MobEffect {
-    private static final Random RANDOM = new Random();
-
     public Repairing(MobEffectCategory category, int color) {
         super(category, color);
     }
+
+    private static final Random RANDOM = new Random();
 
     @Override
     public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {

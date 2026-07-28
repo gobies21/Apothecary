@@ -35,9 +35,10 @@ public class NaturalBlockingHandler {
         ItemStack stack = event.getItemStack();
 
         int naturalBlockingLevel = EnchantmentHelper.getTagEnchantmentLevel(JlmeModEnchantments.natural_blocking, stack);
-        float damageResistance = JLMEConfiguration.natural_blocking_base + (JLMEConfiguration.natural_blocking_increase * naturalBlockingLevel);
+        double damageResistance = JLMEConfiguration.natural_blocking_base + (JLMEConfiguration.natural_blocking_increase * naturalBlockingLevel);
+        double roundedValue = Math.round(damageResistance * 100.0) / 100.0;
         if (naturalBlockingLevel > 0) {
-            AttributeHelper.applyModifiers(event, AAttributes.DAMAGE_RESISTANCE.get(), DAMAGE_RESISTANCE, "Damage Resistance", damageResistance);
+            AttributeHelper.applyModifiers(event, AAttributes.DAMAGE_RESISTANCE.get(), DAMAGE_RESISTANCE, "Damage Resistance", roundedValue);
         }
     }
 
@@ -48,10 +49,10 @@ public class NaturalBlockingHandler {
         DamageSource damageSource = event.getSource();
         DamageControl controller = DamageHandler.getDamageControl(damageSource);
         if (!event.getEntity().getOffhandItem().isEmpty()) {
-            int natural_blocking = event.getEntity().getOffhandItem().getEnchantmentLevel(JlmeModEnchantments.natural_blocking);
-            if (natural_blocking > 0) {
-                float blocked = controller.calculateFinalDamage(amount) * (JLMEConfiguration.natural_blocking_base + JLMEConfiguration.natural_blocking_increase * (float) natural_blocking);
-                entity.getOffhandItem().hurtAndBreak((int) ((double) blocked * (1.6 - 0.2 * (double) natural_blocking)) + 1, entity, (p) -> p.broadcastBreakEvent(EquipmentSlot.OFFHAND));
+            int naturalBlocking = event.getEntity().getOffhandItem().getEnchantmentLevel(JlmeModEnchantments.natural_blocking);
+            if (naturalBlocking > 0) {
+                float blocked = controller.calculateFinalDamage(amount) * (JLMEConfiguration.natural_blocking_base + JLMEConfiguration.natural_blocking_increase * (float) naturalBlocking);
+                entity.getOffhandItem().hurtAndBreak((int) ((double) blocked * (1.6 - 0.2 * (double) naturalBlocking)) + 1, entity, (p) -> p.broadcastBreakEvent(EquipmentSlot.OFFHAND));
             }
         }
     }

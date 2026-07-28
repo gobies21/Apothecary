@@ -15,12 +15,12 @@ import java.util.Map;
 import java.util.UUID;
 
 public class Reach extends MobEffect {
-    private static final UUID ENTITY_REACH  = UUID.fromString("65b93d0c-060d-4f86-9828-0a10bada7b48");
-    private static final UUID BLOCK_REACH = UUID.fromString("bddc419f-57c6-41a0-b2d9-3a0a1fb99b41");
-
     public Reach(MobEffectCategory category, int color) {
         super(category, color);
     }
+
+    private static final UUID ENTITY_REACH  = UUID.fromString("65b93d0c-060d-4f86-9828-0a10bada7b48");
+    private static final UUID BLOCK_REACH = UUID.fromString("bddc419f-57c6-41a0-b2d9-3a0a1fb99b41");
 
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
