@@ -16,16 +16,11 @@ public class ABrewing {
 
     public static void register() {
         if (CommonConfig.APOTHECARY_ENABLED.get() && CommonConfig.POTIONS_ENABLED.get()) {
+            // Positive Potions
             if (CommonConfig.ENABLE_IRON_SKIN_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.IRON_SKIN_INGREDIENT.get()))), APotions.IronSkin.get());
                 BrewingHandler.addBrewingRecipe(APotions.IronSkin.get(), Ingredient.of(Items.REDSTONE), APotions.LongIronSkin.get());
                 BrewingHandler.addBrewingRecipe(APotions.IronSkin.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongIronSkin.get());
-            }
-
-            if (CommonConfig.ENABLE_BROKEN_ARMOR_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(APotions.IronSkin.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.BROKEN_ARMOR_INGREDIENT.get()))), APotions.BrokenArmor.get());
-                BrewingHandler.addBrewingRecipe(APotions.BrokenArmor.get(), Ingredient.of(Items.REDSTONE), APotions.LongBrokenArmor.get());
-                BrewingHandler.addBrewingRecipe(APotions.BrokenArmor.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongBrokenArmor.get());
             }
 
             if (CommonConfig.ENABLE_DIAMOND_SKIN_RECIPE.get()) {
@@ -34,11 +29,9 @@ public class ABrewing {
                 BrewingHandler.addBrewingRecipe(APotions.DiamondSkin.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongDiamondSkin.get());
             }
 
-            if (CommonConfig.ENABLE_RUPTURED_ARMOR_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(APotions.DiamondSkin.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.RUPTURED_ARMOR_INGREDIENT.get()))), APotions.RupturedArmor.get());
-                BrewingHandler.addBrewingRecipe(APotions.RupturedArmor.get(), Ingredient.of(Items.REDSTONE), APotions.LongRupturedArmor.get());
-                BrewingHandler.addBrewingRecipe(APotions.RupturedArmor.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongRupturedArmor.get());
-            }
+            BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft:lapis_block"))), APotions.MagicShield.get());
+            BrewingHandler.addBrewingRecipe(APotions.MagicShield.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicShield.get());
+            BrewingHandler.addBrewingRecipe(APotions.MagicShield.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicShield.get());
 
             if (CommonConfig.ENABLE_ARCHERY_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.ARCHERY_INGREDIENT.get()))), APotions.Archery.get());
@@ -46,33 +39,10 @@ public class ABrewing {
                 BrewingHandler.addBrewingRecipe(APotions.Archery.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongArchery.get());
             }
 
-            if (CommonConfig.ENABLE_MISFIRE_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(APotions.Archery.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MISFIRE_INGREDIENT.get()))), APotions.Misfire.get());
-                BrewingHandler.addBrewingRecipe(APotions.Misfire.get(), Ingredient.of(Items.REDSTONE), APotions.LongMisfire.get());
-            }
-
             if (CommonConfig.ENABLE_WRATH_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.WRATH_INGREDIENT.get()))), APotions.Wrath.get());
                 BrewingHandler.addBrewingRecipe(APotions.Wrath.get(), Ingredient.of(Items.REDSTONE), APotions.LongWrath.get());
                 BrewingHandler.addBrewingRecipe(APotions.Wrath.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongWrath.get());
-            }
-
-            if (CommonConfig.ENABLE_FEEBLE_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(APotions.Wrath.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.FEEBLE_INGREDIENT.get()))), APotions.Feeble.get());
-                BrewingHandler.addBrewingRecipe(APotions.Feeble.get(), Ingredient.of(Items.REDSTONE), APotions.LongFeeble.get());
-                BrewingHandler.addBrewingRecipe(APotions.Feeble.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongFeeble.get());
-            }
-
-            if (CommonConfig.ENABLE_RESISTANCE_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.RESISTANCE_INGREDIENT.get()))), APotions.Resistance.get());
-                BrewingHandler.addBrewingRecipe(APotions.Resistance.get(), Ingredient.of(Items.REDSTONE), APotions.LongResistance.get());
-                BrewingHandler.addBrewingRecipe(APotions.Resistance.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongResistance.get());
-            }
-
-            if (CommonConfig.ENABLE_VULNERABLE_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(APotions.Resistance.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.VULNERABLE_INGREDIENT.get()))), APotions.Vulnerable.get());
-                BrewingHandler.addBrewingRecipe(APotions.Vulnerable.get(), Ingredient.of(Items.REDSTONE), APotions.LongVulnerable.get());
-                BrewingHandler.addBrewingRecipe(APotions.Vulnerable.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongVulnerable.get());
             }
 
             if (CommonConfig.ENABLE_FLIGHT_RECIPE.get()) {
@@ -91,25 +61,79 @@ public class ABrewing {
                 BrewingHandler.addBrewingRecipe(APotions.Repairing.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongRepairing.get());
             }
 
-            if (CommonConfig.ENABLE_CORROSION_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(APotions.Repairing.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.CORROSION_INGREDIENT.get()))), APotions.Corrosion.get());
-                BrewingHandler.addBrewingRecipe(APotions.Corrosion.get(), Ingredient.of(Items.REDSTONE), APotions.LongCorrosion.get());
-                BrewingHandler.addBrewingRecipe(APotions.Corrosion.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongCorrosion.get());
-            }
-
             if (CommonConfig.ENABLE_THORNS_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.THORNS_INGREDIENT.get()))), APotions.Thorns.get());
                 BrewingHandler.addBrewingRecipe(APotions.Thorns.get(), Ingredient.of(Items.REDSTONE), APotions.LongThorns.get());
                 BrewingHandler.addBrewingRecipe(APotions.Thorns.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongThorns.get());
             }
 
+            if (CommonConfig.ENABLE_PURIFICATION_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.PURIFICATION_INGREDIENT.get()))), APotions.Purification.get());
+            }
+
+            if (CommonConfig.ENABLE_SPELUNKER_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.SPELUNKER_INGREDIENT.get()))), APotions.Spelunker.get());
+                BrewingHandler.addBrewingRecipe(APotions.Spelunker.get(), Ingredient.of(Items.REDSTONE), APotions.LongSpelunker.get());
+                BrewingHandler.addBrewingRecipe(APotions.Spelunker.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongSpelunker.get());
+            }
+
+            if (CommonConfig.ENABLE_EXTENSION_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.EXTENSION_INGREDIENT.get()))), APotions.Extension.get());
+                BrewingHandler.addBrewingRecipe(APotions.Extension.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongExtension.get());
+            }
+
+            if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
+                if (CommonConfig.ENABLE_MANA_REGENERATION_RECIPE.get()) {
+                    BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_TWO.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MANA_REGENERATION_INGREDIENT.get()))), APotions.ManaRegeneration.get());
+                    BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.REDSTONE), APotions.LongManaRegeneration.get());
+                    BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongManaRegeneration.get());
+                }
+            }
+
+            if (CommonConfig.ENABLE_MAGIC_POWER_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_THREE.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MAGIC_POWER_INGREDIENT.get()))), APotions.MagicPower.get());
+                BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicPower.get());
+                BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicPower.get());
+            }
+
+            if (CommonConfig.ENABLE_BROKEN_ARMOR_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(APotions.IronSkin.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.BROKEN_ARMOR_INGREDIENT.get()))), APotions.BrokenArmor.get());
+                BrewingHandler.addBrewingRecipe(APotions.BrokenArmor.get(), Ingredient.of(Items.REDSTONE), APotions.LongBrokenArmor.get());
+                BrewingHandler.addBrewingRecipe(APotions.BrokenArmor.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongBrokenArmor.get());
+            }
+
+            if (CommonConfig.ENABLE_RUPTURED_ARMOR_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(APotions.DiamondSkin.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.RUPTURED_ARMOR_INGREDIENT.get()))), APotions.RupturedArmor.get());
+                BrewingHandler.addBrewingRecipe(APotions.RupturedArmor.get(), Ingredient.of(Items.REDSTONE), APotions.LongRupturedArmor.get());
+                BrewingHandler.addBrewingRecipe(APotions.RupturedArmor.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongRupturedArmor.get());
+            }
+
+            if (CommonConfig.ENABLE_MISFIRE_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(APotions.Archery.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MISFIRE_INGREDIENT.get()))), APotions.Misfire.get());
+                BrewingHandler.addBrewingRecipe(APotions.Misfire.get(), Ingredient.of(Items.REDSTONE), APotions.LongMisfire.get());
+            }
+
+            if (CommonConfig.ENABLE_FRAIL_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(APotions.Wrath.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.FRAIL_INGREDIENT.get()))), APotions.Frail.get());
+                BrewingHandler.addBrewingRecipe(APotions.Frail.get(), Ingredient.of(Items.REDSTONE), APotions.LongFrail.get());
+                BrewingHandler.addBrewingRecipe(APotions.Frail.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongFrail.get());
+            }
+
+            if (CommonConfig.ENABLE_VULNERABLE_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(APotions.Resistance.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.VULNERABLE_INGREDIENT.get()))), APotions.Vulnerable.get());
+                BrewingHandler.addBrewingRecipe(APotions.Vulnerable.get(), Ingredient.of(Items.REDSTONE), APotions.LongVulnerable.get());
+                BrewingHandler.addBrewingRecipe(APotions.Vulnerable.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongVulnerable.get());
+            }
+
+            if (CommonConfig.ENABLE_CORROSION_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(APotions.Repairing.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.CORROSION_INGREDIENT.get()))), APotions.Corrosion.get());
+                BrewingHandler.addBrewingRecipe(APotions.Corrosion.get(), Ingredient.of(Items.REDSTONE), APotions.LongCorrosion.get());
+                BrewingHandler.addBrewingRecipe(APotions.Corrosion.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongCorrosion.get());
+            }
+
             if (CommonConfig.ENABLE_CONFUSION_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.CONFUSION_INGREDIENT.get()))), APotions.Confusion.get());
                 BrewingHandler.addBrewingRecipe(APotions.Confusion.get(), Ingredient.of(Items.REDSTONE), APotions.LongConfusion.get());
-            }
-
-            if (CommonConfig.ENABLE_PURIFICATION_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.PURIFICATION_INGREDIENT.get()))), APotions.Purification.get());
             }
 
             if (CommonConfig.ENABLE_CORRUPTION_RECIPE.get()) {
@@ -133,40 +157,17 @@ public class ABrewing {
                 BrewingHandler.addBrewingRecipe(APotions.Lightning.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongLightning.get());
             }
 
-            if (CommonConfig.ENABLE_SPELUNKER_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.SPELUNKER_INGREDIENT.get()))), APotions.Spelunker.get());
-                BrewingHandler.addBrewingRecipe(APotions.Spelunker.get(), Ingredient.of(Items.REDSTONE), APotions.LongSpelunker.get());
-                BrewingHandler.addBrewingRecipe(APotions.Spelunker.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongSpelunker.get());
-            }
-
-            if (CommonConfig.ENABLE_EXTENSION_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.EXTENSION_INGREDIENT.get()))), APotions.Extension.get());
-                BrewingHandler.addBrewingRecipe(APotions.Extension.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongExtension.get());
-            }
-
             if (CommonConfig.ENABLE_REVERSION_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(APotions.Extension.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.REVERSION_INGREDIENT.get()))), APotions.Reversion.get());
                 BrewingHandler.addBrewingRecipe(APotions.Reversion.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongReversion.get());
             }
 
             if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-                if (CommonConfig.ENABLE_MANA_REGENERATION_RECIPE.get()) {
-                    BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_TWO.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MANA_REGENERATION_INGREDIENT.get()))), APotions.ManaRegeneration.get());
-                    BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.REDSTONE), APotions.LongManaRegeneration.get());
-                    BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongManaRegeneration.get());
-                }
-
                 if (CommonConfig.ENABLE_MANA_EXHAUSTION_RECIPE.get()) {
                     BrewingHandler.addBrewingRecipe(APotions.ManaRegeneration.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MANA_EXHAUSTION_INGREDIENT.get()))), APotions.ManaExhaustion.get());
                     BrewingHandler.addBrewingRecipe(APotions.ManaExhaustion.get(), Ingredient.of(Items.REDSTONE), APotions.LongManaExhaustion.get());
                     BrewingHandler.addBrewingRecipe(APotions.ManaExhaustion.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongManaExhaustion.get());
                 }
-            }
-
-            if (CommonConfig.ENABLE_MAGIC_POWER_RECIPE.get()) {
-                BrewingHandler.addBrewingRecipe(PotionRegistry.INSTANT_MANA_THREE.get(), Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.MAGIC_POWER_INGREDIENT.get()))), APotions.MagicPower.get());
-                BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicPower.get());
-                BrewingHandler.addBrewingRecipe(APotions.MagicPower.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicPower.get());
             }
 
             if (CommonConfig.ENABLE_MAGIC_DRAIN_RECIPE.get()) {
@@ -175,12 +176,14 @@ public class ABrewing {
                 BrewingHandler.addBrewingRecipe(APotions.MagicDrain.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicDrain.get());
             }
 
-            BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft:lapis_block"))), APotions.MagicShield.get());
-            BrewingHandler.addBrewingRecipe(APotions.MagicShield.get(), Ingredient.of(Items.REDSTONE), APotions.LongMagicShield.get());
-            BrewingHandler.addBrewingRecipe(APotions.MagicShield.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongMagicShield.get());
-
             if (CommonConfig.ENABLE_SHUFFLING_RECIPE.get()) {
                 BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.SHUFFLING_INGREDIENT.get()))), APotions.Shuffling.get());
+            }
+
+            if (CommonConfig.ENABLE_RESISTANCE_RECIPE.get()) {
+                BrewingHandler.addBrewingRecipe(Potions.AWKWARD, Ingredient.of(ForgeRegistries.ITEMS.getValue(new ResourceLocation(CommonConfig.RESISTANCE_INGREDIENT.get()))), APotions.Resistance.get());
+                BrewingHandler.addBrewingRecipe(APotions.Resistance.get(), Ingredient.of(Items.REDSTONE), APotions.LongResistance.get());
+                BrewingHandler.addBrewingRecipe(APotions.Resistance.get(), Ingredient.of(Items.GLOWSTONE_DUST), APotions.StrongResistance.get());
             }
 
             if (CommonConfig.ENABLE_HEALTH_BOOST_RECIPE.get()) {

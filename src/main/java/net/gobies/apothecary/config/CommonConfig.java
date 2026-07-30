@@ -75,12 +75,12 @@ public class CommonConfig {
     public static ForgeConfigSpec.ConfigValue<Double> WRATH_DAMAGE_INCREASE;
     public static float wrath_damage_increase;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_FEEBLE_RECIPE;
-    public static boolean enable_feeble_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> FEEBLE_INGREDIENT;
-    public static String feeble_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> FEEBLE_DAMAGE_DECREASE;
-    public static float feeble_damage_decrease;
+    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_FRAIL_RECIPE;
+    public static boolean enable_frail_recipe;
+    public static ForgeConfigSpec.ConfigValue<String> FRAIL_INGREDIENT;
+    public static String frail_ingredient;
+    public static ForgeConfigSpec.ConfigValue<Double> FRAIL_DAMAGE_DECREASE;
+    public static float frail_damage_decrease;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_FLIGHT_RECIPE;
     public static boolean enable_flight_recipe;
@@ -294,9 +294,9 @@ public class CommonConfig {
             enable_wrath_recipe = ENABLE_WRATH_RECIPE.get();
             wrath_ingredient = WRATH_INGREDIENT.get();
             wrath_damage_increase = WRATH_DAMAGE_INCREASE.get().floatValue();
-            enable_feeble_recipe = ENABLE_FEEBLE_RECIPE.get();
-            feeble_ingredient = FEEBLE_INGREDIENT.get();
-            feeble_damage_decrease = FEEBLE_DAMAGE_DECREASE.get().floatValue();
+            enable_frail_recipe = ENABLE_FRAIL_RECIPE.get();
+            frail_ingredient = FRAIL_INGREDIENT.get();
+            frail_damage_decrease = FRAIL_DAMAGE_DECREASE.get().floatValue();
             enable_flight_recipe = ENABLE_FLIGHT_RECIPE.get();
             flight_ingredient = FLIGHT_INGREDIENT.get();
             enable_reach_recipe = ENABLE_REACH_RECIPE.get();
@@ -440,10 +440,10 @@ public class CommonConfig {
         WRATH_DAMAGE_INCREASE = BUILDER.comment("Damage increase provided by wrath potions in percentage").define("Damage_Increase", 0.10);
         BUILDER.pop();
 
-        BUILDER.push("Feeble");
-        ENABLE_FEEBLE_RECIPE = BUILDER.comment("Enable the feeble potion recipe").define("Enable", true);
-        FEEBLE_INGREDIENT = BUILDER.comment("Main ingredient used to brew feeble potions").define("Ingredient", "minecraft:fermented_spider_eye");
-        FEEBLE_DAMAGE_DECREASE = BUILDER.comment("Damage decrease provided by feeble potions in percentage").define("Damage_Decrease", 0.10);
+        BUILDER.push("Frail");
+        ENABLE_FRAIL_RECIPE = BUILDER.comment("Enable the frail potion recipe").define("Enable", true);
+        FRAIL_INGREDIENT = BUILDER.comment("Main ingredient used to brew frail potions").define("Ingredient", "minecraft:fermented_spider_eye");
+        FRAIL_DAMAGE_DECREASE = BUILDER.comment("Damage decrease provided by frail potions in percentage").define("Damage_Decrease", 0.10);
         BUILDER.pop();
 
         BUILDER.push("Vulnerable");
@@ -612,7 +612,7 @@ public class CommonConfig {
         BUILDER.push("Potion_Sickness");
         ENABLE_POTION_SICKNESS = BUILDER.comment("Enable the potion sickness effect, adding a max limit of how many positive effects players can have").define("Enable_Potion_Sickness", true);
         POTION_SICKNESS_MAX_EFFECTS = BUILDER.comment("Max effects a player can have before they can get potion sickness, any number after this value will cause potion sickness").define("Max_Effects", 10);
-        POTION_SICKNESS_CHANCE = BUILDER.comment("Chance that potion sickness will cause chaos every second (in percentage)").define("Potion_Sickness_Chance", 0.02);
+        POTION_SICKNESS_CHANCE = BUILDER.comment("Chance that potion sickness will cause chaos every second (in percentage)").define("Potion_Sickness_Chance", 0.01);
         POTION_SICKNESS_WHITELIST = BUILDER.comment("A list of harmful effects potion sickness can apply, overwrites the random harmful effects, format as: 'modid:potion_id'.").defineListAllowEmpty("Effect_Whitelist", List.of(), o -> o instanceof String);
         POTION_SICKNESS_BLACKLIST = BUILDER.comment("A list of harmful effects potion sickness cannot apply, format as: 'modid:potion_id'.").defineListAllowEmpty("Effect_Blacklist", List.of("minecraft:levitation", "apothecary:shuffling", "apothecary:reversion", "apothecary:corruption"), o -> o instanceof String);
         POTION_SICKNESS_INSTANT_EFFECT = BUILDER.comment("Enable potion sickness instantly applying one random negative effect when first applied").define("Instant_Effect", false);

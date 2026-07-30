@@ -13,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 import java.util.UUID;
 
-public class Feeble extends MobEffect {
-    public Feeble(MobEffectCategory category, int color) {
+public class Frail extends MobEffect {
+    public Frail(MobEffectCategory category, int color) {
         super(category, color);
     }
 
@@ -34,6 +34,6 @@ public class Feeble extends MobEffect {
     }
 
     private AttributeModifier createModifier() {
-        return new AttributeModifier(DAMAGE_MULTIPLIER, this::getDescriptionId, -CommonConfig.FEEBLE_DAMAGE_DECREASE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
+        return new AttributeModifier(DAMAGE_MULTIPLIER, this::getDescriptionId, -CommonConfig.FRAIL_DAMAGE_DECREASE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
     }
 }

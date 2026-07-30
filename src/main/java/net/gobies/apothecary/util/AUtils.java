@@ -79,7 +79,7 @@ public class AUtils {
      * Jump Height + 0.5 = +0.5 max fall damage distance
      */
     public static float getFallDistanceModifier(double jumpHeight) {
-        return (float) (jumpHeight - 1.0D);
+        return (float) (jumpHeight - 1) * 2;
     }
 
     /**
@@ -109,9 +109,9 @@ public class AUtils {
 
             try {
                 String potionId = entry.substring(0, index).trim();
-                ResourceLocation rl = ResourceLocation.tryParse(potionId);
+                ResourceLocation resourceLocation = ResourceLocation.tryParse(potionId);
 
-                if (rl == null || !ForgeRegistries.POTIONS.containsKey(rl)) continue;
+                if (resourceLocation == null || !ForgeRegistries.POTIONS.containsKey(resourceLocation)) continue;
 
                 int weight = Integer.parseInt(entry.substring(index + 1).trim());
                 if (weight <= 0) continue;

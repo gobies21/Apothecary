@@ -59,10 +59,10 @@ public class WorldEvents {
             }
 
             if (mob instanceof Mob && ((Mob) mob).isAggressive()) {
-                currentEffect = entity.getEffect(AEffects.Feeble.get());
+                currentEffect = entity.getEffect(AEffects.Frail.get());
                 newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
                 if (entity.getRandom().nextFloat() < 0.05) {
-                    entity.addEffect(new MobEffectInstance(AEffects.Feeble.get(), randomMediumDuration, newAmplifier));
+                    entity.addEffect(new MobEffectInstance(AEffects.Frail.get(), randomMediumDuration, newAmplifier));
                 }
             }
 

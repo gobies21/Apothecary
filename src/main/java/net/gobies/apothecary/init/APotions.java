@@ -16,29 +16,18 @@ public class APotions {
     public static final RegistryObject<Potion> IronSkin;
     public static final RegistryObject<Potion> LongIronSkin;
     public static final RegistryObject<Potion> StrongIronSkin;
-    public static final RegistryObject<Potion> BrokenArmor;
-    public static final RegistryObject<Potion> LongBrokenArmor;
-    public static final RegistryObject<Potion> StrongBrokenArmor;
     public static final RegistryObject<Potion> DiamondSkin;
     public static final RegistryObject<Potion> LongDiamondSkin;
     public static final RegistryObject<Potion> StrongDiamondSkin;
-    public static final RegistryObject<Potion> RupturedArmor;
-    public static final RegistryObject<Potion> LongRupturedArmor;
-    public static final RegistryObject<Potion> StrongRupturedArmor;
+    public static final RegistryObject<Potion> MagicShield;
+    public static final RegistryObject<Potion> LongMagicShield;
+    public static final RegistryObject<Potion> StrongMagicShield;
     public static final RegistryObject<Potion> Archery;
     public static final RegistryObject<Potion> LongArchery;
     public static final RegistryObject<Potion> StrongArchery;
-    public static final RegistryObject<Potion> Misfire;
-    public static final RegistryObject<Potion> LongMisfire;
     public static final RegistryObject<Potion> Wrath;
     public static final RegistryObject<Potion> LongWrath;
     public static final RegistryObject<Potion> StrongWrath;
-    public static final RegistryObject<Potion> Feeble;
-    public static final RegistryObject<Potion> LongFeeble;
-    public static final RegistryObject<Potion> StrongFeeble;
-    public static final RegistryObject<Potion> Vulnerable;
-    public static final RegistryObject<Potion> LongVulnerable;
-    public static final RegistryObject<Potion> StrongVulnerable;
     public static final RegistryObject<Potion> Flight;
     public static final RegistryObject<Potion> Reach;
     public static final RegistryObject<Potion> LongReach;
@@ -46,30 +35,45 @@ public class APotions {
     public static final RegistryObject<Potion> Repairing;
     public static final RegistryObject<Potion> LongRepairing;
     public static final RegistryObject<Potion> StrongRepairing;
-    public static final RegistryObject<Potion> Corrosion;
-    public static final RegistryObject<Potion> LongCorrosion;
-    public static final RegistryObject<Potion> StrongCorrosion;
     public static final RegistryObject<Potion> MagicPower;
     public static final RegistryObject<Potion> LongMagicPower;
     public static final RegistryObject<Potion> StrongMagicPower;
-    public static final RegistryObject<Potion> MagicDrain;
-    public static final RegistryObject<Potion> LongMagicDrain;
-    public static final RegistryObject<Potion> StrongMagicDrain;
     public static final RegistryObject<Potion> ManaRegeneration;
     public static final RegistryObject<Potion> LongManaRegeneration;
     public static final RegistryObject<Potion> StrongManaRegeneration;
-    public static final RegistryObject<Potion> ManaExhaustion;
-    public static final RegistryObject<Potion> LongManaExhaustion;
-    public static final RegistryObject<Potion> StrongManaExhaustion;
-    public static final RegistryObject<Potion> MagicShield;
-    public static final RegistryObject<Potion> LongMagicShield;
-    public static final RegistryObject<Potion> StrongMagicShield;
-    public static final RegistryObject<Potion> Confusion;
-    public static final RegistryObject<Potion> LongConfusion;
     public static final RegistryObject<Potion> Thorns;
     public static final RegistryObject<Potion> LongThorns;
     public static final RegistryObject<Potion> StrongThorns;
     public static final RegistryObject<Potion> Purification;
+    public static final RegistryObject<Potion> Spelunker;
+    public static final RegistryObject<Potion> LongSpelunker;
+    public static final RegistryObject<Potion> StrongSpelunker;
+    public static final RegistryObject<Potion> Extension;
+    public static final RegistryObject<Potion> BrokenArmor;
+    public static final RegistryObject<Potion> LongBrokenArmor;
+    public static final RegistryObject<Potion> StrongBrokenArmor;
+    public static final RegistryObject<Potion> RupturedArmor;
+    public static final RegistryObject<Potion> LongRupturedArmor;
+    public static final RegistryObject<Potion> StrongRupturedArmor;
+    public static final RegistryObject<Potion> Misfire;
+    public static final RegistryObject<Potion> LongMisfire;
+    public static final RegistryObject<Potion> Frail;
+    public static final RegistryObject<Potion> LongFrail;
+    public static final RegistryObject<Potion> StrongFrail;
+    public static final RegistryObject<Potion> Vulnerable;
+    public static final RegistryObject<Potion> LongVulnerable;
+    public static final RegistryObject<Potion> StrongVulnerable;
+    public static final RegistryObject<Potion> Corrosion;
+    public static final RegistryObject<Potion> LongCorrosion;
+    public static final RegistryObject<Potion> StrongCorrosion;
+    public static final RegistryObject<Potion> MagicDrain;
+    public static final RegistryObject<Potion> LongMagicDrain;
+    public static final RegistryObject<Potion> StrongMagicDrain;
+    public static final RegistryObject<Potion> ManaExhaustion;
+    public static final RegistryObject<Potion> LongManaExhaustion;
+    public static final RegistryObject<Potion> StrongManaExhaustion;
+    public static final RegistryObject<Potion> Confusion;
+    public static final RegistryObject<Potion> LongConfusion;
     public static final RegistryObject<Potion> Corruption;
     public static final RegistryObject<Potion> Burning;
     public static final RegistryObject<Potion> LongBurning;
@@ -80,10 +84,6 @@ public class APotions {
     public static final RegistryObject<Potion> Shuffling;
     public static final RegistryObject<Potion> Lightning;
     public static final RegistryObject<Potion> StrongLightning;
-    public static final RegistryObject<Potion> Spelunker;
-    public static final RegistryObject<Potion> LongSpelunker;
-    public static final RegistryObject<Potion> StrongSpelunker;
-    public static final RegistryObject<Potion> Extension;
     public static final RegistryObject<Potion> StrongExtension;
     public static final RegistryObject<Potion> Reversion;
     public static final RegistryObject<Potion> StrongReversion;
@@ -92,11 +92,9 @@ public class APotions {
     public static final RegistryObject<Potion> HealthBoost;
     public static final RegistryObject<Potion> LongHealthBoost;
     public static final RegistryObject<Potion> StrongHealthBoost;
-
     public static final RegistryObject<Potion> Resistance;
     public static final RegistryObject<Potion> LongResistance;
     public static final RegistryObject<Potion> StrongResistance;
-
     public static final RegistryObject<Potion> Wither;
     public static final RegistryObject<Potion> LongWither;
     public static final RegistryObject<Potion> StrongWither;
@@ -108,41 +106,26 @@ public class APotions {
     static {
         POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, Apothecary.MOD_ID);
 
-        // Apothecary potions
+        // Positive Effects
         IronSkin = POTIONS.register("iron_skin", () -> new Potion(new MobEffectInstance(AEffects.IronSkin.get(),3600,0)));
         LongIronSkin = POTIONS.register("long_iron_skin", () -> new Potion(new MobEffectInstance(AEffects.IronSkin.get(),9600,0)));
         StrongIronSkin = POTIONS.register("strong_iron_skin", () -> new Potion(new MobEffectInstance(AEffects.IronSkin.get(),1800,1)));
-
-        BrokenArmor = POTIONS.register("broken_armor", () -> new Potion(new MobEffectInstance(AEffects.BrokenArmor.get(),900,0)));
-        LongBrokenArmor = POTIONS.register("long_broken_armor", () -> new Potion(new MobEffectInstance(AEffects.BrokenArmor.get(),1800,0)));
-        StrongBrokenArmor = POTIONS.register("strong_broken_armor", () -> new Potion(new MobEffectInstance(AEffects.BrokenArmor.get(),450,1)));
 
         DiamondSkin = POTIONS.register("diamond_skin", () -> new Potion(new MobEffectInstance(AEffects.DiamondSkin.get(),3600,0)));
         LongDiamondSkin = POTIONS.register("long_diamond_skin", () -> new Potion(new MobEffectInstance(AEffects.DiamondSkin.get(),9600,0)));
         StrongDiamondSkin = POTIONS.register("strong_diamond_skin", () -> new Potion(new MobEffectInstance(AEffects.DiamondSkin.get(),1800,1)));
 
-        RupturedArmor = POTIONS.register("ruptured_armor", () -> new Potion(new MobEffectInstance(AEffects.RupturedArmor.get(),900,0)));
-        LongRupturedArmor = POTIONS.register("long_ruptured_armor", () -> new Potion(new MobEffectInstance(AEffects.RupturedArmor.get(),1800,0)));
-        StrongRupturedArmor = POTIONS.register("strong_ruptured_armor", () -> new Potion(new MobEffectInstance(AEffects.RupturedArmor.get(),450,1)));
+        MagicShield = POTIONS.register("magic_shield", () -> new Potion(new MobEffectInstance(AEffects.MagicShield.get(),3600,0)));
+        LongMagicShield = POTIONS.register("long_magic_shield", () -> new Potion(new MobEffectInstance(AEffects.MagicShield.get(),9600,0)));
+        StrongMagicShield = POTIONS.register("strong_magic_shield", () -> new Potion(new MobEffectInstance(AEffects.MagicShield.get(),1800,1)));
 
         Archery = POTIONS.register("archery", () -> new Potion(new MobEffectInstance(AEffects.Archery.get(),3600,0)));
         LongArchery = POTIONS.register("long_archery", () -> new Potion(new MobEffectInstance(AEffects.Archery.get(),9600,0)));
         StrongArchery = POTIONS.register("strong_archery", () -> new Potion(new MobEffectInstance(AEffects.Archery.get(),1800,1)));
 
-        Misfire = POTIONS.register("misfire", () -> new Potion(new MobEffectInstance(AEffects.Misfire.get(),1800,0)));
-        LongMisfire = POTIONS.register("long_misfire", () -> new Potion(new MobEffectInstance(AEffects.Misfire.get(),4800,0)));
-
         Wrath = POTIONS.register("wrath", () -> new Potion(new MobEffectInstance(AEffects.Wrath.get(),3600,0)));
         LongWrath = POTIONS.register("long_wrath", () -> new Potion(new MobEffectInstance(AEffects.Wrath.get(),9600,0)));
         StrongWrath = POTIONS.register("strong_wrath", () -> new Potion(new MobEffectInstance(AEffects.Wrath.get(),1800,1)));
-
-        Feeble = POTIONS.register("feeble", () -> new Potion(new MobEffectInstance(AEffects.Feeble.get(),900,0)));
-        LongFeeble = POTIONS.register("long_feeble", () -> new Potion(new MobEffectInstance(AEffects.Feeble.get(),1800,0)));
-        StrongFeeble = POTIONS.register("strong_feeble", () -> new Potion(new MobEffectInstance(AEffects.Feeble.get(),450,1)));
-
-        Vulnerable = POTIONS.register("vulnerable", () -> new Potion(new MobEffectInstance(AEffects.Vulnerable.get(),900,0)));
-        LongVulnerable = POTIONS.register("long_vulnerable", () -> new Potion(new MobEffectInstance(AEffects.Vulnerable.get(),1800,0)));
-        StrongVulnerable = POTIONS.register("strong_vulnerable", () -> new Potion(new MobEffectInstance(AEffects.Vulnerable.get(),450,1)));
 
         Flight = POTIONS.register("flight", () -> new Potion(new MobEffectInstance(AEffects.Flight.get(),3600,0)));
 
@@ -154,38 +137,61 @@ public class APotions {
         LongRepairing = POTIONS.register("long_repairing", () -> new Potion(new MobEffectInstance(AEffects.Repairing.get(),9600,0)));
         StrongRepairing = POTIONS.register("strong_repairing", () -> new Potion(new MobEffectInstance(AEffects.Repairing.get(),1800,1)));
 
-        Corrosion = POTIONS.register("corrosion", () -> new Potion(new MobEffectInstance(AEffects.Corrosion.get(),900,0)));
-        LongCorrosion = POTIONS.register("long_corrosion", () -> new Potion(new MobEffectInstance(AEffects.Corrosion.get(),1800,0)));
-        StrongCorrosion = POTIONS.register("strong_corrosion", () -> new Potion(new MobEffectInstance(AEffects.Corrosion.get(),450,1)));
-
         MagicPower = POTIONS.register("magic_power", () -> new Potion(new MobEffectInstance(AEffects.MagicPower.get(),3600,0)));
         LongMagicPower = POTIONS.register("long_magic_power", () -> new Potion(new MobEffectInstance(AEffects.MagicPower.get(),9600,0)));
         StrongMagicPower = POTIONS.register("strong_magic_power", () -> new Potion(new MobEffectInstance(AEffects.MagicPower.get(),1800,1)));
 
-        MagicDrain = POTIONS.register("magic_drain", () -> new Potion(new MobEffectInstance(AEffects.MagicDrain.get(),900,0)));
-        LongMagicDrain = POTIONS.register("long_magic_drain", () -> new Potion(new MobEffectInstance(AEffects.MagicDrain.get(),1800,0)));
-        StrongMagicDrain = POTIONS.register("strong_magic_drain", () -> new Potion(new MobEffectInstance(AEffects.MagicDrain.get(),450,1)));
-
         ManaRegeneration = POTIONS.register("mana_regeneration", () -> new Potion(new MobEffectInstance(AEffects.ManaRegeneration.get(),3600,0)));
         LongManaRegeneration = POTIONS.register("long_mana_regeneration", () -> new Potion(new MobEffectInstance(AEffects.ManaRegeneration.get(),9600,0)));
         StrongManaRegeneration = POTIONS.register("strong_mana_regeneration", () -> new Potion(new MobEffectInstance(AEffects.ManaRegeneration.get(),1800,1)));
-
-        ManaExhaustion = POTIONS.register("mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),900,0)));
-        LongManaExhaustion = POTIONS.register("long_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),1800,0)));
-        StrongManaExhaustion = POTIONS.register("strong_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),450,1)));
-
-        MagicShield = POTIONS.register("magic_shield", () -> new Potion(new MobEffectInstance(AEffects.MagicShield.get(),3600,0)));
-        LongMagicShield = POTIONS.register("long_magic_shield", () -> new Potion(new MobEffectInstance(AEffects.MagicShield.get(),9600,0)));
-        StrongMagicShield = POTIONS.register("strong_magic_shield", () -> new Potion(new MobEffectInstance(AEffects.MagicShield.get(),1800,1)));
-
-        Confusion = POTIONS.register("confusion", ( ) -> new Potion(new MobEffectInstance(AEffects.Confusion.get(),900,0)));
-        LongConfusion = POTIONS.register("long_confusion", () -> new Potion(new MobEffectInstance(AEffects.Confusion.get(),1800,0)));
 
         Thorns = POTIONS.register("thorns", () -> new Potion(new MobEffectInstance(AEffects.Thorns.get(),3600,0)));
         LongThorns = POTIONS.register("long_thorns", () -> new Potion(new MobEffectInstance(AEffects.Thorns.get(),9600,0)));
         StrongThorns = POTIONS.register("strong_thorns", () -> new Potion(new MobEffectInstance(AEffects.Thorns.get(),1800,1)));
 
         Purification = POTIONS.register("purification", () -> new Potion(new MobEffectInstance(AEffects.Purification.get(),1,0)));
+
+        Spelunker = POTIONS.register("spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),3600,0)));
+        LongSpelunker = POTIONS.register("long_spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),9600,0)));
+        StrongSpelunker = POTIONS.register("strong_spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),1800,1)));
+
+        Extension = POTIONS.register("extension", () -> new Potion(new MobEffectInstance(AEffects.Extension.get(),1,0)));
+        StrongExtension = POTIONS.register("strong_extension", () -> new Potion(new MobEffectInstance(AEffects.Extension.get(),1,1)));
+
+        // Negative Effects
+        BrokenArmor = POTIONS.register("broken_armor", () -> new Potion(new MobEffectInstance(AEffects.BrokenArmor.get(),900,0)));
+        LongBrokenArmor = POTIONS.register("long_broken_armor", () -> new Potion(new MobEffectInstance(AEffects.BrokenArmor.get(),1800,0)));
+        StrongBrokenArmor = POTIONS.register("strong_broken_armor", () -> new Potion(new MobEffectInstance(AEffects.BrokenArmor.get(),450,1)));
+
+        RupturedArmor = POTIONS.register("ruptured_armor", () -> new Potion(new MobEffectInstance(AEffects.RupturedArmor.get(),900,0)));
+        LongRupturedArmor = POTIONS.register("long_ruptured_armor", () -> new Potion(new MobEffectInstance(AEffects.RupturedArmor.get(),1800,0)));
+        StrongRupturedArmor = POTIONS.register("strong_ruptured_armor", () -> new Potion(new MobEffectInstance(AEffects.RupturedArmor.get(),450,1)));
+
+        Misfire = POTIONS.register("misfire", () -> new Potion(new MobEffectInstance(AEffects.Misfire.get(),1800,0)));
+        LongMisfire = POTIONS.register("long_misfire", () -> new Potion(new MobEffectInstance(AEffects.Misfire.get(),4800,0)));
+
+        Frail = POTIONS.register("frail", () -> new Potion(new MobEffectInstance(AEffects.Frail.get(),900,0)));
+        LongFrail = POTIONS.register("long_frail", () -> new Potion(new MobEffectInstance(AEffects.Frail.get(),1800,0)));
+        StrongFrail = POTIONS.register("strong_frail", () -> new Potion(new MobEffectInstance(AEffects.Frail.get(),450,1)));
+
+        Vulnerable = POTIONS.register("vulnerable", () -> new Potion(new MobEffectInstance(AEffects.Vulnerable.get(),900,0)));
+        LongVulnerable = POTIONS.register("long_vulnerable", () -> new Potion(new MobEffectInstance(AEffects.Vulnerable.get(),1800,0)));
+        StrongVulnerable = POTIONS.register("strong_vulnerable", () -> new Potion(new MobEffectInstance(AEffects.Vulnerable.get(),450,1)));
+
+        Corrosion = POTIONS.register("corrosion", () -> new Potion(new MobEffectInstance(AEffects.Corrosion.get(),900,0)));
+        LongCorrosion = POTIONS.register("long_corrosion", () -> new Potion(new MobEffectInstance(AEffects.Corrosion.get(),1800,0)));
+        StrongCorrosion = POTIONS.register("strong_corrosion", () -> new Potion(new MobEffectInstance(AEffects.Corrosion.get(),450,1)));
+
+        MagicDrain = POTIONS.register("magic_drain", () -> new Potion(new MobEffectInstance(AEffects.MagicDrain.get(),900,0)));
+        LongMagicDrain = POTIONS.register("long_magic_drain", () -> new Potion(new MobEffectInstance(AEffects.MagicDrain.get(),1800,0)));
+        StrongMagicDrain = POTIONS.register("strong_magic_drain", () -> new Potion(new MobEffectInstance(AEffects.MagicDrain.get(),450,1)));
+
+        ManaExhaustion = POTIONS.register("mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),900,0)));
+        LongManaExhaustion = POTIONS.register("long_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),1800,0)));
+        StrongManaExhaustion = POTIONS.register("strong_mana_exhaustion", () -> new Potion(new MobEffectInstance(AEffects.ManaExhaustion.get(),450,1)));
+
+        Confusion = POTIONS.register("confusion", ( ) -> new Potion(new MobEffectInstance(AEffects.Confusion.get(),900,0)));
+        LongConfusion = POTIONS.register("long_confusion", () -> new Potion(new MobEffectInstance(AEffects.Confusion.get(),1800,0)));
 
         Corruption = POTIONS.register("corruption", () -> new Potion(new MobEffectInstance(AEffects.Corruption.get(),1,0)));
 
@@ -201,13 +207,6 @@ public class APotions {
 
         Lightning = POTIONS.register("lightning", () -> new Potion(new MobEffectInstance(AEffects.Lightning.get(),1,0)));
         StrongLightning = POTIONS.register("strong_lightning", () -> new Potion(new MobEffectInstance(AEffects.Lightning.get(),1,1)));
-
-        Spelunker = POTIONS.register("spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),3600,0)));
-        LongSpelunker = POTIONS.register("long_spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),9600,0)));
-        StrongSpelunker = POTIONS.register("strong_spelunker", () -> new Potion(new MobEffectInstance(AEffects.Spelunker.get(),1800,1)));
-
-        Extension = POTIONS.register("extension", () -> new Potion(new MobEffectInstance(AEffects.Extension.get(),1,0)));
-        StrongExtension = POTIONS.register("strong_extension", () -> new Potion(new MobEffectInstance(AEffects.Extension.get(),1,1)));
 
         Reversion = POTIONS.register("reversion", () -> new Potion(new MobEffectInstance(AEffects.Reversion.get(),1,0)));
         StrongReversion = POTIONS.register("strong_reversion", () -> new Potion(new MobEffectInstance(AEffects.Reversion.get(),1,1)));
