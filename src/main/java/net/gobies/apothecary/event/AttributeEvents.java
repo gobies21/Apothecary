@@ -6,6 +6,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -47,9 +48,24 @@ public class AttributeEvents {
 
 
             if (source.is(DamageTypeTags.IS_PROJECTILE)) {
-                if (attacker.getAttribute(AAttributes.PROJECTILE_DAMAGE.get()) != null) {
-                    double projectileDamage = AAttributes.getProjectileDamage(attacker);
-                    finalAmount += AUtils.getProjectileDamage(projectileDamage);
+                var attribute = attacker.getAttribute(AAttributes.PROJECTILE_DAMAGE.get());
+                if (attribute != null) {
+                    double flatBonus = 0.0D;
+                    double multiplier = 1.0D;
+
+                    for (var modifier : attribute.getModifiers()) {
+                        if (modifier.getOperation() == AttributeModifier.Operation.ADDITION) {
+                            flatBonus += modifier.getAmount();
+                        } else if (modifier.getOperation() == AttributeModifier.Operation.MULTIPLY_BASE) {
+                            multiplier += modifier.getAmount();
+                        } else if (modifier.getOperation() == AttributeModifier.Operation.MULTIPLY_TOTAL) {
+                            multiplier *= (1.0D + modifier.getAmount());
+                        }
+                    }
+
+                    finalAmount += AUtils.getProjectileDamage(flatBonus);
+
+                    finalAmount *= AUtils.getProjectileDamage(multiplier);
                 }
             }
         }

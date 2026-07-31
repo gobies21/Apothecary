@@ -58,12 +58,12 @@ public class AAttributes {
         MAGIC_DAMAGE = ATTRIBUTES.register("magic_damage", () -> new RangedAttribute("attribute.name.apothecary.magic_damage", 1.0D, 0.0D, 1024.0D).setSyncable(true));
 
         /*
-        * Increases projectile damage based on the value
-        * Every (1) value is equivalent to +1 projectile damage
-        * Default = 1.0 (no damage increase)
-        * This attribute is additive by default, using multiply base can multiply projectile damage
+        * Increases projectile damage based on the value, the way the attribute was given matters
+        * ADDITION = Every (1) value is equivalent to +1 projectile damage (flat damage)
+        * MULTIPLY BASE - Every (0.1) value is equivalent to 10% (multiplied  damage)
+        * If addition and multiply base modifiers are present the formula is = (projectile damage + flat damage) * multiplied damage
         */
-        PROJECTILE_DAMAGE = ATTRIBUTES.register("projectile_damage", () -> new RangedAttribute("attribute.name.apothecary.projectile_damage", 1.0D, 0.0D, 1024.0D).setSyncable(true));
+        PROJECTILE_DAMAGE = ATTRIBUTES.register("projectile_damage", () -> new RangedAttribute("attribute.name.apothecary.projectile_damage", 1.0D, -1024.0D, 1024.0D).setSyncable(true));
 
         /*
         * Increases or decreases jump height based on the value

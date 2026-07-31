@@ -32,7 +32,7 @@ public class AUtils {
      * Returns the damage multiplier as a percentage, e.g. 1.5 = 50%
      */
     public static float getProjectileDamage(double projectileDamage) {
-        return (float) (projectileDamage - 1.0);
+        return (float) (projectileDamage);
     }
 
     /**
