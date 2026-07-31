@@ -1,14 +1,12 @@
 package net.gobies.apothecary.client.overlay;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbooksCompat;
 import net.gobies.apothecary.compat.moreartifacts.MoreArtifactsCompat;
 import net.gobies.apothecary.config.ClientConfig;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AAttributes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
@@ -153,10 +151,6 @@ public class ArmorOverlay {
 
         resistance += MoreArtifactsCompat.getDamageReduction(player);
 
-        MobEffectInstance oakSkinEffect = IronsSpellbooksCompat.getOakSkinEffect(player);
-        if (oakSkinEffect != null) {
-            resistance += ((oakSkinEffect.getAmplifier() + 1) * 0.05) + 0.15;
-        }
         double cap = CommonConfig.MAX_DAMAGE_RESISTANCE.get();
         return Math.min(resistance, cap);
     }

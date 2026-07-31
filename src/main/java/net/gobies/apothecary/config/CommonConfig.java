@@ -477,7 +477,7 @@ public class CommonConfig {
 
         BUILDER.push("Magic_Power");
         ENABLE_MAGIC_POWER_RECIPE = BUILDER.comment("Enable the magic power potion recipe").define("Enable", true);
-        MAGIC_POWER_INGREDIENT = BUILDER.comment("Main ingredient used to brew magic power potions").define("Ingredient", "irons_spellbooks:arcane_essence");
+        MAGIC_POWER_INGREDIENT = BUILDER.comment("Main ingredient used to brew magic power potions").define("Ingredient", "minecraft:lapis_lazuli");
         MAGIC_POWER_INCREASE = BUILDER.comment("Damage increase provided by magic power potions in percentage").define("Magic_Power_Increase", 0.1);
         BUILDER.pop();
 
