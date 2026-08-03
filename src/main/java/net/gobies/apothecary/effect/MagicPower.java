@@ -1,9 +1,7 @@
 package net.gobies.apothecary.effect;
 
-import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbooksCompat;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AAttributes;
-import net.gobies.apothecary.util.ModLoadedUtil;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,20 +22,15 @@ public class MagicPower extends MobEffect {
 
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
-        if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            this.getAttributeModifiers().put(AAttributes.MAGIC_DAMAGE.get(), createModifier());
-            super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
-        }
+        this.getAttributeModifiers().put(AAttributes.MAGIC_DAMAGE.get(), createModifier());
+        super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
     }
 
     @Override
     public @NotNull Map<Attribute, AttributeModifier> getAttributeModifiers() {
-        if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
-            modifiers.put(AAttributes.MAGIC_DAMAGE.get(), createModifier());
-            return modifiers;
-        }
-        return Map.of();
+        Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
+        modifiers.put(AAttributes.MAGIC_DAMAGE.get(), createModifier());
+        return modifiers;
     }
 
     private AttributeModifier createModifier() {

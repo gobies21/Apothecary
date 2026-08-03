@@ -1,6 +1,9 @@
 package net.gobies.apothecary.effect;
 
 import net.gobies.apothecary.init.AEffects;
+import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -41,6 +44,7 @@ public class Reversion extends MobEffect {
 
     private void revertEffects(@NotNull LivingEntity entity, int pAmplifier) {
         if (!entity.getActiveEffects().isEmpty()) {
+            if (entity.level().isClientSide() || !(entity.level() instanceof ServerLevel serverLevel)) return;
             List<MobEffectInstance> effectsToUpdate = new ArrayList<>(entity.getActiveEffects());
             for (MobEffectInstance effectInstance : effectsToUpdate) {
                 MobEffect effect = effectInstance.getEffect();
@@ -49,11 +53,16 @@ public class Reversion extends MobEffect {
                 if (currentDuration != -1) {
                     int durationToRemove = 20 * 15 * (pAmplifier + 1);
                     int newDuration = currentDuration - durationToRemove;
-                    int amplifier = effectInstance.getAmplifier();
 
-                    entity.removeEffect(effect);
                     if (newDuration > 0) {
-                        entity.addEffect(new MobEffectInstance(effect, newDuration, amplifier));
+                        effectInstance.duration = newDuration;
+                        ClientboundUpdateMobEffectPacket packet = new ClientboundUpdateMobEffectPacket(entity.getId(), effectInstance);
+                        if (entity instanceof ServerPlayer serverPlayer) {
+                            serverPlayer.connection.send(packet);
+                        }
+                        serverLevel.getChunkSource().broadcast(entity, packet);
+                    } else {
+                        entity.removeEffect(effect);
                     }
                 }
             }

@@ -483,7 +483,7 @@ public class CommonConfig {
 
         BUILDER.push("Magic_Drain");
         ENABLE_MAGIC_DRAIN_RECIPE = BUILDER.comment("Enable the magic drain potion recipe").define("Enable", true);
-        MAGIC_DRAIN_INGREDIENT = BUILDER.comment("Main ingredient used to brew magic drain potions").define("Ingredient", "irons_spellbooks:arcane_essence");
+        MAGIC_DRAIN_INGREDIENT = BUILDER.comment("Main ingredient used to brew magic drain potions").define("Ingredient", "minecraft:fermented_spider_eye");
         MAGIC_DRAIN_DECREASE = BUILDER.comment("Damage decrease provided by magic drain potions in percentage").define("Magic_Drain_Increase", 0.1);
         BUILDER.pop();
 

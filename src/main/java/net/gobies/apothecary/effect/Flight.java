@@ -12,15 +12,12 @@ public class Flight extends MobEffect {
         super(category, color);
     }
 
-    private boolean allowFlying = false;
-
     @Override
     public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
         if (livingEntity instanceof Player player) {
             if (!player.getAbilities().mayfly) {
                 player.getAbilities().mayfly = true;
                 player.onUpdateAbilities();
-                allowFlying = true;
             }
         }
     }
@@ -29,11 +26,10 @@ public class Flight extends MobEffect {
     public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributes, int amplifier) {
         super.removeAttributeModifiers(livingEntity, attributes, amplifier);
         if (livingEntity instanceof Player player) {
-            if (!player.isCreative() && !player.isSpectator() && allowFlying) {
+            if (!player.isCreative() && !player.isSpectator()) {
                 player.getAbilities().flying = false;
                 player.getAbilities().mayfly = false;
                 player.onUpdateAbilities();
-                allowFlying = false;
             }
         }
     }

@@ -2,7 +2,10 @@ package net.gobies.apothecary.effect;
 
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
+import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -44,6 +47,7 @@ public class Extension extends MobEffect {
 
     private void extendEffects(@NotNull LivingEntity entity, int pAmplifier) {
         if (!entity.getActiveEffects().isEmpty()) {
+            if (entity.level().isClientSide() || !(entity.level() instanceof ServerLevel serverLevel)) return;
             List<MobEffectInstance> effectsToUpdate = new ArrayList<>(entity.getActiveEffects());
             for (MobEffectInstance effectInstance : effectsToUpdate) {
                 MobEffect effect = effectInstance.getEffect();
@@ -56,8 +60,12 @@ public class Extension extends MobEffect {
                     int newDuration = Math.min(currentDuration + durationToAdd, extensionCap);
 
                     if (!(currentDuration == -1)) {
-                        entity.removeEffect(effect);
-                        entity.addEffect(new MobEffectInstance(effect, newDuration, effectInstance.getAmplifier(), effectInstance.isAmbient(), effectInstance.isVisible(), effectInstance.showIcon()));
+                        effectInstance.duration = newDuration;
+                        ClientboundUpdateMobEffectPacket packet = new ClientboundUpdateMobEffectPacket(entity.getId(), effectInstance);
+                        if (entity instanceof ServerPlayer serverPlayer) {
+                            serverPlayer.connection.send(packet);
+                        }
+                        serverLevel.getChunkSource().broadcast(entity, packet);
                     }
                 }
             }
