@@ -2,7 +2,6 @@ package net.gobies.apothecary.effect;
 
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AAttributes;
-import net.gobies.apothecary.util.ModLoadedUtil;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,10 +22,8 @@ public class Misfire extends MobEffect {
 
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
-        if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            this.getAttributeModifiers().put(AAttributes.PROJECTILE_DAMAGE.get(), createModifier());
-            super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
-        }
+        this.getAttributeModifiers().put(AAttributes.PROJECTILE_DAMAGE.get(), createModifier());
+        super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
     }
 
     @Override

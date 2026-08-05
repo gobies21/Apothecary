@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(Player.class)
+@Mixin(value = Player.class, priority = 1500)
 public class PlayerMixin {
 
     @Redirect(

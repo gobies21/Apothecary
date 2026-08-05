@@ -19,6 +19,7 @@ import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.init.APotions;
 import net.gobies.apothecary.recipe.ABrewing;
 import net.gobies.apothecary.util.StackSizeSetter;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.MinecraftForge;
@@ -86,7 +87,7 @@ public class Apothecary {
 
      private void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
         event.registerAbove(VanillaGuiOverlay.ARMOR_LEVEL.id(), "armor_overlay", ArmorOverlay.ARMOR_HUD);
-        event.registerAbove(VanillaGuiOverlay.FOOD_LEVEL.id(), "armor_toughness_overlay", ArmorOverlay.ARMOR_TOUGHNESS_HUD);
+        event.registerAbove(new ResourceLocation(Apothecary.MOD_ID, "armor_overlay"), "armor_toughness_overlay", ArmorOverlay.ARMOR_TOUGHNESS_HUD);
         event.registerBelow(VanillaGuiOverlay.ARMOR_LEVEL.id(), "resistance_overlay", ArmorOverlay.RESISTANCE_HUD);
     }
 }
