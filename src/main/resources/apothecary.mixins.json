@@ -8,11 +8,7 @@
     "ItemMixin",
     "LivingEntityMixin",
     "PlayerMixin",
-    "WitchMixin",
-    "accessor.ItemAccessor",
-    "firstaid.ArmorUtilsMixin",
-    "firstaid.ClientEventHandlerMixin",
-    "jlme.DamageHandlerEventsMixin"
+    "WitchMixin"
   ],
   "injectors": {
     "defaultRequire": 1

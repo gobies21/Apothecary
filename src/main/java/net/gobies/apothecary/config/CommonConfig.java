@@ -1,269 +1,269 @@
 package net.gobies.apothecary.config;
 
 import net.gobies.apothecary.Apothecary;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Apothecary.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Apothecary.MOD_ID)
 public class CommonConfig {
     private static final String FILENAME = "apothecary-common.toml";
 
-    public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-    public static final ForgeConfigSpec SPEC;
+    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    public static final ModConfigSpec SPEC;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> APOTHECARY_ENABLED;
+    public static ModConfigSpec.ConfigValue<Boolean> APOTHECARY_ENABLED;
     public static boolean apothecary_enabled;
-    public static ForgeConfigSpec.ConfigValue<Boolean> POTIONS_ENABLED;
+    public static ModConfigSpec.ConfigValue<Boolean> POTIONS_ENABLED;
     public static boolean potions_enabled;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WORLD_EVENTS;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_WORLD_EVENTS;
     public static boolean enable_world_events;
-    public static ForgeConfigSpec.ConfigValue<Double> MAX_DAMAGE_RESISTANCE;
+    public static ModConfigSpec.ConfigValue<Double> MAX_DAMAGE_RESISTANCE;
     public static float max_damage_resistance;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_IRON_SKIN_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_IRON_SKIN_RECIPE;
     public static boolean enable_iron_skin_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> IRON_SKIN_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> IRON_SKIN_INGREDIENT;
     public static String iron_skin_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> IRON_SKIN_ARMOR_INCREASE;
+    public static ModConfigSpec.ConfigValue<Integer> IRON_SKIN_ARMOR_INCREASE;
     public static int iron_skin_armor_increase;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BROKEN_ARMOR_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_BROKEN_ARMOR_RECIPE;
     public static boolean enable_broken_armor_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> BROKEN_ARMOR_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> BROKEN_ARMOR_INGREDIENT;
     public static String broken_armor_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> BROKEN_ARMOR_ARMOR_DECREASE;
+    public static ModConfigSpec.ConfigValue<Integer> BROKEN_ARMOR_ARMOR_DECREASE;
     public static int broken_armor_armor_decrease;
 
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_DIAMOND_SKIN_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_DIAMOND_SKIN_RECIPE;
     public static boolean enable_diamond_skin_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> DIAMOND_SKIN_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> DIAMOND_SKIN_INGREDIENT;
     public static String diamond_skin_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> DIAMOND_SKIN_ARMOR_INCREASE;
+    public static ModConfigSpec.ConfigValue<Integer> DIAMOND_SKIN_ARMOR_INCREASE;
     public static int diamond_skin_armor_increase;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RUPTURED_ARMOR_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_RUPTURED_ARMOR_RECIPE;
     public static boolean enable_ruptured_armor_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> RUPTURED_ARMOR_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> RUPTURED_ARMOR_INGREDIENT;
     public static String ruptured_armor_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> RUPTURED_ARMOR_ARMOR_DECREASE;
+    public static ModConfigSpec.ConfigValue<Integer> RUPTURED_ARMOR_ARMOR_DECREASE;
     public static int ruptured_armor_armor_decrease;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARCHERY_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_ARCHERY_RECIPE;
     public static boolean enable_archery_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> ARCHERY_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> ARCHERY_INGREDIENT;
     public static String archery_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> ARCHERY_DAMAGE_INCREASE;
+    public static ModConfigSpec.ConfigValue<Integer> ARCHERY_DAMAGE_INCREASE;
     public static int archery_damage_increase;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MISFIRE_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_MISFIRE_RECIPE;
     public static boolean enable_misfire_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> MISFIRE_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> MISFIRE_INGREDIENT;
     public static String misfire_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> MISFIRE_DAMAGE_DECREASE;
+    public static ModConfigSpec.ConfigValue<Integer> MISFIRE_DAMAGE_DECREASE;
     public static int misfire_damage_decrease;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WRATH_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_WRATH_RECIPE;
     public static boolean enable_wrath_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> WRATH_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> WRATH_INGREDIENT;
     public static String wrath_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> WRATH_DAMAGE_INCREASE;
+    public static ModConfigSpec.ConfigValue<Double> WRATH_DAMAGE_INCREASE;
     public static float wrath_damage_increase;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_FRAIL_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_FRAIL_RECIPE;
     public static boolean enable_frail_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> FRAIL_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> FRAIL_INGREDIENT;
     public static String frail_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> FRAIL_DAMAGE_DECREASE;
+    public static ModConfigSpec.ConfigValue<Double> FRAIL_DAMAGE_DECREASE;
     public static float frail_damage_decrease;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_FLIGHT_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_FLIGHT_RECIPE;
     public static boolean enable_flight_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> FLIGHT_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> FLIGHT_INGREDIENT;
     public static String flight_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REACH_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_REACH_RECIPE;
     public static boolean enable_reach_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> REACH_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> REACH_INGREDIENT;
     public static String reach_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> REACH_INCREASE;
+    public static ModConfigSpec.ConfigValue<Integer> REACH_INCREASE;
     public static int reach_increase;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REPAIRING_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_REPAIRING_RECIPE;
     public static boolean enable_repairing_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> REPAIRING_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> REPAIRING_INGREDIENT;
     public static String repairing_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> REPAIRING_AMOUNT;
+    public static ModConfigSpec.ConfigValue<Integer> REPAIRING_AMOUNT;
     public static int repairing_amount;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CORROSION_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_CORROSION_RECIPE;
     public static boolean enable_corrosion_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> CORROSION_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> CORROSION_INGREDIENT;
     public static String corrosion_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Integer> CORROSION_AMOUNT;
+    public static ModConfigSpec.ConfigValue<Integer> CORROSION_AMOUNT;
     public static int corrosion_amount;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MAGIC_POWER_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_MAGIC_POWER_RECIPE;
     public static boolean enable_magic_power_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> MAGIC_POWER_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> MAGIC_POWER_INGREDIENT;
     public static String magic_power_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> MAGIC_POWER_INCREASE;
+    public static ModConfigSpec.ConfigValue<Double> MAGIC_POWER_INCREASE;
     public static float magic_power_increase;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MAGIC_DRAIN_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_MAGIC_DRAIN_RECIPE;
     public static boolean enable_magic_drain_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> MAGIC_DRAIN_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> MAGIC_DRAIN_INGREDIENT;
     public static String magic_drain_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> MAGIC_DRAIN_DECREASE;
+    public static ModConfigSpec.ConfigValue<Double> MAGIC_DRAIN_DECREASE;
     public static float magic_drain_decrease;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MANA_REGENERATION_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_MANA_REGENERATION_RECIPE;
     public static boolean enable_mana_regeneration_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> MANA_REGENERATION_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> MANA_REGENERATION_INGREDIENT;
     public static String mana_regeneration_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> MANA_REGENERATION_INCREASE;
+    public static ModConfigSpec.ConfigValue<Double> MANA_REGENERATION_INCREASE;
     public static float mana_regeneration_increase;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MANA_EXHAUSTION_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_MANA_EXHAUSTION_RECIPE;
     public static boolean enable_mana_exhaustion_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> MANA_EXHAUSTION_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> MANA_EXHAUSTION_INGREDIENT;
     public static String mana_exhaustion_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> MANA_EXHAUSTION_DECREASE;
+    public static ModConfigSpec.ConfigValue<Double> MANA_EXHAUSTION_DECREASE;
     public static float mana_exhaustion_decrease;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_THORNS_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_THORNS_RECIPE;
     public static boolean enable_thorns_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> THORNS_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> THORNS_INGREDIENT;
     public static String thorns_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> THORNS_DAMAGE_REFLECT;
+    public static ModConfigSpec.ConfigValue<Double> THORNS_DAMAGE_REFLECT;
     public static float thorns_damage_reflect;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CONFUSION_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_CONFUSION_RECIPE;
     public static boolean enable_confusion_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> CONFUSION_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> CONFUSION_INGREDIENT;
     public static String confusion_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_PURIFICATION_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_PURIFICATION_RECIPE;
     public static boolean enable_purification_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> PURIFICATION_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> PURIFICATION_INGREDIENT;
     public static String purification_ingredient;
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> PURIFICATION_BLACKLIST_EFFECTS;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> PURIFICATION_BLACKLIST_EFFECTS;
     public static List<? extends String> purification_blacklist_effects;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CORRUPTION_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_CORRUPTION_RECIPE;
     public static boolean enable_corruption_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> CORRUPTION_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> CORRUPTION_INGREDIENT;
     public static String corruption_ingredient;
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> CORRUPTION_BLACKLIST_EFFECTS;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> CORRUPTION_BLACKLIST_EFFECTS;
     public static List<? extends String> corruption_blacklist_effects;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SHUFFLING_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_SHUFFLING_RECIPE;
     public static boolean enable_shuffling_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> SHUFFLING_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> SHUFFLING_INGREDIENT;
     public static String shuffling_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_BURNING_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_BURNING_RECIPE;
     public static boolean enable_burning_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> BURNING_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> BURNING_INGREDIENT;
     public static String burning_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SHOCKED_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_SHOCKED_RECIPE;
     public static boolean enable_shocked_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> SHOCKED_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> SHOCKED_INGREDIENT;
     public static String shocked_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> SHOCKED_SPEED_DECREASE;
+    public static ModConfigSpec.ConfigValue<Double> SHOCKED_SPEED_DECREASE;
     public static float shocked_speed_decrease;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_LIGHTNING_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_LIGHTNING_RECIPE;
     public static boolean enable_lightning_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> LIGHTNING_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> LIGHTNING_INGREDIENT;
     public static String lightning_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_SPELUNKER_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_SPELUNKER_RECIPE;
     public static boolean enable_spelunker_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> SPELUNKER_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> SPELUNKER_INGREDIENT;
     public static String spelunker_ingredient;
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> SPELUNKER_ORE_LIST;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> SPELUNKER_ORE_LIST;
     public static List<? extends String> spelunker_ore_list;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_EXTENSION_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_EXTENSION_RECIPE;
     public static boolean enable_extension_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> EXTENSION_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> EXTENSION_INGREDIENT;
     public static String extension_ingredient;
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> EXTENSION_BLACKLIST_EFFECTS;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> EXTENSION_BLACKLIST_EFFECTS;
     public static List<? extends String> extended_blacklist_effects;
-    public static ForgeConfigSpec.ConfigValue<Integer> EXTENSION_CAP;
+    public static ModConfigSpec.ConfigValue<Integer> EXTENSION_CAP;
     public static int extension_cap;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_REVERSION_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_REVERSION_RECIPE;
     public static boolean enable_reversion_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> REVERSION_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> REVERSION_INGREDIENT;
     public static String reversion_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_HEALTH_BOOST_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_HEALTH_BOOST_RECIPE;
     public static boolean enable_health_boost_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> HEALTH_BOOST_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> HEALTH_BOOST_INGREDIENT;
     public static String health_boost_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_LUCK_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_LUCK_RECIPE;
     public static boolean enable_luck_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> LUCK_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> LUCK_INGREDIENT;
     public static String luck_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RESISTANCE_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_RESISTANCE_RECIPE;
     public static boolean enable_resistance_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> RESISTANCE_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> RESISTANCE_INGREDIENT;
     public static String resistance_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> RESISTANCE_DAMAGE_RESISTANCE;
+    public static ModConfigSpec.ConfigValue<Double> RESISTANCE_DAMAGE_RESISTANCE;
     public static float resistance_damage_resistance;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_VULNERABLE_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_VULNERABLE_RECIPE;
     public static boolean enable_vulnerable_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> VULNERABLE_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> VULNERABLE_INGREDIENT;
     public static String vulnerable_ingredient;
-    public static ForgeConfigSpec.ConfigValue<Double> VULNERABLE_DAMAGE_TAKEN;
+    public static ModConfigSpec.ConfigValue<Double> VULNERABLE_DAMAGE_TAKEN;
     public static float vulnerable_damage_taken;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_WITHER_RECIPE;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_WITHER_RECIPE;
     public static boolean enable_wither_recipe;
-    public static ForgeConfigSpec.ConfigValue<String> WITHER_INGREDIENT;
+    public static ModConfigSpec.ConfigValue<String> WITHER_INGREDIENT;
     public static String wither_ingredient;
 
-    public static ForgeConfigSpec.ConfigValue<Double> JUMP_BOOST_JUMP_HEIGHT;
+    public static ModConfigSpec.ConfigValue<Double> JUMP_BOOST_JUMP_HEIGHT;
     public static float jump_boost_jump_height;
 
-    public static ForgeConfigSpec.ConfigValue<Double> HASTE_DIG_SPEED;
+    public static ModConfigSpec.ConfigValue<Double> HASTE_DIG_SPEED;
     public static float haste_dig_speed;
 
     // World Events
-    public static ForgeConfigSpec.ConfigValue<Integer> WITCH_POTION_COUNT;
+    public static ModConfigSpec.ConfigValue<Integer> WITCH_POTION_COUNT;
     public static int witch_potion_count;
-    public static ForgeConfigSpec.ConfigValue<Integer> WITCH_POTION_COOLDOWN;
+    public static ModConfigSpec.ConfigValue<Integer> WITCH_POTION_COOLDOWN;
     public static int witch_potion_cooldown;
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> POTION_SELECTOR;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> POTION_SELECTOR;
     public static List<? extends String> potion_selector;
 
-    public static ForgeConfigSpec.ConfigValue<Integer> POTION_STACK_SIZE;
+    public static ModConfigSpec.ConfigValue<Integer> POTION_STACK_SIZE;
     public static int potion_stack_size;
-    public static ForgeConfigSpec.ConfigValue<Boolean> DISABLE_ICEANDFIRE_COMPAT;
+    public static ModConfigSpec.ConfigValue<Boolean> DISABLE_ICEANDFIRE_COMPAT;
     public static boolean disable_iceandfire_compat;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POTION_SICKNESS;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_POTION_SICKNESS;
     public static boolean enable_potion_sickness;
-    public static ForgeConfigSpec.ConfigValue<Integer> POTION_SICKNESS_MAX_EFFECTS;
+    public static ModConfigSpec.ConfigValue<Integer> POTION_SICKNESS_MAX_EFFECTS;
     public static int potion_sickness_max_effects;
-    public static ForgeConfigSpec.ConfigValue<Double> POTION_SICKNESS_CHANCE;
+    public static ModConfigSpec.ConfigValue<Double> POTION_SICKNESS_CHANCE;
     public static float potion_sickness_chance;
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> POTION_SICKNESS_WHITELIST;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> POTION_SICKNESS_WHITELIST;
     public static List<? extends String> potion_sickness_whitelist;
-    public static ForgeConfigSpec.ConfigValue<List<? extends String>> POTION_SICKNESS_BLACKLIST;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> POTION_SICKNESS_BLACKLIST;
     public static List<? extends String> potion_sickness_blacklist;
-    public static ForgeConfigSpec.ConfigValue<Boolean> POTION_SICKNESS_INSTANT_EFFECT;
+    public static ModConfigSpec.ConfigValue<Boolean> POTION_SICKNESS_INSTANT_EFFECT;
     public static boolean potion_sickness_instant_effect;
 
     @SubscribeEvent

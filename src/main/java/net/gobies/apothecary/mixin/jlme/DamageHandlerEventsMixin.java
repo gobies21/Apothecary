@@ -1,5 +1,6 @@
 package net.gobies.apothecary.mixin.jlme;
 
+/*
 import com.kettle.jlme.events.DamageHandlerEvents;
 import com.kettle.jlme.init.JlmeModEnchantments;
 import net.minecraft.world.item.ItemStack;
@@ -25,3 +26,5 @@ public class DamageHandlerEventsMixin {
         return stack.getEnchantmentLevel(enchantment);
     }
 }
+
+ */

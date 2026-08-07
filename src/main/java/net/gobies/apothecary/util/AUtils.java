@@ -2,9 +2,9 @@ package net.gobies.apothecary.util;
 
 import net.gobies.apothecary.Apothecary;
 import net.gobies.apothecary.config.CommonConfig;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +94,7 @@ public class AUtils {
 
     public static String determinePotionByRarity(RandomSource random) {
         List<? extends String> entries = CommonConfig.POTION_SELECTOR.get();
-        if (entries == null || entries.isEmpty()) {
+        if (entries.isEmpty()) {
             return "minecraft:poison";
         }
 
@@ -111,7 +111,7 @@ public class AUtils {
                 String potionId = entry.substring(0, index).trim();
                 ResourceLocation resourceLocation = ResourceLocation.tryParse(potionId);
 
-                if (resourceLocation == null || !ForgeRegistries.POTIONS.containsKey(resourceLocation)) continue;
+                if (resourceLocation == null || !BuiltInRegistries.POTION.containsKey(resourceLocation)) continue;
 
                 int weight = Integer.parseInt(entry.substring(index + 1).trim());
                 if (weight <= 0) continue;
@@ -137,6 +137,6 @@ public class AUtils {
             }
         }
 
-        return validPotions.get(0).id;
+        return validPotions.getFirst().id;
     }
 }

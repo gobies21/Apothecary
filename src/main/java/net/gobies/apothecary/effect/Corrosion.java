@@ -3,6 +3,7 @@ package net.gobies.apothecary.effect;
 import net.gobies.apothecary.config.CommonConfig;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -20,7 +21,7 @@ public class Corrosion extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
+    public boolean applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
         if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
             List<ItemStack> damageableItems = new ArrayList<>();
             for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
@@ -35,13 +36,15 @@ public class Corrosion extends MobEffect {
             if (!damageableItems.isEmpty()) {
                 ItemStack randomItem = damageableItems.get(RANDOM.nextInt(damageableItems.size()));
                 int damageAmount = CommonConfig.CORROSION_AMOUNT.get() + amplifier;
-                randomItem.hurtAndBreak(damageAmount, player, (p) -> p.broadcastBreakEvent(p.getUsedItemHand()));
+                EquipmentSlot slot = player.getEquipmentSlotForItem(randomItem);
+                randomItem.hurtAndBreak(damageAmount, player, slot);
             }
         }
+        return true;
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return duration % 10 == 0;
     }
 }

@@ -2,38 +2,27 @@ package net.gobies.apothecary.effect;
 
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AAttributes;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.function.BiConsumer;
 
 public class Vulnerable extends MobEffect {
     public Vulnerable(MobEffectCategory category, int color) {
         super(category, color);
     }
 
-    private static final UUID DAMAGE_RESISTANCE = UUID.fromString("929669ea-eaa5-4c3a-8166-c8da1f413869");
+    private static final ResourceLocation DAMAGE_MULTIPLIER_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.vulnerable.damage_multiplier");
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
-        this.getAttributeModifiers().put(AAttributes.DAMAGE_RESISTANCE.get(), createModifier());
-        super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
-    }
-
-    @Override
-    public @NotNull Map<Attribute, AttributeModifier> getAttributeModifiers() {
-        Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
-        modifiers.put(AAttributes.DAMAGE_RESISTANCE.get(), createModifier());
-        return modifiers;
-    }
-
-    private AttributeModifier createModifier() {
-        return new AttributeModifier(DAMAGE_RESISTANCE, this::getDescriptionId, -CommonConfig.VULNERABLE_DAMAGE_TAKEN.get(), AttributeModifier.Operation.MULTIPLY_BASE);
+    public void createModifiers(int amplifier, @NotNull BiConsumer<Holder<Attribute>, AttributeModifier> consumer) {
+        double damageDecrease = CommonConfig.VULNERABLE_DAMAGE_TAKEN.get();
+        this.addAttributeModifier(AAttributes.DAMAGE_MULTIPLIER, DAMAGE_MULTIPLIER_KEY, -damageDecrease, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+        super.createModifiers(amplifier, consumer);
     }
 }

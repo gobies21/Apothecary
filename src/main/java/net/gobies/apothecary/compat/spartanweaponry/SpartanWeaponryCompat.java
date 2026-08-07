@@ -1,20 +1,19 @@
 package net.gobies.apothecary.compat.spartanweaponry;
 
-import com.oblivioussp.spartanweaponry.init.ModDamageTypes;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
 
 import java.util.Objects;
 
 public class SpartanWeaponryCompat {
 
     public static void loadCompat() {
-        MinecraftForge.EVENT_BUS.register(new SpartanWeaponryCompat());
+        NeoForge.EVENT_BUS.register(new SpartanWeaponryCompat());
     }
+
+    /*
 
     @SubscribeEvent
     public void onLivingHurt(LivingHurtEvent event) {
@@ -36,4 +35,6 @@ public class SpartanWeaponryCompat {
             }
         }
     }
+
+     */
 }

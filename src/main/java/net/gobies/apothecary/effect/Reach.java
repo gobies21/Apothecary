@@ -1,44 +1,30 @@
 package net.gobies.apothecary.effect;
 
 import net.gobies.apothecary.config.CommonConfig;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.function.BiConsumer;
 
 public class Reach extends MobEffect {
     public Reach(MobEffectCategory category, int color) {
         super(category, color);
     }
 
-    private static final UUID ENTITY_REACH  = UUID.fromString("65b93d0c-060d-4f86-9828-0a10bada7b48");
-    private static final UUID BLOCK_REACH = UUID.fromString("bddc419f-57c6-41a0-b2d9-3a0a1fb99b41");
+    private static final ResourceLocation ENTITY_REACH_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.reach.entity_reach");
+    private static final ResourceLocation BLOCK_REACH_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.reach.block_reach");
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
-        this.getAttributeModifiers().put(ForgeMod.ENTITY_REACH.get(), createModifier(ENTITY_REACH, CommonConfig.REACH_INCREASE.get()));
-        this.getAttributeModifiers().put(ForgeMod.BLOCK_REACH.get(), createModifier(BLOCK_REACH, CommonConfig.REACH_INCREASE.get()));
-        super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
-    }
-
-    @Override
-    public @NotNull Map<Attribute, AttributeModifier> getAttributeModifiers() {
-        Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
-        modifiers.put(ForgeMod.ENTITY_REACH.get(), createModifier(ENTITY_REACH, CommonConfig.REACH_INCREASE.get()));
-        modifiers.put(ForgeMod.BLOCK_REACH.get(), createModifier(BLOCK_REACH, CommonConfig.REACH_INCREASE.get()));
-
-        return modifiers;
-    }
-
-    private AttributeModifier createModifier(UUID uuid, double configValue) {
-        return new AttributeModifier(uuid, this::getDescriptionId, configValue, AttributeModifier.Operation.ADDITION);
+    public void createModifiers(int amplifier, @NotNull BiConsumer<Holder<Attribute>, AttributeModifier> consumer) {
+        double reach = CommonConfig.REACH_INCREASE.get();
+        this.addAttributeModifier(Attributes.ENTITY_INTERACTION_RANGE, ENTITY_REACH_KEY, reach, AttributeModifier.Operation.ADD_VALUE);
+        this.addAttributeModifier(Attributes.BLOCK_INTERACTION_RANGE, BLOCK_REACH_KEY, reach, AttributeModifier.Operation.ADD_VALUE);
+        super.createModifiers(amplifier, consumer);
     }
 }

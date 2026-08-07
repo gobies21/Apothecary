@@ -1,22 +1,15 @@
 package net.gobies.apothecary.util;
 
-import net.gobies.apothecary.recipe.TrueBrewingRecipe;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.core.Holder;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 
 public class BrewingHandler {
 
-    public static void addBrewingRecipe(Potion basePotion, Ingredient ingredient, Potion resultPotion) {
-        ItemStack basePotionStack = PotionUtils.setPotion(new ItemStack(Items.POTION), basePotion);
-        ItemStack resultPotionStack = PotionUtils.setPotion(new ItemStack(Items.POTION), resultPotion);
-        BrewingRecipeRegistry.addRecipe(new TrueBrewingRecipe(
-                Ingredient.of(basePotionStack),
-                ingredient,
-                resultPotionStack
-        ));
+    public static void addBrewingRecipe(RegisterBrewingRecipesEvent event, Holder<Potion> basePotion, Ingredient ingredient, Holder<Potion> resultPotion) {
+        if (ingredient.getItems().length > 0) {
+            event.getBuilder().addMix(basePotion, ingredient.getItems()[0].getItem(), resultPotion);
+        }
     }
 }

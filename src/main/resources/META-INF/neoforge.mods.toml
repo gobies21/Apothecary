@@ -1,7 +1,13 @@
 
 modLoader="javafml"
-loaderVersion = "[47,)"
+loaderVersion = "${loader_version_range}"
 license = "All Rights Reserved"
+
+[[mixins]]
+config = "apothecary.mixins.json"
+
+[[accessTransformers]]
+file = "META-INF/accesstransformer.cfg"
 
 [[mods]]
 modId="apothecary"
@@ -11,18 +17,18 @@ authors="gobies"
 description='''A potion expansion to liven up the alchemy experience in Minecraft!'''
 
 [[dependencies.apothecary]]
-modId= "forge"
+modId="neoforge"
 mandatory= true
-versionRange = "[47,)"
+versionRange="${neo_version_range}"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.apothecary]]
-modId= "minecraft"
-mandatory= true
-versionRange = "[1.20.1]"
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
 ordering="NONE"
-side="BOTH"
+side= "BOTH"
 
 [modproperties.apothecary]
 configuredBackground="minecraft:textures/block/stone_bricks.png"

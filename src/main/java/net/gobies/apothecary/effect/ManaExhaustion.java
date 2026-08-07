@@ -3,43 +3,29 @@ package net.gobies.apothecary.effect;
 import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbooksCompat;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.util.ModLoadedUtil;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.function.BiConsumer;
 
 public class ManaExhaustion extends MobEffect {
     public ManaExhaustion(MobEffectCategory category, int color) {
         super(category, color);
     }
 
-    private static final UUID MANA_EXHAUSTION = UUID.fromString("3791ad62-2942-41d8-b302-314aa672a5e4");
+    private static final ResourceLocation MANA_REGENERATION_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.mana_exhaustion.mana_regeneration");
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
+    public void createModifiers(int amplifier, @NotNull BiConsumer<Holder<Attribute>, AttributeModifier> consumer) {
+        double manaRegeneration = CommonConfig.MANA_EXHAUSTION_DECREASE.get();
         if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            this.getAttributeModifiers().put(IronsSpellbooksCompat.manaRegenerationAttribute(), createModifier());
-            super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
+            this.addAttributeModifier(IronsSpellbooksCompat.manaRegenerationAttribute(), MANA_REGENERATION_KEY, -manaRegeneration, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
         }
-    }
-
-    @Override
-    public @NotNull Map<Attribute, AttributeModifier> getAttributeModifiers() {
-        if (ModLoadedUtil.isIronsSpellbooksLoaded()) {
-            Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
-            modifiers.put(IronsSpellbooksCompat.manaRegenerationAttribute(), createModifier());
-            return modifiers;
-        }
-        return Map.of();
-    }
-
-    private AttributeModifier createModifier() {
-        return new AttributeModifier(MANA_EXHAUSTION, this::getDescriptionId, -CommonConfig.MANA_EXHAUSTION_DECREASE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
+        super.createModifiers(amplifier, consumer);
     }
 }

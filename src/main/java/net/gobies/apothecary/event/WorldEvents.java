@@ -11,24 +11,23 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.monster.Illusioner;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
 public class WorldEvents {
 
     public static void register() {
-        MinecraftForge.EVENT_BUS.register(new WorldEvents());
+        NeoForge.EVENT_BUS.register(new WorldEvents());
     }
 
     @SubscribeEvent
-    public void onLivingHurt(LivingHurtEvent event) {
+    public void onLivingHurt(LivingIncomingDamageEvent event) {
         if (!CommonConfig.APOTHECARY_ENABLED.get()) return;
         if (event.isCanceled()) return;
         LivingEntity entity = event.getEntity();
         Entity mob = event.getSource().getEntity();
-        if (entity != null && (CommonConfig.ENABLE_WORLD_EVENTS.get())) {
+        if (CommonConfig.ENABLE_WORLD_EVENTS.get()) {
             float damageAmount = event.getAmount();
             int randomMediumDuration = DurationUtils.getRandomMediumDuration();
             int randomShortDuration = DurationUtils.getRandomShortDuration();
@@ -36,59 +35,55 @@ public class WorldEvents {
             int randomLongDuration = DurationUtils.getRandomLongDuration();
             int baseAmplifier = 0;
             int rangedAmplifier = entity.getRandom().nextFloat() < 0.75 ? 0 : 1;
-            MobEffectInstance currentEffect = entity.getEffect(AEffects.BrokenArmor.get());
+            MobEffectInstance currentEffect = entity.getEffect(AEffects.BrokenArmor);
             int newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 4) : 0;
             if (event.getSource().is(DamageTypes.EXPLOSION) || event.getSource().is(DamageTypes.PLAYER_EXPLOSION)) {
                 if (entity.getArmorValue() > 0) {
                     if (entity.getRandom().nextFloat() < 0.4) {
-                        entity.addEffect(new MobEffectInstance(AEffects.BrokenArmor.get(), randomLongDuration, newAmplifier));
+                        entity.addEffect(new MobEffectInstance(AEffects.BrokenArmor, randomLongDuration, newAmplifier));
 
                     }
                     if (damageAmount > 10.0) {
-                        currentEffect = entity.getEffect(AEffects.RupturedArmor.get());
+                        currentEffect = entity.getEffect(AEffects.RupturedArmor);
                         newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
                         if (entity.getRandom().nextFloat() < 0.1) {
-                            entity.addEffect(new MobEffectInstance(AEffects.RupturedArmor.get(), randomMediumDuration, newAmplifier));
+                            entity.addEffect(new MobEffectInstance(AEffects.RupturedArmor, randomMediumDuration, newAmplifier));
                         }
                     }
                 }
             }
 
             if (event.getSource().is(DamageTypes.LIGHTNING_BOLT)) {
-                entity.addEffect(new MobEffectInstance(AEffects.Shocked.get(), randomVeryShortDuration, rangedAmplifier));
+                entity.addEffect(new MobEffectInstance(AEffects.Shocked, randomVeryShortDuration, rangedAmplifier));
             }
 
             if (mob instanceof Mob && ((Mob) mob).isAggressive()) {
-                currentEffect = entity.getEffect(AEffects.Frail.get());
+                currentEffect = entity.getEffect(AEffects.Frail);
                 newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
                 if (entity.getRandom().nextFloat() < 0.05) {
-                    entity.addEffect(new MobEffectInstance(AEffects.Frail.get(), randomMediumDuration, newAmplifier));
+                    entity.addEffect(new MobEffectInstance(AEffects.Frail, randomMediumDuration, newAmplifier));
                 }
             }
 
             if (mob instanceof PiglinBrute) {
-                currentEffect = entity.getEffect(AEffects.RupturedArmor.get());
+                currentEffect = entity.getEffect(AEffects.RupturedArmor);
                 newAmplifier = (currentEffect != null) ? Math.min(currentEffect.getAmplifier() + 1, 2) : 0;
                 if (entity.getArmorValue() > 0) {
-                    entity.addEffect(new MobEffectInstance(AEffects.RupturedArmor.get(), randomShortDuration, newAmplifier));
+                    entity.addEffect(new MobEffectInstance(AEffects.RupturedArmor, randomShortDuration, newAmplifier));
                 }
             }
 
             if (mob instanceof Blaze) {
                 if (entity.getRandom().nextFloat() < 0.25) {
-                    entity.addEffect(new MobEffectInstance(AEffects.Burning.get(), randomShortDuration, baseAmplifier));
+                    entity.addEffect(new MobEffectInstance(AEffects.Burning, randomShortDuration, baseAmplifier));
                 }
             }
 
             if (mob instanceof Illusioner) {
                 if (entity.getRandom().nextFloat() < 0.1) {
-                    entity.addEffect(new MobEffectInstance(AEffects.Confusion.get(), randomShortDuration, baseAmplifier));
+                    entity.addEffect(new MobEffectInstance(AEffects.Confusion, randomShortDuration, baseAmplifier));
                 }
             }
         }
-    }
-
-    @SubscribeEvent
-    public void onEntityAttacked(LivingAttackEvent event) {
     }
 }

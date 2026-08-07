@@ -1,54 +1,54 @@
 package net.gobies.apothecary.init;
 
 import net.gobies.apothecary.effect.*;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class AEffects {
 
     public static final DeferredRegister<MobEffect> EFFECTS;
-    public static final RegistryObject<MobEffect> IronSkin;
-    public static final RegistryObject<MobEffect> DiamondSkin;
-    public static final RegistryObject<MobEffect> MagicShield;
-    public static final RegistryObject<MobEffect> Archery;
-    public static final RegistryObject<MobEffect> Wrath;
-    public static final RegistryObject<MobEffect> Flight;
-    public static final RegistryObject<MobEffect> Reach;
-    public static final RegistryObject<MobEffect> Repairing;
-    public static final RegistryObject<MobEffect> MagicPower;
-    public static final RegistryObject<MobEffect> ManaRegeneration;
-    public static final RegistryObject<MobEffect> Thorns;
-    public static final RegistryObject<MobEffect> Purification;
-    public static final RegistryObject<MobEffect> Spelunker;
-    public static final RegistryObject<MobEffect> Extension;
-    public static final RegistryObject<MobEffect> BrokenArmor;
-    public static final RegistryObject<MobEffect> RupturedArmor;
-    public static final RegistryObject<MobEffect> Misfire;
-    public static final RegistryObject<MobEffect> Frail;
-    public static final RegistryObject<MobEffect> Vulnerable;
-    public static final RegistryObject<MobEffect> Corrosion;
-    public static final RegistryObject<MobEffect> MagicDrain;
-    public static final RegistryObject<MobEffect> ManaExhaustion;
-    public static final RegistryObject<MobEffect> Confusion;
-    public static final RegistryObject<MobEffect> Corruption;
-    public static final RegistryObject<MobEffect> Burning;
-    public static final RegistryObject<MobEffect> Shocked;
-    public static final RegistryObject<MobEffect> Shuffling;
-    public static final RegistryObject<MobEffect> Lightning;
-    public static final RegistryObject<MobEffect> Reversion;
+    public static final DeferredHolder<MobEffect, IronSkin> IronSkin;
+    public static final DeferredHolder<MobEffect, DiamondSkin> DiamondSkin;
+    public static final DeferredHolder<MobEffect, MagicShield> MagicShield;
+    public static final DeferredHolder<MobEffect, Archery> Archery;
+    public static final DeferredHolder<MobEffect, Wrath> Wrath;
+    public static final DeferredHolder<MobEffect, Flight> Flight;
+    public static final DeferredHolder<MobEffect, Reach> Reach;
+    public static final DeferredHolder<MobEffect, Repairing> Repairing;
+    public static final DeferredHolder<MobEffect, MagicPower> MagicPower;
+    public static final DeferredHolder<MobEffect, ManaRegeneration> ManaRegeneration;
+    public static final DeferredHolder<MobEffect, Thorns>Thorns;
+    public static final DeferredHolder<MobEffect, Purification> Purification;
+    public static final DeferredHolder<MobEffect, Spelunker> Spelunker;
+    public static final DeferredHolder<MobEffect, Extension> Extension;
+    public static final DeferredHolder<MobEffect, BrokenArmor> BrokenArmor;
+    public static final DeferredHolder<MobEffect, RupturedArmor> RupturedArmor;
+    public static final DeferredHolder<MobEffect, Misfire> Misfire;
+    public static final DeferredHolder<MobEffect, Frail> Frail;
+    public static final DeferredHolder<MobEffect, Vulnerable> Vulnerable;
+    public static final DeferredHolder<MobEffect, Corrosion> Corrosion;
+    public static final DeferredHolder<MobEffect, MagicDrain> MagicDrain;
+    public static final DeferredHolder<MobEffect, ManaExhaustion> ManaExhaustion;
+    public static final DeferredHolder<MobEffect, Confusion> Confusion;
+    public static final DeferredHolder<MobEffect, Corruption> Corruption;
+    public static final DeferredHolder<MobEffect, Burning> Burning;
+    public static final DeferredHolder<MobEffect, Shocked > Shocked;
+    public static final DeferredHolder<MobEffect, Shuffling> Shuffling;
+    public static final DeferredHolder<MobEffect, Lightning> Lightning;
+    public static final DeferredHolder<MobEffect, Reversion> Reversion;
 
-    public static final RegistryObject<MobEffect> PotionSickness;
+    public static final DeferredHolder<MobEffect, PotionSickness> PotionSickness;
 
     public static void register(IEventBus eventBus) {
         EFFECTS.register(eventBus);
     }
 
     static {
-        EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, "apothecary");
+        EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, "apothecary");
         // Positive
         IronSkin = EFFECTS.register("iron_skin", () -> new IronSkin(MobEffectCategory.BENEFICIAL, 0xD9D9D9));
         DiamondSkin = EFFECTS.register("diamond_skin", () -> new DiamondSkin(MobEffectCategory.BENEFICIAL, 0x4AEDD9));

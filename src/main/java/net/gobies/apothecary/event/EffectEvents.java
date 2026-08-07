@@ -12,32 +12,32 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.MovementInputUpdateEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.MovementInputUpdateEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.Objects;
 
 public class EffectEvents {
 
     public static void register() {
-        MinecraftForge.EVENT_BUS.register(new EffectEvents());
+        NeoForge.EVENT_BUS.register(new EffectEvents());
     }
 
     @SubscribeEvent
-    public void onLivingHurt(LivingHurtEvent event) {
+    public void onLivingHurt(LivingIncomingDamageEvent event) {
         if (!CommonConfig.APOTHECARY_ENABLED.get()) return;
         LivingEntity livingEntity = event.getEntity();
         DamageSource source = event.getSource();
         float damageDealt = event.getAmount();
-        if (livingEntity.hasEffect(AEffects.Thorns.get()) && source.getEntity() != null && source.getEntity() instanceof LivingEntity attacker) {
-            int amplifier = Objects.requireNonNull(livingEntity.getEffect(AEffects.Thorns.get())).getAmplifier();
+        if (livingEntity.hasEffect(AEffects.Thorns) && source.getEntity() != null && source.getEntity() instanceof LivingEntity attacker) {
+            int amplifier = Objects.requireNonNull(livingEntity.getEffect(AEffects.Thorns)).getAmplifier();
             float damageReflect = (float) (damageDealt * CommonConfig.THORNS_DAMAGE_REFLECT.get() * (amplifier + 1)) + 1;
 
             DamageSource thornsDamage = source.getEntity().damageSources().thorns(livingEntity);
@@ -50,24 +50,24 @@ public class EffectEvents {
     public void onMobEffectApplicable(MobEffectEvent.Applicable event) {
         MobEffectInstance effectInstance = event.getEffectInstance();
 
-        if (effectInstance.getEffect() == AEffects.PotionSickness.get()) {
-            event.setResult(MobEffectEvent.Result.ALLOW);
+        if (effectInstance.getEffect().is(AEffects.PotionSickness.getKey())) {
+            event.setResult(MobEffectEvent.Applicable.Result.APPLY);
             return;
         }
-        if (event.getEntity().hasEffect(AEffects.PotionSickness.get())) return;
+        if (event.getEntity().hasEffect(AEffects.PotionSickness)) return;
 
-        if (event.getEntity().hasEffect(AEffects.Purification.get()) && BlacklistedEffects.isHarmfulEffectApplicable(event.getEntity(), effectInstance)) {
-            event.setResult(MobEffectEvent.Result.DENY);
+        if (event.getEntity().hasEffect(AEffects.Purification) && BlacklistedEffects.isHarmfulEffectApplicable(event.getEntity(), effectInstance)) {
+            event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
         }
-        if (event.getEntity().hasEffect(AEffects.Corruption.get()) && BlacklistedEffects.isBeneficialEffectApplicable(event.getEntity(), effectInstance)) {
-            event.setResult(MobEffectEvent.Result.DENY);
+        if (event.getEntity().hasEffect(AEffects.Corruption) && BlacklistedEffects.isBeneficialEffectApplicable(event.getEntity(), effectInstance)) {
+            event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
         }
     }
 
     @SubscribeEvent
     public void onMobEffectRemovable(MobEffectEvent.Remove event) {
         if (event.getEntity() instanceof Player player) {
-            if (player.hasEffect(AEffects.PotionSickness.get())) {
+            if (player.hasEffect(AEffects.PotionSickness)) {
                 if (player.getUseItem().is(Items.MILK_BUCKET)) {
                     event.setCanceled(true);
                 }
@@ -76,23 +76,23 @@ public class EffectEvents {
     }
 
     @SubscribeEvent
-    public void onPlayerTick(LivingEvent.LivingTickEvent event) {
+    public void onPlayerTick(EntityTickEvent.Post event) {
         if (!CommonConfig.ENABLE_WORLD_EVENTS.get() && !CommonConfig.ENABLE_POTION_SICKNESS.get()) return;
         if (event.getEntity().level().isClientSide() || !(event.getEntity() instanceof Player player)) return;
         if (player.tickCount % 10 != 0) return;
 
         int beneficialEffectCount = (int) player.getActiveEffects().stream()
-                .filter(instance -> instance.getEffect().getCategory() == MobEffectCategory.BENEFICIAL)
-                .filter(instance -> instance.getEffect() != MobEffects.HEAL)
-                .filter(instance -> instance.getEffect() != AEffects.Extension.get())
+                .filter(instance -> instance.getEffect().value().getCategory() == MobEffectCategory.BENEFICIAL)
+                .filter(instance -> instance.getEffect().value() != MobEffects.HEAL.value())
+                .filter(instance -> instance.getEffect().value() != AEffects.Extension.get())
                 .count();
 
-        boolean hasPotionSickness = player.hasEffect(AEffects.PotionSickness.get());
+        boolean hasPotionSickness = player.hasEffect(AEffects.PotionSickness);
         int maxAllowedEffects = CommonConfig.POTION_SICKNESS_MAX_EFFECTS.get();
         int amplifier = (beneficialEffectCount - maxAllowedEffects) - 1;
 
         if (beneficialEffectCount > maxAllowedEffects && !hasPotionSickness) {
-            player.addEffect(new MobEffectInstance(AEffects.PotionSickness.get(), 320, amplifier));
+            player.addEffect(new MobEffectInstance(AEffects.PotionSickness, 320, amplifier));
             if (CommonConfig.POTION_SICKNESS_INSTANT_EFFECT.get()) {
                 PotionSickness.applyRandomNegativeEffects(player, 1);
             }
@@ -100,24 +100,24 @@ public class EffectEvents {
         }
 
         if (hasPotionSickness && beneficialEffectCount > maxAllowedEffects) {
-            MobEffectInstance potionSickness = player.getEffect(AEffects.PotionSickness.get());
+            MobEffectInstance potionSickness = player.getEffect(AEffects.PotionSickness);
             if (potionSickness != null && (potionSickness.getDuration() < 290 || potionSickness.getAmplifier() != amplifier)) {
                 if (potionSickness.getAmplifier() > amplifier) {
-                    player.removeEffect(AEffects.PotionSickness.get());
+                    player.removeEffect(AEffects.PotionSickness);
                 }
-                player.addEffect(new MobEffectInstance(AEffects.PotionSickness.get(), 320, amplifier, false, true, true));
+                player.addEffect(new MobEffectInstance(AEffects.PotionSickness, 320, amplifier, false, true, true));
             }
         }
         if (beneficialEffectCount <= maxAllowedEffects) {
-            player.removeEffect(AEffects.PotionSickness.get());
+            player.removeEffect(AEffects.PotionSickness);
         }
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void MovementEvent(MovementInputUpdateEvent event) {
+    public void MovementEvent(MovementInputUpdateEvent event) {
         Minecraft player = Minecraft.getInstance();
-        if (event.getEntity().hasEffect(AEffects.Confusion.get())) {
+        if (event.getEntity().hasEffect(AEffects.Confusion)) {
             Input input = event.getInput();
             input.leftImpulse *= -1;
             input.forwardImpulse *= -1;
@@ -125,6 +125,44 @@ public class EffectEvents {
             input.down = !input.down;
             input.jumping = player.options.keyShift.isDown();
             input.shiftKeyDown = player.options.keyJump.isDown();
+        }
+    }
+
+    @SubscribeEvent
+    public void onEffectExpired(MobEffectEvent.Expired event) {
+        if (event.getEffectInstance() != null) {
+            if (event.getEffectInstance().getEffect().is(AEffects.Flight.getKey())) {
+                if (event.getEntity() instanceof Player player) {
+                    removeFlight(player);
+                }
+            }
+        }
+        if (event.getEffectInstance() != null) {
+            if (event.getEffectInstance().getEffect().is(AEffects.Flight.getKey())) {
+                event.getEntity().setRemainingFireTicks(0);
+                event.getEntity().extinguishFire();
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEffectRemoved(MobEffectEvent.Remove event) {
+        if (event.getEffect().is(AEffects.Flight.getKey())) {
+            if (event.getEntity() instanceof Player player) {
+                removeFlight(player);
+            }
+        }
+        if (event.getEffect().is(AEffects.Burning.getKey())) {
+            event.getEntity().setRemainingFireTicks(0);
+            event.getEntity().extinguishFire();
+        }
+    }
+
+    private static void removeFlight(Player player) {
+        if (!player.isCreative() && !player.isSpectator()) {
+            player.getAbilities().flying = false;
+            player.getAbilities().mayfly = false;
+            player.onUpdateAbilities();
         }
     }
 }

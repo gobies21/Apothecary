@@ -8,25 +8,25 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.living.LivingEvent;
+import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 public class AttributeEvents {
 
     public static void register() {
-        MinecraftForge.EVENT_BUS.register(new AttributeEvents());
+        NeoForge.EVENT_BUS.register(new AttributeEvents());
     }
 
     /*
      * Final values are located in -> net.gobies.apothecary.util.AUtils
      */
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onLivingHurt(LivingHurtEvent event) {
+    public void onLivingHurt(LivingIncomingDamageEvent event) {
         if (event.isCanceled()) return;
 
         LivingEntity livingEntity = event.getEntity();
@@ -34,13 +34,13 @@ public class AttributeEvents {
         float finalAmount = event.getAmount();
 
         if (source.getEntity() instanceof LivingEntity attacker) {
-            if (attacker.getAttribute(AAttributes.DAMAGE_MULTIPLIER.get()) != null) {
+            if (attacker.getAttribute(AAttributes.DAMAGE_MULTIPLIER) != null) {
                 double damageMultiplier = AAttributes.getDamageMultiplier(attacker);
                 finalAmount *= AUtils.getDamageMultiplier(damageMultiplier);
             }
 
             if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
-                if (attacker.getAttribute(AAttributes.MAGIC_DAMAGE.get()) != null) {
+                if (attacker.getAttribute(AAttributes.MAGIC_DAMAGE) != null) {
                     double magicDamage = AAttributes.getMagicDamage(attacker);
                     finalAmount *= AUtils.getMagicDamage(magicDamage);
                 }
@@ -48,18 +48,18 @@ public class AttributeEvents {
 
 
             if (source.is(DamageTypeTags.IS_PROJECTILE)) {
-                var attribute = attacker.getAttribute(AAttributes.PROJECTILE_DAMAGE.get());
+                var attribute = attacker.getAttribute(AAttributes.PROJECTILE_DAMAGE);
                 if (attribute != null) {
                     double flatBonus = 0.0D;
                     double multiplier = 1.0D;
 
                     for (var modifier : attribute.getModifiers()) {
-                        if (modifier.getOperation() == AttributeModifier.Operation.ADDITION) {
-                            flatBonus += modifier.getAmount();
-                        } else if (modifier.getOperation() == AttributeModifier.Operation.MULTIPLY_BASE) {
-                            multiplier += modifier.getAmount();
-                        } else if (modifier.getOperation() == AttributeModifier.Operation.MULTIPLY_TOTAL) {
-                            multiplier *= (1.0D + modifier.getAmount());
+                        if (modifier.operation() == AttributeModifier.Operation.ADD_VALUE) {
+                            flatBonus += modifier.amount();
+                        } else if (modifier.operation() == AttributeModifier.Operation.ADD_MULTIPLIED_BASE) {
+                            multiplier += modifier.amount();
+                        } else if (modifier.operation() == AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL) {
+                            multiplier *= (1.0D + modifier.amount());
                         }
                     }
 
@@ -71,14 +71,14 @@ public class AttributeEvents {
         }
 
         if (!source.is(DamageTypeTags.BYPASSES_RESISTANCE)) {
-            if (livingEntity.getAttribute(AAttributes.DAMAGE_RESISTANCE.get()) != null) {
+            if (livingEntity.getAttribute(AAttributes.DAMAGE_RESISTANCE) != null) {
                 double damageResistance = AAttributes.getDamageResistance(livingEntity);
                 finalAmount *= AUtils.getDamageResistance(damageResistance);
             }
         }
 
         if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
-            if (livingEntity.getAttribute(AAttributes.MAGIC_SHIELDING.get()) != null) {
+            if (livingEntity.getAttribute(AAttributes.MAGIC_SHIELDING) != null) {
                 double magicResistance = AAttributes.getMagicResistance(livingEntity);
                 finalAmount *= AUtils.getMagicShielding(magicResistance);
             }
@@ -89,9 +89,8 @@ public class AttributeEvents {
 
     @SubscribeEvent
     public void onLivingJump(LivingEvent.LivingJumpEvent event) {
-        if (event.isCanceled()) return;
         LivingEntity livingEntity = event.getEntity();
-        if (livingEntity.getAttribute(AAttributes.JUMP_HEIGHT.get()) != null) {
+        if (livingEntity.getAttribute(AAttributes.JUMP_HEIGHT) != null) {
             double jumpHeight = AAttributes.getJumpHeight(livingEntity);
             if (jumpHeight <= 0.0D) {
                 livingEntity.setDeltaMovement(livingEntity.getDeltaMovement().x, 0.0D, livingEntity.getDeltaMovement().z);
@@ -110,7 +109,7 @@ public class AttributeEvents {
         if (event.isCanceled()) return;
         LivingEntity livingEntity = event.getEntity();
 
-        if (livingEntity.getAttribute(AAttributes.JUMP_HEIGHT.get()) != null) {
+        if (livingEntity.getAttribute(AAttributes.JUMP_HEIGHT) != null) {
             double jumpHeight = AAttributes.getJumpHeight(livingEntity);
 
             float adjustedDistance = event.getDistance() - AUtils.getFallDistanceModifier(jumpHeight);
@@ -124,7 +123,7 @@ public class AttributeEvents {
 
         Player player = event.getEntity();
 
-        if (player.getAttribute(AAttributes.DIG_SPEED.get()) != null) {
+        if (player.getAttribute(AAttributes.DIG_SPEED) != null) {
             double digSpeed = AAttributes.getDigSpeed(player);
             event.setNewSpeed(event.getNewSpeed() * AUtils.getDigSpeedMultiplier(digSpeed));
         }

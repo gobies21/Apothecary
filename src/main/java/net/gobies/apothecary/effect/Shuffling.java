@@ -19,10 +19,11 @@ public class Shuffling extends MobEffect {
         super(category, color);
     }
 
-    public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
         if (entity instanceof ServerPlayer player) {
             shufflePlayerInventory(player);
         }
+        return true;
     }
 
     @Override
@@ -93,7 +94,7 @@ public class Shuffling extends MobEffect {
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return duration % 100 == 0;
     }
 }

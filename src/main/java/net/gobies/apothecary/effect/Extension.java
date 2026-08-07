@@ -2,6 +2,7 @@ package net.gobies.apothecary.effect;
 
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -11,7 +12,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,13 +24,14 @@ public class Extension extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(@NotNull LivingEntity entity, int pAmplifier) {
+    public boolean applyEffectTick(@NotNull LivingEntity entity, int pAmplifier) {
         if (!entity.getCommandSenderWorld().isClientSide()) {
             extendEffects(entity, pAmplifier);
             if (!entity.getActiveEffects().isEmpty()) {
-                entity.removeEffect(this);
+                entity.removeEffect(AEffects.Extension);
             }
         }
+        return true;
     }
 
     @Override
@@ -50,9 +51,9 @@ public class Extension extends MobEffect {
             if (entity.level().isClientSide() || !(entity.level() instanceof ServerLevel serverLevel)) return;
             List<MobEffectInstance> effectsToUpdate = new ArrayList<>(entity.getActiveEffects());
             for (MobEffectInstance effectInstance : effectsToUpdate) {
-                MobEffect effect = effectInstance.getEffect();
+                MobEffect effect = effectInstance.getEffect().value();
                 if (effect == this || effect == AEffects.PotionSickness.get() || effect.getCategory() != MobEffectCategory.BENEFICIAL) continue;
-                ResourceLocation effectId = ForgeRegistries.MOB_EFFECTS.getKey(effect);
+                ResourceLocation effectId = BuiltInRegistries.MOB_EFFECT.getKey(effect);
                 if (effectId != null && !CommonConfig.EXTENSION_BLACKLIST_EFFECTS.get().contains(effectId.toString())) {
                     int currentDuration = effectInstance.getDuration();
                     int extensionCap = (20 * CommonConfig.EXTENSION_CAP.get()) + 10;
@@ -61,7 +62,7 @@ public class Extension extends MobEffect {
 
                     if (!(currentDuration == -1)) {
                         effectInstance.duration = newDuration;
-                        ClientboundUpdateMobEffectPacket packet = new ClientboundUpdateMobEffectPacket(entity.getId(), effectInstance);
+                        ClientboundUpdateMobEffectPacket packet = new ClientboundUpdateMobEffectPacket(entity.getId(), effectInstance, false);
                         if (entity instanceof ServerPlayer serverPlayer) {
                             serverPlayer.connection.send(packet);
                         }
@@ -75,7 +76,7 @@ public class Extension extends MobEffect {
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

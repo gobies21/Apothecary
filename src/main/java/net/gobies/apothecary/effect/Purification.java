@@ -2,6 +2,7 @@ package net.gobies.apothecary.effect;
 
 import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.util.BlacklistedEffects;
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,13 +21,14 @@ public class Purification extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
-        if (livingEntity.hasEffect(AEffects.PotionSickness.get())) return;
+    public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
+        if (livingEntity.hasEffect(AEffects.PotionSickness)) return false;
         livingEntity.getActiveEffects().stream()
-                .filter(effectInstance -> effectInstance.getEffect().getCategory() == MobEffectCategory.HARMFUL)
-                .filter(effectInstance -> BlacklistedEffects.isHarmfulEffectBlacklisted(effectInstance.getEffect()))
-                .filter(effectInstance -> effectInstance.getEffect() != AEffects.PotionSickness.get())
+                .filter(effectInstance -> effectInstance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL)
+                .filter(effectInstance -> BlacklistedEffects.isHarmfulEffectBlacklisted(effectInstance.getEffect().value()))
+                .filter(effectInstance -> effectInstance.getEffect().value() != AEffects.PotionSickness.get())
                 .forEach(effectInstance -> livingEntity.removeEffect(effectInstance.getEffect()));
+        return true;
     }
 
     @Override
@@ -36,22 +38,22 @@ public class Purification extends MobEffect {
 
     @Override
     public void applyInstantenousEffect(@Nullable Entity pSource, @Nullable Entity pIndirectSource, @NotNull LivingEntity entity, int pAmplifier, double pHealth) {
-        List<MobEffect> effectsToRemove = new ArrayList<>();
-        if (entity.hasEffect(AEffects.PotionSickness.get())) return;
+        List<Holder<MobEffect>> effectsToRemove = new ArrayList<>();
+        if (entity.hasEffect(AEffects.PotionSickness)) return;
 
         for (MobEffectInstance effectInstance : entity.getActiveEffects()) {
-            MobEffect effect = effectInstance.getEffect();
-            if (effect.getCategory() == MobEffectCategory.HARMFUL && BlacklistedEffects.isHarmfulEffectBlacklisted(effect) && effect != AEffects.PotionSickness.get()) {
+            Holder<MobEffect> effect = effectInstance.getEffect();
+            if (effect.value().getCategory() == MobEffectCategory.HARMFUL && BlacklistedEffects.isHarmfulEffectBlacklisted(effect.value()) && effect.value() != AEffects.PotionSickness.get()) {
                 effectsToRemove.add(effect);
             }
         }
-        for (MobEffect effect : effectsToRemove) {
+        for (Holder<MobEffect> effect : effectsToRemove) {
             entity.removeEffect(effect);
         }
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

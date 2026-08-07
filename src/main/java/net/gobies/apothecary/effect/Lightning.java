@@ -11,7 +11,6 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-
 public class Lightning extends MobEffect {
     public Lightning(MobEffectCategory category, int color) {
         super(category, color);

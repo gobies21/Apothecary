@@ -1,6 +1,7 @@
 package net.gobies.apothecary.effect;
 
 import net.gobies.apothecary.init.AEffects;
+import net.minecraft.core.Holder;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -21,13 +22,14 @@ public class Reversion extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(@NotNull LivingEntity entity, int pAmplifier) {
+    public boolean applyEffectTick(@NotNull LivingEntity entity, int pAmplifier) {
         if (!entity.getCommandSenderWorld().isClientSide()) {
             revertEffects(entity, pAmplifier);
             if (!entity.getActiveEffects().isEmpty()) {
-                entity.removeEffect(this);
+                entity.removeEffect(AEffects.Reversion);
             }
         }
+        return true;
     }
 
     @Override
@@ -47,8 +49,8 @@ public class Reversion extends MobEffect {
             if (entity.level().isClientSide() || !(entity.level() instanceof ServerLevel serverLevel)) return;
             List<MobEffectInstance> effectsToUpdate = new ArrayList<>(entity.getActiveEffects());
             for (MobEffectInstance effectInstance : effectsToUpdate) {
-                MobEffect effect = effectInstance.getEffect();
-                if (effect == this || effect == AEffects.PotionSickness.get() || effect.getCategory() != MobEffectCategory.BENEFICIAL) continue;
+                Holder<MobEffect> effect = effectInstance.getEffect();
+                if (effect.value() == this || effect.value() == AEffects.PotionSickness.get() || effect.value().getCategory() != MobEffectCategory.BENEFICIAL) continue;
                 int currentDuration = effectInstance.getDuration();
                 if (currentDuration != -1) {
                     int durationToRemove = 20 * 15 * (pAmplifier + 1);
@@ -56,7 +58,7 @@ public class Reversion extends MobEffect {
 
                     if (newDuration > 0) {
                         effectInstance.duration = newDuration;
-                        ClientboundUpdateMobEffectPacket packet = new ClientboundUpdateMobEffectPacket(entity.getId(), effectInstance);
+                        ClientboundUpdateMobEffectPacket packet = new ClientboundUpdateMobEffectPacket(entity.getId(), effectInstance, false);
                         if (entity instanceof ServerPlayer serverPlayer) {
                             serverPlayer.connection.send(packet);
                         }
@@ -72,7 +74,7 @@ public class Reversion extends MobEffect {
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

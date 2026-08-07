@@ -1,9 +1,5 @@
 package net.gobies.apothecary.compat.jlme;
 
-import com.kettle.jlme.configuration.JLMEConfiguration;
-import com.kettle.jlme.init.JlmeModEnchantments;
-import com.kettle.pml.core.DamageControl;
-import com.kettle.pml.events.DamageHandler;
 import net.gobies.apothecary.helper.AttributeHelper;
 import net.gobies.apothecary.init.AAttributes;
 import net.minecraft.world.damagesource.DamageSource;
@@ -11,24 +7,22 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.UUID;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
 public class NaturalBlockingHandler {
 
     public static void loadCompat() {
-        MinecraftForge.EVENT_BUS.register(new NaturalBlockingHandler());
+        NeoForge.EVENT_BUS.register(new NaturalBlockingHandler());
     }
-
-    private static final UUID DAMAGE_RESISTANCE = UUID.fromString("ae3d7287-7e36-44d9-a60f-1c3117e1a1dd");
 
     /*
     // Reworks natural blocking to use the damage resistance attribute
      */
+
+    /*
     @SubscribeEvent
     public void onItemAttributes(ItemAttributeModifierEvent event) {
         if (event.getSlotType() != EquipmentSlot.OFFHAND) return;
@@ -43,7 +37,7 @@ public class NaturalBlockingHandler {
     }
 
     @SubscribeEvent
-    public void onLivingHurt(LivingHurtEvent event) {
+    public void onLivingHurt(LivingIncomingDamageEvent event) {
         LivingEntity entity = event.getEntity();
         float amount = event.getAmount();
         DamageSource damageSource = event.getSource();
@@ -56,4 +50,6 @@ public class NaturalBlockingHandler {
             }
         }
     }
+
+     */
 }

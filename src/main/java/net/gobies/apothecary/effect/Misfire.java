@@ -2,38 +2,27 @@ package net.gobies.apothecary.effect;
 
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AAttributes;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.function.BiConsumer;
 
 public class Misfire extends MobEffect {
     public Misfire(MobEffectCategory category, int color) {
         super(category, color);
     }
 
-    private static final UUID PROJECTILE_DAMAGE = UUID.fromString("803a074d-2dcf-47e5-bfc8-92dc90511cf4");
+    private static final ResourceLocation PROJECTILE_DAMAGE_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.misfire.projectile_damage");
 
     @Override
-    public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
-        this.getAttributeModifiers().put(AAttributes.PROJECTILE_DAMAGE.get(), createModifier());
-        super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
-    }
-
-    @Override
-    public @NotNull Map<Attribute, AttributeModifier> getAttributeModifiers() {
-        Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
-        modifiers.put(AAttributes.PROJECTILE_DAMAGE.get(), createModifier());
-        return modifiers;
-    }
-
-    private AttributeModifier createModifier() {
-        return new AttributeModifier(PROJECTILE_DAMAGE, this::getDescriptionId, -CommonConfig.MISFIRE_DAMAGE_DECREASE.get(), AttributeModifier.Operation.ADDITION);
+    public void createModifiers(int amplifier, @NotNull BiConsumer<Holder<Attribute>, AttributeModifier> consumer) {
+        double projectileDamage = CommonConfig.MISFIRE_DAMAGE_DECREASE.get();
+        this.addAttributeModifier(AAttributes.PROJECTILE_DAMAGE, PROJECTILE_DAMAGE_KEY, -projectileDamage, AttributeModifier.Operation.ADD_VALUE);
+        super.createModifiers(amplifier, consumer);
     }
 }

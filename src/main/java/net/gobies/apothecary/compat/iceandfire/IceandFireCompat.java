@@ -1,20 +1,17 @@
 package net.gobies.apothecary.compat.iceandfire;
 
-import com.github.alexthe666.iceandfire.entity.EntityLightningDragon;
 import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.neoforge.common.NeoForge;
 
 public class IceandFireCompat {
 
     public static void loadCompat() {
-        MinecraftForge.EVENT_BUS.register(new IceandFireCompat());
+        NeoForge.EVENT_BUS.register(new IceandFireCompat());
     }
 
+    /*
     public boolean isLightningDragon(Entity entity) {
         if (!CommonConfig.DISABLE_ICEANDFIRE_COMPAT.get()) {
             if (ModList.get().isLoaded("iceandfire")) {
@@ -33,4 +30,7 @@ public class IceandFireCompat {
             event.setResult(MobEffectEvent.Result.DENY);
         }
     }
+
+
+     */
 }

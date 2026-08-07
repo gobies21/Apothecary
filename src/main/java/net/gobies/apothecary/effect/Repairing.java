@@ -20,7 +20,7 @@ public class Repairing extends MobEffect {
     private static final Random RANDOM = new Random();
 
     @Override
-    public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
+    public boolean applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
         if (livingEntity instanceof Player player && !livingEntity.level().isClientSide) {
             List<ItemStack> damageableItems = new ArrayList<>();
             for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
@@ -38,10 +38,11 @@ public class Repairing extends MobEffect {
                 randomItem.setDamageValue(Math.max(0, randomItem.getDamageValue() - repairAmount));
             }
         }
+        return true;
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return duration % 10 == 0;
     }
 }

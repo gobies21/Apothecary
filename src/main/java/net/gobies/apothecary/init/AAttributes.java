@@ -1,30 +1,31 @@
 package net.gobies.apothecary.init;
 
 import net.gobies.apothecary.Apothecary;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class AAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTES;
-    public static final RegistryObject<Attribute> DAMAGE_RESISTANCE;
-    public static final RegistryObject<Attribute> DAMAGE_MULTIPLIER;
-    public static final RegistryObject<Attribute> MAGIC_SHIELDING;
-    public static final RegistryObject<Attribute> MAGIC_DAMAGE;
-    public static final RegistryObject<Attribute> PROJECTILE_DAMAGE;
-    public static final RegistryObject<Attribute> JUMP_HEIGHT;
-    public static final RegistryObject<Attribute> DIG_SPEED;
+    public static final DeferredHolder<Attribute, Attribute> DAMAGE_RESISTANCE;
+    public static final DeferredHolder<Attribute, Attribute> DAMAGE_MULTIPLIER;
+    public static final DeferredHolder<Attribute, Attribute> MAGIC_SHIELDING;
+    public static final DeferredHolder<Attribute, Attribute> MAGIC_DAMAGE;
+    public static final DeferredHolder<Attribute, Attribute> PROJECTILE_DAMAGE;
+    public static final DeferredHolder<Attribute, Attribute> JUMP_HEIGHT;
+    public static final DeferredHolder<Attribute, Attribute> DIG_SPEED;
 
     public static void register(IEventBus eventBus) {
         ATTRIBUTES.register(eventBus);
     }
 
     static {
-        ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, Apothecary.MOD_ID);
+        ATTRIBUTES = DeferredRegister.create(Registries.ATTRIBUTE, Apothecary.MOD_ID);
 
         /*
         * Reduces or increases damage taken based on the value,
@@ -81,35 +82,34 @@ public class AAttributes {
     }
 
     public static double getDamageResistance(LivingEntity livingEntity) {
-        return getValue(livingEntity, DAMAGE_RESISTANCE.get());
+        return getValue(livingEntity, DAMAGE_RESISTANCE);
     }
 
     public static double getDamageMultiplier(LivingEntity livingEntity) {
-        return getValue(livingEntity, DAMAGE_MULTIPLIER.get());
+        return getValue(livingEntity, DAMAGE_MULTIPLIER);
     }
 
     public static double getMagicResistance(LivingEntity livingEntity) {
-        return getValue(livingEntity, MAGIC_SHIELDING.get());
+        return getValue(livingEntity, MAGIC_SHIELDING);
     }
 
     public static double getMagicDamage(LivingEntity livingEntity) {
-        return getValue(livingEntity, MAGIC_DAMAGE.get());
+        return getValue(livingEntity, MAGIC_DAMAGE);
     }
 
     public static double getProjectileDamage(LivingEntity livingEntity) {
-        return getValue(livingEntity, PROJECTILE_DAMAGE.get());
+        return getValue(livingEntity, PROJECTILE_DAMAGE);
     }
 
     public static double getJumpHeight(LivingEntity livingEntity) {
-        return getValue(livingEntity, JUMP_HEIGHT.get());
+        return getValue(livingEntity, JUMP_HEIGHT);
     }
 
     public static double getDigSpeed(LivingEntity livingEntity) {
-        return getValue(livingEntity, DIG_SPEED.get());
+        return getValue(livingEntity, DIG_SPEED);
     }
 
-    private static double getValue(LivingEntity entity, Attribute attribute) {
-        var instance = entity.getAttribute(attribute);
-        return instance != null ? instance.getValue() : attribute.getDefaultValue();
+    private static double getValue(LivingEntity entity, Holder<Attribute> attribute) {
+        return entity.getAttributeValue(attribute);
     }
 }

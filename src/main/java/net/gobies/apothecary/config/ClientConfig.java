@@ -1,25 +1,25 @@
 package net.gobies.apothecary.config;
 
 import net.gobies.apothecary.Apothecary;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
-@Mod.EventBusSubscriber(modid = Apothecary.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Apothecary.MOD_ID)
 public class ClientConfig {
     private static final String FILENAME = "apothecary-client.toml";
 
-    public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-    public static final ForgeConfigSpec SPEC;
+    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    public static final ModConfigSpec SPEC;
 
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ENCHANTED_GLOW;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_ENCHANTED_GLOW;
     public static boolean enable_enchanted_glow;
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_POTION_DESCRIPTIONS;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_POTION_DESCRIPTIONS;
     public static boolean enable_potion_descriptions;
-    public static ForgeConfigSpec.ConfigValue<Boolean> ADDITIONAL_POTION_TOOLTIPS;
+    public static ModConfigSpec.ConfigValue<Boolean> ADDITIONAL_POTION_TOOLTIPS;
     public static boolean additional_potion_tooltips;
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARMOR_OVERLAYS;
+    public static ModConfigSpec.ConfigValue<Boolean> ENABLE_ARMOR_OVERLAYS;
     public static boolean enable_armor_overlays;
 
     @SubscribeEvent

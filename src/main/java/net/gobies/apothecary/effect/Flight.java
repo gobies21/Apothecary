@@ -3,7 +3,6 @@ package net.gobies.apothecary.effect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,29 +12,18 @@ public class Flight extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
+    public boolean applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
         if (livingEntity instanceof Player player) {
             if (!player.getAbilities().mayfly) {
                 player.getAbilities().mayfly = true;
                 player.onUpdateAbilities();
             }
         }
+        return true;
     }
 
     @Override
-    public void removeAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributes, int amplifier) {
-        super.removeAttributeModifiers(livingEntity, attributes, amplifier);
-        if (livingEntity instanceof Player player) {
-            if (!player.isCreative() && !player.isSpectator()) {
-                player.getAbilities().flying = false;
-                player.getAbilities().mayfly = false;
-                player.onUpdateAbilities();
-            }
-        }
-    }
-
-    @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

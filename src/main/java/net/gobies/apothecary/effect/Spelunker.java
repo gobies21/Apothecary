@@ -5,6 +5,7 @@ import net.gobies.apothecary.config.CommonConfig;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -16,7 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.joml.Vector3f;
 
 import java.util.*;
@@ -28,7 +28,7 @@ public class Spelunker extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity livingEntity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
         Level level = livingEntity.level();
         BlockPos entityPos = livingEntity.blockPosition();
 
@@ -37,14 +37,15 @@ public class Spelunker extends MobEffect {
                 detectAndSpawnOreParticles(player, clientLevel, entityPos, amplifier);
             }
         }
+        return true;
     }
 
     @Override
-    public boolean isDurationEffectTick(int pDuration, int pAmplifier) {
-        return pDuration % 10 == 0;
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+        return duration % 10 == 0;
     }
 
-    TagKey<Block> forgeOresTag = BlockTags.create(new ResourceLocation("forge", "ores"));
+    TagKey<Block> forgeOresTag = BlockTags.create(ResourceLocation.parse("c:ores"));
 
     private void detectAndSpawnOreParticles(Player player, ClientLevel clientLevel, BlockPos entityPos, int amplifier) {
         int radius = 7 * (amplifier + 1);
@@ -95,10 +96,10 @@ public class Spelunker extends MobEffect {
 
     private boolean isConfigOre(Block block) {
         Set<ResourceLocation> oreBlockLocations = CommonConfig.SPELUNKER_ORE_LIST.get().stream()
-                .map(ResourceLocation::new)
+                .map(ResourceLocation::parse)
                 .collect(Collectors.toSet());
 
-        return oreBlockLocations.contains(ForgeRegistries.BLOCKS.getKey(block));
+        return oreBlockLocations.contains(BuiltInRegistries.BLOCK.getKey(block));
     }
 }
 

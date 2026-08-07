@@ -1,10 +1,10 @@
 package net.gobies.apothecary.compat;
 
 import net.gobies.apothecary.util.ModLoadedUtil;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.fml.ModList;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,12 +15,12 @@ public class OreCompat {
     public static boolean isModdedOre(Block block) {
         Set<ResourceLocation> oreBlockLocations = getOreString()
                 .stream()
-                .map(ResourceLocation::new)
+                .map(ResourceLocation::parse)
                 .collect(Collectors.toSet());
 
-        ResourceLocation blockLocation = ForgeRegistries.BLOCKS.getKey(block);
+        ResourceLocation blockLocation = BuiltInRegistries.BLOCK.getKey(block);
 
-        return blockLocation != null && oreBlockLocations.contains(blockLocation);
+        return oreBlockLocations.contains(blockLocation);
     }
 
     private static Set<String> getOreString() {
