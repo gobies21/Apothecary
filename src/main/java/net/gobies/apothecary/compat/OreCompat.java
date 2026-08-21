@@ -8,19 +8,23 @@ import net.neoforged.fml.ModList;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class OreCompat {
 
+    private static final Set<String> ORE_BLOCKS = new HashSet<>();
+
     public static boolean isModdedOre(Block block) {
-        Set<ResourceLocation> oreBlockLocations = getOreString()
-                .stream()
-                .map(ResourceLocation::parse)
-                .collect(Collectors.toSet());
+        if (block == null) {
+            return false;
+        }
 
         ResourceLocation blockLocation = BuiltInRegistries.BLOCK.getKey(block);
 
-        return oreBlockLocations.contains(blockLocation);
+        if (ORE_BLOCKS.isEmpty()) {
+            ORE_BLOCKS.addAll(getOreString());
+        }
+
+        return ORE_BLOCKS.contains(blockLocation.toString());
     }
 
     private static Set<String> getOreString() {
