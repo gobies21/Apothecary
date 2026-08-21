@@ -38,7 +38,7 @@ public class NaturalBlockingHandler {
         double damageResistance = JLMEConfiguration.natural_blocking_base + (JLMEConfiguration.natural_blocking_increase * naturalBlockingLevel);
         double roundedValue = Math.round(damageResistance * 100.0) / 100.0;
         if (naturalBlockingLevel > 0) {
-            AttributeHelper.applyModifiers(event, AAttributes.DAMAGE_RESISTANCE.get(), DAMAGE_RESISTANCE, "Damage Resistance", roundedValue);
+            AttributeHelper.applyModifiers(event, AAttributes.DAMAGE_RESISTANCE.get(), DAMAGE_RESISTANCE, "Natural Blocking `Damage Resistance", roundedValue);
         }
     }
 
