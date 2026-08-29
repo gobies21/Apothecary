@@ -10,15 +10,18 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.MovementInputUpdateEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -61,6 +64,16 @@ public class EffectEvents {
         }
         if (event.getEntity().hasEffect(AEffects.Corruption.get()) && BlacklistedEffects.isBeneficialEffectApplicable(event.getEntity(), effectInstance)) {
             event.setResult(MobEffectEvent.Result.DENY);
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onEffectApplicable(MobEffectEvent.Applicable event) {
+        if (event.getEntity() instanceof Player) return;
+        if (event.getEffectInstance().getEffect() == AEffects.Confusion.get()) {
+            if (event.getEntity().getMaxHealth() > CommonConfig.CONFUSION_HEALTH_THRESHOLD.get()) {
+                event.setResult(Event.Result.DENY);
+            }
         }
     }
 
@@ -110,6 +123,22 @@ public class EffectEvents {
         }
         if (beneficialEffectCount <= maxAllowedEffects) {
             player.removeEffect(AEffects.PotionSickness.get());
+        }
+    }
+
+    @SubscribeEvent
+    public void onChangeTarget(LivingChangeTargetEvent event) {
+        if (event.getEntity() instanceof Mob mob && mob.hasEffect(AEffects.Confusion.get())) {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void onEffectAdded(MobEffectEvent.Added event) {
+        if (event.getEffectInstance().getEffect() == AEffects.Confusion.get()) {
+            if (event.getEntity() instanceof Mob mob) {
+                mob.setTarget(null);
+            }
         }
     }
 

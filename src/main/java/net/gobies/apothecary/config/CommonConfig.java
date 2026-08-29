@@ -147,6 +147,8 @@ public class CommonConfig {
     public static boolean enable_confusion_recipe;
     public static ForgeConfigSpec.ConfigValue<String> CONFUSION_INGREDIENT;
     public static String confusion_ingredient;
+    public static ForgeConfigSpec.ConfigValue<Double> CONFUSION_HEALTH_THRESHOLD;
+    public static float confusion_health_threshold;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_PURIFICATION_RECIPE;
     public static boolean enable_purification_recipe;
@@ -325,6 +327,7 @@ public class CommonConfig {
             thorns_damage_reflect = THORNS_DAMAGE_REFLECT.get().floatValue();
             enable_confusion_recipe = ENABLE_CONFUSION_RECIPE.get();
             confusion_ingredient = CONFUSION_INGREDIENT.get();
+            confusion_health_threshold = CONFUSION_HEALTH_THRESHOLD.get().floatValue();
             enable_purification_recipe = ENABLE_PURIFICATION_RECIPE.get();
             purification_ingredient = PURIFICATION_INGREDIENT.get();
             purification_blacklist_effects = PURIFICATION_BLACKLIST_EFFECTS.get();
@@ -508,6 +511,7 @@ public class CommonConfig {
         BUILDER.push("Confusion");
         ENABLE_CONFUSION_RECIPE = BUILDER.comment("Enable the confusion potion recipe").define("Enable", true);
         CONFUSION_INGREDIENT = BUILDER.comment("Main ingredient used to brew thorns potions").define("Ingredient", "minecraft:sniffer_egg");
+        CONFUSION_HEALTH_THRESHOLD = BUILDER.comment("Max health a mob can have to be able to get confused, any value under this allows confusion").define("Confusion_Health_Threshold", 50.0);
         BUILDER.pop();
 
         BUILDER.push("Purification");
