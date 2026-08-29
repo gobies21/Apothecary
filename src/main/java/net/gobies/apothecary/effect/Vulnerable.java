@@ -17,12 +17,12 @@ public class Vulnerable extends MobEffect {
         super(category, color);
     }
 
-    private static final ResourceLocation DAMAGE_MULTIPLIER_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.vulnerable.damage_multiplier");
+    private static final ResourceLocation DAMAGE_RESISTANCE_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.vulnerable.damage_resistance");
 
     @Override
     public void createModifiers(int amplifier, @NotNull BiConsumer<Holder<Attribute>, AttributeModifier> consumer) {
-        double damageDecrease = CommonConfig.VULNERABLE_DAMAGE_TAKEN.get();
-        this.addAttributeModifier(AAttributes.DAMAGE_MULTIPLIER, DAMAGE_MULTIPLIER_KEY, -damageDecrease, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+        double resistanceDecrease = CommonConfig.VULNERABLE_DAMAGE_TAKEN.get();
+        this.addAttributeModifier(AAttributes.DAMAGE_RESISTANCE, DAMAGE_RESISTANCE_KEY, -resistanceDecrease, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
         super.createModifiers(amplifier, consumer);
     }
 }

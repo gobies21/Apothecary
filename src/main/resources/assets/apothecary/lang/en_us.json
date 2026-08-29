@@ -426,7 +426,7 @@
   "effect.apothecary.mana_exhaustion.description": "Decreases mana regeneration; higher levels decreases regen further.",
   "effect.apothecary.vulnerable.description": "Decreases damage resistance; higher levels decreases damage resistance further.",
   "effect.apothecary.corrosion.description": "Randomly damages items in your inventory; higher levels increases the amount of durability corroded.",
-  "effect.apothecary.confusion.description": "Inverts controls",
+  "effect.apothecary.confusion.description": "Inverts controls for players, and confuses mob targeting",
   "effect.apothecary.corruption.description": "Clears all active positive effects.",
   "effect.apothecary.burning.description": "Sets entities ablaze for its duration; higher levels increases the damage of burning.",
   "effect.apothecary.shocked.description": "Decreases movement speed by a large amount; higher levels decreases speed further.",
