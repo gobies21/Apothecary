@@ -64,10 +64,7 @@ public class EffectEvents {
         if (event.getEntity().hasEffect(AEffects.Corruption) && BlacklistedEffects.isBeneficialEffectApplicable(event.getEntity(), effectInstance)) {
             event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
         }
-    }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onEffectApplicable(MobEffectEvent.Applicable event) {
         if (event.getEntity() instanceof Player) return;
         if (event.getEffectInstance().getEffect().value() == AEffects.Confusion.get()) {
             if (event.getEntity().getMaxHealth() > CommonConfig.CONFUSION_HEALTH_THRESHOLD.get()) {
