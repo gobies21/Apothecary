@@ -11,7 +11,7 @@ file = "META-INF/accesstransformer.cfg"
 
 [[mods]]
 modId="apothecary"
-version="1.5.0.6"
+version="1.5.1"
 displayName="Apothecary"
 authors="gobies"
 description='''A potion expansion to liven up the alchemy experience in Minecraft!'''
