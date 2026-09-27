@@ -145,7 +145,7 @@ public class ArmorOverlay {
     };
 
     private static double getResistanceValue(Player player) {
-        double damageResistance = AAttributes.getDamageResistance(player);
+        double damageResistance = AAttributes.getDamageResistanceValue(player);
 
         double resistance = damageResistance - 1.0;
 

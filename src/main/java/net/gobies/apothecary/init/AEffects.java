@@ -15,6 +15,7 @@ public class AEffects {
     public static final RegistryObject<MobEffect> DiamondSkin;
     public static final RegistryObject<MobEffect> MagicShield;
     public static final RegistryObject<MobEffect> Archery;
+    public static final RegistryObject<MobEffect> QuickDraw;
     public static final RegistryObject<MobEffect> Wrath;
     public static final RegistryObject<MobEffect> Flight;
     public static final RegistryObject<MobEffect> Reach;
@@ -28,6 +29,7 @@ public class AEffects {
     public static final RegistryObject<MobEffect> BrokenArmor;
     public static final RegistryObject<MobEffect> RupturedArmor;
     public static final RegistryObject<MobEffect> Misfire;
+    public static final RegistryObject<MobEffect> Lethargy;
     public static final RegistryObject<MobEffect> Frail;
     public static final RegistryObject<MobEffect> Vulnerable;
     public static final RegistryObject<MobEffect> Corrosion;
@@ -54,6 +56,7 @@ public class AEffects {
         DiamondSkin = EFFECTS.register("diamond_skin", () -> new DiamondSkin(MobEffectCategory.BENEFICIAL, 0x4AEDD9));
         MagicShield = EFFECTS.register("magic_shield", () -> new MagicShield(MobEffectCategory.BENEFICIAL, 0xEA79E4));
         Archery = EFFECTS.register("archery", () -> new Archery(MobEffectCategory.BENEFICIAL, 0xFFC067));
+        QuickDraw = EFFECTS.register("quick_draw", () -> new QuickDraw(MobEffectCategory.BENEFICIAL, 0xCCB466));
         Wrath = EFFECTS.register("wrath", () -> new Wrath(MobEffectCategory.BENEFICIAL, 0x8B0000));
         Flight = EFFECTS.register("flight", () -> new Flight(MobEffectCategory.BENEFICIAL, 0x63C5DA));
         Reach = EFFECTS.register("reach", () -> new Reach(MobEffectCategory.BENEFICIAL, 0xCA5CDD));
@@ -62,13 +65,14 @@ public class AEffects {
         ManaRegeneration = EFFECTS.register("mana_regeneration", () -> new ManaRegeneration(MobEffectCategory.BENEFICIAL, 0xFF00FF));
         Thorns = EFFECTS.register("thorns", () -> new Thorns(MobEffectCategory.BENEFICIAL, 0x65FE08));
         Purification = EFFECTS.register("purification", () -> new Purification(MobEffectCategory.BENEFICIAL, 0xEEBEF5));
-        Spelunker = EFFECTS.register("spelunker", () -> new Spelunker(MobEffectCategory.BENEFICIAL, 0xAF8A38));
+        Spelunker = EFFECTS.register("spelunker", () -> new Spelunker(MobEffectCategory.BENEFICIAL, 0xBC943C));
         Extension = EFFECTS.register("extension", () -> new Extension(MobEffectCategory.BENEFICIAL, 0xFFFFFF));
 
         // Negative
         BrokenArmor = EFFECTS.register("broken_armor", () -> new BrokenArmor(MobEffectCategory.HARMFUL, 0x727272));
         RupturedArmor = EFFECTS.register("ruptured_armor", () -> new RupturedArmor(MobEffectCategory.HARMFUL, 0x2A8478));
         Misfire = EFFECTS.register("misfire", () -> new Misfire(MobEffectCategory.HARMFUL, 0x99733E));
+        Lethargy = EFFECTS.register("lethargy", () -> new Lethargy(MobEffectCategory.HARMFUL, 0x77682B));
         Frail = EFFECTS.register("frail", () -> new Frail(MobEffectCategory.HARMFUL, 0x873737));
         Vulnerable = EFFECTS.register("vulnerable", () -> new Vulnerable(MobEffectCategory.HARMFUL, 0x9B232E));
         Corrosion = EFFECTS.register("corrosion", () -> new Corrosion(MobEffectCategory.HARMFUL, 0x52712D));

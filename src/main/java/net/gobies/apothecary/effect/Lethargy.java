@@ -13,28 +13,35 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 import java.util.UUID;
 
-public class MagicShield extends MobEffect {
-    public MagicShield(MobEffectCategory category, int color) {
+public class Lethargy extends MobEffect {
+    public Lethargy(MobEffectCategory category, int color) {
         super(category, color);
     }
 
-    private static final UUID MAGIC_SHIELDING = UUID.fromString("cc47d5b8-0525-403a-a631-a9f3e282ff39");
+    private static final UUID DRAW_SPEED = UUID.fromString("d48e7557-c3cc-4136-84d9-eaed8600a634");
+    private static final UUID PROJECTILE_VELOCITY = UUID.fromString("83de54db-ef60-4c46-a7e8-c787975fd133");
 
 
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
-        this.getAttributeModifiers().put(AAttributes.MAGIC_SHIELDING.get(), createModifier());
+        this.getAttributeModifiers().put(AAttributes.DRAW_SPEED.get(), createModifier());
+        this.getAttributeModifiers().put(AAttributes.PROJECTILE_VELOCITY.get(), createModifier2());
         super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
     }
 
     @Override
     public @NotNull Map<Attribute, AttributeModifier> getAttributeModifiers() {
         Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
-        modifiers.put(AAttributes.MAGIC_SHIELDING.get(), createModifier());
+        modifiers.put(AAttributes.DRAW_SPEED.get(), createModifier());
+        modifiers.put(AAttributes.PROJECTILE_VELOCITY.get(), createModifier2());
         return modifiers;
     }
 
     private AttributeModifier createModifier() {
-        return new AttributeModifier(MAGIC_SHIELDING, this::getDescriptionId, CommonConfig.MAGIC_SHIELD_INCREASE.get(), AttributeModifier.Operation.ADDITION);
+        return new AttributeModifier(DRAW_SPEED, this::getDescriptionId, -CommonConfig.LETHARGY_SPEED_DECREASE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
+    }
+
+    private AttributeModifier createModifier2() {
+        return new AttributeModifier(PROJECTILE_VELOCITY, this::getDescriptionId, -CommonConfig.LETHARGY_VELOCITY_DECREASE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
     }
 }

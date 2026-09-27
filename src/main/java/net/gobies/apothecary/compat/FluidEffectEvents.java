@@ -33,6 +33,7 @@ public class FluidEffectEvents {
     @SubscribeEvent
     public void fluidEffects(LivingEvent.LivingTickEvent event) {
         if (!CommonConfig.APOTHECARY_ENABLED.get()) return;
+        if (event.getEntity().level().isClientSide()) return;
         LivingEntity livingEntity = event.getEntity();
         Level level = livingEntity.level();
         if (livingEntity.tickCount % 10 != 0) return;

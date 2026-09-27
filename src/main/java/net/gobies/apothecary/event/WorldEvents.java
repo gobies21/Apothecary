@@ -11,6 +11,8 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.monster.Illusioner;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -83,6 +85,13 @@ public class WorldEvents {
             if (mob instanceof Illusioner) {
                 if (entity.getRandom().nextFloat() < 0.1) {
                     entity.addEffect(new MobEffectInstance(AEffects.Confusion.get(), randomShortDuration, baseAmplifier));
+                }
+            }
+            if (event.getSource().is(DamageTypes.ARROW) || event.getSource().getDirectEntity() instanceof AbstractArrow) {
+                if (entity.isUsingItem() && (entity.getUseItem().getItem() instanceof ProjectileWeaponItem)) {
+                    if (entity.getRandom().nextFloat() < 0.1) {
+                        entity.addEffect(new MobEffectInstance(AEffects.Lethargy.get(), DurationUtils.getRandomShortDuration(), 0));
+                    }
                 }
             }
         }

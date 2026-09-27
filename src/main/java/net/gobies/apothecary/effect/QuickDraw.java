@@ -13,28 +13,35 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 import java.util.UUID;
 
-public class MagicShield extends MobEffect {
-    public MagicShield(MobEffectCategory category, int color) {
+public class QuickDraw extends MobEffect {
+    public QuickDraw(MobEffectCategory category, int color) {
         super(category, color);
     }
 
-    private static final UUID MAGIC_SHIELDING = UUID.fromString("cc47d5b8-0525-403a-a631-a9f3e282ff39");
+    private static final UUID DRAW_SPEED = UUID.fromString("96525014-96d8-4425-b51a-45527e810463");
+    private static final UUID PROJECTILE_VELOCITY = UUID.fromString("0c444657-a4ff-4183-8490-16aec2875a5d");
 
 
     @Override
     public void addAttributeModifiers(@NotNull LivingEntity livingEntity, @NotNull AttributeMap attributeMap, int amplifier) {
-        this.getAttributeModifiers().put(AAttributes.MAGIC_SHIELDING.get(), createModifier());
+        this.getAttributeModifiers().put(AAttributes.DRAW_SPEED.get(), createModifier());
+        this.getAttributeModifiers().put(AAttributes.PROJECTILE_VELOCITY.get(), createModifier2());
         super.addAttributeModifiers(livingEntity, attributeMap, amplifier);
     }
 
     @Override
     public @NotNull Map<Attribute, AttributeModifier> getAttributeModifiers() {
         Map<Attribute, AttributeModifier> modifiers = super.getAttributeModifiers();
-        modifiers.put(AAttributes.MAGIC_SHIELDING.get(), createModifier());
+        modifiers.put(AAttributes.DRAW_SPEED.get(), createModifier());
+        modifiers.put(AAttributes.PROJECTILE_VELOCITY.get(), createModifier2());
         return modifiers;
     }
 
     private AttributeModifier createModifier() {
-        return new AttributeModifier(MAGIC_SHIELDING, this::getDescriptionId, CommonConfig.MAGIC_SHIELD_INCREASE.get(), AttributeModifier.Operation.ADDITION);
+        return new AttributeModifier(DRAW_SPEED, this::getDescriptionId, CommonConfig.QUICK_DRAW_SPEED_INCREASE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
+    }
+
+    private AttributeModifier createModifier2() {
+        return new AttributeModifier(PROJECTILE_VELOCITY, this::getDescriptionId, CommonConfig.QUICK_DRAW_VELOCITY_INCREASE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
     }
 }

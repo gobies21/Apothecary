@@ -20,7 +20,7 @@ public class AUtils {
     }
 
     /**
-     * The final magic damage multiplier value of the magic damage multiplier attribute
+     * The final magic damage multiplier value of the magic damage attribute
      * Returns the damage multiplier as a percentage, e.g. 1.5 = 50%
      */
     public static float getMagicDamage(double magicDamage) {
@@ -28,11 +28,33 @@ public class AUtils {
     }
 
     /**
-     * The final projectile damage multiplier value of the projectile damage multiplier attribute
+     * The final projectile damage multiplier value of the projectile damage attribute
      * Returns the damage multiplier as a percentage, e.g. 1.5 = 50%
      */
     public static float getProjectileDamage(double projectileDamage) {
         return (float) (projectileDamage);
+    }
+
+    /**
+     * The final projectile velocity multiplier value of the projectile velocity attribute
+     * Returns the damage multiplier as a percentage, e.g. 1.5 = 50%
+     */
+    public static float getProjectileVelocity(double projectileVelocity) {
+        return (float) (projectileVelocity);
+    }
+
+    /**
+     * The final draw speed multiplier value of the draw speed attribute
+     * Returns the draw speed as a percentage, e.g. 1.5 = 50%
+     */
+    public static int getDrawSpeed(double drawSpeed, int ticks) {
+        double speed = drawSpeed - 1.0;
+        if (speed == 0.0) return 0;
+
+        int currentTick = (int) Math.floor(ticks * speed);
+        int previousTick = (int) Math.floor((ticks - 1) * speed);
+
+        return currentTick - previousTick;
     }
 
     /**
