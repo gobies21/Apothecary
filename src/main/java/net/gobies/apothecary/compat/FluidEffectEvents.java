@@ -7,7 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -34,8 +33,8 @@ public class FluidEffectEvents {
     @SubscribeEvent
     public void fluidEffects(EntityTickEvent.Post event) {
         if (!CommonConfig.APOTHECARY_ENABLED.get()) return;
-        Entity entity = event.getEntity();
-        if (entity instanceof LivingEntity livingEntity) {
+        if (event.getEntity().level().isClientSide()) return;
+        if (event.getEntity() instanceof LivingEntity livingEntity) {
             Level level = livingEntity.level();
             if (livingEntity.tickCount % 10 != 0) return;
             BlockPos blockPos = livingEntity.blockPosition();

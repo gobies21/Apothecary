@@ -17,6 +17,8 @@ public class AAttributes {
     public static final DeferredHolder<Attribute, Attribute> MAGIC_SHIELDING;
     public static final DeferredHolder<Attribute, Attribute> MAGIC_DAMAGE;
     public static final DeferredHolder<Attribute, Attribute> PROJECTILE_DAMAGE;
+    public static final DeferredHolder<Attribute, Attribute> PROJECTILE_VELOCITY;
+    public static final DeferredHolder<Attribute, Attribute> DRAW_SPEED;
     public static final DeferredHolder<Attribute, Attribute> JUMP_HEIGHT;
     public static final DeferredHolder<Attribute, Attribute> DIG_SPEED;
 
@@ -46,7 +48,7 @@ public class AAttributes {
         * Every (1) value is equivalent to 5%
         * Default = 0.0 (no magic resistance)
         * If Irons Spellbooks is installed this attribute will also increase resistance against spell damage
-        * Has only half of the effectiveness against spell damage
+        * Has only half of the effectiveness against spell damage (1 is equivalent to 2.5%)
         */
         MAGIC_SHIELDING = ATTRIBUTES.register("magic_shielding", () -> new RangedAttribute("attribute.name.apothecary.magic_shielding", 0.0D, -20.0D, 20.0D).setSyncable(true));
 
@@ -67,6 +69,20 @@ public class AAttributes {
         PROJECTILE_DAMAGE = ATTRIBUTES.register("projectile_damage", () -> new RangedAttribute("attribute.name.apothecary.projectile_damage", 1.0D, -1024.0D, 1024.0D).setSyncable(true));
 
         /*
+         * Increases projectile velocity based on the value
+         * Every (0.1) value is equivalent to 10%
+         * Default = 1.0 (no extra projectile velocity)
+         */
+        PROJECTILE_VELOCITY = ATTRIBUTES.register("projectile_velocity", () -> new RangedAttribute("attribute.name.apothecary.projectile_velocity", 1.0D, 0.0D, 2.0D).setSyncable(true));
+
+        /*
+         * Increases draw speed based on the value
+         * Every (0.1) value is equivalent to 10%
+         * Default = 1.0 (no extra draw speed)
+         */
+        DRAW_SPEED = ATTRIBUTES.register("draw_speed", () -> new RangedAttribute("attribute.name.apothecary.draw_speed", 1.0D, 0.0D, 2.0D).setSyncable(true));
+
+        /*
         * Increases or decreases jump height based on the value
         * Every (0.5) value is half a block
         * Default = 1.0 (no extra jumping height)
@@ -81,31 +97,39 @@ public class AAttributes {
         DIG_SPEED = ATTRIBUTES.register("dig_speed", () -> new RangedAttribute("attribute.name.apothecary.dig_speed", 1.0D, 0.0D, 1024.0D).setSyncable(true));
     }
 
-    public static double getDamageResistance(LivingEntity livingEntity) {
+    public static double getDamageResistanceValue(LivingEntity livingEntity) {
         return getValue(livingEntity, DAMAGE_RESISTANCE);
     }
 
-    public static double getDamageMultiplier(LivingEntity livingEntity) {
+    public static double getDamageMultiplierValue(LivingEntity livingEntity) {
         return getValue(livingEntity, DAMAGE_MULTIPLIER);
     }
 
-    public static double getMagicResistance(LivingEntity livingEntity) {
+    public static double getMagicResistanceValue(LivingEntity livingEntity) {
         return getValue(livingEntity, MAGIC_SHIELDING);
     }
 
-    public static double getMagicDamage(LivingEntity livingEntity) {
+    public static double getMagicDamageValue(LivingEntity livingEntity) {
         return getValue(livingEntity, MAGIC_DAMAGE);
     }
 
-    public static double getProjectileDamage(LivingEntity livingEntity) {
+    public static double getProjectileDamageValue(LivingEntity livingEntity) {
         return getValue(livingEntity, PROJECTILE_DAMAGE);
     }
 
-    public static double getJumpHeight(LivingEntity livingEntity) {
+    public static double getDrawSpeedValue(LivingEntity livingEntity) {
+        return getValue(livingEntity, DRAW_SPEED);
+    }
+
+    public static double getProjectileVelocityValue(LivingEntity livingEntity) {
+        return getValue(livingEntity, PROJECTILE_VELOCITY);
+    }
+
+    public static double getJumpHeightValue(LivingEntity livingEntity) {
         return getValue(livingEntity, JUMP_HEIGHT);
     }
 
-    public static double getDigSpeed(LivingEntity livingEntity) {
+    public static double getDigSpeedValue(LivingEntity livingEntity) {
         return getValue(livingEntity, DIG_SPEED);
     }
 

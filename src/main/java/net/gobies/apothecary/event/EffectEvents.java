@@ -131,10 +131,14 @@ public class EffectEvents {
 
     @SubscribeEvent
     public void onEffectAdded(MobEffectEvent.Added event) {
+        LivingEntity livingEntity = event.getEntity();
         if (event.getEffectInstance().getEffect().value() == AEffects.Confusion.get()) {
-            if (event.getEntity() instanceof Mob mob) {
+            if (livingEntity instanceof Mob mob) {
                 mob.setTarget(null);
             }
+        }
+        if (event.getEffectInstance().getEffect().value() == AEffects.Burning.get()) {
+            livingEntity.setRemainingFireTicks(25);
         }
     }
 

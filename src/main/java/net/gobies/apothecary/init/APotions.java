@@ -25,6 +25,9 @@ public class APotions {
     public static final DeferredHolder<Potion, Potion> Archery;
     public static final DeferredHolder<Potion, Potion> LongArchery;
     public static final DeferredHolder<Potion, Potion> StrongArchery;
+    public static final DeferredHolder<Potion, Potion> QuickDraw;
+    public static final DeferredHolder<Potion, Potion> LongQuickDraw;
+    public static final DeferredHolder<Potion, Potion> StrongQuickDraw;
     public static final DeferredHolder<Potion, Potion> Wrath;
     public static final DeferredHolder<Potion, Potion> LongWrath;
     public static final DeferredHolder<Potion, Potion> StrongWrath;
@@ -57,6 +60,8 @@ public class APotions {
     public static final DeferredHolder<Potion, Potion> StrongRupturedArmor;
     public static final DeferredHolder<Potion, Potion> Misfire;
     public static final DeferredHolder<Potion, Potion> LongMisfire;
+    public static final DeferredHolder<Potion, Potion> Lethargy;
+    public static final DeferredHolder<Potion, Potion> LongLethargy;
     public static final DeferredHolder<Potion, Potion> Frail;
     public static final DeferredHolder<Potion, Potion> LongFrail;
     public static final DeferredHolder<Potion, Potion> StrongFrail;
@@ -123,6 +128,10 @@ public class APotions {
         LongArchery = POTIONS.register("long_archery", () -> new Potion(new MobEffectInstance(AEffects.Archery,9600,0)));
         StrongArchery = POTIONS.register("strong_archery", () -> new Potion(new MobEffectInstance(AEffects.Archery,1800,1)));
 
+        QuickDraw = POTIONS.register("quick_draw", () -> new Potion(new MobEffectInstance(AEffects.QuickDraw,3600,0)));
+        LongQuickDraw = POTIONS.register("long_quick_draw", () -> new Potion(new MobEffectInstance(AEffects.QuickDraw,9600,0)));
+        StrongQuickDraw = POTIONS.register("strong_quick_draw", () -> new Potion(new MobEffectInstance(AEffects.QuickDraw,1800,1)));
+
         Wrath = POTIONS.register("wrath", () -> new Potion(new MobEffectInstance(AEffects.Wrath,3600,0)));
         LongWrath = POTIONS.register("long_wrath", () -> new Potion(new MobEffectInstance(AEffects.Wrath,9600,0)));
         StrongWrath = POTIONS.register("strong_wrath", () -> new Potion(new MobEffectInstance(AEffects.Wrath,1800,1)));
@@ -169,6 +178,9 @@ public class APotions {
 
         Misfire = POTIONS.register("misfire", () -> new Potion(new MobEffectInstance(AEffects.Misfire,1800,0)));
         LongMisfire = POTIONS.register("long_misfire", () -> new Potion(new MobEffectInstance(AEffects.Misfire,4800,0)));
+
+        Lethargy = POTIONS.register("lethargy", () -> new Potion(new MobEffectInstance(AEffects.Lethargy,1800,0)));
+        LongLethargy = POTIONS.register("long_lethargy", () -> new Potion(new MobEffectInstance(AEffects.Lethargy,4800,0)));
 
         Frail = POTIONS.register("frail", () -> new Potion(new MobEffectInstance(AEffects.Frail,900,0)));
         LongFrail = POTIONS.register("long_frail", () -> new Potion(new MobEffectInstance(AEffects.Frail,1800,0)));

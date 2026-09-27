@@ -86,10 +86,6 @@ configurations {
 
 repositories {
     maven {
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
-    }
-    maven {
         name = "CurseMaven"
         url = "https://cursemaven.com/"
     }
@@ -108,12 +104,11 @@ dependencies {
     implementation "curse.maven:prickle-1023259:6961457"
     implementation "curse.maven:bookshelf-228525:7606240"
 
+    //implementation "curse.maven:bountiful-fares-972289:8681881"
+    //implementation "curse.maven:nexuslib-1279113:8212474"
+
     /*
 
-
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
-    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
 
     implementation fg.deobf("curse.maven:just-enough-effect-descriptions-jeed-532286:6172935")
 

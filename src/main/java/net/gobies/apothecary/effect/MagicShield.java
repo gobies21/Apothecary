@@ -1,5 +1,6 @@
 package net.gobies.apothecary.effect;
 
+import net.gobies.apothecary.config.CommonConfig;
 import net.gobies.apothecary.init.AAttributes;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +21,8 @@ public class MagicShield extends MobEffect {
 
     @Override
     public void createModifiers(int amplifier, @NotNull BiConsumer<Holder<Attribute>, AttributeModifier> consumer) {
-        this.addAttributeModifier(AAttributes.MAGIC_SHIELDING, MAGIC_SHIELDING_KEY, 2, AttributeModifier.Operation.ADD_VALUE);
+        double magicShielding = CommonConfig.MAGIC_SHIELD_INCREASE.get();
+        this.addAttributeModifier(AAttributes.MAGIC_SHIELDING, MAGIC_SHIELDING_KEY, magicShielding, AttributeModifier.Operation.ADD_VALUE);
         super.createModifiers(amplifier, consumer);
     }
 }

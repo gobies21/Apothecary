@@ -2,6 +2,7 @@ package net.gobies.apothecary;
 
 import com.mojang.logging.LogUtils;
 import net.gobies.apothecary.client.overlay.ArmorOverlay;
+import net.gobies.apothecary.compat.AttributeCompat;
 import net.gobies.apothecary.compat.FluidEffectEvents;
 import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbooksCompat;
 import net.gobies.apothecary.config.ClientConfig;
@@ -40,6 +41,7 @@ public class Apothecary {
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::registerGuiOverlays);
         modBus.addListener(AttributeHelper::attachAttributes);
+        modBus.addListener(AttributeCompat::attachAttributes);
         container.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
         container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
     }

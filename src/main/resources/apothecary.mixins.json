@@ -7,6 +7,7 @@
   "mixins": [
     "ItemMixin",
     "LivingEntityMixin",
+    "MobEffectMixin",
     "PlayerMixin",
     "WitchMixin"
   ],

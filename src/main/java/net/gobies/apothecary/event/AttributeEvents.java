@@ -8,9 +8,14 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileWeaponItem;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
@@ -35,13 +40,13 @@ public class AttributeEvents {
 
         if (source.getEntity() instanceof LivingEntity attacker) {
             if (attacker.getAttribute(AAttributes.DAMAGE_MULTIPLIER) != null) {
-                double damageMultiplier = AAttributes.getDamageMultiplier(attacker);
+                double damageMultiplier = AAttributes.getDamageMultiplierValue(attacker);
                 finalAmount *= AUtils.getDamageMultiplier(damageMultiplier);
             }
 
             if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
                 if (attacker.getAttribute(AAttributes.MAGIC_DAMAGE) != null) {
-                    double magicDamage = AAttributes.getMagicDamage(attacker);
+                    double magicDamage = AAttributes.getMagicDamageValue(attacker);
                     finalAmount *= AUtils.getMagicDamage(magicDamage);
                 }
             }
@@ -72,14 +77,14 @@ public class AttributeEvents {
 
         if (!source.is(DamageTypeTags.BYPASSES_RESISTANCE)) {
             if (livingEntity.getAttribute(AAttributes.DAMAGE_RESISTANCE) != null) {
-                double damageResistance = AAttributes.getDamageResistance(livingEntity);
+                double damageResistance = AAttributes.getDamageResistanceValue(livingEntity);
                 finalAmount *= AUtils.getDamageResistance(damageResistance);
             }
         }
 
         if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
             if (livingEntity.getAttribute(AAttributes.MAGIC_SHIELDING) != null) {
-                double magicResistance = AAttributes.getMagicResistance(livingEntity);
+                double magicResistance = AAttributes.getMagicResistanceValue(livingEntity);
                 finalAmount *= AUtils.getMagicShielding(magicResistance);
             }
         }
@@ -88,10 +93,41 @@ public class AttributeEvents {
     }
 
     @SubscribeEvent
+    public void onLivingItemUseTick(LivingEntityUseItemEvent.Tick event) {
+        LivingEntity livingEntity = event.getEntity();
+        ItemStack stack = event.getItem();
+
+        if (stack.getItem() instanceof ProjectileWeaponItem) {
+            double drawSpeed = AAttributes.getDrawSpeedValue(livingEntity);
+            int newTicks = AUtils.getDrawSpeed(drawSpeed, livingEntity.tickCount);
+
+            if (newTicks != 0) {
+                event.setDuration(event.getDuration() - newTicks);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityJoin(EntityJoinLevelEvent event) {
+        if (event.getLevel().isClientSide()) return;
+        if (!(event.getEntity() instanceof Projectile projectile)) return;
+        if (projectile.getPersistentData().getBoolean("apothecary_velocity")) return;
+
+        var owner = projectile.getOwner();
+        if (!(owner instanceof LivingEntity livingEntity)) return;
+        var projectileVelocity = AAttributes.getProjectileVelocityValue(livingEntity);
+        float finalVelocity = AUtils.getProjectileVelocity(projectileVelocity);
+        if (finalVelocity == 0.0f || finalVelocity == 1.0f) return;
+
+        projectile.setDeltaMovement(projectile.getDeltaMovement().scale(finalVelocity));
+        projectile.getPersistentData().putBoolean("apothecary_velocity", true);
+    }
+
+    @SubscribeEvent
     public void onLivingJump(LivingEvent.LivingJumpEvent event) {
         LivingEntity livingEntity = event.getEntity();
         if (livingEntity.getAttribute(AAttributes.JUMP_HEIGHT) != null) {
-            double jumpHeight = AAttributes.getJumpHeight(livingEntity);
+            double jumpHeight = AAttributes.getJumpHeightValue(livingEntity);
             if (jumpHeight <= 0.0D) {
                 livingEntity.setDeltaMovement(livingEntity.getDeltaMovement().x, 0.0D, livingEntity.getDeltaMovement().z);
                 return;
@@ -110,7 +146,7 @@ public class AttributeEvents {
         LivingEntity livingEntity = event.getEntity();
 
         if (livingEntity.getAttribute(AAttributes.JUMP_HEIGHT) != null) {
-            double jumpHeight = AAttributes.getJumpHeight(livingEntity);
+            double jumpHeight = AAttributes.getJumpHeightValue(livingEntity);
 
             float adjustedDistance = event.getDistance() - AUtils.getFallDistanceModifier(jumpHeight);
             event.setDistance(Math.max(0, adjustedDistance));
@@ -124,7 +160,7 @@ public class AttributeEvents {
         Player player = event.getEntity();
 
         if (player.getAttribute(AAttributes.DIG_SPEED) != null) {
-            double digSpeed = AAttributes.getDigSpeed(player);
+            double digSpeed = AAttributes.getDigSpeedValue(player);
             event.setNewSpeed(event.getNewSpeed() * AUtils.getDigSpeedMultiplier(digSpeed));
         }
     }

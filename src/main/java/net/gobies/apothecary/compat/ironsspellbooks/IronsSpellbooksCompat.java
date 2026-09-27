@@ -55,13 +55,13 @@ public class IronsSpellbooksCompat {
 
         if (event.getSpellDamageSource().getEntity() instanceof LivingEntity attacker) {
             if (attacker.getAttribute(AAttributes.MAGIC_DAMAGE) != null) {
-                double magicDamage = AAttributes.getMagicDamage(attacker);
+                double magicDamage = AAttributes.getMagicDamageValue(attacker);
                 finalAmount *= AUtils.getMagicDamage(magicDamage);
             }
         }
 
         if (victim.getAttribute(AAttributes.MAGIC_SHIELDING) != null) {
-            double magicResistance = AAttributes.getMagicResistance(victim);
+            double magicResistance = AAttributes.getMagicResistanceValue(victim);
             double halvedResistance = magicResistance * 0.5D;
             finalAmount *= AUtils.getMagicShielding(halvedResistance);
         }
