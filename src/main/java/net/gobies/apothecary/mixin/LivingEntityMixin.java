@@ -32,20 +32,6 @@ public abstract class LivingEntityMixin {
     }
 
     @Redirect(
-            method = "getDamageAfterMagicAbsorb",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/core/Holder;)Z"
-            )
-    )
-    private boolean redirectResistance(LivingEntity instance, Holder<MobEffect> effect) {
-        if (effect.value() == MobEffects.DAMAGE_RESISTANCE.value()) {
-            return false;
-        }
-        return instance.hasEffect(effect);
-    }
-
-    @Redirect(
             method = "getJumpBoostPower",
             at = @At(
                     value = "INVOKE",

@@ -9,7 +9,9 @@
     "LivingEntityMixin",
     "MobEffectMixin",
     "PlayerMixin",
-    "WitchMixin"
+    "ResistanceMixin",
+    "WitchMixin",
+    "apothic.ResistanceCompatMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -15,6 +15,8 @@ public class AMixinPlugin implements IMixinConfigPlugin {
     private static final Supplier<Boolean> TRUE = () -> true;
     private static final Map<String, Supplier<Boolean>> CONDITIONS = ImmutableMap.<String, Supplier<Boolean>>builder()
             //.put("net.gobies.apothecary.mixin.firstaid.ArmorUtilsMixin", () -> LoadingModList.get().getModFileById("firstaid") != null)
+            .put("net.gobies.apothecary.mixin.ResistanceMixin", () -> LoadingModList.get().getModFileById("apothic_attributes") == null)
+            .put("net.gobies.apothecary.mixin.ResistanceCompatMixin", () -> LoadingModList.get().getModFileById("apothic_attributes") != null)
             .put("net.gobies.apothecary.mixin.firstaid.ClientEventHandlerMixin", () -> LoadingModList.get().getModFileById("firstaid") != null)
             .put("net.gobies.apothecary.mixin.jlme.DamageHandlerEventsMixin", () -> LoadingModList.get().getModFileById("jlme") != null)
             .build();
