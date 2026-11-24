@@ -1,5 +1,6 @@
 package net.gobies.apothecary.mixin;
 
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,10 +19,21 @@ public class PlayerMixin {
                     target = "Lnet/minecraft/world/effect/MobEffectUtil;hasDigSpeed(Lnet/minecraft/world/entity/LivingEntity;)Z"
             )
     )
-    private boolean redirectJumpBoost(LivingEntity entity) {
+    private boolean redirectHaste(LivingEntity entity) {
         if (MobEffectUtil.hasDigSpeed(entity)) {
             return false;
         }
         return entity.hasEffect(MobEffects.DIG_SPEED);
+    }
+
+    @Redirect(
+            method = "getDigSpeed",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/player/Player;hasEffect(Lnet/minecraft/world/effect/MobEffect;)Z"
+            )
+    )
+    private boolean redirectMiningFatigue(Player player, MobEffect effect) {
+        return effect != MobEffects.DIG_SLOWDOWN && player.hasEffect(effect);
     }
 }

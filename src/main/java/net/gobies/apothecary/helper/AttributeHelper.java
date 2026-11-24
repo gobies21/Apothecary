@@ -19,15 +19,18 @@ import java.util.UUID;
 @Mod.EventBusSubscriber(modid = Apothecary.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class AttributeHelper {
 
-    private static final UUID DAMAGE_RESISTANCE = UUID.fromString("0450b038-97d4-47f7-993c-8c6451bb1475");
-    private static final UUID JUMP_HEIGHT = UUID.fromString("6c97a292-6352-4af9-afd0-2c52ecdecf88");
-    private static final UUID DIG_SPEED = UUID.fromString("e7e166af-47e9-497d-a0b4-64ce5a8ba78d");
+    private static final UUID RESISTANCE_DAMAGE_RESISTANCE = UUID.fromString("0450b038-97d4-47f7-993c-8c6451bb1475");
+    private static final UUID JUMP_BOOST_JUMP_HEIGHT = UUID.fromString("6c97a292-6352-4af9-afd0-2c52ecdecf88");
+    private static final UUID HASTE_DIG_SPEED = UUID.fromString("e7e166af-47e9-497d-a0b4-64ce5a8ba78d");
+    private static final UUID MINING_FATIGUE_DIG_SPEED = UUID.fromString("a7e166af-47e9-497d-a0b4-64ce5a8ba78c");
+
 
     public static void attachAttributes(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            MobEffects.DAMAGE_RESISTANCE.addAttributeModifier(AAttributes.DAMAGE_RESISTANCE.get(), String.valueOf(DAMAGE_RESISTANCE), CommonConfig.RESISTANCE_DAMAGE_RESISTANCE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
-            MobEffects.JUMP.addAttributeModifier(AAttributes.JUMP_HEIGHT.get(), String.valueOf(JUMP_HEIGHT), CommonConfig.JUMP_BOOST_JUMP_HEIGHT.get(), AttributeModifier.Operation.ADDITION);
-            MobEffects.DIG_SPEED.addAttributeModifier(AAttributes.DIG_SPEED.get(), String.valueOf(DIG_SPEED), CommonConfig.HASTE_DIG_SPEED.get(), AttributeModifier.Operation.MULTIPLY_BASE);
+            MobEffects.DAMAGE_RESISTANCE.addAttributeModifier(AAttributes.DAMAGE_RESISTANCE.get(), String.valueOf(RESISTANCE_DAMAGE_RESISTANCE), CommonConfig.RESISTANCE_DAMAGE_RESISTANCE.get(), AttributeModifier.Operation.MULTIPLY_BASE);
+            MobEffects.JUMP.addAttributeModifier(AAttributes.JUMP_HEIGHT.get(), String.valueOf(JUMP_BOOST_JUMP_HEIGHT), CommonConfig.JUMP_BOOST_JUMP_HEIGHT.get(), AttributeModifier.Operation.ADDITION);
+            MobEffects.DIG_SPEED.addAttributeModifier(AAttributes.DIG_SPEED.get(), String.valueOf(HASTE_DIG_SPEED), CommonConfig.HASTE_DIG_SPEED.get(), AttributeModifier.Operation.MULTIPLY_BASE);
+            MobEffects.DIG_SLOWDOWN.addAttributeModifier(AAttributes.DIG_SPEED.get(), String.valueOf(MINING_FATIGUE_DIG_SPEED), -CommonConfig.MINING_FATIGUE_DIG_SPEED.get(), AttributeModifier.Operation.MULTIPLY_BASE);
         });
     }
 

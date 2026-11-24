@@ -44,7 +44,7 @@ public class AttributeEvents {
                 finalAmount *= AUtils.getDamageMultiplier(damageMultiplier);
             }
 
-            if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
+            if (isMagicDamage(source)) {
                 if (attacker.getAttribute(AAttributes.MAGIC_DAMAGE.get()) != null) {
                     double magicDamage = AAttributes.getMagicDamageValue(attacker);
                     finalAmount *= AUtils.getMagicDamage(magicDamage);
@@ -52,11 +52,12 @@ public class AttributeEvents {
             }
 
 
-            if (source.is(DamageTypeTags.IS_PROJECTILE)) {
+            if (source.is(DamageTypeTags.IS_PROJECTILE) || source.getDirectEntity() instanceof Projectile) {
                 var attribute = attacker.getAttribute(AAttributes.PROJECTILE_DAMAGE.get());
                 if (attribute != null) {
                     double flatBonus = 0.0D;
-                    double multiplier = 1.0D;
+                    double base = attribute.getBaseValue();
+                    double multiplier = (base == 0.0D) ? 1.0D : base;
 
                     for (var modifier : attribute.getModifiers()) {
                         if (modifier.getOperation() == AttributeModifier.Operation.ADDITION) {
@@ -82,7 +83,7 @@ public class AttributeEvents {
             }
         }
 
-        if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)) {
+        if (isMagicDamage(source)) {
             if (livingEntity.getAttribute(AAttributes.MAGIC_SHIELDING.get()) != null) {
                 double magicResistance = AAttributes.getMagicResistanceValue(livingEntity);
                 finalAmount *= AUtils.getMagicShielding(magicResistance);
@@ -164,5 +165,9 @@ public class AttributeEvents {
             double digSpeed = AAttributes.getDigSpeedValue(player);
             event.setNewSpeed(event.getNewSpeed() * AUtils.getDigSpeedMultiplier(digSpeed));
         }
+    }
+
+    private static boolean isMagicDamage(DamageSource source) {
+        return source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC) || source.is(DamageTypes.SONIC_BOOM) || source.is(DamageTypes.THORNS);
     }
 }

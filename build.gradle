@@ -106,7 +106,7 @@ dependencies {
     implementation fg.deobf("curse.maven:caelus-308989:5281700")
 
     implementation fg.deobf("curse.maven:spartan-weaponry-278141:5597663")
-    implementation fg.deobf("curse.maven:more-artifacts-1143299:7553653")
+    implementation fg.deobf("curse.maven:more-artifacts-1143299:9669601")
 
     runtimeOnly(fg.deobf("curse.maven:configured-457570:5180900"))
     runtimeOnly(fg.deobf("curse.maven:catalogue-459701:4766090"))
@@ -121,6 +121,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:just-a-lot-more-enchantments-865111:8130194")
     implementation fg.deobf("curse.maven:progressive-mechanics-library-1235043:7597380")
+    runtimeOnly(fg.deobf("curse.maven:jade-324717:8479276"))
 }
 
 mixin {

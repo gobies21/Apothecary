@@ -3,7 +3,6 @@ package net.gobies.apothecary.effect;
 import net.gobies.apothecary.init.AEffects;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -56,11 +55,9 @@ public class Reversion extends MobEffect {
 
                     if (newDuration > 0) {
                         effectInstance.duration = newDuration;
+
                         ClientboundUpdateMobEffectPacket packet = new ClientboundUpdateMobEffectPacket(entity.getId(), effectInstance);
-                        if (entity instanceof ServerPlayer serverPlayer) {
-                            serverPlayer.connection.send(packet);
-                        }
-                        serverLevel.getChunkSource().broadcast(entity, packet);
+                        serverLevel.getChunkSource().broadcastAndSend(entity, packet);
                     } else {
                         entity.removeEffect(effect);
                     }

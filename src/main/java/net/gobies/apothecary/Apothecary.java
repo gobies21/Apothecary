@@ -2,7 +2,6 @@ package net.gobies.apothecary;
 
 import com.mojang.logging.LogUtils;
 import net.gobies.apothecary.client.overlay.ArmorOverlay;
-import net.gobies.apothecary.compat.FluidEffectEvents;
 import net.gobies.apothecary.compat.iceandfire.IceandFireCompat;
 import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbooksCompat;
 import net.gobies.apothecary.compat.jlme.NaturalBlockingHandler;
@@ -67,10 +66,6 @@ public class Apothecary {
             SpartanWeaponryCompat.loadCompat();
             LOGGER.info("[Apothecary] Spartan Weaponry Compat Loaded");
         }
-        if (ModList.get().isLoaded("alexscaves") || ModList.get().isLoaded("biomesoplenty")) {
-            FluidEffectEvents.loadCompat();
-            LOGGER.info("[Apothecary] Modded Fluid Effects Compat Loaded");
-        }
         if (ModList.get().isLoaded("iceandfire")) {
             IceandFireCompat.loadCompat();
             LOGGER.info("[Apothecary] Ice and Fire Compat Loaded");
@@ -88,6 +83,7 @@ public class Apothecary {
      private void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
         event.registerAbove(VanillaGuiOverlay.ARMOR_LEVEL.id(), "armor_overlay", ArmorOverlay.ARMOR_HUD);
         event.registerAbove(new ResourceLocation(Apothecary.MOD_ID, "armor_overlay"), "armor_toughness_overlay", ArmorOverlay.ARMOR_TOUGHNESS_HUD);
+        event.registerAbove(new ResourceLocation(Apothecary.MOD_ID, "armor_toughness_overlay"), "magic_shield_overlay", ArmorOverlay.MAGIC_SHIELDING_HUD);
         event.registerBelow(VanillaGuiOverlay.ARMOR_LEVEL.id(), "resistance_overlay", ArmorOverlay.RESISTANCE_HUD);
     }
 }

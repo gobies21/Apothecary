@@ -5,7 +5,9 @@ import net.gobies.apothecary.init.AEffects;
 import net.gobies.apothecary.util.BlacklistedEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -43,7 +45,7 @@ public class EffectEvents {
             int amplifier = Objects.requireNonNull(livingEntity.getEffect(AEffects.Thorns.get())).getAmplifier();
             float damageReflect = (float) (damageDealt * CommonConfig.THORNS_DAMAGE_REFLECT.get() * (amplifier + 1)) + 1;
 
-            DamageSource thornsDamage = source.getEntity().damageSources().thorns(livingEntity);
+            DamageSource thornsDamage = new DamageSource(livingEntity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS), livingEntity, livingEntity);
             attacker.hurt(thornsDamage, damageReflect);
         }
     }
