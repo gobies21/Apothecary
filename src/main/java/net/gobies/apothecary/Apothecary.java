@@ -3,7 +3,6 @@ package net.gobies.apothecary;
 import com.mojang.logging.LogUtils;
 import net.gobies.apothecary.client.overlay.ArmorOverlay;
 import net.gobies.apothecary.compat.AttributeCompat;
-import net.gobies.apothecary.compat.FluidEffectEvents;
 import net.gobies.apothecary.compat.ironsspellbooks.IronsSpellbooksCompat;
 import net.gobies.apothecary.config.ClientConfig;
 import net.gobies.apothecary.config.CommonConfig;
@@ -55,10 +54,6 @@ public class Apothecary {
             //SpartanWeaponryCompat.loadCompat();
             LOGGER.info("[Apothecary] Spartan Weaponry Compat Loaded");
         }
-        if (ModList.get().isLoaded("alexscaves") || ModList.get().isLoaded("biomesoplenty")) {
-            FluidEffectEvents.loadCompat();
-            LOGGER.info("[Apothecary] Modded Fluid Effects Compat Loaded");
-        }
         if (ModList.get().isLoaded("iceandfire")) {
             //IceandFireCompat.loadCompat();
             LOGGER.info("[Apothecary] Ice and Fire Compat Loaded");
@@ -73,9 +68,15 @@ public class Apothecary {
         }
     }
 
-     private void registerGuiOverlays(RegisterGuiLayersEvent event) {
-        event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, ResourceLocation.fromNamespaceAndPath(Apothecary.MOD_ID, "armor_overlay"), ArmorOverlay.ARMOR_HUD);
-        event.registerAbove(VanillaGuiLayers.FOOD_LEVEL, ResourceLocation.fromNamespaceAndPath(Apothecary.MOD_ID, "armor_toughness_overlay"), ArmorOverlay.ARMOR_TOUGHNESS_HUD);
-        event.registerBelow(VanillaGuiLayers.ARMOR_LEVEL, ResourceLocation.fromNamespaceAndPath("apothecary", "resistance_overlay"), ArmorOverlay.RESISTANCE_HUD);
+    private void registerGuiOverlays(RegisterGuiLayersEvent event) {
+        ResourceLocation armorOverlay = ResourceLocation.fromNamespaceAndPath(Apothecary.MOD_ID, "armor_overlay");
+        ResourceLocation toughnessOverlay = ResourceLocation.fromNamespaceAndPath(Apothecary.MOD_ID, "armor_toughness_overlay");
+        ResourceLocation magicShieldOverlay = ResourceLocation.fromNamespaceAndPath(Apothecary.MOD_ID, "magic_shield_overlay");
+        ResourceLocation resistanceOverlay = ResourceLocation.fromNamespaceAndPath(Apothecary.MOD_ID, "resistance_overlay");
+
+        event.registerAbove(VanillaGuiLayers.ARMOR_LEVEL, armorOverlay, ArmorOverlay.ARMOR_HUD);
+        event.registerAbove(armorOverlay, toughnessOverlay, ArmorOverlay.ARMOR_TOUGHNESS_HUD);
+        event.registerAbove(toughnessOverlay, magicShieldOverlay, ArmorOverlay.MAGIC_SHIELDING_HUD);
+        event.registerBelow(VanillaGuiLayers.ARMOR_LEVEL, resistanceOverlay, ArmorOverlay.RESISTANCE_HUD);
     }
 }

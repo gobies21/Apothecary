@@ -23,15 +23,18 @@ import java.util.UUID;
 @EventBusSubscriber(modid = Apothecary.MOD_ID)
 public class AttributeHelper {
 
-    private static final ResourceLocation DAMAGE_RESISTANCE_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.resistance.damage_resistance");
-    private static final ResourceLocation JUMP_HEIGHT_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.jump_boost.jump_height");
-    private static final ResourceLocation DIG_SPEED_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.haste.dig_speed");
+    private static final ResourceLocation RESISTANCE_DAMAGE_RESISTANCE_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.resistance.damage_resistance");
+    private static final ResourceLocation JUMP_BOOST_JUMP_HEIGHT_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.jump_boost.jump_height");
+    private static final ResourceLocation HASTE_DIG_SPEED_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.haste.dig_speed");
+    private static final ResourceLocation MINING_FATIGUE_DIG_SPEED_KEY = ResourceLocation.fromNamespaceAndPath("apothecary", "effect.mining_fatigue.dig_speed");
+
 
     public static void attachAttributes(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            MobEffects.DAMAGE_RESISTANCE.value().addAttributeModifier(AAttributes.DAMAGE_RESISTANCE, DAMAGE_RESISTANCE_KEY, CommonConfig.RESISTANCE_DAMAGE_RESISTANCE.get(), AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-            MobEffects.JUMP.value().addAttributeModifier(AAttributes.JUMP_HEIGHT, JUMP_HEIGHT_KEY, CommonConfig.JUMP_BOOST_JUMP_HEIGHT.get(), AttributeModifier.Operation.ADD_VALUE);
-            MobEffects.DIG_SPEED.value().addAttributeModifier(AAttributes.DIG_SPEED, DIG_SPEED_KEY, CommonConfig.HASTE_DIG_SPEED.get(), AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+            MobEffects.DAMAGE_RESISTANCE.value().addAttributeModifier(AAttributes.DAMAGE_RESISTANCE, RESISTANCE_DAMAGE_RESISTANCE_KEY, CommonConfig.RESISTANCE_DAMAGE_RESISTANCE.get(), AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+            MobEffects.JUMP.value().addAttributeModifier(AAttributes.JUMP_HEIGHT, JUMP_BOOST_JUMP_HEIGHT_KEY, CommonConfig.JUMP_BOOST_JUMP_HEIGHT.get(), AttributeModifier.Operation.ADD_VALUE);
+            MobEffects.DIG_SPEED.value().addAttributeModifier(AAttributes.DIG_SPEED, HASTE_DIG_SPEED_KEY, CommonConfig.HASTE_DIG_SPEED.get(), AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+            MobEffects.DIG_SLOWDOWN.value().addAttributeModifier(AAttributes.DIG_SPEED, MINING_FATIGUE_DIG_SPEED_KEY, -CommonConfig.MINING_FATIGUE_DIG_SPEED.get(), AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
         });
     }
 

@@ -103,6 +103,7 @@ dependencies {
     implementation "curse.maven:attributefix-280510:7115922"
     implementation "curse.maven:prickle-1023259:6961457"
     implementation "curse.maven:bookshelf-228525:7606240"
+    runtimeOnly "curse.maven:spark-361579:6225208"
 
     //implementation "curse.maven:bountiful-fares-972289:8681881"
     //implementation "curse.maven:nexuslib-1279113:8212474"
